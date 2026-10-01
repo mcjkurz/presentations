@@ -25,7 +25,7 @@
   // chrome: footer, progress bar, prev/next buttons
   const foot = document.createElement('div');
   foot.id = 'foot';
-  foot.innerHTML = '<span class="brand"><b>qh · china</b> &nbsp;/&nbsp; <span id="secname"></span></span><span id="num"></span>';
+  foot.innerHTML = '<span class="brand"><b>qh · china</b><span class="sec"> &nbsp;/&nbsp; <span id="secname"></span></span></span><span id="num"></span>';
   stage.appendChild(foot);
   const bar = document.createElement('div'); bar.id = 'bar'; stage.appendChild(bar);
   const nav = document.createElement('div'); nav.id = 'nav';
@@ -84,6 +84,8 @@
     const ci = sections.findIndex(x => x.id === s.dataset.sec);
     document.getElementById('secname').textContent = ci >= 0 ? sections[ci].name : 'Teaching Literature with Language Machines';
     foot.classList.toggle('hide', s.classList.contains('nofoot'));
+    // the section already shows in the slide's own kicker, so the footer does not repeat it
+    foot.classList.toggle('nosec', !!s.querySelector('.kicker'));
     let done = 0, total = 0;
     slides.forEach((x, i) => { const n = maxStep(x) + 1; if (i < cur) done += n; if (i === cur) done += step; total += n; });
     bar.style.width = (100 * done / Math.max(1, total - 1)) + '%';

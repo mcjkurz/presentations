@@ -44,6 +44,7 @@ body { font-family: var(--sans); color: var(--ink); -webkit-font-smoothing: anti
 #foot { position: absolute; left: 88px; right: 88px; bottom: 22px; display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; color: var(--faint); pointer-events: none; z-index: 5; transition: opacity .3s; }
 #foot .brand b { color: var(--mute); font-weight: 500; }
 #foot.hide { opacity: 0; }
+#foot.nosec .sec { display: none; }
 #bar { position: absolute; left: 0; bottom: 0; height: 2px; background: var(--ink2); transition: width .35s ease; z-index: 6; }
 #nav { position: absolute; right: 16px; bottom: 10px; display: flex; gap: 2px; z-index: 7; opacity: .25; transition: opacity .2s; }
 #nav:hover { opacity: 1; }
