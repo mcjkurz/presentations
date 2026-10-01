@@ -1092,7 +1092,7 @@
 <section class="slide divider nokicker" id="s-div3" data-sec="practical">
   <div class="big-n">03</div>
   <h2>Practical <em>session</em></h2>
-  <p class="lead">A note on method, then our experience of building a research tool with an AI agent, and finally a step-by-step setup so you can do the same.</p>
+  <p class="lead">A note on method, then how to set up an AI coding agent, and finally our example: building a research tool with one.</p>
 </section>
 
 <!-- ═════════════ Conclusion -->
@@ -1111,6 +1111,95 @@
     </div>
   </div>
   <div class="callout" data-step="2" style="font-size:20px">We are interested in language models only insofar as they tell us something new about literature. Findings about the texts outlast any particular model; findings about the model do not.</div>
+</section>
+
+<!-- ═════════════ 03 Practical: agent vs model -->
+<section class="slide" id="s-pr-concept" data-sec="practical">
+  <h2>We need to choose <em>two things</em></h2>
+  <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin:6px 0 10px">1 · THE ASSISTANT (THE “HARNESS”)</div>
+  <p class="body" style="font-size:19px;margin:0 0 12px">The app you talk to. It reads your files, writes code, runs it and shows the result.</p>
+  <div class="claims" style="grid-template-columns:repeat(4,1fr);gap:22px">
+    <div class="claim" data-step="1"><div class="n">EDITOR + CHAT</div><div class="h" style="font-size:24px">VS Code</div><div class="b">Local, or in the browser as a <b>Codespace</b>. Chat panel with Copilot or an extension.</div></div>
+    <div class="claim" data-step="2"><div class="n">OPEN SOURCE</div><div class="h" style="font-size:24px">OpenCode</div><div class="b">Terminal or desktop app. Works with almost any model provider.</div></div>
+    <div class="claim" data-step="3"><div class="n">OPENAI</div><div class="h" style="font-size:24px">Codex</div><div class="b c-coral"><b>Not available in Hong Kong.</b></div></div>
+    <div class="claim" data-step="4"><div class="n">ANTHROPIC</div><div class="h" style="font-size:24px">Claude Code</div><div class="b c-coral"><b>Not available in Hong Kong.</b></div></div>
+  </div>
+  <div class="callout" data-step="5" style="font-size:19px"><b>The second choice is the model</b> that does the thinking, and who provides it. Next slide.</div>
+</section>
+
+<!-- ═════════════ 03 Practical: model provider -->
+<section class="slide" id="s-pr-model" data-sec="practical">
+  <h2>2 · The <em>model</em> and its provider</h2>
+  <p class="body" style="font-size:19px;margin:0 0 12px">The assistant is only the messenger. The language model runs somewhere else, and an <b>API key</b> connects the two. Treat the key like a password.</p>
+  <div class="claims" style="grid-template-columns:repeat(2,1fr);gap:40px">
+    <div class="claim" data-step="1">
+      <div class="n">LOCAL</div>
+      <div class="h" style="font-size:26px">On your own computer</div>
+      <div class="b"><b>Ollama</b>, <b>LM Studio</b>. Private and free to run, but you need strong hardware, and the models you can run are smaller.</div>
+    </div>
+    <div class="claim" data-step="2">
+      <div class="n">EXTERNAL</div>
+      <div class="h" style="font-size:26px">On someone else’s servers</div>
+      <div class="b"><b>OpenRouter</b>, <b>Poe</b>, <b>OpenCode Go</b>, or the model makers’ own APIs. Many models, one key, pay per use or by subscription. This is what we use: <b>OpenRouter</b> with <b>GLM-5.3-Flash</b>.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ 03 Practical: pitfalls -->
+<section class="slide" id="s-pr-pitfalls" data-sec="practical">
+  <h2>Before you start: <em>pitfalls</em></h2>
+  <div class="row" style="gap:40px;align-items:flex-start;margin-top:6px">
+    <div class="grow ev">
+      <div data-step="1" style="font-size:18px"><b>You cannot install Python, Git or VS Code.</b> Public and school computers are locked down. Use <b>GitHub Codespaces</b> in the browser; everything is already inside it. <span class="mono c-coral" style="font-size:15px">github.com/codespaces</span></div>
+      <div data-step="2" style="font-size:18px"><b>OpenCode in a Windows terminal is a pain.</b> Install errors, <i>command not found</i>. In Codespaces it just works; otherwise use the desktop app.</div>
+      <div data-step="3" style="font-size:18px"><b>Register GitHub with a personal email,</b> not a school one that expires. Then apply for <b>GitHub Education</b>: up to 180 Codespaces core-hours a month. <span class="mono c-coral" style="font-size:15px">education.github.com</span></div>
+      <div data-step="4" style="font-size:18px"><b>Delete your Codespace when you finish.</b> An idle one keeps using your hours. <b>Push first:</b> anything not pushed is lost.</div>
+    </div>
+    <figure class="fig" data-step="3" style="width:330px;flex:none"><img src="img/gh-edu-backpack.png" alt="GitHub Education backpack"><figcaption>GitHub Education · education.github.com</figcaption></figure>
+  </div>
+</section>
+
+<!-- ═════════════ 03 Practical: step 1 -->
+<section class="slide" id="s-pr-1" data-sec="practical">
+  <h2>Step 1 · <em>Accounts</em> and a repository</h2>
+  <div class="steps3" style="margin-top:22px">
+    <div class="st" data-step="1"><span class="n">1</span><div><div class="t" style="font-size:30px">A GitHub account</div><div class="d">Personal email. This is where your work lives.</div></div><span class="url">github.com</span></div>
+    <div class="st" data-step="2"><span class="n">2</span><div><div class="t" style="font-size:30px">An API key</div><div class="d">Register with the class code. Keep it private.</div></div><span class="url c-coral">keyreg.qhchina.org</span></div>
+    <div class="st" data-step="3"><span class="n">3</span><div><div class="t" style="font-size:30px">Your own copy of the template</div><div class="d">Open the template, press <b>Use this template</b>. Do not edit the template itself.</div></div><span class="url">mcjkurz/qh-starter</span></div>
+  </div>
+</section>
+
+<!-- ═════════════ 03 Practical: step 2 -->
+<section class="slide" id="s-pr-2" data-sec="practical">
+  <h2>Step 2 · <em>Start</em> the agent</h2>
+  <div class="row" style="gap:44px;margin-top:6px">
+    <div class="grow">
+      <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin-bottom:8px">IN THE BROWSER (CODESPACES)</div>
+      <div class="ev">
+        <div data-step="1" style="font-size:18px">Your repository → <b>Code → Codespaces → Create codespace</b>. The first start takes a few minutes. Your codespaces are listed at <span class="mono c-coral" style="font-size:15px">github.com/codespaces</span>.</div>
+        <div data-step="2" style="font-size:18px">Or on your own computer: install <b>VS Code</b> or the <b>OpenCode desktop app</b>, then open the repository folder.</div>
+      </div>
+    </div>
+    <div class="grow">
+      <div class="mono c-blue" style="font-size:12px;letter-spacing:.14em;margin-bottom:8px">CONNECT THE MODEL</div>
+      <div class="ev">
+        <div data-step="3" style="font-size:18px">In the terminal type <span class="mono">opencode</span></div>
+        <div data-step="4" style="font-size:18px"><span class="mono">/connect</span> → <b>OpenRouter</b> → paste your key</div>
+        <div data-step="5" style="font-size:18px"><span class="mono">/models</span> → <b>GLM-5.3-Flash</b></div>
+      </div>
+    </div>
+  </div>
+  <div class="callout blue" data-step="6" style="font-size:18px">Local install, <i>command not found</i>? Open a <b>new</b> terminal; the old one has not noticed the install yet. On Windows, use the desktop app.</div>
+</section>
+
+<!-- ═════════════ 03 Practical: our example -->
+<section class="slide" id="s-pr-example" data-sec="practical">
+  <h2>Our example: <em>qh-starter</em></h2>
+  <p class="lead" style="font-size:22px;max-width:900px">A template repository with everything installed, and a first analysis of 紅樓夢: chapters, word frequencies, a 3D PCA.</p>
+  <div class="claims" style="grid-template-columns:repeat(2,1fr);gap:40px;margin-top:14px">
+    <div class="claim" data-step="1"><div class="n">THE TEMPLATE</div><div class="h" style="font-size:26px">github.com/mcjkurz/qh-starter</div><div class="b">Press <b>Use this template</b> to get your own copy.</div></div>
+    <div class="claim" data-step="2"><div class="n">THE FULL GUIDE</div><div class="h" style="font-size:26px">Prompts, step by step</div><div class="b c-coral">Link to the guide page: coming soon.</div></div>
+  </div>
 </section>
 
 <!-- ═════════════ BodyWords: building with an agent -->
@@ -1270,112 +1359,6 @@
     </div>
   </div>
   <div class="callout" data-step="4" style="font-size:20px">The literary reader is not made redundant by the agent. <b>Close reading is how the output gets verified.</b></div>
-</section>
-
-<!-- ═════════════ 03 Practical: agent vs model -->
-<section class="slide" id="s-pr-concept" data-sec="practical">
-  <h2>Two things to <em>choose</em></h2>
-  <div class="claims" style="grid-template-columns:repeat(2,1fr);gap:40px">
-    <div class="claim" data-step="1">
-      <div class="n">THE AGENT</div>
-      <div class="h">The app you talk to</div>
-      <div class="b">Reads your files, writes code, runs it, shows the result. <b>OpenCode</b> (a terminal, or a desktop app) or <b>GitHub Copilot</b> (a chat panel inside VS Code). Interchangeable: the exercise is identical.</div>
-    </div>
-    <div class="claim" data-step="2">
-      <div class="n">THE MODEL PROVIDER</div>
-      <div class="h">The brain, and the bill</div>
-      <div class="b">The language model runs on someone else’s servers. <b>OpenRouter</b> gives access to many models through one <b>API key</b>; we use <b>GLM-5.3-Flash</b>. The agent is only the messenger.</div>
-    </div>
-  </div>
-  <div class="callout" data-step="3" style="font-size:19px"><b>Agent ≠ model.</b> You can change either one without the other. The API key is what connects them, so treat it like a password: never paste it into your repository or share it.</div>
-</section>
-
-<!-- ═════════════ 03 Practical: pitfalls -->
-<section class="slide" id="s-pr-pitfalls" data-sec="practical">
-  <h2>Before you start: <em>pitfalls</em></h2>
-  <div class="row" style="gap:40px;align-items:flex-start;margin-top:6px">
-    <div class="grow ev">
-      <div data-step="1" style="font-size:18px"><b>Public and school computers.</b> They usually have no Python or Git, and you cannot install anything. Use <b>GitHub Codespaces</b> in the browser; everything is already inside it. <span class="mono c-coral" style="font-size:15px">github.com/codespaces</span></div>
-      <div data-step="2" style="font-size:18px"><b>Register GitHub with a personal email.</b> A school address expires after you leave. Add the school address later, for the education benefit.</div>
-      <div data-step="3" style="font-size:18px"><b>Apply for GitHub Education.</b> Verified students get up to 180 Codespaces core-hours a month, far above the free allowance. <span class="mono c-coral" style="font-size:15px">education.github.com</span></div>
-      <div data-step="4" style="font-size:18px"><b>Delete your Codespace when you finish.</b> An idle one keeps using up your monthly hours. <b>Push first:</b> anything not pushed is lost when it is deleted.</div>
-    </div>
-    <figure class="fig" data-step="3" style="width:330px;flex:none"><img src="img/gh-edu-backpack.png" alt="GitHub Education backpack"><figcaption>GitHub Education · education.github.com</figcaption></figure>
-  </div>
-</section>
-
-<!-- ═════════════ 03 Practical: step 1 -->
-<section class="slide" id="s-pr-1" data-sec="practical">
-  <h2>Step 1 · <em>Accounts</em> and a repository</h2>
-  <div class="steps3" style="margin-top:22px">
-    <div class="st" data-step="1"><span class="n">1</span><div><div class="t" style="font-size:30px">A GitHub account</div><div class="d">Personal email. This is where your work lives.</div></div><span class="url">github.com</span></div>
-    <div class="st" data-step="2"><span class="n">2</span><div><div class="t" style="font-size:30px">An API key</div><div class="d">Register with the class code. Keep it private.</div></div><span class="url c-coral">keyreg.qhchina.org</span></div>
-    <div class="st" data-step="3"><span class="n">3</span><div><div class="t" style="font-size:30px">Your own copy of the template</div><div class="d">Open the template, press <b>Use this template</b>. Do not edit the template itself.</div></div><span class="url">mcjkurz/qh-starter</span></div>
-  </div>
-</section>
-
-<!-- ═════════════ 03 Practical: step 2 -->
-<section class="slide" id="s-pr-2" data-sec="practical">
-  <h2>Step 2 · <em>Start</em> the agent</h2>
-  <div class="row" style="gap:44px;margin-top:6px">
-    <div class="grow">
-      <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin-bottom:8px">IN THE BROWSER (CODESPACES)</div>
-      <div class="ev">
-        <div data-step="1" style="font-size:18px">Your repository → <b>Code → Codespaces → Create codespace</b>. The first start takes a few minutes. Your codespaces are listed at <span class="mono c-coral" style="font-size:15px">github.com/codespaces</span>.</div>
-        <div data-step="2" style="font-size:18px">Or on your own computer: install <b>VS Code</b> or the <b>OpenCode desktop app</b>, then open the repository folder.</div>
-      </div>
-    </div>
-    <div class="grow">
-      <div class="mono c-blue" style="font-size:12px;letter-spacing:.14em;margin-bottom:8px">CONNECT THE MODEL</div>
-      <div class="ev">
-        <div data-step="3" style="font-size:18px">In the terminal type <span class="mono">opencode</span></div>
-        <div data-step="4" style="font-size:18px"><span class="mono">/connect</span> → <b>OpenRouter</b> → paste your key</div>
-        <div data-step="5" style="font-size:18px"><span class="mono">/models</span> → <b>GLM-5.3-Flash</b></div>
-      </div>
-    </div>
-  </div>
-  <div class="callout blue" data-step="6" style="font-size:18px">Local install, <i>command not found</i>? Open a <b>new</b> terminal; the old one has not noticed the install yet. On Windows, use the desktop app.</div>
-</section>
-
-<!-- ═════════════ 03 Practical: step 3 exercise -->
-<section class="slide" id="s-pr-3" data-sec="practical">
-  <h2>Step 3 · A first analysis of <em>紅樓夢</em></h2>
-  <div class="row" style="gap:40px;margin-top:4px">
-    <div style="width:520px;flex:none">
-      <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin-bottom:8px">PROMPT 1 (ABRIDGED)</div>
-      <div class="mono" style="font-size:13px;line-height:1.55;color:var(--ink2);background:#f6f6f4;border-radius:6px;padding:14px 16px">Split the novel into 120 chapters.<br>Tokenize each with jieba.<br>Find the 300 most common words.<br>Compute a z-score per chapter.<br>Project chapters into 3D with PCA.<br>Colour chapters 1–80 red, 81–120 blue.<br>Save a .png.</div>
-      <div class="ev" style="margin-top:12px">
-        <div data-step="1" style="font-size:17px"><b>Check the .png</b> before moving on.</div>
-        <div data-step="2" style="font-size:17px"><b>Prompt 2:</b> make an interactive plotly page, with top positive and negative features for chapters 1–80 and 81–120.</div>
-        <div data-step="3" style="font-size:17px"><b>Codespace cannot open the HTML:</b> right-click the file → <b>Download</b>, then open it in your browser.</div>
-      </div>
-    </div>
-    <figure class="fig" style="flex:1;min-width:0" data-step="1"><img src="img/hlm-pca-result.png" alt="Expected PCA result for Dream of the Red Chamber"><figcaption>Expected result: chapters 1–80 (red) and 81–120 (blue) separate in style space.</figcaption></figure>
-  </div>
-</section>
-
-<!-- ═════════════ 03 Practical: step 4 save -->
-<section class="slide" id="s-pr-4" data-sec="practical">
-  <h2>Step 4 · <em>Save</em> and clean up</h2>
-  <p class="lead" style="font-size:22px;max-width:900px">Close the browser and the Codespace survives for a while. Delete it and everything you did not push is gone.</p>
-  <div class="claims" style="margin-top:14px">
-    <div class="claim" data-step="1">
-      <div class="n">OPTION A</div>
-      <div class="h" style="font-size:26px">Click</div>
-      <div class="b">Source Control icon → write a message → <b>Commit</b> → <b>Push</b> or <b>Sync Changes</b>.</div>
-    </div>
-    <div class="claim" data-step="2">
-      <div class="n">OPTION B</div>
-      <div class="h" style="font-size:26px">Terminal</div>
-      <div class="b"><span class="mono">/exit</span> OpenCode, then<br><span class="mono">git add -A</span><br><span class="mono">git commit -m "first commit"</span><br><span class="mono">git push</span></div>
-    </div>
-    <div class="claim" data-step="3">
-      <div class="n">OPTION C</div>
-      <div class="h" style="font-size:26px">Ask the agent</div>
-      <div class="b"><i>“Commit all changes with the message ‘first commit’, then push to GitHub.”</i></div>
-    </div>
-  </div>
-  <div class="callout" data-step="4" style="font-size:19px"><b>Last:</b> delete the Codespace at <span class="mono">github.com/codespaces</span> (… → Delete), so it stops using your hours.</div>
 </section>
 </div>
 
