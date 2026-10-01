@@ -509,49 +509,6 @@ window.HOOKS = {};
     };
   })();
 
-  /* ───────────────────────── keys & queries */
-  (function () {
-    let built = false, P = {};
-    const O = [280, 370], S = 300;
-    const pt = (x, y) => [O[0] + x * S, O[1] - y * S];
-    function vec(svg, x, y, col, label, w) {
-      const G = el('g', {}, svg);
-      const [X, Y] = pt(x, y);
-      el('line', { x1: O[0], y1: O[1], x2: X, y2: Y, stroke: col, 'stroke-width': w || 4, 'stroke-linecap': 'round' }, G);
-      const a = Math.atan2(Y - O[1], X - O[0]);
-      el('path', { d: `M${X} ${Y} L${X - 16 * Math.cos(a - .38)} ${Y - 16 * Math.sin(a - .38)} L${X - 16 * Math.cos(a + .38)} ${Y - 16 * Math.sin(a + .38)} z`, fill: col }, G);
-      el('text', { x: X + (x < 0 ? -12 : 12), y: Y - 10, 'text-anchor': x < 0 ? 'end' : 'start', 'font-size': 24, fill: col, text: label }, G);
-      return G;
-    }
-    function build() {
-      const svg = document.getElementById('kq');
-      for (let g = -.75; g <= .76; g += .25) { const [X] = pt(g, 0); el('line', { x1: X, x2: X, y1: O[1] - .9 * S, y2: O[1], stroke: C.line }, svg); }
-      for (let g = .25; g <= .9; g += .25) { const [, Y] = pt(0, g); el('line', { x1: O[0] - .8 * S, x2: O[0] + .8 * S, y1: Y, y2: Y, stroke: C.line }, svg); }
-      el('line', { x1: O[0] - .8 * S, x2: O[0] + .8 * S, y1: O[1], y2: O[1], stroke: C.faint }, svg);
-      el('line', { x1: O[0], x2: O[0], y1: O[1], y2: O[1] - .9 * S, stroke: C.faint, 'stroke-dasharray': '3 4' }, svg);
-      P.q = vec(svg, .6, .6, C.coral, 'Q([CLS])', 3);
-      P.you = vec(svg, -.62, .72, C.blue, 'K(松)');
-      P.wind = vec(svg, .48, .74, C.blue, 'K(照)');
-      P.water = vec(svg, .7, .5, C.blue, 'K(流)');
-      // alignment arc between 風 and 水
-      P.arc = el('g', {}, svg);
-      const r = 110, a1 = Math.atan2(.74, .48), a2 = Math.atan2(.5, .7);
-      const [x1, y1] = [O[0] + r * Math.cos(a1), O[1] - r * Math.sin(a1)], [x2, y2] = [O[0] + r * Math.cos(a2), O[1] - r * Math.sin(a2)];
-      el('path', { d: `M${x1} ${y1} A ${r} ${r} 0 0 1 ${x2} ${y2}`, fill: 'none', stroke: C.green, 'stroke-width': 3 }, P.arc);
-      el('text', { x: O[0] + 128, y: O[1] - 44, 'font-size': 14, fill: C.green, 'font-family': 'JetBrains Mono', text: 'aligned' }, P.arc);
-      built = true;
-    }
-    H['s-kq'] = {
-      render(step) {
-        if (!built) build();
-        show(P.q, true);
-        show(P.you, step >= 1); show(P.wind, step >= 1); show(P.water, step >= 1);
-        P.you.style.opacity = step >= 2 ? .3 : (step >= 1 ? 1 : 0);
-        show(P.arc, step >= 2);
-      },
-    };
-  })();
-
   /* ───────────────────────── 3D couplet: encoded apart vs. together (data: window.ALIGN, from standalone_3d/alignment_coords.py) */
   (function () {
     const A = window.ALIGN, chars1 = [...A.verse1], chars2 = [...A.verse2];

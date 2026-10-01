@@ -469,3 +469,7 @@ small.gl { display: block; font-family: var(--sans); font-size: 12px; letter-spa
 .ph-field .ac-ghost { color: #aaa69d; }
 .ph-field .ac-caret { display: inline-block; width: 2px; height: .95em; margin: 0 1px; vertical-align: -0.12em; background: var(--blue); animation: acblink 1s steps(1) infinite; }
 @keyframes acblink { 50% { opacity: 0; } }
+
+/* keys & queries: the live demo, cropped to its interactive part and scaled to fit */
+.kq-wrap { position: relative; width: 1000px; height: 470px; margin-top: 4px; border: 1px solid var(--line); border-radius: 10px; background: #fff; overflow: hidden; }
+.kq-frame { position: absolute; left: 0; top: 0; width: 1104px; height: 1000px; border: 0; transform-origin: 0 0; transform: translate(91px, -100px) scale(.74); }
