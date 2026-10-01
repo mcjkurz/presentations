@@ -559,9 +559,9 @@
     <div class="grow">
       <p class="body" style="font-size:19px">The English word comes from the Greek <i>parallelos</i>, “side by side”: <b>a spatial image</b>. The Chinese terms are just as spatial.</p>
       <div class="ev" style="margin-top:8px">
-        <div data-step="1" style="font-size:19px"><span class="zh" style="font-size:24px">對仗</span> <i>duìzhàng</i><span class="cite">the symmetrical formation of ceremonial processions</span></div>
-        <div data-step="2" style="font-size:19px"><span class="zh" style="font-size:24px">對偶</span> <i>duì’ǒu</i><span class="cite">a pair of people ploughing side by side</span></div>
-        <div data-step="3" style="font-size:19px"><span class="zh" style="font-size:24px">駢文</span> <i>piánwén</i><span class="cite">two horses harnessed abreast</span></div>
+        <div data-step="1" style="font-size:19px"><span class="zh" style="font-size:24px">對仗</span> <span class="pinyin">duìzhàng</span><span class="cite">the symmetrical formation of ceremonial processions</span></div>
+        <div data-step="2" style="font-size:19px"><span class="zh" style="font-size:24px">對偶</span> <span class="pinyin">duì’ǒu</span><span class="cite">a pair of people ploughing side by side</span></div>
+        <div data-step="3" style="font-size:19px"><span class="zh" style="font-size:24px">駢文</span> <span class="pinyin">piánwén</span><span class="cite">two horses harnessed abreast</span></div>
       </div>
       <p class="body" data-step="4" style="font-size:19px;margin-top:12px">These images have become <b>dead metaphors</b>. If parallelism is a spatial relation, perhaps we can measure it in a space.</p>
     </div>
@@ -574,31 +574,19 @@
 <section class="slide" id="s-kq" data-sec="cases">
   <h2>The game of <em>keys and queries</em></h2>
   <div class="row" style="gap:36px;align-items:flex-start">
-    <svg id="kq" viewBox="0 0 560 430" style="width:560px;height:430px;flex:none;touch-action:none;cursor:grab"></svg>
+    <svg id="kq" viewBox="0 0 560 430" style="width:560px;height:430px;flex:none;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none"></svg>
     <div class="grow">
-      <div class="mono c-mute" style="font-size:11.5px;letter-spacing:.14em;margin-bottom:8px">ATTENTION OF [CLS], ONE HEAD</div>
+      <div class="kq-tabs"><button type="button" class="on" data-set="par"><span class="zh">明月松間照，清泉石上流</span><i>parallel</i></button><button type="button" data-set="non"><span class="zh">空山新雨後，天氣晚來秋</span><i>not parallel</i></button></div>
+      <div class="mono c-mute" style="font-size:11.5px;letter-spacing:.14em;margin:10px 0 8px">ATTENTION OF [CLS], ONE HEAD</div>
       <div class="kq-rows" id="kq-rows">
         <div class="kq-lab c-blue">first line</div><div class="kq-row" id="kq-r1"></div>
         <div class="kq-lab" style="color:#12b5cb">second line</div><div class="kq-row" id="kq-r2"></div>
       </div>
       <div class="kq-bar"><span>0</span><i></i><span>0.5</span></div>
-      <p class="body" style="font-size:17px;margin-top:16px"><b>Drag the red query.</b> Each character offers a <span class="c-blue">key</span>; the more a key points the same way as the <span class="c-coral">query</span>, the brighter its square. Point the query between a pair, and <b>corresponding characters light up together</b>: 松 and 石, 照 and 流.</p>
+      <p class="body" id="kq-text" style="font-size:17px;margin-top:16px"><b>Drag the red query.</b> Each character offers a <span class="c-blue">key</span>; the more a key points the same way as the <span class="c-coral">query</span>, the brighter its square. Point the query between a pair, and <b>corresponding characters light up together</b>: 松 and 石, 照 and 流.</p>
     </div>
   </div>
   <div class="src">Adapted from Kurzynski, Xu, and Feng, “The Game of Keys and Queries,” <i>IJHAC</i> 19.2 (2025), Fig. 1.</div>
-</section>
-
-<!-- ═════════════ The [CLS] token -->
-<section class="slide" id="s-cls" data-sec="cases">
-  <h2>How does the classifier <em>read</em>?</h2>
-  <svg class="qkv" viewBox="0 0 900 310" style="width:900px"><g><rect x="36.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="68.0" y="270" text-anchor="middle" class="zh-t">明</text><rect x="108.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="140.0" y="270" text-anchor="middle" class="zh-t">月</text><rect x="180.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="212.0" y="270" text-anchor="middle" class="zh-t">松</text><rect x="252.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="284.0" y="270" text-anchor="middle" class="zh-t">間</text><rect x="324.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="356.0" y="270" text-anchor="middle" class="zh-t">照</text><rect x="396.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="428.0" y="270" text-anchor="middle" class="zh-t">，</text><rect x="468.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="500.0" y="270" text-anchor="middle" class="zh-t">清</text><rect x="540.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="572.0" y="270" text-anchor="middle" class="zh-t">泉</text><rect x="612.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="644.0" y="270" text-anchor="middle" class="zh-t">石</text><rect x="684.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="716.0" y="270" text-anchor="middle" class="zh-t">上</text><rect x="756.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="788.0" y="270" text-anchor="middle" class="zh-t">流</text><rect x="828.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="860.0" y="270" text-anchor="middle" class="zh-t">。</text></g><g data-step="1"><rect x="374.0" y="34" width="180" height="64" rx="11" fill="#fdece8" stroke="#e2472a" stroke-width="2"/><text x="464.0" y="62" text-anchor="middle" class="zh-t" style="font-size:22px;fill:#e2472a;font-family:JetBrains Mono,monospace">[CLS]</text><text x="464.0" y="84" text-anchor="middle" class="qt" fill="#e2472a">classification token</text></g><g data-step="2" fill="none" stroke-linecap="round"><path d="M68.0 228 C 68.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M140.0 228 C 140.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M212.0 228 C 212.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M284.0 228 C 284.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M356.0 228 C 356.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M428.0 228 C 428.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M500.0 228 C 500.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M572.0 228 C 572.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M644.0 228 C 644.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M716.0 228 C 716.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M788.0 228 C 788.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M860.0 228 C 860.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/></g><g data-step="3"><path d="M560.0 66 L612.0 66" stroke="#555" stroke-width="2"/><path d="M606.0 60 L614.0 66 L606.0 72" fill="none" stroke="#555" stroke-width="2"/><rect x="620.0" y="46" width="130" height="40" rx="20" fill="#fff" stroke="#bbb"/><text x="685.0" y="71" text-anchor="middle" style="font-family:JetBrains Mono,monospace;font-size:13px;letter-spacing:.1em" fill="#333">CLASSIFIER</text><path d="M754.0 66 L794.0 66" stroke="#555" stroke-width="2"/><path d="M788.0 60 L796.0 66 L788.0 72" fill="none" stroke="#555" stroke-width="2"/><text x="804.0" y="76" style="font-family:JetBrains Mono,monospace;font-size:30px" fill="#16925a">0.97</text></g></svg>
-  <div class="small" style="margin:2px 0 0 36px;font-family:var(--serif);font-style:italic;font-size:17px">The bright moon shines between the pines; a clear spring flows over the stones.</div>
-  <div class="swap" style="margin-top:16px;max-width:1000px;min-height:64px">
-    <p class="body" data-step="1" data-until="2" style="font-size:20px">BERT adds a special token, <b class="c-coral">[CLS]</b> (“classification”), in front of the text. It carries no meaning of its own: it is an <b>empty slot</b> for a summary.</p>
-    <p class="body" data-step="2" data-until="3" style="font-size:20px">Layer after layer, [CLS] looks at every character and gathers what it needs, attending more to some characters than to others.</p>
-    <p class="body" data-step="3" style="font-size:20px">At the end, its vector stands for the whole couplet. The classifier reads <b>only this vector</b> and answers: 0.97.</p>
-  </div>
-  <div class="callout blue" data-step="4" style="font-size:19px;margin-top:14px;padding:12px 24px">So to ask what the classifier knows, we can look at what [CLS] pays attention to.</div>
 </section>
 
 <!-- ═════════════ Attention of [CLS]: couplets -->
@@ -653,15 +641,14 @@
 </section>
 
 <!-- ═════════════ Alignment builds up across layers -->
-<section class="slide" id="s-align-layers" data-sec="cases">
+<section class="slide" id="s-align-layers" data-sec="cases" data-steps="2">
   <h2 style="margin-bottom:6px">Alignment <em>builds up</em> layer by layer</h2>
   <div class="row" style="gap:40px;align-items:flex-start">
     <svg id="alchart" viewBox="0 0 640 400" style="width:640px;height:400px;flex:none;overflow:visible;margin-top:36px"></svg>
     <div class="grow ev" style="font-size:17px">
-      <div data-step="0"><b>Four couplets, named like a body:</b> head 首聯, jaw 頷聯, neck 頸聯, tail 尾聯. In a regulated poem the jaw and the neck must be parallel.</div>
-      <div data-step="1"><b>Transition alignment:</b> from one character to the next, do the two verses step in the same direction? (1 = exactly the same)</div>
-      <div data-step="2"><b>It grows with depth</b>, from low in the first layer to high in the last. The dashed line is the baseline for random pairs.</div>
-      <div data-step="3"><b>And it follows the form.</b> Jaw and neck rise far above the baseline; the tail, which is exempt, stays close to it.</div>
+      <div data-step="0"><b>Transition alignment:</b> from one character to the next, do the two verses step in the same direction? (1 = exactly the same)</div>
+      <div data-step="1"><b>It grows with depth</b>, from low in the first layer to high in the last. The dashed line is the baseline for random pairs.</div>
+      <div data-step="2"><b>And it follows the form.</b> Jaw and neck, which must be parallel, rise far above the baseline; the tail, which is exempt, stays close to it.</div>
     </div>
   </div>
   <div class="cite" style="margin-top:6px">GujiBERT_fan · about 25,000 five-character couplets per position · couplets encoded as wholes</div>
@@ -718,7 +705,7 @@
     <div style="width:470px;flex:none">
       <h2 style="font-size:48px">Sense <em>trajectories</em></h2>
       <div class="zh" style="font-size:34px;letter-spacing:.14em;margin-bottom:4px"><span class="c-coral">池</span>邊樹影接，<span class="c-amber">峯</span>外月華生</div>
-      <div class="small" style="margin-bottom:22px">Qing · “By the pond the tree shadows meet; beyond the peak the moon’s glow is born.”</div>
+      <div class="small" style="margin:6px 0 22px;font-family:var(--serif);font-style:italic;font-size:18px">By the pond the tree shadows meet; beyond the peak the moon’s glow is born.</div>
       <div class="stat" data-step="1"><span class="k">① the character’s <b>general sense</b> across the corpus</span></div>
       <div class="stat" data-step="2"><span class="k">② read <b>in its own line</b></span></div>
       <div class="stat" data-step="3"><span class="k">③ read <b>with line 2</b>, next to 峯 “peak”</span></div>

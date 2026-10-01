@@ -511,15 +511,18 @@ window.HOOKS = {};
 
   /* ───────────────────────── keys & queries: a draggable [CLS] query lights up the ten characters (viridis = attention) */
   (function () {
-    const V1 = [...'明月松間照'], V2 = [...'清泉石上流'];
-    // key directions: matched characters (明–清, 月–泉, 松–石, 間–上, 照–流) point roughly the same way
-    const ANG = [20, 62, 108, 150, 196], OFF = [-9, 11, -7, 9, -10], LEN = [.78, .7, .8, .72, .76];
     const rad = d => d * Math.PI / 180;
-    const K = V1.map((c, i) => [c, rad(ANG[i]), LEN[i], 1]).concat(V2.map((c, i) => [c, rad(ANG[i] + OFF[i]), LEN[i] * .92, 2]));
-    const KV = K.map(([c, a, l]) => [Math.cos(a) * l, Math.sin(a) * l]);
+    // key directions. Parallel couplet: matched characters (明–清, 月–泉, 松–石, 間–上, 照–流) point roughly the same way.
+    // Non-parallel couplet: the two lines' keys point in unrelated directions.
+    const SETS = {
+      par: { v1: [...'明月松間照'], v2: [...'清泉石上流'], a1: [20, 62, 108, 150, 196], a2: [11, 73, 101, 159, 186], l1: [.78, .7, .8, .72, .76], l2: [.72, .64, .74, .66, .7],
+        text: '<b>Drag the red query.</b> Each character offers a <span class="c-blue">key</span>; the more a key points the same way as the <span class="c-coral">query</span>, the brighter its square. Point the query between a pair, and <b>corresponding characters light up together</b>: 松 and 石, 照 and 流.' },
+      non: { v1: [...'空山新雨後'], v2: [...'天氣晚來秋'], a1: [14, 92, 168, 236, 304], a2: [208, 46, 286, 128, 352], l1: [.74, .8, .7, .78, .72], l2: [.7, .76, .8, .68, .74],
+        text: '<b>A counter-example.</b> Here the keys of corresponding characters point in different directions. Wherever you aim the query, <b>the two lines do not light up together</b>: nothing is aligned.' },
+    };
     const STOPS = [[68, 1, 84], [59, 82, 139], [33, 144, 141], [93, 200, 99], [253, 231, 37]];
     const viridis = t => { t = Math.max(0, Math.min(1, t)) * 4; const i = Math.min(3, Math.floor(t)), f = t - i; return `rgb(${STOPS[i].map((v, k) => Math.round(v + (STOPS[i + 1][k] - v) * f)).join(',')})`; };
-    let built = false, q = [Math.cos(rad(104)) * .55, Math.sin(rad(104)) * .55], cells = [], qg, drag = false;
+    let built = false, which = 'par', q = [Math.cos(rad(104)) * .55, Math.sin(rad(104)) * .55], cells = [], qg, keyG, svg, drag = false, KV = [];
     const O = [280, 215], S = 190;
     const pt = ([x, y]) => [O[0] + x * S, O[1] - y * S];
     function attn() {
@@ -534,31 +537,48 @@ window.HOOKS = {};
       qg.line.setAttribute('x2', X); qg.line.setAttribute('y2', Y);
       qg.head.setAttribute('d', `M${X} ${Y} L${X - 16 * Math.cos(ang - .38)} ${Y - 16 * Math.sin(ang - .38)} L${X - 16 * Math.cos(ang + .38)} ${Y - 16 * Math.sin(ang + .38)} z`);
       qg.dot.setAttribute('cx', X); qg.dot.setAttribute('cy', Y);
-      
+    }
+    function load(name) {
+      which = name; const D = SETS[name];
+      const K = D.v1.map((c, i) => [c, rad(D.a1[i]), D.l1[i], 1]).concat(D.v2.map((c, i) => [c, rad(D.a2[i]), D.l2[i], 2]));
+      KV = K.map(([c, a, l]) => [Math.cos(a) * l, Math.sin(a) * l]);
+      while (keyG.firstChild) keyG.removeChild(keyG.firstChild);
+      KV.forEach((k, i) => {
+        const [X, Y] = pt(k), col = K[i][3] === 1 ? C.blue : '#12b5cb', ang = Math.atan2(Y - O[1], X - O[0]);
+        el('line', { x1: O[0], y1: O[1], x2: X, y2: Y, stroke: col, 'stroke-width': 3, 'stroke-linecap': 'round', opacity: .85 }, keyG);
+        el('path', { d: `M${X} ${Y} L${X - 12 * Math.cos(ang - .4)} ${Y - 12 * Math.sin(ang - .4)} L${X - 12 * Math.cos(ang + .4)} ${Y - 12 * Math.sin(ang + .4)} z`, fill: col }, keyG);
+        el('text', { x: X + 16 * Math.cos(ang) - 11, y: Y + 16 * Math.sin(ang) + 8, 'font-size': 24, fill: col, 'font-family': 'Songti TC, Noto Serif TC, serif', text: K[i][0] }, keyG);
+      });
+      cells.forEach((c, i) => { c.textContent = K[i][0]; });
+      document.getElementById('kq-text').innerHTML = D.text;
+      document.querySelectorAll('.kq-tabs button').forEach(b => b.classList.toggle('on', b.dataset.set === name));
+      paint();
     }
     function build() {
-      const svg = document.getElementById('kq');
+      svg = document.getElementById('kq');
       for (let g = -1; g <= 1.01; g += .5) { const [X] = pt([g, 0]); el('line', { x1: X, x2: X, y1: 20, y2: 410, stroke: C.line }, svg); const [, Y] = pt([0, g]); el('line', { x1: 40, x2: 520, y1: Y, y2: Y, stroke: C.line }, svg); }
       el('line', { x1: 40, x2: 520, y1: O[1], y2: O[1], stroke: C.faint }, svg);
       el('line', { x1: O[0], x2: O[0], y1: 20, y2: 410, stroke: C.faint }, svg);
-      KV.forEach((k, i) => {
-        const [X, Y] = pt(k), col = K[i][3] === 1 ? C.blue : '#12b5cb', ang = Math.atan2(Y - O[1], X - O[0]);
-        el('line', { x1: O[0], y1: O[1], x2: X, y2: Y, stroke: col, 'stroke-width': 3, 'stroke-linecap': 'round', opacity: .85 }, svg);
-        el('path', { d: `M${X} ${Y} L${X - 12 * Math.cos(ang - .4)} ${Y - 12 * Math.sin(ang - .4)} L${X - 12 * Math.cos(ang + .4)} ${Y - 12 * Math.sin(ang + .4)} z`, fill: col }, svg);
-        el('text', { x: X + 16 * Math.cos(ang) - 11, y: Y + 16 * Math.sin(ang) + 8, 'font-size': 24, fill: col, 'font-family': 'Songti TC, Noto Serif TC, serif', text: K[i][0] }, svg);
-      });
-      qg = { line: el('line', { x1: O[0], y1: O[1], stroke: C.coral, 'stroke-width': 5, 'stroke-linecap': 'round' }, svg), head: el('path', { fill: C.coral }, svg), dot: el('circle', { r: 17, fill: C.coral, opacity: .14 }, svg), txt: el('text', { x: 40, y: 408, 'font-size': 13, fill: C.coral, 'font-family': 'JetBrains Mono', text: '● [CLS] query: drag me' }, svg) };
-      [['kq-r1', 0], ['kq-r2', 5]].forEach(([id, off]) => {
+      keyG = el('g', {}, svg);
+      qg = { line: el('line', { x1: O[0], y1: O[1], stroke: C.coral, 'stroke-width': 5, 'stroke-linecap': 'round' }, svg), head: el('path', { fill: C.coral }, svg), dot: el('circle', { r: 17, fill: C.coral, opacity: .14 }, svg) };
+      el('text', { x: 40, y: 408, 'font-size': 13, fill: C.coral, 'font-family': 'JetBrains Mono', text: '● [CLS] query: drag me' }, svg);
+      [['kq-r1', 0], ['kq-r2', 5]].forEach(([id]) => {
         const row = document.getElementById(id);
-        for (let i = 0; i < 5; i++) { const d = document.createElement('div'); d.className = 'kq-cell'; d.textContent = K[off + i][0]; row.appendChild(d); cells.push(d); }
+        for (let i = 0; i < 5; i++) { const d = document.createElement('div'); d.className = 'kq-cell'; row.appendChild(d); cells.push(d); }
       });
       const move = e => { const r = svg.getBoundingClientRect(), k = r.width / 560; q = [((e.clientX - r.left) / k - O[0]) / S, -((e.clientY - r.top) / k - O[1]) / S]; const m = Math.hypot(...q); if (m > 1.05) q = q.map(v => v / m * 1.05); paint(); };
-      svg.addEventListener('pointerdown', e => { drag = true; svg.setPointerCapture(e.pointerId); svg.style.cursor = 'grabbing'; move(e); });
+      const slide = document.getElementById('s-kq');
+      svg.addEventListener('pointerdown', e => { e.preventDefault(); drag = true; slide.classList.add('dragging'); window.getSelection && window.getSelection().removeAllRanges(); svg.setPointerCapture(e.pointerId); move(e); });
       svg.addEventListener('pointermove', e => { if (drag) move(e); });
-      svg.addEventListener('pointerup', () => { drag = false; svg.style.cursor = 'grab'; });
+      const end = () => { drag = false; slide.classList.remove('dragging'); };
+      svg.addEventListener('pointerup', end); svg.addEventListener('pointercancel', end);
+      document.querySelectorAll('.kq-tabs button').forEach(b => b.addEventListener('click', () => load(b.dataset.set)));
       built = true;
     }
-    H['s-kq'] = { enter() { if (!built) build(); paint(); } };
+    H['s-kq'] = {
+      enter() { if (!built) build(); load('par'); },
+      key(e) { if (e.key === 'n' || e.key === 'N') { load(which === 'par' ? 'non' : 'par'); return true; } return false; },
+    };
   })();
 
   /* ───────────────────────── 3D couplet: encoded apart vs. together (data: window.ALIGN, from standalone_3d/alignment_coords.py) */
@@ -1292,9 +1312,8 @@ window.HOOKS = {};
     render(step) {
       if (!built) { build(); built = true; }
       const show = (n, on) => { n.style.transition = 'opacity .5s'; n.style.opacity = on ? 1 : 0; };
-      show(G.base, step >= 2);
-      G.roles.forEach((g, r) => show(g, step >= 2 && (step < 3 ? r === 1 || r === 2 : true) ));
-      G.roles.forEach((g, r) => { if (step === 1) g.style.opacity = 0; });
+      show(G.base, step >= 1);
+      G.roles.forEach((g, r) => { show(g, step >= 1); if (step >= 2) g.style.opacity = (r === 1 || r === 2 || r === 3) ? 1 : .3; });
     },
   };
 })();

@@ -483,3 +483,17 @@ small.gl { display: block; font-family: var(--sans); font-size: 12px; letter-spa
 .cp-name { position: absolute; left: 100%; top: 50%; transform: translateY(-50%); margin-left: 16px; white-space: nowrap; font-family: var(--mono); font-size: 13px; letter-spacing: .06em; color: var(--mute); }
 .cp-name .zh { font-size: 17px; letter-spacing: .1em; color: var(--ink2); margin-right: 4px; }
 #reg-poem .ln.meso .cp-name, #reg-poem .ln.meso .cp-name .zh { color: var(--green); }
+
+/* pinyin: upright, in a face that has the tone-marked vowels (the italic subset does not) */
+.pinyin { font-family: "Helvetica Neue", "Arial", var(--sans); font-style: normal; color: var(--ink2); letter-spacing: .01em; }
+
+/* dragging the query must not select text anywhere on the slide */
+#s-kq.dragging, #s-kq.dragging * { user-select: none; -webkit-user-select: none; cursor: grabbing; }
+#s-kq svg text { user-select: none; -webkit-user-select: none; pointer-events: none; }
+
+.kq-tabs { display: flex; gap: 10px; }
+.kq-tabs button { flex: 1; text-align: left; padding: 8px 12px; border: 1px solid var(--faint); border-radius: 10px; background: #fff; cursor: pointer; font: inherit; color: var(--ink2); }
+.kq-tabs button .zh { display: block; font-size: 17px; letter-spacing: .04em; }
+.kq-tabs button i { font-style: normal; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; color: var(--mute); }
+.kq-tabs button.on { border-color: var(--green); background: var(--green-bg); }
+.kq-tabs button[data-set="non"].on { border-color: var(--coral); background: var(--coral-bg); }
