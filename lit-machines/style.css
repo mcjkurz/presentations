@@ -23,7 +23,7 @@
   --violet: #7650d6;
   --blue-bg: #eaf1fd; --amber-bg: #fdf4e3; --coral-bg: #fdece8; --green-bg: #e5f5ec;
   --sans: "Inter", "PingFang TC", "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
-  --serif: "Instrument Serif", "Songti TC", "Noto Serif TC", "Source Han Serif TC", Georgia, serif;
+  --serif: "Inter", "PingFang TC", "Noto Sans TC", "Helvetica Neue", Arial, sans-serif; /* display face: was Instrument Serif */
   --mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
   --cjk: "Songti TC", "Noto Serif TC", "Source Han Serif TC", "STSong", serif;
   --cjk-sans: "PingFang TC", "Noto Sans TC", "Heiti TC", sans-serif;
@@ -51,7 +51,7 @@ body { font-family: var(--sans); color: var(--ink); -webkit-font-smoothing: anti
 #nav button:hover { background: var(--panel); }
 
 /* type */
-h1, h2 { font-family: var(--serif); font-weight: 400; margin: 0; letter-spacing: -.005em; }
+h1, h2 { font-family: var(--serif); font-weight: 500; margin: 0; letter-spacing: -.03em; }
 h2 { font-size: 58px; line-height: 1.02; margin-bottom: 22px; }
 h2 em, h1 em { font-style: normal; color: inherit; }
 p { margin: 0; }
