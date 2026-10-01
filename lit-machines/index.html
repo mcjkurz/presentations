@@ -556,6 +556,19 @@
   <div class="src">Kurzynski, “Jakobson’s ‘Poetic Function’ in Vector Space: Parallelism, Cognitive Geometry, and Classical Chinese Verse,” EADH 2026.</div>
 </section>
 
+<!-- ═════════════ Keys, queries and [CLS] -->
+<section class="slide" id="s-kqv" data-sec="cases" data-steps="2">
+  <h2>Keys, queries and <em>[CLS]</em></h2>
+  <div class="row" style="gap:44px;align-items:center;margin-top:4px">
+    <figure class="fig" style="width:560px;flex:none"><img src="img/kqv-diagram.png" alt="Keys, queries and values computed from a token embedding"><figcaption>Diagram: @akshay_pachaar</figcaption></figure>
+    <div class="grow ev">
+      <div style="font-size:19px">Every token embedding is multiplied by three learned matrices. The result: a <span class="c-coral"><b>query</b></span> (what this token is looking for), a <span class="c-blue"><b>key</b></span> (what it contains) and a <b>value</b> (what it will provide).</div>
+      <div data-step="1" style="font-size:19px">Attention is a match: the more a key points in the same direction as the query, the more that token is attended to.</div>
+      <div data-step="2" style="font-size:19px"><b>[CLS]</b> is a special token placed at the start of every input. Its query asks the whole sentence a question, and its final vector is what the classifier reads. <b>So we watch what [CLS] attends to.</b></div>
+    </div>
+  </div>
+</section>
+
 <!-- ═════════════ Keys & queries: an attention head you can steer -->
 <section class="slide" id="s-kq" data-sec="cases">
   <h2>The game of <em>keys and queries</em></h2>
@@ -694,16 +707,16 @@
 <!-- ═════════════ Sense trajectory -->
 <section class="slide" id="s-traj" data-sec="cases">
   <div class="row" style="gap:30px">
-    <div style="width:470px;flex:none">
+    <div style="width:600px;flex:none">
       <h2 style="font-size:48px">Sense <em>trajectories</em></h2>
       <div class="zh" style="font-size:34px;letter-spacing:.14em;margin-bottom:4px"><span class="c-coral">池</span>邊樹影接，<span class="c-amber">峯</span>外月華生</div>
-      <div class="small" style="margin:6px 0 22px;font-family:var(--serif);font-style:italic;font-size:18px">By the pond the tree shadows meet; beyond the peak the moon’s glow is born.</div>
+      <div class="small" style="margin:6px 0 22px;font-family:var(--serif);font-style:italic;font-size:18px;white-space:nowrap">By the pond the tree shadows meet; beyond the peak the moon’s glow is born.</div>
       <div class="stat" data-step="1"><span class="k">① the character’s <b>general sense</b> across the corpus</span></div>
       <div class="stat" data-step="2"><span class="k">② read <b>in its own line</b></span></div>
       <div class="stat" data-step="3"><span class="k">③ read <b>with line 2</b>, next to 峯 “peak”</span></div>
       <div class="callout" data-step="4" style="font-size:22px;margin-top:20px;padding:14px 22px">Where does <b class="c-coral">池</b> “pond” go when it meets <b class="c-amber">峯</b> “peak”? <span class="c-mute">A question we are working on.</span></div>
     </div>
-    <svg id="traj" viewBox="0 0 700 520"></svg>
+    <svg id="traj" viewBox="0 0 700 520" style="width:640px;height:475px;margin-left:-20px"></svg>
   </div>
 </section>
 
@@ -1118,21 +1131,21 @@
   <h2>We need to choose <em>two things</em></h2>
   <div class="row" style="gap:48px;align-items:flex-start;margin-top:8px">
     <div class="grow">
-      <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin-bottom:4px">1 · THE ASSISTANT (“HARNESS”)</div>
+      <div class="c-coral" style="font-size:22px;line-height:1.2;font-weight:700;margin-bottom:6px">1 · The assistant (“harness”)</div>
       <p class="body" style="font-size:16px;margin:0 0 8px">The app you talk to. It reads your files, writes code, runs it.</p>
       <div class="ev">
         <div data-step="1" style="font-size:17px"><img class="lg" src="img/logos/visualstudiocode.svg" alt=""><b>VS Code</b>: local, or in the browser as a <b>Codespace</b>, with a chat panel (Copilot or an extension).</div>
         <div data-step="2" style="font-size:17px"><img class="lg" src="img/logos/opencode.svg" alt=""><b>OpenCode</b>: open source; terminal or desktop app; works with almost any model provider.</div>
-        <div data-step="3" style="font-size:17px"><img class="lg" src="img/logos/openai.svg" alt=""><b>Codex</b> (OpenAI) and <img class="lg" src="img/logos/claude.svg" alt=""><b>Claude Code</b> (Anthropic): <span class="c-coral"><b>not available in Hong Kong</b></span>, but there are ways around it: pay with Google Pay, use a VPN, or use a non-HK credit card.</div>
+        <div data-step="3" style="font-size:17px"><img class="lg" src="img/logos/openai.svg" alt=""><b>Codex</b> (OpenAI) and <img class="lg" src="img/logos/claude.svg" alt=""><b>Claude Code</b> (Anthropic): <span class="c-coral"><b>not available in Hong Kong</b></span>, but: pay with Google Pay, VPN, non-HK credit card.</div>
       </div>
     </div>
     <div class="grow">
-      <div class="mono c-blue" style="font-size:12px;letter-spacing:.14em;margin-bottom:4px">2 · THE MODEL AND ITS PROVIDER</div>
+      <div class="c-blue" style="font-size:22px;line-height:1.2;font-weight:700;margin-bottom:6px">2 · The model and its provider</div>
       <p class="body" style="font-size:16px;margin:0 0 8px">The model does the thinking. An <b>API key</b> connects it to the assistant; treat it like a password.</p>
       <div class="ev">
         <div data-step="4" style="font-size:17px"><img class="lg" src="img/logos/ollama.svg" alt=""><img class="lg" src="img/logos/lmstudio.svg" alt=""><b>Local</b> (Ollama, LM Studio): runs on your own computer. Private and free, but needs strong hardware and the models are smaller. Very good for simple data extraction.</div>
         <div data-step="5" style="font-size:17px"><img class="lg" src="img/logos/openrouter.svg" alt=""><img class="lg" src="img/logos/poe.svg" alt=""><b>External</b> (OpenRouter, Poe, OpenCode Go, or the makers’ own APIs): many models, one key, pay per use or by subscription.</div>
-        <div data-step="6" style="font-size:17px">We use <img class="lg" src="img/logos/opencode.svg" alt=""><b>OpenCode</b> with <b>OpenRouter</b> and <b>GLM-5.3-Flash</b>.</div>
+        <div data-step="6" style="font-size:17px">We use <img class="lg" src="img/logos/visualstudiocode.svg" alt=""><b>VS Code + Copilot</b>, but we bring our own API key: <b>OpenRouter</b> with <b>GLM-5.3-Flash</b>.</div>
       </div>
     </div>
   </div>
@@ -1157,7 +1170,7 @@
   <h2>Step 1 · <em>Accounts</em> and a repository</h2>
   <div class="steps3" style="margin-top:22px">
     <div class="st" data-step="1"><span class="n">1</span><div><div class="t" style="font-size:30px">A GitHub account</div><div class="d">Personal email. This is where your work lives.</div></div><span class="url">github.com</span></div>
-    <div class="st" data-step="2"><span class="n">2</span><div><div class="t" style="font-size:30px">An API key</div><div class="d">Register with the class code. Keep it private.</div></div><span class="url c-coral">keyreg.qhchina.org</span></div>
+    <div class="st" data-step="2"><span class="n">2</span><div><div class="t" style="font-size:30px">An API key</div><div class="d">Allows you to use the external provider. Keep it private.</div></div><span class="url c-coral">keyreg.qhchina.org</span></div>
     <div class="st" data-step="3"><span class="n">3</span><div><div class="t" style="font-size:30px">Your own copy of the template</div><div class="d">Open the template, press <b>Use this template</b>. Do not edit the template itself.</div></div><span class="url">mcjkurz/qh-starter</span></div>
   </div>
 </section>
