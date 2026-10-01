@@ -283,6 +283,8 @@ kbd { font-family: var(--mono); font-size: 11px; border: 1px solid var(--faint);
 .ev .cite { display: block; margin-top: 5px; }
 .qcard.book { display: grid; grid-template-columns: 96px 1fr; gap: 22px; align-items: start; }
 .qcard.book img { width: 96px; border-radius: 3px; box-shadow: 0 1px 4px rgba(0,0,0,.15); }
+.qcard.book.big { grid-template-columns: 150px 1fr; gap: 32px; }
+.qcard.book.big img { width: 150px; }
 .fib-row .fib-n { width: 130px; font-size: 13px; color: var(--mute); white-space: nowrap; }
 .fib-row .fib-n b { color: var(--coral); font-family: var(--mono); font-size: 18px; }
 .fib-row.plain .fcell { background: #fff; border-color: var(--faint); color: var(--ink2); }
