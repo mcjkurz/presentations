@@ -44,7 +44,7 @@
     else if (curCase && curCase.sec !== s.dataset.sec) curCase = null;
     const i = sections.findIndex(x => x.id === s.dataset.sec);
     if (i < 0) return;
-    const inCase = curCase && curCase.sec === s.dataset.sec && !s.dataset.case;
+    const inCase = curCase && curCase.sec === s.dataset.sec && !s.dataset.case && !s.hasAttribute('data-nocase');
     const n = inCase ? curCase.n : String(i + 1).padStart(2, '0');
     const name = inCase ? `${sections[i].name}: ${curCase.title}` : sections[i].name;
     const html = `<span class="n">${n}</span><span>${name}</span>`;
