@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Teaching Literature with Language Machines — HKU Arts Tech Lab</title>
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -661,7 +662,7 @@
       <div data-step="2"><b>And it follows the form.</b> Jaw and neck, which must be parallel, rise far above the baseline; the tail, which is exempt, stays close to it.</div>
     </div>
   </div>
-  <div class="cite" style="margin-top:6px">GujiBERT_fan · about 25,000 five-character couplets per position · couplets encoded as wholes</div>
+  <div class="cite" style="margin-top:6px">GujiBERT_fan · 25,000 five-character couplets per position · couplets encoded as wholes</div>
 </section>
 
 <!-- ═════════════ Experiment: one verse or both -->
@@ -735,7 +736,7 @@
 <section class="slide divider nokicker" id="s-cs-body" data-sec="cases" data-case-n="2.3" data-case="BodyWords">
   <div class="big-n">2.3</div>
   <h2>Body<em>Words</em></h2>
-  <p class="lead">We are interested in how the body is represented in Chinese novels.</p>
+  <p class="lead">How is the body represented in Chinese novels?</p>
 </section>
 
 <!-- ═════════════ Body words: a novel as a body -->
@@ -893,6 +894,7 @@
 <section class="slide divider nokicker" id="s-cs-predict" data-sec="cases" data-case-n="2.4" data-case="Prediction">
   <div class="big-n">2.4</div>
   <h2><em>Prediction</em></h2>
+  <p class="lead">What can we learn from what a language model expects to read next?</p>
 </section>
 
 <!-- ═════════════ Expectation organized -->
@@ -926,7 +928,7 @@
     <div class="grow">
       <div class="nt-ppl" data-step="1">surprise at <b>book</b>: perplexity <span id="nt-ppl" class="mono c-coral">4.2</span></div>
       <div data-step="3" style="margin-top:22px">
-        <div class="fn" style="font-size:34px">PPL = exp( −<span style="font-size:.8em">1</span>⁄<i>n</i> Σ log <i>Q</i>(<i>x<sub>i</sub></i> | <i>x</i><sub>&lt;i</sub>) )</div>
+        <div class="fn-tex" style="font-size:27px"><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord"><span class="mord mathrm">PPL</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.9291em;vertical-align:-1.2777em;"></span><span class="mop">exp</span><span class="mopen"><span class="delimsizing size2">(</span></span><span class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">Q</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.8em;vertical-align:-0.65em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mrel mtight">&lt;</span><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1774em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose"><span class="delimsizing size2">)</span></span></span></span></span></span></div>
         <p class="small" style="margin-top:10px">A perplexity of 5: as uncertain as choosing among 5 equally likely options. Lower is less surprised.</p>
       </div>
     </div>
@@ -1151,12 +1153,12 @@
       </div>
     </div>
     <div class="grow">
-      <div class="c-blue" style="font-size:22px;line-height:1.2;font-weight:700;margin-bottom:6px">2 · The model and its provider</div>
-      <p class="body" style="font-size:16px;margin:0 0 8px">The model does the thinking. An <b>API key</b> connects it to the assistant; treat it like a password.</p>
+      <div class="c-blue" data-step="4" style="font-size:22px;line-height:1.2;font-weight:700;margin-bottom:6px">2 · The model and its provider</div>
+      <p class="body" data-step="4" style="font-size:16px;margin:0 0 8px">The model does the thinking. An <b>API key</b> connects it to the assistant; treat it like a password.</p>
       <div class="ev">
-        <div data-step="4" style="font-size:17px"><img class="lg" src="img/logos/ollama.svg" alt=""><img class="lg" src="img/logos/lmstudio.svg" alt=""><b>Local</b> (Ollama, LM Studio): runs on your own computer. Private and free, but needs strong hardware and the models are smaller. Very good for simple data extraction.</div>
-        <div data-step="5" style="font-size:17px"><img class="lg" src="img/logos/openrouter.svg" alt=""><img class="lg" src="img/logos/poe.svg" alt=""><b>External</b> (OpenRouter, Poe, OpenCode Go, or the makers’ own APIs): many models, one key, pay per use or by subscription.</div>
-        <div data-step="6" style="font-size:17px">We use <img class="lg" src="img/logos/visualstudiocode.svg" alt=""><b>VS Code + Copilot</b>, but we bring our own API key: <b>OpenRouter</b> with <b>GLM-5.3-Flash</b>.</div>
+        <div data-step="5" style="font-size:17px"><img class="lg" src="img/logos/ollama.svg" alt=""><img class="lg" src="img/logos/lmstudio.svg" alt=""><b>Local</b> (Ollama, LM Studio): runs on your own computer. Private and free, but needs strong hardware and the models are smaller. Very good for simple data extraction.</div>
+        <div data-step="6" style="font-size:17px"><img class="lg" src="img/logos/openrouter.svg" alt=""><img class="lg" src="img/logos/poe.svg" alt=""><b>External</b> (OpenRouter, Poe, OpenCode Go, or the makers’ own APIs): many models, one key, pay per use or by subscription.</div>
+        <div data-step="7" style="font-size:17px">We use <img class="lg" src="img/logos/visualstudiocode.svg" alt=""><b>VS Code + Copilot</b>, but we bring our own API key: <b>OpenRouter</b> with <b>GLM-5.3-Flash</b>.</div>
       </div>
     </div>
   </div>
@@ -1172,7 +1174,10 @@
       <div data-step="3" style="font-size:18px"><b>Register GitHub with a personal email,</b> not a school one that expires. Then apply for <b>GitHub Education</b>: up to 180 Codespaces core-hours a month. <span class="mono c-coral" style="font-size:15px">education.github.com</span></div>
       <div data-step="4" style="font-size:18px"><b>Delete your Codespace when you finish.</b> An idle one keeps using your hours. <b>Push first:</b> anything not pushed is lost.</div>
     </div>
-    <figure class="fig" data-step="3" style="width:330px;flex:none"><img src="img/gh-education-hero.png" alt="GitHub Education homepage"><figcaption>GitHub Education · education.github.com</figcaption></figure>
+    <div style="width:330px;flex:none;display:flex;flex-direction:column;gap:14px">
+      <figure class="fig" data-step="3" style="margin:0"><img src="img/gh-education-hero.png" alt="GitHub Education homepage"><figcaption>GitHub Education · education.github.com</figcaption></figure>
+      <figure class="fig" data-step="4" style="margin:0"><img src="img/gh-codespaces-menu.png" alt="GitHub Code menu, Codespaces tab" style="width:200px;display:block"><figcaption>Code → Codespaces → Create codespace on main</figcaption></figure>
+    </div>
   </div>
 </section>
 
