@@ -281,10 +281,10 @@ kbd { font-family: var(--mono); font-size: 11px; border: 1px solid var(--faint);
 .ev > div { padding: 13px 0; border-top: 1px solid var(--line); font-size: 18.5px; line-height: 1.45; color: var(--ink2); font-weight: 350; }
 .ev > div b { color: var(--ink); font-weight: 600; }
 .ev .cite { display: block; margin-top: 5px; }
-.qcard.book { display: grid; grid-template-columns: 96px 1fr; gap: 22px; align-items: start; }
-.qcard.book img { width: 96px; border-radius: 3px; box-shadow: 0 1px 4px rgba(0,0,0,.15); }
-.qcard.book.big { grid-template-columns: 150px 1fr; gap: 32px; }
-.qcard.book.big img { width: 150px; }
+.qcard.book { display: grid; grid-template-columns: 130px 1fr; gap: 24px; align-items: start; }
+.qcard.book img { width: 130px; border-radius: 3px; box-shadow: 0 1px 4px rgba(0,0,0,.15); }
+.qcard.book.big { grid-template-columns: 200px 1fr; gap: 36px; }
+.qcard.book.big img { width: 200px; }
 .fib-row .fib-n { width: 130px; font-size: 13px; color: var(--mute); white-space: nowrap; }
 .fib-row .fib-n b { color: var(--coral); font-family: var(--mono); font-size: 18px; }
 .fib-row.plain .fcell { background: #fff; border-color: var(--faint); color: var(--ink2); }
