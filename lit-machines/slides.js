@@ -667,7 +667,7 @@ window.HOOKS = {};
           const accepted = u >= tAcc && u < tEnd;
           typed.textContent = u >= tEnd ? '' : p.slice(0, nTyped) + (accepted ? gh : '');
           ghost.textContent = showGhost ? gh : '';
-          f.classList.toggle('hint', showGhost);
+          f.classList.toggle('suggesting', showGhost);
         });
       },
     };

@@ -455,7 +455,7 @@ small.gl { display: block; font-family: var(--sans); font-size: 12px; letter-spa
 .ac-field .ac-ghost { color: #b4b0a8; transition: opacity .35s; }
 .ac-field .ac-caret { display: inline-block; width: 3px; height: .95em; margin: 0 1px; vertical-align: -0.12em; background: var(--coral); animation: acblink 1s steps(1) infinite; }
 .ac-field .ac-tab { position: absolute; right: 24px; top: 50%; transform: translateY(-50%); font-family: var(--mono); font-size: 13px; letter-spacing: .08em; color: var(--mute); border: 1px solid var(--faint); border-radius: 6px; padding: 3px 9px; opacity: 0; transition: opacity .3s; }
-.ac-field.hint .ac-tab { opacity: 1; }
+.ac-field.suggesting .ac-tab { opacity: 1; }
 @keyframes acblink { 50% { opacity: 0; } }
 
 /* expectation slide, collage layout */
