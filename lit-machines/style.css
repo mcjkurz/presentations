@@ -165,7 +165,9 @@ kbd { font-family: var(--mono); font-size: 11px; border: 1px solid var(--faint);
 
 /* ─── passage ─── */
 .passage { font-family: var(--serif); font-size: 26.5px; line-height: 1.42; color: var(--ink2); max-width: 760px; }
-.passage span { transition: color .4s, background .4s, box-shadow .4s; border-radius: 3px; }
+.passage span { transition: color .4s, background .4s, box-shadow .4s, -webkit-text-stroke-width .4s; border-radius: 3px; -webkit-text-stroke: 0 currentColor; }
+/* coloured fragments are set bold with a stroke, so the line breaks do not move when a layer turns on */
+.passage.l1 .L1, .passage.l2 .L2, .passage.l3 .L3, .passage.l4 .L4, .passage.l5 .L5 { -webkit-text-stroke-width: .7px; }
 .passage.l1 .L1 { color: var(--blue); }
 .passage.l2 .L2 { color: var(--green); }
 .passage.l3 .L3 { color: var(--amber); }
