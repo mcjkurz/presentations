@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teaching Literature with Language Machines — HKU Arts Tech Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+
+<!-- ═════════════ Title -->
+<section class="slide title-slide nofoot" id="s-title">
+  <canvas id="title-waves"></canvas>
+  <div class="inner">
+    <div class="venue">HKU Arts Tech Lab &nbsp;·&nbsp; 2 October 2026</div>
+    <h1>Teaching Literature with Language Machines</h1>
+    <div class="sub">New pedagogies for computational literary studies</div>
+  </div>
+  <div class="who">
+    <b>Maciej Kurzynski</b><br>
+    Lingnan University &nbsp;·&nbsp; <span class="lab">qhchina.org</span>
+  </div>
+  <div class="hint"><kbd>←</kbd> <kbd>→</kbd> navigate &nbsp; <kbd>1</kbd>–<kbd>2</kbd> sections &nbsp; <kbd>F</kbd> fullscreen</div>
+</section>
+
+<!-- ═════════════ Plan -->
+<section class="slide" id="s-plan">
+  <h2>Today</h2>
+  <div class="agenda">
+    <div class="it"><span class="num">01</span><span class="t">Poly-temporal, <em>multi-layered</em></span><span class="d">A framework for reading literature alongside brains and language models</span></div>
+    <div class="it"><span class="num">02</span><span class="t">Case studies</span><span class="d">Sinophone texts read with, and against, language models</span></div>
+    <div class="it"><span class="num">03</span><span class="t">Practical</span><span class="d">Three things to set up on your own computer</span></div>
+  </div>
+</section>
+
+<!-- ═════════════ qhchina -->
+<section class="slide" id="s-qh">
+  <div class="row" style="gap:56px;align-items:center;margin-top:8px">
+    <figure class="fig" style="width:560px;flex:none"><img src="img/qhchina.png" alt="qhchina.org"></figure>
+    <div class="grow">
+      <div class="mono c-mute" style="font-size:12px;letter-spacing:.14em;margin-bottom:12px">QUANTITATIVE HUMANITIES CHINA LAB</div>
+      <h2 style="margin-bottom:18px">qh · <em>china</em></h2>
+      <p class="lead" style="font-size:24px">Rethinking Chinese humanities through computation, cognition, and form.</p>
+      <div class="sp"></div>
+      <p class="body" style="font-size:19px">Projects, publications and documentation for the work in this talk, including the tools we will set up in the practical.</p>
+      <div class="mono c-coral" style="font-size:16px;margin-top:18px">qhchina.org</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ 01 divider -->
+<section class="slide divider nokicker" id="s-div1" data-sec="frame">
+  <div class="big-n">01</div>
+  <h2>Poly-temporal,<br><em>multi-layered</em></h2>
+  <p class="lead">Narrative experience unfolds over many interlocking timescales at once, and is processed through a hierarchy of layers, in brains and in language models alike.</p>
+  <div class="sp"></div>
+  <div class="cite">Kurzynski, “Poly-Temporal, Multi-Layered: A Techno-Cognitive Theory of Narrative Experience in Literature,” <i>IJHAC</i> 19.1 (2025): 33–48</div>
+</section>
+
+<!-- ═════════════ Interpretation as a function -->
+<section class="slide" id="s-fn" data-sec="frame">
+  <h2>Interpretation as a function</h2>
+  <div class="fn-stack">
+    <div class="fnrow" data-step="0">
+      <div class="fn" style="font-size:46px"><i>f</i>(<span class="x">x</span>; <span class="p">w, b</span>) = <span class="p">w</span><span class="x">x</span> + <span class="p">b</span></div>
+      <div class="fn-note">a model: an input, parameters, an output</div>
+    </div>
+    <div class="fnrow" data-step="1">
+      <div class="fn" style="font-size:46px"><i>f</i>(<span class="x">“Hello, how are”</span>; <span class="p">θ</span>) = “you”</div>
+      <div class="fn-note">a language model: the parameters θ are learned from text</div>
+    </div>
+    <div class="fnrow" data-step="2">
+      <div class="fn" style="font-size:46px"><i>f</i>(<span class="x">text</span>; <span class="p">History</span>) = interpretation</div>
+      <div class="fn-note">literary history (<i>wen-shi yanjiu</i> 文史研究): a text is read in light of a historical narrative</div>
+    </div>
+    <div class="fnrow" data-step="3">
+      <div class="fn" style="font-size:46px"><i>f</i>(<span class="x">text</span>; <span class="p">History</span>, <span class="q">?</span>) = interpretation</div>
+      <div class="fn-note">so the question is: <span class="c-coral">what other parameters</span> should we take into account?</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ Literary history -->
+<section class="slide" id="s-history" data-sec="frame">
+  <h2>Literature as a record of <em>History</em></h2>
+  <div class="qcards">
+    <div class="qcard book">
+      <img src="img/cover-hsia.jpg" alt="Cover of A History of Modern Chinese Fiction">
+      <div>
+        <div class="quote xs"><span class="mark">“</span>The modern Chinese writer sees himself or herself as an observer and recorder of the truth about Chinese society.<span class="mark">”</span></div>
+        <div class="quote-src">C. T. Hsia, <i>A History of Modern Chinese Fiction</i> (1961)</div>
+      </div>
+    </div>
+    <div class="qcard book">
+      <img src="img/cover-wang.jpg" alt="Cover of A New Literary History of Modern China">
+      <div>
+        <div class="quote xs"><span class="mark">“</span>It is the mutual illumination between <i>wen</i> (literature) and <i>shi</i> (history) that underlies my editorial vision.<span class="mark">”</span></div>
+        <div class="quote-src">David Der-wei Wang, <i>A New Literary History of Modern China</i> (2017)</div>
+      </div>
+    </div>
+  </div>
+  <div class="qs" style="margin-top:22px">
+    <div class="q-item" data-step="1">How might we write about literature beyond the limits of historiography?</div>
+    <div class="q-item" data-step="2">How can embodied, affective, and cognitive frameworks complement historicist readings?</div>
+    <div class="q-item" data-step="3">How do we model literature as <b>both</b> a historical and an embodied phenomenon?</div>
+  </div>
+</section>
+
+<!-- ═════════════ Polytemporality -->
+<section class="slide" id="s-poly" data-sec="frame">
+  <h2>Polytemporality</h2>
+  <div class="quote sm" style="max-width:1050px"><span class="mark">“</span>Some of my genes are 500 million years old, others 3 million, others 100,000 years, and my habits range in age from a few days to several thousand years.<span class="mark">”</span></div>
+  <div class="quote-src">Bruno Latour, <i>We Have Never Been Modern</i> (1993), 73</div>
+  <svg id="logline" viewBox="0 0 1104 300" style="height:300px"></svg>
+  <div class="small" data-step="11" style="margin-top:4px">“Elements that are contemporary according to the calendar need not belong to the same time.” <span class="cite">(Latour, 73)</span></div>
+</section>
+
+<!-- ═════════════ Texts as technologies -->
+<section class="slide" id="s-tech" data-sec="frame">
+  <h2>Texts as <em>technologies</em></h2>
+  <div class="qcards" style="gap:48px">
+    <div class="qcard">
+      <div class="quote xs"><span class="mark">“</span>Explaining changes in the literary record by reaching for the most proximate extraliterary event … simply won’t do. Literary forms are not produced by some sort of magical sympathy with the historical moment.<span class="mark">”</span></div>
+      <div class="quote-src">Nicholas Paige, <i>Technologies of the Novel</i> (2020), 181</div>
+      <div data-step="1">
+      <div class="quote xs" style="margin-top:18px"><span class="mark">“</span>The evolution of [narrative] systems and the individual artifacts that compose them may not be the same evolution.<span class="mark">”</span></div>
+      <div class="quote-src">Paige, 184</div>
+      <p class="small" style="margin-top:10px">Third-person narration is older than the “modern novel”; the letter is older than epistolary fiction.</p>
+      </div>
+    </div>
+    <div class="qcard" data-step="2">
+      <div class="quote xs"><span class="mark">“</span>Each component of technology is itself in miniature a technology<span class="mark">”</span>; each technology is a “phenomenon captured and put to use.”</div>
+      <div class="quote-src">W. Brian Arthur, <i>The Nature of Technology</i> (2009)</div>
+      <div data-step="3" style="margin-top:18px">
+        <div class="quote xs"><span class="mark">“</span>Literary texts inherit human variability … At the same time, like the human mind, they exhibit regularities that emerge at the statistical level.<span class="mark">”</span></div>
+        <div class="quote-src">James Carney, “The Space between Your Ears”</div>
+      </div>
+    </div>
+  </div>
+  <div class="callout" data-step="4" style="font-size:19px">If literary forms are technologies, the phenomena they capture include the reader’s own <b>embodied cognition</b>.</div>
+</section>
+
+<!-- ═════════════ Brain timescales -->
+<section class="slide" id="s-waves" data-sec="frame">
+  <h2>The brain keeps <em>many clocks</em></h2>
+  <canvas id="waves" width="2208" height="720"></canvas>
+  <div class="row ev" style="margin-top:0;gap:44px;font-size:17px;line-height:1.4">
+    <div class="grow" data-step="1" style="border-top:0;font-size:17px"><b>Temporal receptive windows lengthen along the cortical hierarchy:</b> sensory areas integrate over milliseconds, language networks over seconds, the default mode network over minutes. <span class="cite">Hasson et al. 2008; Chang, Nastase, and Hasson 2022; Hasson 2025</span></div>
+    <div class="grow" data-step="2" style="border-top:0;font-size:17px"><b>Slow waves carry fast ones.</b> The three clocks add up in one signal. “Infra-slow waves are of tsunami size … superfast oscillations are just ripples riding on the vortex of the slower waves.” <span class="cite">Buzsáki, <i>The Brain from Inside Out</i> (2019), 151</span></div>
+  </div>
+</section>
+
+<!-- ═════════════ Timescale hierarchy: evidence -->
+<section class="slide" id="s-brain" data-sec="frame">
+  <h2>A timescale <em>hierarchy</em></h2>
+  <div class="row" style="gap:44px">
+    <figure class="fig" style="width:560px;flex:none">
+      <img src="img/hasson2025-process-memory.png" alt="Hierarchy of process-memory: temporal integration windows from phonemes to narratives">
+      <figcaption>Uri Hasson, “Uncovering a Timescale Hierarchy by Studying the Brain in a Natural Context,” <i>J. Neurosci.</i> 45.12 (2025)</figcaption>
+    </figure>
+    <div class="grow ev">
+      <div data-step="1"><b>Temporal receptive windows lengthen along the cortex:</b> milliseconds for phonemes, seconds for sentences, minutes for paragraphs and whole narratives. <span class="cite">Hasson et al. 2008; Chang, Nastase, and Hasson 2022</span></div>
+      <div data-step="2"><b>Fast layers overlap in time.</b> Listening to stories, the brain holds the last three speech sounds in parallel, long after they fade; they activate earlier when predictable. <span class="cite">Gwilliams et al., <i>Nat. Commun.</i> 2022</span></div>
+      <div data-step="3"><b>Slow rhythms govern fast ones.</b> “Perturbations at slow frequencies inevitably affect all nested oscillations.” <span class="cite">Buzsáki, <i>The Brain from Inside Out</i> (2019), 151</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ Predictive hierarchy -->
+<section class="slide" id="s-predhier" data-sec="frame">
+  <h2>Prediction spans <em>many timescales</em></h2>
+  <div class="row" style="gap:50px">
+    <figure class="fig" style="width:420px;flex:none">
+      <img src="img/caucheteux2023-fig1a.png" alt="Language model predicts the next word; the brain predicts a hierarchy of future words">
+      <figcaption>Caucheteux, Gramfort, and King, <i>Nat. Hum. Behav.</i> 7 (2023), Fig. 1a</figcaption>
+    </figure>
+    <div class="grow ev">
+      <div data-step="1"><b>Language models are trained to predict the next word.</b> The brain appears to predict further ahead, and at several levels at once.</div>
+      <div data-step="2"><b>304 people listening to stories (fMRI):</b> adding long-range forecasts to GPT-2 improves its fit to brain activity, peaking about 8 words (≈ 3 s) ahead.</div>
+      <div data-step="3"><b>The forecasts are hierarchical:</b> frontoparietal cortices predict longer-range, higher-level, more contextual representations than temporal cortices.</div>
+      <div data-step="4" class="c-mute" style="font-size:16px">Reading, on this account, is a stack of predictive loops running at different speeds.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ Sequence vs hierarchy -->
+<section class="slide" id="s-seqhier" data-sec="frame">
+  <h2>Sequence <em>versus</em> hierarchy</h2>
+  <div class="row" style="gap:36px;align-items:flex-start">
+    <svg id="seqhier" viewBox="0 0 600 370" style="width:600px;height:370px;flex:none;margin-top:10px"></svg>
+    <div class="grow ev">
+      <div data-step="0"><b>A sequence</b> is a list in a fixed order: each node links to one next node and one previous node. To get from <span class="mono">a</span> to <span class="mono">d</span> you must pass <span class="mono">b</span> and <span class="mono">c</span>: <b>three steps</b>.</div>
+      <div data-step="1"><b>A hierarchy</b> adds a parent: <span class="mono">x</span> is linked to every node below it, so that some node has more than one child, and each node has a single parent.</div>
+      <div data-step="2"><b>Distant nodes come closer.</b> From a hierarchical perspective <span class="mono c-coral">a</span> and <span class="mono c-coral">d</span> are only <b>two steps</b> apart (<span class="mono c-coral">a–x–d</span>).</div>
+      <div data-step="3" style="font-size:19px"><span style="font-family:var(--serif);font-size:26px;line-height:1.3">The <span style="color:var(--coral);font-weight:700">boy</span> who fed the dog <span style="color:var(--coral);font-weight:700">chased</span> the girl.</span><br>“Who chased the girl?” points to <i>the boy</i>. <i>The dog</i> is closer to “chased” in the sequence, but farther away in the hierarchy.</div>
+    </div>
+  </div>
+  <div class="src">Adapted from Julia Uddén and colleagues, as reproduced in Kurzynski, “Poly-Temporal, Multi-Layered,” <i>IJHAC</i> 19.1 (2025), Fig. 1a; links from x to all lower nodes added.</div>
+</section>
+
+<!-- ═════════════ Sequence vs hierarchy -->
+<section class="slide" id="s-fib" data-sec="frame">
+  <h2>Hierarchy <em>reduces uncertainty</em></h2>
+  <div class="row" style="gap:40px;align-items:center">
+    <div class="fib-rules">Fibonacci grammar: &nbsp;<b>0</b> → 1 &nbsp;&nbsp; <b>1</b> → 0 1</div>
+    <div class="grow">
+      <div class="swap" style="min-height:72px">
+        <div class="small" data-step="0" data-until="8">Start from a single <span class="mono">0</span> and rewrite every symbol, again and again. Each generation grows out of the one above.</div>
+        <div class="small" data-step="8" data-until="9">Now forget the tree and read only the seventh generation, left to right. How predictable is each symbol?</div>
+        <div class="small" data-step="9" data-until="10"><b>Predict symbol by symbol.</b> Every 0 is followed by a 1, so those 1s are certain (<span class="c-green">green</span>). But after a 1 either symbol can follow: those cells stay <span style="color:#ff9b85">red</span>.</div>
+        <div class="small" data-step="10" data-until="11"><b>Climb one level: merge each 0 with the 1 after it</b> into a chunk <span class="mono">[0 1]</span>; the other 1s stay alone as <span class="mono">[1]</span>. After a lone <span class="mono">[1]</span> the next chunk is <b>always</b> <span class="mono">[0 1]</span>: fully certain. After another <span class="mono">[0 1]</span> we cannot know it is coming: the chunk stays partly probabilistic, a red 0 and then a green 1.</div>
+        <div class="small" data-step="11" data-until="12"><b>Climb again.</b> The same rule one level up: after the short chunk the long chunk always follows (fully green). Otherwise the chunk keeps the colours of what it contains.</div>
+        <div class="small" data-step="12"><b>Three levels of merging.</b> Fewer symbols are uncertain at every level: 13, then 8, 5 and 3 of 21.</div>
+      </div>
+    </div>
+  </div>
+  <div style="position:relative;height:312px;margin-top:22px">
+    <div class="fib" id="fibgen" style="position:absolute;left:0;top:0;margin:0"></div>
+    <div class="fib" id="fib" style="position:absolute;left:0;top:34px;margin:0"></div>
+    <div class="callout blue" data-step="12" style="position:absolute;left:0;top:-30px;margin:0;padding:8px 22px;font-size:18px">“Uncertainty is reduced as the hierarchical structure of the signal is built.”</div>
+  </div>
+  <div class="src">Fibonacci grammar and quotation: Schmid, Saddy, and Franck, <i>Cognitive Science</i> (2023).</div>
+</section>
+
+<!-- ═════════════ Language models as layered readers -->
+<section class="slide" id="s-stack" data-sec="frame">
+  <h2>Language models as <em>layered readers</em></h2>
+  <div class="row" style="gap:36px">
+    <svg id="stack" viewBox="0 0 640 520"></svg>
+    <div class="grow" style="padding-top:12px">
+      <p class="body" data-step="1">An encoder transforms a text again and again through many layers, each aggregating wider, more abstract information.</p>
+      <div class="sp"></div>
+      <p class="body" data-step="2">A <span class="c-blue">linear sequence</span> of symbols becomes a <span class="c-amber">hierarchical</span> conceptual representation.</p>
+      <div class="sp"></div>
+      <p class="body" data-step="3">Early layers of a speech model align with auditory cortex; deeper layers with higher-level language regions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ Models and brains: evidence -->
+<section class="slide" id="s-lm" data-sec="frame">
+  <h2>Models and brains <em>converge</em></h2>
+  <div class="row" style="gap:44px">
+    <figure class="fig" style="width:600px;flex:none">
+      <img src="img/millet2022.gif" alt="wav2vec 2.0 layers compared with fMRI of 417 volunteers">
+      <figcaption>Millet et al., “Toward a Realistic Model of Speech Processing in the Brain with Self-Supervised Learning” (2022)</figcaption>
+    </figure>
+    <div class="grow ev">
+      <div data-step="1"><b>The layers line up with the cortex.</b> In a speech model trained on 600 h of audio, early layers match auditory cortex, deeper layers higher-level language areas.</div>
+      <div data-step="2"><b>What drives the match is prediction.</b> Across many models and 102 participants, brain-likeness “primarily depends on their ability to predict words from context,” and peaks in middle layers. <span class="cite">Caucheteux and King, <i>Commun. Biol.</i> 2022</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ Gradient of stability -->
+<section class="slide" id="s-heat" data-sec="frame">
+  <div class="row" style="gap:64px">
+    <div class="heat" id="heat" style="margin-left:40px;height:530px">
+      <img src="img/zhang-heatmap.jpg" alt="BERT encodings of Half of Man is Woman, dimensions sorted by variability">
+      <div class="shade" id="shade-top" style="top:0;height:52%"></div>
+      <div class="shade" id="shade-bot" style="top:52%;bottom:0"></div>
+      <div class="brk" data-step="2" style="top:0;height:40%"></div>
+      <div class="brk slow" data-step="3" style="top:68%;bottom:0"></div>
+      <div class="ax" style="left:0;bottom:-22px">0% · rows = 768 dimensions</div>
+      <div class="ax" style="right:0;bottom:-22px">100% of the novel →</div>
+          </div>
+    <div class="grow">
+      <h2 style="font-size:50px">A gradient of <em>stability</em></h2>
+      <p class="body" style="font-size:19px">Zhang Xianliang 張賢亮, <i>Half of Man is Woman</i> (1985): 255 fragments × 500 characters, each encoded by BERT-base-Chinese into 768 dimensions.</p>
+      <div class="sp"></div>
+      <p class="body" data-step="1" style="font-size:19px">Rows are dimensions, sorted from most to least variable across the novel.</p>
+      <div class="sp"></div>
+      <p class="body" data-step="2" style="font-size:19px"><span class="c-blue">Fast rows</span> change with nearly every fragment: words, phrases, single scenes.</p>
+      <div class="sp"></div>
+      <p class="body" data-step="3" style="font-size:19px"><span class="c-amber">Slow rows</span> hold for the whole book: voice, perspective, register.</p>
+      <div class="callout" data-step="4" style="font-size:19px">Each band may call for its own predictive loop. Reading means tracking all of them at once.</div>
+    </div>
+  </div>
+  <div class="src">Kurzynski, “Poly-Temporal, Multi-Layered,” <i>IJHAC</i> 19.1 (2025), Fig. 2.</div>
+</section>
+
+<!-- ═════════════ One passage, many layers -->
+<section class="slide" id="s-passage" data-sec="frame">
+  <div class="row" style="gap:44px">
+    <div class="passage" id="passage" style="font-size:21px;line-height:1.38;max-width:740px">
+      The only sounds were the <span class="L1">winds and reeds</span> whispering like lovers. In no hurry to put on clothes, she dropped the underwear still in her <span class="L1">hand</span>. As if afraid of getting cold, she crossed <span class="L1">one arm over the other</span>. With a hand on each of her <span class="L1">shoulders</span>, <span class="L2">she stood there facing me</span>. In the wind, the sun’s rays turned a <span class="L1">soft yellow color</span>. In that soft yellow light, <span class="L1">her body shone</span>. […] Strong enough to knock me out, an instinctive self-preservation took hold. At the same time, in her <span class="L1">eyes</span>, on her <span class="L1">rippling skin</span>, I saw a frightening pain. <span class="L3">I saw the tragedy covering both of us.</span> <span class="L5">Her thirst and her hunger were my own—she was a mirror to me. Into the desire to possess her came the equally male desire to protect her.</span> <span class="L4">My physical need disappeared, in its place was a mental ache.</span> <span class="L4">The sharp sound of a whistle</span> pierced the air from far away. It lashed my body like a whip, <span class="L2">and I turned and ran.</span>
+      <div class="passage-zh">只有呼呼的<span class="L1">風聲</span>，<span class="L1">蘆葦</span>和蘆葦說着情話。於是，她並不急於穿衣服，卻撂下<span class="L1">手中</span>的內褲，象是畏涼一樣，<span class="L1">兩臂交叉</span>地將兩手搭在<span class="L1">兩肩</span>上，<span class="L2">正面向着我</span>。在風中的陽光泛着<span class="L1">淡淡的黃色</span>。<span class="L1">黃色的陽光照着她青春的前額</span>。一陣強烈得使我暈眩的衝動過去，習慣性的剋制逐漸佔了上風。這時，我在她的<span class="L1">眼睛</span>裏，在她<span class="L1">微微哆嗦的肌膚</span>上，驀然看到了一種可怕的痛苦，<span class="L3">看到了籠罩在我們頭上的悽慘的命運</span>。<span class="L5">她的飢渴也是我的飢渴；她是我的一面鏡子。我心中湧起了一陣溫柔的憐憫，想佔有她的情慾滲進了企圖保護她的男性的激情。</span>她那毫不準備防禦的姿勢，使我的心似乎收縮了起來；<span class="L4">生理上的要求不知怎麼消失了，替代它的是精神上的憂傷</span>。而恰恰在此刻，從高高的斗渠壩上傳來了<span class="L4">尖利的哨音</span>。它象鞭子似地在我身上抽了一下，我覺得我還呻吟了一聲，<span class="L2">便拔腿返身跑掉了</span>。</div>
+      <div class="cite" style="margin-top:10px">Zhang Xianliang 張賢亮 (1936–2014), <i>Half of Man is Woman</i> 《男人的一半是女人》 (1985), trans. Martha Avery</div>
+    </div>
+    <div class="grow legend" style="padding-top:6px">
+      <div class="small" style="margin-bottom:22px">One passage, many clocks</div>
+      <div class="li" data-step="1"><span class="dot" style="background:var(--blue)"></span><span class="t">Sensation and the body<span class="s">milliseconds · embodied simulation</span></span></div>
+      <div class="li" data-step="2"><span class="dot" style="background:var(--green)"></span><span class="t">The voyeur schema<span class="s">seconds · trope, expectation</span></span></div>
+      <div class="li" data-step="3"><span class="dot" style="background:var(--amber)"></span><span class="t">“Tragedy”: the lovers part eight years later<span class="s">hours · plot, foreshadowing</span></span></div>
+      <div class="li" data-step="4"><span class="dot" style="background:var(--coral)"></span><span class="t">Labour camp, 1966; impotence as political powerlessness<span class="s">decades · History</span></span></div>
+      <div class="li" data-step="5"><span class="dot" style="background:var(--violet)"></span><span class="t">Animality and grace; a trace of self-mockery<span class="s">floating above it all</span></span></div>
+    </div>
+  </div>
+  <div class="src">Kurzynski, “Poly-Temporal, Multi-Layered,” <i>IJHAC</i> 19.1 (2025).</div>
+</section>
+
+<!-- ═════════════ Hermeneutic circle -->
+<section class="slide" id="s-circle" data-sec="frame">
+  <h2 style="font-size:46px;margin-bottom:6px">The hermeneutic circle, <em>reimagined</em></h2>
+  <svg id="circle" viewBox="0 20 1104 530" style="width:1104px;height:400px;margin-top:30px;display:block"></svg>
+  <div class="swap" style="min-height:56px;margin-top:8px">
+    <div class="small" data-step="4" data-until="5" style="text-align:center;font-size:16px"><b class="c-coral">Feedback runs the other way.</b> Higher layers send expectations back to lower ones, as when signals from V5 return to V1 in the visual cortex: what we have already understood changes how the next words are read.</div>
+  <div class="small" data-step="5" style="text-align:center">Most hermeneutic causality stays unverbalised: patterns of activation (infratextuality) rather than symbolic sequences (intertextuality).<br>Linearization leaves measurable traces too: sentences being typed can be decoded from non-invasive MEG. <span class="cite">Lévy et al., <i>Nat. Neurosci.</i> 2026</span></div>
+  </div>
+  <div class="src">Adapted from Kurzynski, “Poly-Temporal, Multi-Layered,” <i>IJHAC</i> 19.1 (2025), Fig. 3.</div>
+</section>
+
+<!-- ═════════════ Three claims -->
+<section class="slide" id="s-claims" data-sec="frame">
+  <h2>A techno-cognitive framework</h2>
+  <div class="claims">
+    <div class="claim" data-step="1">
+      <div class="n">POLY-TEMPORAL</div>
+      <div class="h">Many interlocking timescales</div>
+      <div class="b">Neural, emotional, narrative, cultural. History is one clock among many; forms carry their own inertia.</div>
+      <div class="cite" style="margin-top:10px">Latour 1993; Paige 2020; Hasson et al. 2008; Buzsáki 2019</div>
+    </div>
+    <div class="claim" data-step="2">
+      <div class="n">MULTI-LAYERED</div>
+      <div class="h">Reading as hierarchical prediction</div>
+      <div class="b">Nested predictive loops integrate sensory, affective, and conceptual information over different durations, in brains and in neural networks.</div>
+      <div class="cite" style="margin-top:10px">Kukkonen 2016; Caucheteux and King 2022; Caucheteux et al. 2023</div>
+    </div>
+    <div class="claim" data-step="3">
+      <div class="n">INTEGRATION ⇄ LINEARIZATION</div>
+      <div class="h">Interpretation as a cycle</div>
+      <div class="b">A sequence is dispersed into layers, then crystallized back into a sequence: a commentary that shapes new texts and new readings.</div>
+      <div class="cite" style="margin-top:10px">Gwilliams et al. 2022; Lévy et al. 2026</div>
+    </div>
+  </div>
+  <div class="sp"></div><div class="sp"></div>
+  <div data-step="4">
+    <div class="quote" style="font-size:44px">There is not one horizon, <em style="color:var(--coral)">but many.</em></div>
+    <div class="quote-src">contra Fredric Jameson: the political as “the absolute horizon of all reading and all interpretation”</div>
+  </div>
+</section>
+
+<!-- ═════════════ Teaching ladder -->
+<section class="slide" id="s-ladder" data-sec="frame">
+  <h2 style="margin-bottom:14px">A ladder for the <em>classroom</em></h2>
+  <table class="ladder">
+    <tr><th style="width:230px">Layer · timescale</th><th>Reading question</th><th style="width:270px">Machine lens</th><th style="width:210px">Example</th></tr>
+    <tr data-step="1"><td class="sc"><span class="bar" style="height:22px;background:var(--blue)"></span>Character, word<span class="t">milliseconds</span></td><td>What does this word mean <i>here</i>, next to that one?</td><td>embeddings, attention</td><td class="cs">Vector poetics</td></tr>
+    <tr data-step="2"><td class="sc"><span class="bar" style="height:22px;background:var(--green)"></span>Line, sentence<span class="t">seconds</span></td><td>What did I expect to come next, and why was I surprised?</td><td>surprisal, perplexity</td><td class="cs">Cognitive stylometry</td></tr>
+    <tr data-step="3"><td class="sc"><span class="bar" style="height:22px;background:var(--amber)"></span>Passage, story<span class="t">minutes – hours</span></td><td>What holds steady, and what keeps changing?</td><td>segment encodings, stability gradients</td><td class="cs later">Half of Man is Woman</td></tr>
+    <tr data-step="4"><td class="sc"><span class="bar" style="height:22px;background:var(--coral)"></span>Corpus, period<span class="t">years – centuries</span></td><td>What persists across political ruptures?</td><td>collocations, topic models, classifiers</td><td class="cs later">PLA Daily, 1956–1989</td></tr>
+  </table>
+  <div class="callout blue" data-step="5" style="font-size:20px">Students climb up and down: <b>close reading → model → hypothesis → close reading</b>. The machine is a second reader whose layers can be opened.</div>
+</section>
+
+<!-- ═════════════ 02 divider -->
+<section class="slide divider nokicker" id="s-div2" data-sec="cases">
+  <div class="big-n">02</div>
+  <h2>Case <em>studies</em></h2>
+  <p class="lead">Poems, novels, and propaganda read with, and against, language models: what the machine’s layers and expectations can make visible to a literary reader.</p>
+</section>
+
+<!-- ═════════════ Case study 2.1 opener -->
+<section class="slide divider nokicker" id="s-cs-parallel" data-sec="cases" data-case-n="2.1" data-case="Parallelism">
+  <div class="big-n">2.1</div>
+  <h2><em>Parallelism</em></h2>
+</section>
+
+<!-- ═════════════ Parallelism -->
+<section class="slide" id="s-parallel" data-sec="cases">
+  <h2>Parallelism <span class="zh" style="font-size:.7em;color:var(--mute)">對仗</span> <span style="font-size:.4em;color:var(--mute);font-family:var(--sans)">duìzhàng</span></h2>
+  <div class="sp"></div>
+  <div class="quote" style="max-width:960px"><span class="mark">“</span>When the mind gives birth to words, thoughts go through a hundred reflections, and the high and low complement each other, naturally forming pairs.<span class="mark">”</span></div>
+  <div class="zh" style="font-size:22px;color:var(--mute);margin-top:14px;letter-spacing:.08em">夫心生文辭，運裁百慮，高下相須，自然成對。</div>
+  <div class="quote-src">Liu Xie 劉勰 (465–522), <i>The Literary Mind and the Carving of Dragons</i> 文心雕龍</div>
+  <div class="pex" data-step="1">
+    <div class="pex-cap">In classical Chinese poetry, two lines are matched word for word. Wang Wei 王維, <i>Autumn Evening in the Mountains</i>:</div>
+    <div class="pex-cpl">
+      <div class="zh"><span class="c-blue">明月</span><span class="c-mute">松間</span><span class="c-coral">照</span>，<span class="c-blue">清泉</span><span class="c-mute">石上</span><span class="c-coral">流</span>。</div>
+      <div class="en"><span class="c-blue">The bright moon</span> <span class="c-coral">shines</span> <span class="c-mute">between the pines</span>; <span class="c-blue">a clear spring</span> <span class="c-coral">flows</span> <span class="c-mute">over the stones</span>.</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═════════════ Poem + classifier -->
+<section class="slide" id="s-poem" data-sec="cases">
+  <div class="row" style="gap:70px">
+    <div style="width:520px;flex:none;padding-top:20px">
+      <div class="small" style="margin-bottom:6px">Wang Wei 王維 (699–761), 山居秋暝 <i>Autumn Evening in the Mountains</i></div>
+      <div class="poem" id="poem">
+        <div class="ln">空山新雨後，天氣晚來秋。<em class="tr">In the empty mountains after fresh rain, evening air turns autumn.</em></div>
+        <div class="ln" data-l="2">明月松間照，清泉石上流。<em class="tr">The bright moon shines between the pines; a clear spring flows over the stones.</em></div>
+        <div class="ln">竹喧歸浣女，蓮動下漁舟。<em class="tr">Bamboo rustles: washerwomen head home; lotus stirs: a fishing boat sets out.</em></div>
+        <div class="ln" data-l="4">隨意春芳歇，王孫自可留。<em class="tr">Spring’s fragrance may fade as it pleases; the noble guest is free to stay.</em></div>
+      </div>
+    </div>
+    <div class="grow" style="padding-top:30px">
+      <h2 style="font-size:44px">Is this couplet <em>parallel</em>?</h2>
+      <p class="small" style="margin-bottom:8px">In regulated verse (律詩), two lines that pair up word for word are “parallel”. The classifier returns a probability.</p>
+      <div class="pflow">
+        <div class="prow">
+          <div class="pc" data-step="1"><span class="zh">明月松間照，清泉石上流。</span><span class="en">bright moon / clear spring …</span></div>
+          <span class="pa" data-step="2">→</span>
+          <span class="box" data-step="3">classifier</span>
+          <span class="pa" data-step="4">→</span>
+          <span class="score c-green" data-step="4">0.97</span>
+        </div>
+        <div class="prow">
+          <div class="pc" data-step="5"><span class="zh">隨意春芳歇，王孫自可留。</span><span class="en">spring’s fragrance / noble guest …</span></div>
+          <span class="pa" data-step="6">→</span>
+          <span class="box" data-step="6">classifier</span>
+          <span class="pa" data-step="7">→</span>
+          <span class="score c-mute" data-step="7">0.02</span>
+        </div>
+      </div>
+      <p class="small" data-step="8" style="margin-top:18px">A BERT-based classifier trained on 140,000+ regulated poems (律詩) performs on par with GPT-4.1 and DeepSeek R1. But how much context should it read: a pair of characters, a couplet, a whole poem?</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ Scale matters: character, couplet, poem -->
+<section class="slide" id="s-scale" data-sec="cases">
+  <div class="row" style="gap:70px;align-items:flex-start">
+    <div style="width:520px;flex:none;padding-top:20px">
+      <div class="small" style="margin-bottom:6px">Bai Juyi 白居易 (772–846), 賦得古原草送別 <i>Grass on the Ancient Plain: Farewell to a Friend</i></div>
+      <div class="poem" id="sc-poem">
+        <div class="ln">離離原上草，一歲一枯榮。<em class="tr">Lush is the grass on the plain; each year it withers, each year it thrives.</em></div>
+        <div class="ln">野火燒不盡，春風吹又生。<em class="tr">Wildfire cannot burn it out; the spring wind blows and it grows again.</em></div>
+        <div class="ln" id="sc-cpl"><span class="ch p0">遠</span><span class="ch p1">芳</span><span class="ch p2">侵</span><span class="ch p3">古</span><span class="ch p4">道</span>，<span class="ch p0">晴</span><span class="ch p1">翠</span><span class="ch p2">接</span><span class="ch p3">荒</span><span class="ch p4">城</span>。<em class="tr">The distant fragrance invades the ancient road; the bright green meets the ruined town.</em></div>
+        <div class="ln">又送王孫去，萋萋滿別情。<em class="tr">Again I see my friend off; the teeming grass is full of parting sorrow.</em></div>
+      </div>
+      <div class="small" id="sc-cap" style="margin-top:10px;min-height:22px"></div>
+    </div>
+    <div class="grow" style="padding-top:20px">
+      <h2 style="font-size:44px;margin-bottom:10px">Scale matters</h2>
+      <div class="swap" style="min-height:104px">
+        <p class="body" data-step="1" data-until="6" style="font-size:17px"><b class="c-blue">Micro · character pairs.</b> The model sees only two characters at a time and must judge whether they match. But 翠 alone could be “green” (an adjective) or “greenery” (a noun); only the sentence settles it: a <i>lexical gap</i>.</p>
+        <p class="body" data-step="6" data-until="7" style="font-size:17px"><b class="c-green">Meso · couplet</b> (a pair of lines). The scale at which parallelism is encoded: the two lines resolve each other’s ambiguity. “Just enough” context.</p>
+        <p class="body" data-step="7" style="font-size:17px"><b class="c-amber">Macro · whole poem.</b> More context, more noise: the poem’s overall regularity casts a <i>structural shadow</i> over the judgment of a single couplet.</p>
+      </div>
+    </div>
+  </div>
+  </section>
+
+<!-- ═════════════ Goldilocks -->
+<section class="slide" id="s-gold" data-sec="cases">
+  <h2>The <em>Goldilocks</em> result</h2>
+  <p class="lead" style="font-size:21px;margin-bottom:10px">Same task, same poems: which context best recovers the parallelism judgement?</p>
+  <div class="row" style="gap:32px;align-items:flex-start">
+    <img class="fig-gold" src="img/scale-f1.png" alt="F1 score distributions by model and inference route, 100 trials">
+    <div class="grow gold-key">
+      <p><b style="color:#3a90b8">Character</b>: pairs of characters</p>
+      <p><b style="color:#9a5fb5">Couplet</b>: two lines together</p>
+      <p><b style="color:#e07b1a">Poem-1</b>: the whole poem, one label</p>
+      <p><b style="color:#1fae95">Poem-4</b>: the whole poem, four labels</p>
+      <p class="small">A → B: trained at scale A, then applied at scale B (same colour family as A).</p>
+    </div>
+  </div>
+  <div class="callout blue" data-step="1" style="font-size:19px;margin-top:14px;padding:12px 24px">The best context is not the largest but the one <b>aligned with the scale</b> at which the feature is encoded.</div>
+  <div class="src">Kurzynski, “From Character to Poem: Nested Contexts and Scalar Limits of Parallelism Detection in Classical Chinese Poetry,” <i>Journal of Open Humanities Data</i> 12 (2026): 34, Fig. 4.</div>
+</section>
+
+<!-- ═════════════ Context as a methodological choice -->
+<section class="slide" id="s-context" data-sec="cases">
+  <h2 style="margin-bottom:10px">Context is a <em>methodological choice</em></h2>
+  <div style="display:flex;gap:22px;align-items:stretch">
+    <div class="ctx" data-step="1">
+      <div class="mono c-blue">MICRO · CHARACTER PAIRS</div>
+      <div class="big">Transparent, but blind to syntax</div>
+      <p><b>Interpretable by design:</b> every couplet verdict traces back to five separate pair judgements, so you can see where it goes wrong.</p>
+      <p class="cost">Cost: it cannot see the sentence, so ambiguous characters trip it up (the lexical gap; F1 0.88).</p>
+    </div>
+    <div class="ctx" data-step="2">
+      <div class="mono c-green">MESO · COUPLET</div>
+      <div class="big">Aligned, and open to explanation</div>
+      <p><b>Explainable after the fact:</b> probing the model shows attention and key vectors lining up across parallel lines, a glimpse of how it represents the feature.</p>
+      <p class="cost">Cost: an approximation of what the model does, not a transparent decision (F1 0.95).</p>
+    </div>
+    <div class="ctx" data-step="3">
+      <div class="mono c-amber">MACRO · WHOLE POEM</div>
+      <div class="big">Rich in context, opaque in reasoning</div>
+      <p><b>Hard to interpret:</b> a verdict might rest on syntax, the author’s style or the rhyme scheme, and the model can lean on shortcuts such as “inner couplets are always parallel”.</p>
+      <p class="cost">Cost: the structural shadow of the whole over the part (F1 0.89 and 0.66).</p>
+    </div>
+  </div>
+  <div class="callout blue" data-step="4" style="font-size:19px;margin-top:18px;padding:14px 24px">Different scales serve different scholarly aims: <b>prediction, explanation, interpretation</b>. Choosing the context turns a silent assumption into <b>an explicit and contestable methodological choice</b>.</div>
+  <div class="small" data-step="5" style="margin-top:10px"><b>Interpretable</b>: you can follow the model’s decision step by step. <b>Explainable</b>: you can approximate its behaviour after the fact.</div>
+  <div class="src">Kurzynski, “From Character to Poem: Nested Contexts and Scalar Limits of Parallelism Detection in Classical Chinese Poetry,” <i>Journal of Open Humanities Data</i> 12 (2026): 34.</div>
+</section>
+
+<!-- ═════════════ Query, key, value -->
+<section class="slide" id="s-qkv" data-sec="cases">
+  <h2>Attention: <em>query, key, value</em></h2>
+  <div class="row" style="gap:36px;align-items:flex-start">
+    <svg class="qkv" viewBox="0 0 640 490" style="width:600px"><g><rect x="24" y="120" width="88" height="56" rx="9" class="tk"/><text x="68" y="150" text-anchor="middle" class="zh-t" style="font-size:26px">明</text><text x="68" y="168" text-anchor="middle" class="en-t" style="font-size:12px">bright</text><rect x="144" y="120" width="88" height="56" rx="9" class="tk"/><text x="188" y="150" text-anchor="middle" class="zh-t" style="font-size:26px">月</text><text x="188" y="168" text-anchor="middle" class="en-t" style="font-size:12px">moon</text><rect x="264" y="120" width="88" height="56" rx="9" class="tk"/><text x="308" y="150" text-anchor="middle" class="zh-t" style="font-size:26px">松</text><text x="308" y="168" text-anchor="middle" class="en-t" style="font-size:12px">pine</text><rect x="384" y="120" width="88" height="56" rx="9" class="tk"/><text x="428" y="150" text-anchor="middle" class="zh-t" style="font-size:26px">間</text><text x="428" y="168" text-anchor="middle" class="en-t" style="font-size:12px">between</text><rect x="504" y="120" width="88" height="56" rx="9" class="tk hot"/><text x="548" y="150" text-anchor="middle" class="zh-t" style="font-size:26px">照</text><text x="548" y="168" text-anchor="middle" class="en-t" style="font-size:12px">shine</text></g><g data-step="1"><rect x="73" y="0" width="230" height="46" rx="9" fill="#fdece8" stroke="#e2472a"/><text x="188" y="19" text-anchor="middle" class="qt" fill="#e2472a" font-weight="600">月’s query</text><text x="188" y="37" text-anchor="middle" class="qt" fill="#e2472a">Q: “which one is a verb?”</text></g><g data-step="2"><text class="qt" x="68" y="108" fill="#2f6fe0">K: adjective</text><text class="qt" x="188" y="108" fill="#2f6fe0">K: noun</text><text class="qt" x="308" y="108" fill="#2f6fe0">K: noun</text><text class="qt" x="428" y="108" fill="#2f6fe0">K: place word</text><text class="qt" x="548" y="108" fill="#2f6fe0">K: verb</text></g><g data-step="3" fill="none" stroke-linecap="round"><path d="M188 46 C 188 75, 68 80, 68 94" stroke="#e2472a" stroke-width="1.7" opacity="0.5"/><path d="M188 46 C 188 75, 188 80, 188 94" stroke="#e2472a" stroke-width="2.2" opacity="0.5"/><path d="M188 46 C 188 75, 308 80, 308 94" stroke="#e2472a" stroke-width="2.2" opacity="0.5"/><path d="M188 46 C 188 75, 428 80, 428 94" stroke="#e2472a" stroke-width="1.7" opacity="0.5"/><path d="M188 46 C 188 75, 548 80, 548 94" stroke="#e2472a" stroke-width="6.0" opacity="1"/><text x="524" y="76" class="wt" fill="#e2472a">0.7</text></g><g data-step="4"><text class="qt" x="68" y="194" fill="#1f9d63">V: brightness</text><text class="qt" x="188" y="194" fill="#1f9d63">V: moonlight</text><text class="qt" x="308" y="194" fill="#1f9d63">V: pines</text><text class="qt" x="428" y="194" fill="#1f9d63">V: between</text><text class="qt" x="548" y="194" fill="#1f9d63">V: shining</text><path d="M548 202 C 548 228, 188 228, 188 206" fill="none" stroke="#1f9d63" stroke-width="4" stroke-linecap="round"/><text x="368" y="234" text-anchor="middle" class="wt" fill="#1f9d63" style="font-size:12px">“shining” is passed to 月</text></g><g><rect x="24" y="370" width="88" height="56" rx="9" class="tk"/><text x="68" y="400" text-anchor="middle" class="zh-t" style="font-size:26px">清</text><text x="68" y="418" text-anchor="middle" class="en-t" style="font-size:12px">clear</text><rect x="144" y="370" width="88" height="56" rx="9" class="tk"/><text x="188" y="400" text-anchor="middle" class="zh-t" style="font-size:26px">泉</text><text x="188" y="418" text-anchor="middle" class="en-t" style="font-size:12px">spring</text><rect x="264" y="370" width="88" height="56" rx="9" class="tk"/><text x="308" y="400" text-anchor="middle" class="zh-t" style="font-size:26px">石</text><text x="308" y="418" text-anchor="middle" class="en-t" style="font-size:12px">stone</text><rect x="384" y="370" width="88" height="56" rx="9" class="tk"/><text x="428" y="400" text-anchor="middle" class="zh-t" style="font-size:26px">上</text><text x="428" y="418" text-anchor="middle" class="en-t" style="font-size:12px">above</text><rect x="504" y="370" width="88" height="56" rx="9" class="tk hot"/><text x="548" y="400" text-anchor="middle" class="zh-t" style="font-size:26px">流</text><text x="548" y="418" text-anchor="middle" class="en-t" style="font-size:12px">flow</text></g><g data-step="1"><rect x="73" y="250" width="230" height="46" rx="9" fill="#fdece8" stroke="#e2472a"/><text x="188" y="269" text-anchor="middle" class="qt" fill="#e2472a" font-weight="600">泉’s query</text><text x="188" y="287" text-anchor="middle" class="qt" fill="#e2472a">Q: “which one is a verb?”</text></g><g data-step="2"><text class="qt" x="68" y="358" fill="#2f6fe0">K: adjective</text><text class="qt" x="188" y="358" fill="#2f6fe0">K: noun</text><text class="qt" x="308" y="358" fill="#2f6fe0">K: noun</text><text class="qt" x="428" y="358" fill="#2f6fe0">K: place word</text><text class="qt" x="548" y="358" fill="#2f6fe0">K: verb</text></g><g data-step="3" fill="none" stroke-linecap="round"><path d="M188 296 C 188 325, 68 330, 68 344" stroke="#e2472a" stroke-width="1.7" opacity="0.5"/><path d="M188 296 C 188 325, 188 330, 188 344" stroke="#e2472a" stroke-width="2.2" opacity="0.5"/><path d="M188 296 C 188 325, 308 330, 308 344" stroke="#e2472a" stroke-width="2.2" opacity="0.5"/><path d="M188 296 C 188 325, 428 330, 428 344" stroke="#e2472a" stroke-width="1.7" opacity="0.5"/><path d="M188 296 C 188 325, 548 330, 548 344" stroke="#e2472a" stroke-width="6.0" opacity="1"/><text x="524" y="326" class="wt" fill="#e2472a">0.7</text></g><g data-step="4"><text class="qt" x="68" y="444" fill="#1f9d63">V: clarity</text><text class="qt" x="188" y="444" fill="#1f9d63">V: water</text><text class="qt" x="308" y="444" fill="#1f9d63">V: stone</text><text class="qt" x="428" y="444" fill="#1f9d63">V: above</text><text class="qt" x="548" y="444" fill="#1f9d63">V: flowing</text><path d="M548 452 C 548 478, 188 478, 188 456" fill="none" stroke="#1f9d63" stroke-width="4" stroke-linecap="round"/><text x="368" y="484" text-anchor="middle" class="wt" fill="#1f9d63" style="font-size:12px">“flowing” is passed to 泉</text></g></svg>
+    <div class="grow qkv-txt">
+      <p class="small" data-step="1" style="margin-bottom:10px">Unlike a chatbot, the classifier can be opened up. Inside, characters exchange information through <b>attention</b>: every character has a query, a key and a value. Here, two subjects look for their verbs.</p>
+      <p class="body" data-step="1"><span class="c-coral"><b>Query</b></span>: what a character is looking for. 月 (“moon”) and 泉 (“spring”) are subjects, so each asks: <i>which one is a verb?</i></p>
+      <p class="body" data-step="2"><span class="c-blue"><b>Key</b></span>: what a character offers to be found by. Every character announces its role: adjective, noun, place word, verb.</p>
+      <p class="body" data-step="3"><b>Match</b>: where the query fits a key, attention is high. 月 attends mostly to 照 (“shine”), 泉 to 流 (“flow”).</p>
+      <p class="body" data-step="4"><span class="c-green"><b>Value</b></span>: what a character hands over once attended to. 照 passes on “shining”, 流 “flowing”.</p>
+      <div class="callout blue" data-step="5" style="font-size:16px;margin-top:6px;padding:12px 18px;line-height:1.4">The same game runs in every language: an adjective looks for the noun it describes, a verb for its subject. Nobody writes these rules; the model learns them from text.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ Keys & queries -->
+<section class="slide" id="s-kq" data-sec="cases">
+  <h2>The game of <em>keys and queries</em></h2>
+  <div class="row" style="gap:40px">
+    <svg id="kq" viewBox="0 0 560 430"></svg>
+    <div class="grow">
+      <p class="body" data-step="1">Self-attention: each character sends a <span class="c-coral">query</span> and offers a <span class="c-blue">key</span>. Attention is high where the two point the same way. <span class="c-mute">“If you have information I need, I should pay attention to you.”</span> The <b>[CLS]</b> token asks the same of every character.</p>
+      <div class="sp"></div>
+      <p class="body" data-step="2">In parallel lines, the keys of corresponding characters (照 ↔ 流) <b>align</b>. In non-parallel lines, the alignment disappears.</p>
+      <div class="sp"></div>
+      <p class="body" data-step="3">With Gärdenfors’s conceptual spaces: parallelism is a bridge that temporarily unites distant regions of meaning, a <span class="c-green">geometric congruence</span> the reader is invited to find.</p>
+    </div>
+  </div>
+  <div class="src">Adapted from Kurzynski, Xu, and Feng, “The Game of Keys and Queries,” <i>IJHAC</i> 19.2 (2025), Fig. 1.</div>
+</section>
+
+<!-- ═════════════ The [CLS] token -->
+<section class="slide" id="s-cls" data-sec="cases">
+  <h2>How does the classifier <em>read</em>?</h2>
+  <svg class="qkv" viewBox="0 0 900 310" style="width:900px"><g><rect x="36.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="68.0" y="270" text-anchor="middle" class="zh-t">明</text><rect x="108.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="140.0" y="270" text-anchor="middle" class="zh-t">月</text><rect x="180.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="212.0" y="270" text-anchor="middle" class="zh-t">松</text><rect x="252.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="284.0" y="270" text-anchor="middle" class="zh-t">間</text><rect x="324.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="356.0" y="270" text-anchor="middle" class="zh-t">照</text><rect x="396.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="428.0" y="270" text-anchor="middle" class="zh-t">，</text><rect x="468.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="500.0" y="270" text-anchor="middle" class="zh-t">清</text><rect x="540.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="572.0" y="270" text-anchor="middle" class="zh-t">泉</text><rect x="612.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="644.0" y="270" text-anchor="middle" class="zh-t">石</text><rect x="684.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="716.0" y="270" text-anchor="middle" class="zh-t">上</text><rect x="756.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="788.0" y="270" text-anchor="middle" class="zh-t">流</text><rect x="828.0" y="230" width="64" height="60" rx="9" class="tk"/><text x="860.0" y="270" text-anchor="middle" class="zh-t">。</text></g><g data-step="1"><rect x="374.0" y="34" width="180" height="64" rx="11" fill="#fdece8" stroke="#e2472a" stroke-width="2"/><text x="464.0" y="62" text-anchor="middle" class="zh-t" style="font-size:22px;fill:#e2472a;font-family:JetBrains Mono,monospace">[CLS]</text><text x="464.0" y="84" text-anchor="middle" class="qt" fill="#e2472a">classification token</text></g><g data-step="2" fill="none" stroke-linecap="round"><path d="M68.0 228 C 68.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M140.0 228 C 140.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M212.0 228 C 212.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M284.0 228 C 284.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M356.0 228 C 356.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M428.0 228 C 428.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M500.0 228 C 500.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M572.0 228 C 572.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M644.0 228 C 644.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M716.0 228 C 716.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M788.0 228 C 788.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/><path d="M860.0 228 C 860.0 170, 464.0 160, 464.0 100" stroke="#e2472a" stroke-width="1.6" opacity=".55"/></g><g data-step="3"><path d="M560.0 66 L612.0 66" stroke="#555" stroke-width="2"/><path d="M606.0 60 L614.0 66 L606.0 72" fill="none" stroke="#555" stroke-width="2"/><rect x="620.0" y="46" width="130" height="40" rx="20" fill="#fff" stroke="#bbb"/><text x="685.0" y="71" text-anchor="middle" style="font-family:JetBrains Mono,monospace;font-size:13px;letter-spacing:.1em" fill="#333">CLASSIFIER</text><path d="M754.0 66 L794.0 66" stroke="#555" stroke-width="2"/><path d="M788.0 60 L796.0 66 L788.0 72" fill="none" stroke="#555" stroke-width="2"/><text x="804.0" y="76" style="font-family:JetBrains Mono,monospace;font-size:30px" fill="#1f9d63">0.97</text></g></svg>
+  <div class="small" style="margin:2px 0 0 36px;font-family:var(--serif);font-style:italic;font-size:17px">The bright moon shines between the pines; a clear spring flows over the stones.</div>
+  <div class="swap" style="margin-top:16px;max-width:1000px;min-height:64px">
+    <p class="body" data-step="1" data-until="2" style="font-size:20px">BERT adds a special token, <b class="c-coral">[CLS]</b> (“classification”), in front of the text. It carries no meaning of its own: it is an <b>empty slot</b> for a summary.</p>
+    <p class="body" data-step="2" data-until="3" style="font-size:20px">Layer after layer, [CLS] looks at every character and gathers what it needs, attending more to some characters than to others.</p>
+    <p class="body" data-step="3" style="font-size:20px">At the end, its vector stands for the whole couplet. The classifier reads <b>only this vector</b> and answers: 0.97.</p>
+  </div>
+  <div class="callout blue" data-step="4" style="font-size:19px;margin-top:14px;padding:12px 24px">So to ask what the classifier knows, we can look at what [CLS] pays attention to.</div>
+</section>
+
+<!-- ═════════════ Attention of [CLS]: couplets -->
+<section class="slide" id="s-attn-couplet" data-sec="cases">
+  <h2>What does [CLS] <em>attend to</em>?</h2>
+  <img class="fig-wide" src="img/kq-attn-couplets.png" alt="Attention of the [CLS] token in a parallel and a non-parallel couplet, per head">
+  <div class="row" style="gap:40px;margin-top:14px;max-width:1040px">
+    <p class="body" data-step="1" style="font-size:18px;flex:1"><b>How to read it.</b> Each row is one attention head. Each column is a character of the couplet, first line then second line. Brighter means more attention from [CLS].</p>
+    <p class="body" data-step="2" style="font-size:18px;flex:1"><b>Left, a parallel couplet:</b> the two lines show a mirrored pattern: matching characters offer similar keys, so they answer [CLS]’s query alike. <b>Right, a non-parallel couplet:</b> the pattern is not mirrored.</p>
+  </div>
+  <div class="src">Kurzynski, Xu, and Feng, “The Game of Keys and Queries,” <i>IJHAC</i> 19.2 (2025), Fig. 2.</div>
+</section>
+
+<!-- ═════════════ Correlation across heads -->
+<section class="slide" id="s-attn-corr" data-sec="cases">
+  <h2>Matching characters <em>respond alike</em></h2>
+  <img class="fig-wide" src="img/kq-attn-corr.png" alt="Correlation between attention to first-line and second-line characters, by head, parallel vs non-parallel couplets">
+  <div class="row" style="gap:40px;margin-top:14px;max-width:1040px">
+    <p class="body" data-step="1" style="font-size:18px;flex:1"><b>The test.</b> In each head, do line one and line two get attention in the same pattern? One dot is one couplet; 1.0 means an identical pattern.</p>
+    <p class="body" data-step="2" style="font-size:18px;flex:1"><b>The result.</b> Across 5,178 test couplets, <span class="c-green">parallel couplets</span> score higher than <span class="c-blue">non-parallel ones</span> in every head: matching characters offer similar keys as answers to [CLS]’s query.</p>
+  </div>
+  <div class="src">Kurzynski, Xu, and Feng, “The Game of Keys and Queries,” <i>IJHAC</i> 19.2 (2025), Fig. 3.</div>
+</section>
+
+<!-- ═════════════ Whole poem -->
+<section class="slide" id="s-attn-poem" data-sec="cases">
+  <h2>The same pattern in a <em>whole poem</em></h2>
+  <div class="row" style="gap:40px;align-items:flex-start">
+    <img class="fig-poem" src="img/scale-attn-poem.png" alt="Attention of [CLS] over a whole regulated poem, 12 heads">
+    <div class="grow qkv-txt">
+      <p class="body" data-step="1"><b>The task.</b> Here the classifier reads a whole poem, four couplets, and gives one yes/no label: is it a “regulated” poem (律詩) or not?</p>
+      <p class="body" data-step="2"><b>How to read it.</b> Each panel is one attention head, each row a couplet, each column a character or punctuation mark. Darker means more attention from [CLS].</p>
+      <p class="body" data-step="3"><b>What it learns.</b> Nobody tells the model where to look, yet it attends mostly to the <b>inner couplets</b> (rows 2 and 3), the two that must be parallel in a regulated poem.</p>
+      <p class="body" data-step="4"><b>Head 1</b>, top left: the parallel third couplet draws attention at the same positions in both lines. Punctuation marks work as “attention sinks”, a place to park attention.</p>
+    </div>
+  </div>
+  <div class="src">Kurzynski, “From Character to Poem: Nested Contexts and Scalar Limits of Parallelism Detection in Classical Chinese Poetry,” <i>Journal of Open Humanities Data</i> 12 (2026): 34, Fig. 5.</div>
+</section>
+
+<!-- ═════════════ What alignment looks like -->
+<section class="slide" id="s-align-ex" data-sec="cases">
+  <h2>What does “<em>aligned</em>” look like?</h2>
+  <p class="lead" style="font-size:21px;max-width:1000px;margin-bottom:6px">Read each verse as a path through a 3D meaning space, one character at a time. At each step, ask: do the two paths move in the same direction?</p>
+  <div class="row" style="gap:24px;margin-top:6px">
+    <div data-step="1"><canvas id="ax-mis" style="width:520px;height:320px"></canvas><div class="axlab" style="color:#555">Misaligned</div></div>
+    <div data-step="2"><canvas id="ax-ali" style="width:520px;height:320px"></canvas><div class="axlab" style="color:#0e8fa3">Aligned</div></div>
+  </div>
+  <div class="swap" style="max-width:1000px;min-height:56px;margin-top:2px">
+    <p class="body" data-step="1" data-until="2" style="font-size:19px"><b>Misaligned.</b> Each verse wanders its own way: the steps of the two paths point in different, often opposite, directions.</p>
+    <p class="body" data-step="2" data-until="3" style="font-size:19px"><b>Aligned.</b> Matching steps point the same way: the two verses move in parallel, which is what parallelism means geometrically.</p>
+  </div>
+</section>
+
+<!-- ═════════════ Alignment builds up across layers -->
+<section class="slide" id="s-align-layers" data-sec="cases">
+  <h2 style="margin-bottom:6px">Alignment <em>builds up</em> layer by layer</h2>
+  <div class="row" style="gap:40px;align-items:flex-start">
+    <svg id="alchart" viewBox="0 0 640 400" style="width:640px;height:400px;flex:none;overflow:visible;margin-top:36px"></svg>
+    <div class="grow ev" style="font-size:17px">
+      <div data-step="0"><b>Four couplets, named like a body:</b> head 首聯, jaw 頷聯, neck 頸聯, tail 尾聯. In a regulated poem the jaw and the neck must be parallel.</div>
+      <div data-step="1"><b>Transition alignment:</b> from one character to the next, do the two verses step in the same direction? (1 = exactly the same)</div>
+      <div data-step="2"><b>It grows with depth</b>, from low in the first layer to high in the last. The dashed line is the baseline for random pairs.</div>
+      <div data-step="3"><b>And it follows the form.</b> Jaw and neck rise far above the baseline; the tail, which is exempt, stays close to it.</div>
+    </div>
+  </div>
+  <div class="cite" style="margin-top:6px">GujiBERT_fan · about 25,000 five-character couplets per position · couplets encoded as wholes</div>
+</section>
+
+<!-- ═════════════ Experiment: one verse or both -->
+<section class="slide" id="s-read-exp" data-sec="cases">
+  <h2>Does the model need to see <em>both verses</em>?</h2>
+  <p class="lead" style="font-size:21px;max-width:1000px;margin-bottom:14px">An experiment with one couplet, 明月松間照，清泉石上流 (“The bright moon shines between the pines; a clear spring flows over the stones”). We feed it to the model in two ways and compare the ten resulting points.</p>
+  <div data-step="1" style="border-top:1px solid var(--line);padding:14px 0">
+    <div style="display:grid;grid-template-columns:190px 1fr;gap:20px;align-items:center">
+      <div><div style="font-family:var(--serif);font-size:30px;line-height:1.05">Separately</div><div class="small">the model sees one verse at a time</div></div>
+      <div style="display:grid;grid-template-columns:auto 34px 110px 34px auto;gap:10px 8px;align-items:center;font-size:24px">
+        <span style="color:#2f6fe0;letter-spacing:.06em">明月松間照</span><span class="c-mute">→</span><span class="box" style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;border:1px solid var(--faint);border-radius:999px;padding:6px 0;text-align:center">BERT</span><span class="c-mute">→</span><span style="color:#2f6fe0;font-size:20px;letter-spacing:.2em">●●●●●</span>
+        <span style="color:#12b5cb;letter-spacing:.06em">清泉石上流</span><span class="c-mute">→</span><span class="box" style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;border:1px solid var(--faint);border-radius:999px;padding:6px 0;text-align:center">BERT</span><span class="c-mute">→</span><span style="color:#12b5cb;font-size:20px;letter-spacing:.2em">●●●●●</span>
+      </div>
+    </div>
+  </div>
+  <div data-step="2" style="border-top:1px solid var(--line);padding:14px 0">
+    <div style="display:grid;grid-template-columns:190px 1fr;gap:20px;align-items:center">
+      <div><div style="font-family:var(--serif);font-size:30px;line-height:1.05">Together</div><div class="small">the model sees the whole couplet, so each verse can see the other</div></div>
+      <div style="display:grid;grid-template-columns:auto 34px 110px 34px auto;gap:10px 8px;align-items:center;font-size:24px">
+        <span style="letter-spacing:.06em"><span style="color:#2f6fe0">明月松間照</span>，<span style="color:#12b5cb">清泉石上流</span></span><span class="c-mute">→</span><span class="box" style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;border:1px solid var(--faint);border-radius:999px;padding:6px 0;text-align:center">BERT</span><span class="c-mute">→</span><span style="font-size:20px;letter-spacing:.2em"><span style="color:#2f6fe0">●●●●●</span><span style="color:#12b5cb">●●●●●</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="callout blue" data-step="3" style="font-size:19px;margin-top:6px;padding:12px 24px">Same ten characters, same model. The only difference: whether each verse can see the other. What happens to the points?</div>
+</section>
+
+<!-- ═════════════ 3D couplet -->
+<section class="slide nokicker" id="s-3d" data-sec="cases" data-steps="2">
+  <div class="cpl-wrap"><canvas id="cpl"></canvas></div>
+  <div class="cpl-title">
+    <div class="kicker" style="width:1104px"><span class="n">02</span><span>Case studies</span></div>
+    <div class="zh"><span class="c-blue">明月松間照</span>，<span style="color:#12b5cb">清泉石上流</span></div>
+    <div class="small" style="margin-top:6px;font-family:var(--serif);font-style:italic;font-size:18px">The bright moon shines between the pines; a clear spring flows over the stones.</div>
+    <div class="small" style="margin-top:2px">GujiBERT · <span id="cpl-layer">top layer (12)</span> · 10 characters → PCA → 3 dimensions</div>
+  </div>
+  <div class="cpl-side">
+    <div class="swap">
+      <p class="body" data-step="0" data-until="1" style="font-size:20px"><b>Each verse on its own.</b> Feed the two verses to BERT separately and put all ten characters in one 3D space: the paths wander independently.</p>
+      <p class="body" data-step="1" data-until="2" style="font-size:20px"><b>Now read the couplet together.</b> The same ten characters, but each verse can see the other: the points glide, the paths line up, and the pairs (bright–clear, moon–spring, pines–stones, between–over, shines–flows) pull together.</p>
+      <p class="body" data-step="2" style="font-size:20px"><b>Parallelism is not in the characters.</b> It appears only when the verses see each other, and it builds up in the top layers.</p>
+    </div>
+  </div>
+  <div class="cpl-keys cite">drag to rotate · scroll to zoom · <kbd>[</kbd> <kbd>]</kbd> layer · <kbd>R</kbd> auto-rotate · <kbd>0</kbd> reset</div>
+</section>
+
+<!-- ═════════════ Sense trajectory -->
+<section class="slide" id="s-traj" data-sec="cases">
+  <div class="row" style="gap:30px">
+    <div style="width:470px;flex:none">
+      <h2 style="font-size:48px">Sense <em>trajectories</em></h2>
+      <div class="zh" style="font-size:34px;letter-spacing:.14em;margin-bottom:4px"><span class="c-coral">池</span>邊樹影接，<span class="c-amber">峯</span>外月華生</div>
+      <div class="small" style="margin-bottom:22px">Qing · “By the pond the tree shadows meet; beyond the peak the moon’s glow is born.”</div>
+      <div class="stat" data-step="1"><span class="k">① the character’s <b>general sense</b> across the corpus</span></div>
+      <div class="stat" data-step="2"><span class="k">② read <b>in its own line</b></span></div>
+      <div class="stat" data-step="3"><span class="k">③ read <b>with line 2</b>, next to 峯 “peak”</span></div>
+      <div class="callout" data-step="4" style="font-size:22px;margin-top:20px;padding:14px 22px">Where does <b class="c-coral">池</b> “pond” go when it meets <b class="c-amber">峯</b> “peak”? <span class="c-mute">A question we are working on.</span></div>
+    </div>
+    <svg id="traj" viewBox="0 0 700 520"></svg>
+  </div>
+</section>
+
+<!-- ═════════════ Case study 2.2 opener -->
+<section class="slide divider nokicker" id="s-cs-body" data-sec="cases" data-case-n="2.2" data-case="Body words">
+  <div class="big-n">2.2</div>
+  <h2>Body <em>words</em></h2>
+</section>
+
+<!-- ═════════════ Body words: a novel as a body -->
+<section class="slide" id="s-body-sil" data-sec="cases">
+  <h2 style="margin-bottom:4px">A novel as a <em>body</em></h2>
+  <div class="row" style="gap:36px;align-items:flex-start">
+    <div id="bsil" style="display:flex;gap:18px;flex:none"></div>
+    <div class="grow" style="padding-top:8px">
+      <p class="body" style="font-size:19px">Take a novel. Find every word that names a part of the body, <span class="zh">手 眼 心 脑…</span>, and paint it onto a silhouette. Darker means more mentions per 10,000 words.</p>
+      <div class="sp"></div>
+      <div class="swap">
+        <p class="body" data-step="1" data-until="2" style="font-size:19px"><b>Jin Ping Mei</b> (Ming): head, hands, mouth and whole-body words lead, with the heart close behind.</p>
+        <p class="body" data-step="2" data-until="3" style="font-size:19px"><b>Dream of the Red Chamber</b> (Qing): head and heart dominate; eyes and hands are quieter.</p>
+        <p class="body" data-step="3" style="font-size:19px"><b>The Muslim Funeral</b> (1991): a warmer body overall, with heart, eyes, face and hands all hot.</p>
+      </div>
+      <div class="callout" data-step="4" style="font-size:19px">Every novel gets a silhouette. How is one made, and what happens <b>inside</b> a novel as it unfolds?</div>
+    </div>
+  </div>
+  <button class="langbtn" type="button">EN / 中</button>
+</section>
+
+<!-- ═════════════ Body words: how we count -->
+<section class="slide" id="s-body-how" data-sec="cases">
+  <h2 style="margin-bottom:14px">How do we <em>count</em> a body?</h2>
+  <div class="qcards" style="gap:32px;grid-template-columns:repeat(3,1fr)">
+    <div class="qcard" data-step="1">
+      <div class="mono c-blue" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">1 · A WORD LIST</div>
+      <p class="body" style="font-size:19px">Words that name a part of the body, <span class="zh">手 眼 心 脑 脸…</span>, sorted into 22 regions.</p>
+    </div>
+    <div class="qcard" data-step="2">
+      <div class="mono c-amber" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">2 · A RATE</div>
+      <p class="body" style="font-size:19px">Count every mention in the novel and divide by its length: <b>mentions per 10,000 words</b>, so long and short books compare.</p>
+    </div>
+    <div class="qcard" data-step="3">
+      <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">3 · A MOVING WINDOW</div>
+      <p class="body" style="font-size:19px">Slide a window of about 5,000 words along the novel. Each window gets its own colouring of the body.</p>
+    </div>
+  </div>
+  <div class="callout blue" data-step="4" style="font-size:20px;margin-top:30px">Only <b>body words</b> are counted here. Feeling enters later, with a second method that also asks which emotion sits beside each body part.</div>
+</section>
+
+<!-- ═════════════ Body words: play through a novel -->
+<section class="slide" id="s-body-play" data-sec="cases">
+  <div class="row" style="gap:56px;align-items:flex-start">
+    <div style="width:250px;flex:none;padding-top:6px"><canvas id="bp-cv" style="width:250px;height:490px;display:block"></canvas></div>
+    <div class="grow">
+      <h2 style="font-size:46px;margin-bottom:8px">Reading a novel <em>as it unfolds</em></h2>
+      <p class="body" style="font-size:19px;margin-bottom:14px">Slide a 5,000-word window along a novel and recolour the body. Press <b>Play</b> (or <kbd>P</kbd>), or click the map to jump.</p>
+      <div class="bp-pick"><button type="button" data-k="jinpingmei">Jin Ping Mei</button><button type="button" data-k="hongloumeng">Dream of the Red Chamber</button><button type="button" data-k="musilin">The Muslim Funeral</button></div>
+      <div style="display:flex;align-items:center;gap:18px;margin:14px 0 6px"><button type="button" id="bp-play" class="bp-play">▶ Play</button><span id="bp-lab" class="mono" style="white-space:nowrap;font-size:14px;letter-spacing:.06em;color:var(--ink2)"></span><span id="bp-top" style="white-space:nowrap;font-size:15px;color:var(--ink2)"></span></div>
+      <svg id="bp-line" viewBox="0 0 750 322" style="width:750px;height:322px;cursor:pointer;overflow:visible"></svg>
+      <div class="cite" style="margin-top:4px">Rows: body regions (core seven on top). Columns: 5,000-word windows. Darker red: more mentions per 10,000 words.</div>
+    </div>
+  </div>
+  <button class="langbtn" type="button">EN / 中</button>
+</section>
+
+<!-- ═════════════ Red Chamber: introduction -->
+<section class="slide dark" id="s-bw-novel" data-sec="cases">
+  <h2 style="font-size:50px;margin-bottom:4px">A novel about a <em>family’s fall</em></h2>
+  <div style="font-size:22px;color:var(--mute);margin-bottom:16px"><span class="zh" style="color:var(--ink);font-size:26px;letter-spacing:.06em">紅樓夢</span> &nbsp;<i style="font-family:var(--serif);font-size:24px;color:var(--ink2)">Dream of the Red Chamber</i> &nbsp;·&nbsp; Cao Xueqin 曹雪芹, mid-18th century</div>
+  <p class="body" data-step="1" style="font-size:20px;max-width:1000px">The most celebrated Chinese novel. Over 120 chapters it follows the <b>Jia family</b>, a great household of wealth and privilege, through its splendour and its decline. Feeling is everywhere: weeping, blushing, sighing, laughing behind a hand.</p>
+  <div class="bw-cast" data-step="2">
+    <div><div class="zh">賈寶玉 <span>Jia Baoyu</span></div><p>The young heir, sensitive, who turns away from the world of exams and duty.</p></div>
+    <div><div class="zh">林黛玉 <span>Lin Daiyu</span></div><p>His frail and gifted cousin, a poet, famous for her tears.</p></div>
+    <div><div class="zh">王熙鳳 <span>Wang Xifeng</span></div><p>The sharp-tongued manager of the household.</p></div>
+  </div>
+  <div class="callout blue" data-step="3" style="font-size:18px;margin-top:18px;padding:12px 20px;max-width:1104px">Chapters 1–80 are by Cao Xueqin; chapters 81–120 are usually credited to a later editor, Gao E, and carry the family to its ruin. Keep this three-part shape in mind: we will compare the parts.</div>
+</section>
+
+<!-- ═════════════ Xirui: bodies that feel -->
+<section class="slide dark" id="s-bw-xirui" data-sec="cases">
+  <div class="row" style="gap:70px;align-items:center;height:590px">
+    <div id="bwx-fig" style="width:300px;flex:none"></div>
+    <div class="grow">
+      <h2 style="font-size:50px;margin-bottom:10px">Bodies that <em>feel</em></h2>
+      <div class="bw-legend"></div>
+      <p class="body" data-step="1" style="font-size:19px">A second method on the same novel: it reads sentence by sentence with two word lists. <b>Emotions</b>: five basic ones, each with about 20 words (joy: 喜 笑 乐; anger: 怒 气 恼; sadness: 哭 泪 悲; fear: 怕 慌 惧; surprise: 惊 愣 诧). <b>Body parts</b>: 27, from 心 and 脸 to 手 and 足. When a sentence holds both, it counts one hit for that body part and that emotion.</p>
+      <p class="body" data-step="2" style="font-size:19px;margin-top:12px"><i>Dream of the Red Chamber</i>, all 120 chapters: <b>4,586</b> hits. Colour is the leading emotion of each body part, brighter means more hits. The <b>heart</b> (1,192) leads, then head, face, mouth, hand and eyes: exactly the regions that dominate our silhouettes.</p>
+      <div class="callout blue" data-step="3" style="font-size:18px;margin-top:16px;padding:12px 20px">Joy is the leading emotion (36% of hits), then anger (24%) and sadness (23%); fear is 12%, surprise 5%. Nearly half of all hits sit in the <b>heart and head</b>.</div>
+    </div>
+  </div>
+  <div class="src">Word-list method applied to Cao Xueqin, <i>Dream of the Red Chamber</i>. Dictionary matching within a sentence: co-occurrence, not a judgement of what the body part expresses.</div>
+</section>
+
+<!-- ═════════════ Xirui: same body, three parts of the novel -->
+<section class="slide dark" id="s-bw-parts" data-sec="cases">
+  <h2 style="font-size:44px;margin-bottom:0">The same body, <em>three parts</em> of the novel</h2>
+  <div class="bw-legend" style="margin:6px 0 0"></div>
+  <div class="bw-cols">
+    <div class="bw-col" data-step="1"><div class="cap"><b>Chapters 1–40</b></div><div id="bwp1"></div><div class="note">Joy 44%, sadness 19%. The heart carries 24% of all hits.</div></div>
+    <div class="bw-col" data-step="2"><div class="cap"><b>Chapters 41–80</b></div><div id="bwp2"></div><div class="note">Joy 41%, sadness 19%. Almost unchanged.</div></div>
+    <div class="bw-col" data-step="3"><div class="cap"><b>Chapters 81–120</b></div><div id="bwp3"></div><div class="note">Joy falls to 24%, sadness rises to 31%, and the heart carries 32%.</div></div>
+  </div>
+  <div class="callout blue" data-step="4" style="font-size:18px;margin-top:8px;padding:10px 20px;max-width:1104px">A stable layer and a changing one, again. The <b>same six body parts lead</b> in every part of the book; what changes is the feeling they carry, as the fortunes of the Jia family decline.</div>
+  <div class="src">Word-list method, <i>Dream of the Red Chamber</i>. Bar: share of joy, sadness, fear, anger and surprise hits.</div>
+</section>
+
+<!-- ═════════════ Xirui: whose body -->
+<section class="slide dark" id="s-bw-chars" data-sec="cases">
+  <h2 style="font-size:44px;margin-bottom:0">Whose <em>body</em>?</h2>
+  <div class="bw-legend" style="margin:6px 0 0"></div>
+  <div class="bw-cols">
+    <div class="bw-col" data-step="1"><div class="cap"><span class="zh">黛玉</span> · <b>Lin Daiyu</b> · 546 hits</div><div id="bwc1"></div><div class="note">The saddest body of the three: 27% sadness, and the least anger (18%).</div></div>
+    <div class="bw-col" data-step="2"><div class="cap"><span class="zh">宝玉</span> · <b>Jia Baoyu</b> · 909 hits</div><div id="bwc2"></div><div class="note">The most hits, and the most surprise (8%): 38% joy, 24% sadness, 20% anger.</div></div>
+    <div class="bw-col" data-step="3"><div class="cap"><span class="zh">凤姐</span> · <b>Wang Xifeng</b> · 456 hits</div><div id="bwc3"></div><div class="note">The angriest body: 24% anger, and hardly any surprise (2%).</div></div>
+  </div>
+  <div class="callout blue" data-step="4" style="font-size:18px;margin-top:8px;padding:10px 20px;max-width:1104px">The core is shared, the colour is individual: <b>each character has an emotional profile</b> written into the body parts the novel gives them.</div>
+  <div class="src">Word-list method, <i>Dream of the Red Chamber</i>. Name variants are merged (黛玉/林黛玉, 凤姐/凤姐儿).</div>
+</section>
+
+<!-- ═════════════ Body words: one silhouette per period -->
+<section class="slide" id="s-body-periods" data-sec="cases">
+  <h2 style="margin-bottom:6px">Five periods, <em>one body</em></h2>
+  <p class="body" style="font-size:19px;max-width:1000px;margin-bottom:0">The whole corpus: 279 novels by period. Colour: mentions per 10,000 words, scaled within each period.</p>
+  <div id="psil" style="display:flex;gap:14px;justify-content:center;margin-top:6px"></div>
+  <div class="callout blue" data-step="6" style="font-size:19px;margin:0 auto;padding:12px 24px;max-width:1000px;position:absolute;left:88px;right:88px;bottom:76px">A lot of stability: even with each period scaled to its own maximum, <b>the same regions stand out in every period</b>.</div>
+  <button class="langbtn" type="button">EN / 中</button>
+</section>
+
+<!-- ═════════════ Body words: stable core -->
+<section class="slide" id="s-body-core" data-sec="cases">
+  <div class="row" style="gap:36px">
+    <div style="width:380px;flex:none">
+      <h2 style="font-size:48px">Which parts? A <em>stable core</em></h2>
+      <p class="body" style="font-size:18px">Now 279 novels from Ming–Qing to the New Era. Each body word is assigned to one of 22 regions; the chart shows each region’s <b>share</b> of all body words in a period.</p>
+      <div class="sp"></div>
+      <p class="body" data-step="1" style="font-size:18px">The <b>same seven regions</b> lead in every period (<span class="tr" data-k="core7"></span>): together <b class="c-blue">79–83%</b>. Below them there is a gap: the eighth region never passes 3.4%.</p>
+      <p class="body" data-step="2" style="font-size:18px;margin-top:12px">Change happens at the margins: the <span class="c-coral"><b class="tr" data-k="brain"></b></span> rises, the <span class="c-amber"><b class="tr" data-k="organs"></b></span> recede.</p>
+      <div class="callout blue" data-step="3" style="font-size:17px;margin-top:16px">Two layers at once: a slow one that holds for 500 years, and a faster one tied to the period.</div>
+    </div>
+    <svg id="bcore" viewBox="0 0 700 520" style="width:700px;height:520px;overflow:visible"></svg>
+  </div>
+  <button class="langbtn" type="button">EN / 中</button>
+</section>
+
+<!-- ═════════════ Body words: thought moves house -->
+<section class="slide" id="s-body-shift" data-sec="cases">
+  <h2 style="margin-bottom:6px">A layer that <em>shifts</em>: the brain arrives</h2>
+  <div class="row" style="gap:40px;align-items:flex-start">
+    <div style="width:560px;flex:none">
+      <div class="mono c-mute" style="font-size:12px;letter-spacing:.14em"><span class="tr" data-k="brainhead"></span></div>
+      <svg id="bbrain" viewBox="0 0 560 250" style="width:560px;height:250px;overflow:visible"></svg>
+      <div class="mono c-mute" style="font-size:12px;letter-spacing:.14em;margin-top:14px"><span class="tr" data-k="mindhead"></span></div>
+      <svg id="bmind" viewBox="0 0 560 190" style="width:560px;height:190px;overflow:visible"></svg>
+    </div>
+    <div class="grow">
+      <p class="body" data-step="1" style="font-size:19px"><b class="tr" data-k="brain" style="text-transform:capitalize"></b> is nearly absent before 1911 (0.3 per 10k words) and rises <b>7×</b> by the socialist era (2.1).</p>
+      <div class="sp"></div>
+      <p class="body" data-step="2" style="font-size:19px">Thought moves house: “in the heart” (<span class="tr" data-k="inheart"></span>) holds steady, while “in the head” (<span class="tr" data-k="inhead"></span>) goes from 0.1 to 1.2.</p>
+      <div class="callout" data-step="3" style="font-size:19px">A faster layer, tied to period: a new vocabulary for where mind lives in the body.</div>
+    </div>
+  </div>
+  <button class="langbtn" type="button">EN / 中</button>
+</section>
+
+<!-- ═════════════ Body words: many clocks in one body, and what to ask -->
+<section class="slide" id="s-body-layers" data-sec="cases">
+  <h2 style="margin-bottom:10px">Many clocks in <em>one body</em></h2>
+  <div class="lanes2">
+    <div class="lh"><span></span><span>WHAT THE MACHINE COUNTS</span><span>WHAT A READER CAN ASK</span></div>
+    <div class="lane2" data-step="1"><div class="lt c-blue">CENTURIES</div><div class="lb"><b>The same core.</b> The same seven regions carry 79–83% of body words in every period.</div><div class="lb q">Why does the core stay put? Is it the body itself, or the conventions for describing it?</div></div>
+    <div class="lane2" data-step="2"><div class="lt c-amber">DECADES</div><div class="lb"><b>A period’s own layer.</b> The brain arrives in the socialist era: 0.3 to 2.1 per 10,000 words.</div><div class="lb q">Does thought move from the heart to the head in modern Chinese fiction?</div></div>
+    <div class="lane2" data-step="3"><div class="lt c-coral">A SINGLE BOOK</div><div class="lb"><b>Feeling that moves.</b> In <i>Dream of the Red Chamber</i>, sadness gathers in the heart as the family falls; each character has a different profile.</div><div class="lb q">Does grief gather in the heart as a household declines? Is temperament written into a body?</div></div>
+  </div>
+  <div class="callout blue" data-step="4" style="font-size:18px;margin-top:16px;padding:12px 22px;max-width:1104px">Stability is <b>several layers moving at different speeds</b>. AI does not replace the question: it widens the evidence, and sends you back to the text. <span style="color:var(--mute)">Check the dictionary too: joy is 36% of the hits here, and a different word list would give a different share.</span></div>
+</section>
+
+<!-- ═════════════ Case study 2.3 opener -->
+<section class="slide divider nokicker" id="s-cs-predict" data-sec="cases" data-case-n="2.3" data-case="Prediction">
+  <div class="big-n">2.3</div>
+  <h2><em>Prediction</em></h2>
+</section>
+
+<!-- ═════════════ Next-token prediction -->
+<section class="slide" id="s-next" data-sec="cases">
+  <h2>What comes <em>next</em>?</h2>
+  <div class="nt-ctx" data-step="2">Last night I finished the final chapter.</div>
+  <div class="nt-sent">It is a very interesting <span class="nt-blank">?</span></div>
+  <div class="row" style="gap:60px;margin-top:26px">
+    <div class="nt-bars" id="nt-bars" data-step="1"></div>
+    <div class="grow">
+      <div class="nt-ppl" data-step="1">surprise at <b>book</b>: perplexity <span id="nt-ppl" class="mono c-coral">4.2</span></div>
+      <div data-step="3" style="margin-top:22px">
+        <div class="fn" style="font-size:34px">PPL = exp( −<span style="font-size:.8em">1</span>⁄<i>n</i> Σ log <i>Q</i>(<i>x<sub>i</sub></i> | <i>x</i><sub>&lt;i</sub>) )</div>
+        <p class="small" style="margin-top:10px">A perplexity of 5: as uncertain as choosing among 5 equally likely options. Lower is less surprised.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="cite" style="position:absolute;left:88px;bottom:60px">probabilities illustrative</div>
+</section>
+
+<!-- ═════════════ Expectation organized -->
+<section class="slide" id="s-expect" data-sec="cases">
+  <h2>Literature and <em>expectation</em></h2>
+  <div class="qcards" style="gap:48px">
+    <div data-step="1">
+      <div class="mono c-blue" style="font-size:12px;letter-spacing:.14em;margin-bottom:8px">READING AS PREDICTION</div>
+      <div class="exl">
+        <div><b>Iser</b> (1978) <span>a “wandering viewpoint” projects expectations the next sentence confirms or frustrates</span></div>
+        <div><b>Rabinowitz</b> (1987) <span>rules of reading are “basically predictive” and “always probabilistic”</span></div>
+        <div><b>Tobin</b> (2018) <span>the well-made surprise: unexpected now, a better reading in hindsight</span></div>
+        <div><b>Kukkonen</b> (2020) <span>the text as a “designed sensory flow” of small, purposeful failed expectations</span></div>
+      </div>
+    </div>
+    <div data-step="2">
+      <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin-bottom:8px">EXPECTATION ORGANIZED TOO WELL</div>
+      <div class="exl">
+        <div><b>Suleiman</b> (1983) <span>authoritarian fictions: form makes the conclusion feel inevitable</span></div>
+        <div><b>Link</b> (2000); <b>Ji</b> (2004) <span>the socialist literary system; linguistic engineering in Mao’s China</span></div>
+        <div><b>Sourati et al.</b> (2026) <span>next-word training favours frequent patterns: a homogenizing loop</span></div>
+        <div class="c-green"><b style="color:inherit">Bakhtin; Morson</b> <span>the counterforce: polyphony, sideshadowing, paths not taken</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="callout amber" data-step="3" style="font-size:19px">A sense of the probable continuation is always <b>calibrated on a particular corpus</b>: a register, an institution, a regime.</div>
+</section>
+
+<!-- ═════════════ Prediction: a genealogy -->
+<section class="slide" id="s-genealogy" data-sec="cases">
+  <h2 style="margin-bottom:8px">Prediction: <em>a genealogy</em></h2>
+  <svg id="genealogy" viewBox="0 0 1104 400"></svg>
+  <div class="callout" data-step="5" style="margin-top:4px;font-size:19px;padding:12px 22px">Prediction is not a natural feature of mind or language but a <b>regime with a datable formation</b>, one that now organizes how we build machines, theorize brains, and read texts.</div>
+</section>
+
+<!-- ═════════════ Two lineages -->
+<section class="slide" id="s-lineages" data-sec="cases">
+  <h2>Two wartime <em>lineages</em></h2>
+  <div class="qcards" style="gap:48px">
+    <div class="qcard" data-step="1">
+      <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">NORBERT WIENER</div>
+      <div class="quote sm">Predict the pilot’s next position from its tracked path</div>
+      <p class="body" style="font-size:18px;margin-top:12px">Anti-aircraft fire control becomes <i>Cybernetics</i> (1948): prediction and feedback across animals and machines. The pilot is modelled as a formalizable opponent: an “ontology of the enemy.”</p>
+      <div class="fn" style="font-size:34px;margin-top:16px">information = <span class="q">order</span> <span style="font-size:.6em;color:var(--mute)">(entropy, sign reversed)</span></div>
+    </div>
+    <div class="qcard" data-step="2">
+      <div class="mono c-blue" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">CLAUDE SHANNON</div>
+      <div class="quote sm">Measure how symbol frequencies constrain a message</div>
+      <p class="body" style="font-size:18px;margin-top:12px">Cryptography becomes “A Mathematical Theory of Communication” (1948) and “Prediction and Entropy of Printed English” (1951): messages encoded and transmitted without reference to their meaning.</p>
+      <div class="fn" style="font-size:34px;margin-top:16px"><i>H</i> = −Σ <i>p</i>(<span class="x">x</span>) log <i>p</i>(<span class="x">x</span>) <span style="font-size:.6em;color:var(--mute)">(uncertainty of the next symbol)</span></div>
+    </div>
+  </div>
+  <div class="callout blue" data-step="3" style="font-size:19px">Shannon counted the space between words as a 27th letter: writing became an inventory of countable symbols, the precondition for machines that write.</div>
+  <div class="cite" style="margin-top:12px">Kline, <i>The Cybernetics Moment</i> (2015); Galison, “The Ontology of the Enemy” (1994); Liu, <i>The Freudian Robot</i> (2010)</div>
+</section>
+
+<!-- ═════════════ Predictability and surprise -->
+<section class="slide" id="s-shannon" data-sec="cases">
+  <h2>Prediction meets <em>defamiliarization</em></h2>
+  <div class="qcards">
+    <div class="qcard">
+      <div class="quote sm"><span class="mark">“</span>How well can the next letter of a text be predicted when the preceding N letters are known?<span class="mark">”</span></div>
+      <div class="quote-src">Claude Shannon, “Prediction and Entropy of Printed English” (1951)</div>
+      <p class="small" style="margin-top:14px">Shannon implicitly cast human readers as predictive language models.</p>
+    </div>
+    <div class="qcard" data-step="1">
+      <div class="quote sm"><span class="mark">“</span>Art … increases the complexity and duration of perception.<span class="mark">”</span></div>
+      <div class="quote-src">Viktor Shklovsky, “Art as Device” (1917)</div>
+      <p class="small" style="margin-top:14px">Habit automatizes perception; defamiliarization (<i>ostranenie</i>) restores it by rearranging familiar forms in unpredictable ways.</p>
+    </div>
+  </div>
+  <div class="swap">
+  <div class="guess" data-step="2" data-until="3">
+    <div class="small" style="margin-bottom:10px">Shannon’s experiment: a reader guesses the next letter of a text, one letter at a time.</div>
+    <div class="gshots">
+      <figure><img src="img/shannon54.png" alt="Shannon 1951, p. 54: original text and correctly guessed letters"><figcaption>Dashes mark letters guessed right away; only surprises are spelled out.</figcaption></figure>
+      <figure><img src="img/shannon56.png" alt="Shannon 1951, p. 56: number of guesses per letter"><figcaption>Numbers give how many guesses each letter took.</figcaption></figure>
+    </div>
+  </div>
+  <div class="callout blue" data-step="3" style="align-self:start"><b>Cognitive stylometry</b> takes Shannon’s question literally: a language model trained on a particular corpus stands in for a <b>historically situated reader</b>, and a text is measured as an interplay of familiarity and surprise.</div>
+  </div>
+  <div class="src" data-step="2" data-until="3">Shannon, “Prediction and Entropy of Printed English,” <i>Bell System Technical Journal</i> 30.1 (1951), pp. 54, 56.</div>
+</section>
+
+<!-- ═════════════ Pipeline + overfitting -->
+<section class="slide" id="s-pipeline" data-sec="cases">
+  <h2>Simulating a <em>historical reader</em></h2>
+  <div class="row" style="gap:50px">
+    <div class="pipe" style="width:430px;flex:none">
+      <div class="pstep"><div class="pn">PRE-TRAIN</div><div class="pt">GPT, 223M parameters, one token per character</div><div class="pd">FineWeb-Edu Chinese · 1M passages · ≈ 900M characters</div></div>
+      <div class="parrow">↓</div>
+      <div class="pstep hot"><div class="pn">FINE-TUNE × 5 EPOCHS</div><div class="pt">Selected Works of Mao Zedong 毛泽东选集</div><div class="pd">7 volumes, 1925–1976 · 1.77M characters</div></div>
+      <div class="parrow">↓</div>
+      <div class="pstep"><div class="pn">MEASURE</div><div class="pt">Perplexity on Mao vs. <i>Top 100 Chinese Novels of the 20th Century</i></div></div>
+    </div>
+    <div class="grow">
+      <svg id="ppl-chart" viewBox="0 0 560 380" style="max-height:330px"></svg>
+      <div class="callout" data-step="3" style="font-size:17px;margin-top:0;padding:12px 22px"><b>Cognitive overfitting</b>: as the model becomes fluent in Maospeak (the stock language of Maoist politics), fiction grows more alien to it.</div>
+    </div>
+  </div>
+  <div class="src">Kurzynski, “Cognitive Stylometry,” <i>Computational Humanities Research</i> 2 (2026): e1.</div>
+</section>
+
+<!-- ═════════════ Maospeak waterfalls -->
+<section class="slide" id="s-mao" data-sec="cases">
+  <h2 style="margin-bottom:10px">Maospeak: <em>waterfalls</em></h2>
+  <div class="swap panel-swap">
+    <img src="img/mao-annihilate.png" data-step="0" data-until="1" alt="">
+    <img src="img/mao-enemies.png" data-step="1" data-until="2" alt="">
+    <img src="img/mao-soviet.png" data-step="2" alt="">
+  </div>
+  <div class="swap" style="margin-top:10px">
+    <p class="body" data-step="0" data-until="1"><span class="zh c-coral">坚决、彻底、干净、全部地消灭</span> “resolutely, thoroughly, wholly, and completely annihilate”: four stacked adverbs surprise the base model and become automatic after fine-tuning.</p>
+    <p class="body" data-step="1" data-until="2"><span class="zh c-coral">地、富、反、坏、右</span> “landlords, rich peasants, counter-revolutionaries, bad elements, Rightists”: nonsense to the base model, a canonical list after five epochs.</p>
+    <p class="body" data-step="2" data-until="3"><span class="zh c-coral">苏修叛徒集团</span> “the Soviet revisionist renegade clique”: Cold War jargon, massive spikes that collapse epoch by epoch.</p>
+    <div class="callout" data-step="3" style="margin-top:0;font-size:19px">The first character surprises; the rest cascades with near-certainty. Maospeak narrows the space of valid continuations.</div>
+  </div>
+  <div class="cite" style="margin-top:8px">yellow: base model · orange → red: fine-tuning epochs 1–5 · perplexity on a log scale</div>
+  <div class="src">Kurzynski, “Cognitive Stylometry,” <i>Computational Humanities Research</i> 2 (2026): e1, Fig. 2.</div>
+</section>
+
+<!-- ═════════════ Literature becomes unfamiliar -->
+<section class="slide" id="s-lit" data-sec="cases">
+  <h2 style="margin-bottom:10px">Literature becomes <em>unfamiliar</em></h2>
+  <div class="swap panel-swap">
+    <img src="img/lit-zhangwei.png" data-step="0" data-until="1" alt="">
+    <img src="img/lit-lilianlee.png" data-step="1" data-until="2" alt="">
+    <img src="img/lit-dung.png" data-step="2" alt="">
+  </div>
+  <div class="swap" style="margin-top:10px">
+    <p class="body" data-step="0" data-until="1"><b>Zhang Wei 張煒, <i>The Ancient Ship</i> 古船 (1987).</b> A speech at a struggle session. Only the Maoist slogan <span class="zh c-coral">舍得一身剐，敢把皇帝拉下马</span> (“dare to pull the emperor off his horse, even if it means being hacked to pieces”) loses perplexity: the model finds the Maospeak embedded in the novel.</p>
+    <p class="body" data-step="1" data-until="2"><b>Lilian Lee 李碧華, <i>Farewell My Concubine</i> 霸王別姬 (1985).</b> Spikes on figurative juxtapositions (<span class="zh c-coral">凶狠地打哈欠</span>, “a ferocious yawn”) and classical phrasings (<span class="zh">堂堂男子</span> “a man of standing”, <span class="zh">机会安在</span> “where is the chance?”), which grow <i>more</i> surprising as the model absorbs Maospeak.</p>
+    <p class="body" data-step="2" data-until="3"><b>Dung Kai-cheung 董啓章, <i>Works and Creations</i> 天工開物·栩栩如真 (2005).</b> Unannounced Cantonese breaks the arc: <span class="zh c-coral">嗰次系我第一次听到空中既声音</span> (“that was the first time I heard a sound in the air”). Out of distribution for standard-Chinese corpora, it “puts the brakes on perception.”</p>
+  </div>
+  <div class="cite" style="margin-top:8px">light: base model · dark: fine-tuning epochs 1–5 · perplexity on a log scale</div>
+  <div class="src">Kurzynski, “Cognitive Stylometry,” <i>Computational Humanities Research</i> 2 (2026): e1, Fig. 4.</div>
+</section>
+
+<!-- ═════════════ Style as cognitive signature -->
+<section class="slide" id="s-signature" data-sec="cases">
+  <h2 style="margin-bottom:6px">Style as a <em>cognitive signature</em></h2>
+  <div style="display:flex;gap:28px">
+    <div style="flex:1;min-width:0">
+      <div class="mono c-coral" data-step="1" style="font-size:12px;letter-spacing:.12em">PROPAGANDA · ALL GROUND</div>
+      <svg id="sig1" viewBox="0 0 340 170" style="width:100%;height:170px;overflow:visible"></svg>
+      <p class="body" data-step="1" style="font-size:16px;line-height:1.45">Meaning is backgrounded through <b>repetition</b>. Everything is familiar: cognitive overfitting.</p>
+    </div>
+    <div style="flex:1;min-width:0">
+      <div class="mono c-mute" data-step="2" style="font-size:12px;letter-spacing:.12em">NOISE · ALL SURPRISE</div>
+      <svg id="sig2" viewBox="0 0 340 170" style="width:100%;height:170px;overflow:visible"></svg>
+      <p class="body" data-step="2" style="font-size:16px;line-height:1.45">Anomalous surprise: with no familiar ground, there is nothing to recognize the surprise against.</p>
+    </div>
+    <div style="flex:1;min-width:0">
+      <div class="mono c-blue" data-step="3" style="font-size:12px;letter-spacing:.12em">LITERATURE · GROUND + FIGURE</div>
+      <svg id="sig3" viewBox="0 0 340 170" style="width:100%;height:170px;overflow:visible"></svg>
+      <p class="body" data-step="3" style="font-size:16px;line-height:1.45">A familiar rhythm broken by surprises the reader can still <b>recognize</b> once they arrive: non-anomalous surprise.</p>
+    </div>
+  </div>
+  <div class="callout blue" data-step="4" style="font-size:19px;margin-top:14px;padding:14px 24px">Literature does not defamiliarize by being surprising. It defamiliarizes by <b>combining</b> the surprising with the familiar in a new way. That particular arrangement of ground and figure is a text’s <b>cognitive signature</b>, and what counts as familiar depends on the reader’s history.</div>
+  <div data-step="5" style="margin-top:12px">
+    <div class="quote xs" style="font-size:19px"><span class="mark">“</span>Aesthetic pleasure results from the predictability of the non-focally processed rhythmic cycles in combination with the non-anomalous surprise of the focally processed melody.<span class="mark">”</span></div>
+    <div class="quote-src" style="margin-top:6px;font-size:13px">Patrick Colm Hogan (2016) &nbsp;·&nbsp; Kurzynski, “Cognitive Stylometry,” <i>Computational Humanities Research</i> 2 (2026): e1</div>
+  </div>
+</section>
+
+
+<!-- ═════════════ Where prediction ends -->
+<section class="slide" id="s-judgement" data-sec="cases">
+  <h2>Where prediction <em>ends</em></h2>
+  <div class="qcards" style="gap:48px">
+    <div class="qcard">
+      <div class="mono c-mute" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">DETERMINATIVE JUDGEMENT</div>
+      <div class="quote sm">applies a rule already given</div>
+      <p class="body" style="font-size:18px;margin-top:10px">Prediction does this well: the most probable continuation of what the corpus already contains.</p>
+    </div>
+    <div class="qcard" data-step="1">
+      <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">REFLECTIVE JUDGEMENT</div>
+      <div class="quote sm">finds a rule for a case no existing rule covers</div>
+      <p class="body" style="font-size:18px;margin-top:10px">Prediction cannot do this, and a world run on it risks a “prison of probabilities.”</p>
+    </div>
+  </div>
+  <div class="cite" style="margin-top:12px">Yuk Hui, <i>Kant Machine: Critical Philosophy after AI</i> (2026), reading the third <i>Critique</i> as a “treatise on cybernetics”</div>
+  <div class="callout blue" data-step="2" style="font-size:19px">In the classroom: surprisal is <b>evidence about the training distribution</b>, not a verdict on literary quality. Pair a close reading with a surprisal exercise on the same passage and ask where probabilistic evidence ends and interpretive judgement begins.</div>
+</section>
+
+
+<!-- ═════════════ Conclusion -->
+<section class="slide nokicker" id="s-conclusion" data-sec="cases">
+  <h2>Notes on <em>method</em></h2>
+  <div class="qcards" style="gap:48px">
+    <div class="qcard">
+      <div class="mono c-mute" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">NOT THIS</div>
+      <div class="quote sm">Using literature to research a tool</div>
+      <p class="body" style="font-size:18px;margin-top:10px">Send a few prompts, score the model, then repeat the test when the next model appears. The benchmark ages with the model.</p>
+    </div>
+    <div class="qcard" data-step="1">
+      <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">THIS</div>
+      <div class="quote sm">Using a tool to research literature</div>
+      <p class="body" style="font-size:18px;margin-top:10px">The question stays with the texts. A new model is a new instrument for seeing what is already there.</p>
+    </div>
+  </div>
+  <div class="callout" data-step="2" style="font-size:20px">We are interested in language models only insofar as they tell us something new about literature. Findings about the texts outlast any particular model; findings about the model do not.</div>
+</section>
+
+
+<!-- ═════════════ 03 Practical -->
+<section class="slide" id="s-practical" data-sec="practical">
+  <h2>Get <em>set up</em></h2>
+  <p class="lead" style="font-size:24px;max-width:900px">Three steps, on your own computer, so you can run the experiments yourself.</p>
+  <div class="steps3">
+    <div class="st" data-step="1"><span class="n">1</span><div><div class="t">A GitHub account</div><div class="d">Free to register. Your place to keep and share code and data.</div></div><span class="url">github.com</span></div>
+    <div class="st" data-step="2"><span class="n">2</span><div><div class="t">VS Code installed</div><div class="d">The editor where we will work with code and a coding agent.</div></div><span class="url">code.visualstudio.com</span></div>
+    <div class="st" data-step="3"><span class="n">3</span><div><div class="t">Register an API key</div><div class="d">Your key for calling a language model from your own code.</div></div><span class="url c-coral">keyreg.qhchina.org</span></div>
+  </div>
+</section>
+</div>
+
+<script>
+window.SECTIONS = [
+  { id: 'frame', name: 'Poly-temporal, multi-layered' },
+  { id: 'cases', name: 'Case studies' },
+  { id: 'practical', name: 'Practical' },
+];
+</script>
+<script src="data.js"></script>
+<script src="bodyfig.js"></script>
+<script src="slides.js"></script>
+<script src="deck.js"></script>
+</body>
+</html>
