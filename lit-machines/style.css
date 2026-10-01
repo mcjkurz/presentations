@@ -497,3 +497,16 @@ small.gl { display: block; font-family: var(--sans); font-size: 12px; letter-spa
 .kq-tabs button i { font-style: normal; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; color: var(--mute); }
 .kq-tabs button.on { border-color: var(--green); background: var(--green-bg); }
 .kq-tabs button[data-set="non"].on { border-color: var(--coral); background: var(--coral-bg); }
+
+/* language switch placed next to the controls it belongs with */
+.langbtn.inline { position: static; flex: none; }
+
+/* expectation slide, collage layout */
+.xp-col { position: relative; flex: 1; height: 390px; }
+.xp-lab { font-size: 12px; letter-spacing: .14em; position: absolute; left: 0; top: 0; }
+.xp { position: absolute; display: flex; gap: 12px; align-items: flex-start; }
+.xp-cv { position: relative; flex: none; height: 168px; }
+.xp-cv img { position: absolute; width: 112px; border-radius: 2px; box-shadow: 0 3px 10px rgba(0,0,0,.3); }
+.xp-cv .paper { position: absolute; left: 0; top: 0; width: 112px; height: 164px; border: 1px solid var(--faint); border-radius: 2px; background: #fafaf8; font-family: var(--mono); font-size: 12px; line-height: 1.5; color: var(--mute); display: flex; align-items: center; justify-content: center; text-align: center; box-shadow: 0 3px 10px rgba(0,0,0,.12); transform: rotate(-2deg); }
+.xp p { font-size: 14.5px; line-height: 1.4; color: var(--ink2); font-weight: 350; margin-top: 16px; }
+.xp.green p { color: var(--green); }
