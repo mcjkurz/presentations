@@ -894,25 +894,6 @@
   <h2><em>Prediction</em></h2>
 </section>
 
-<!-- ═════════════ Next-token prediction -->
-<section class="slide" id="s-next" data-sec="cases">
-  <h2>What comes <em>next</em>?</h2>
-  <div class="nt-ctx" data-step="2">Last night I finished the final chapter.</div>
-  <div class="nt-sent">It is a very interesting <span class="nt-blank">?</span></div>
-  <div class="row" style="gap:60px;margin-top:26px">
-    <div class="nt-bars" id="nt-bars" data-step="1"></div>
-    <div class="grow">
-      <div class="nt-ppl" data-step="1">surprise at <b>book</b>: perplexity <span id="nt-ppl" class="mono c-coral">4.2</span></div>
-      <div data-step="3" style="margin-top:22px">
-        <div class="fn" style="font-size:34px">PPL = exp( −<span style="font-size:.8em">1</span>⁄<i>n</i> Σ log <i>Q</i>(<i>x<sub>i</sub></i> | <i>x</i><sub>&lt;i</sub>) )</div>
-        <p class="small" style="margin-top:10px">A perplexity of 5: as uncertain as choosing among 5 equally likely options. Lower is less surprised.</p>
-      </div>
-    </div>
-  </div>
-  
-  <div class="cite" style="position:absolute;left:88px;bottom:60px">probabilities illustrative</div>
-</section>
-
 <!-- ═════════════ Expectation organized -->
 <section class="slide" id="s-expect" data-sec="cases">
   <h2>Literature and <em>expectation</em></h2>
@@ -934,6 +915,25 @@
   </div>
 </section>
 
+<!-- ═════════════ Next-token prediction -->
+<section class="slide" id="s-next" data-sec="cases">
+  <h2>What comes <em>next</em>?</h2>
+  <div class="nt-ctx" data-step="2">Last night I finished the final chapter.</div>
+  <div class="nt-sent">It is a very interesting <span class="nt-blank">?</span></div>
+  <div class="row" style="gap:60px;margin-top:26px">
+    <div class="nt-bars" id="nt-bars" data-step="1"></div>
+    <div class="grow">
+      <div class="nt-ppl" data-step="1">surprise at <b>book</b>: perplexity <span id="nt-ppl" class="mono c-coral">4.2</span></div>
+      <div data-step="3" style="margin-top:22px">
+        <div class="fn" style="font-size:34px">PPL = exp( −<span style="font-size:.8em">1</span>⁄<i>n</i> Σ log <i>Q</i>(<i>x<sub>i</sub></i> | <i>x</i><sub>&lt;i</sub>) )</div>
+        <p class="small" style="margin-top:10px">A perplexity of 5: as uncertain as choosing among 5 equally likely options. Lower is less surprised.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="cite" style="position:absolute;left:88px;bottom:60px">probabilities illustrative</div>
+</section>
+
 <!-- ═════════════ Prediction: a genealogy -->
 <section class="slide" id="s-genealogy" data-sec="cases">
   <h2 style="margin-bottom:8px">Prediction: <em>a genealogy</em></h2>
@@ -941,53 +941,36 @@
   <div class="callout" data-step="5" style="margin-top:4px;font-size:19px;padding:12px 22px">Prediction is not a natural feature of mind or language but a <b>regime with a datable formation</b>, one that now organizes how we build machines, theorize brains, and read texts.</div>
 </section>
 
-<!-- ═════════════ Two lineages -->
-<section class="slide" id="s-lineages" data-sec="cases">
-  <h2>Two wartime <em>lineages</em></h2>
-  <div class="qcards" style="gap:48px">
-    <div class="qcard" data-step="1">
-      <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">NORBERT WIENER</div>
-      <div class="quote sm">Predict the pilot’s next position from its tracked path</div>
-      <p class="body" style="font-size:18px;margin-top:12px">Anti-aircraft fire control becomes <i>Cybernetics</i> (1948): prediction and feedback across animals and machines. The pilot is modelled as a formalizable opponent: an “ontology of the enemy.”</p>
-      <div class="fn" style="font-size:34px;margin-top:16px">information = <span class="q">order</span> <span style="font-size:.6em;color:var(--mute)">(entropy, sign reversed)</span></div>
-    </div>
-    <div class="qcard" data-step="2">
-      <div class="mono c-blue" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">CLAUDE SHANNON</div>
-      <div class="quote sm">Measure how symbol frequencies constrain a message</div>
-      <p class="body" style="font-size:18px;margin-top:12px">Cryptography becomes “A Mathematical Theory of Communication” (1948) and “Prediction and Entropy of Printed English” (1951): messages encoded and transmitted without reference to their meaning.</p>
-      <div class="fn" style="font-size:34px;margin-top:16px"><i>H</i> = −Σ <i>p</i>(<span class="x">x</span>) log <i>p</i>(<span class="x">x</span>) <span style="font-size:.6em;color:var(--mute)">(uncertainty of the next symbol)</span></div>
-    </div>
-  </div>
-  <div class="callout blue" data-step="3" style="font-size:19px">Shannon counted the space between words as a 27th letter: writing became an inventory of countable symbols, the precondition for machines that write.</div>
-  <div class="cite" style="margin-top:12px">Kline, <i>The Cybernetics Moment</i> (2015); Galison, “The Ontology of the Enemy” (1994); Liu, <i>The Freudian Robot</i> (2010)</div>
-</section>
-
-<!-- ═════════════ Predictability and surprise -->
+<!-- ═════════════ Prediction meets defamiliarization: Shannon and Shklovsky -->
 <section class="slide" id="s-shannon" data-sec="cases">
   <h2>Prediction meets <em>defamiliarization</em></h2>
-  <div class="qcards">
-    <div class="qcard">
-      <div class="quote sm"><span class="mark">“</span>How well can the next letter of a text be predicted when the preceding N letters are known?<span class="mark">”</span></div>
-      <div class="quote-src">Claude Shannon, “Prediction and Entropy of Printed English” (1951)</div>
-      <p class="small" style="margin-top:14px">Shannon implicitly cast human readers as predictive language models.</p>
+  <div class="row" style="gap:44px;align-items:flex-start">
+    <div style="flex:1;min-width:0">
+      <div class="row" style="gap:20px;align-items:flex-start">
+        <figure class="fig" style="width:104px;flex:none"><img src="img/shannon-portrait.jpg" alt="Claude Shannon" style="border:0;border-radius:3px"></figure>
+        <div>
+          <div class="quote sm" style="font-size:22px"><span class="mark">“</span>How well can the next letter of a text be predicted when the preceding N letters are known?<span class="mark">”</span></div>
+          <div class="quote-src" style="margin-top:8px">Claude Shannon, “Prediction and Entropy of Printed English” (1951)</div>
+        </div>
+      </div>
+      <figure class="fig" data-step="2" style="margin-top:18px"><img src="img/shannon54.png" alt="Shannon 1951, p. 54: original text and correctly guessed letters"><figcaption>Shannon’s experiment: a reader guesses the next letter, one at a time. Dashes mark letters guessed right away; only surprises are spelled out.</figcaption></figure>
     </div>
-    <div class="qcard" data-step="1">
-      <div class="quote sm"><span class="mark">“</span>Art … increases the complexity and duration of perception.<span class="mark">”</span></div>
-      <div class="quote-src">Viktor Shklovsky, “Art as Device” (1917)</div>
-      <p class="small" style="margin-top:14px">Habit automatizes perception; defamiliarization (<i>ostranenie</i>) restores it by rearranging familiar forms in unpredictable ways.</p>
+    <div style="flex:1;min-width:0" data-step="1">
+      <div class="row" style="gap:20px;align-items:flex-start">
+        <figure class="fig" style="width:104px;flex:none"><img src="img/shklovsky-portrait.jpg" alt="Viktor Shklovsky" style="border:0;border-radius:3px"></figure>
+        <div>
+          <div class="quote sm" style="font-size:22px"><span class="mark">“</span>Art … increases the complexity and duration of perception.<span class="mark">”</span></div>
+          <div class="quote-src" style="margin-top:8px">Viktor Shklovsky, “Art as Device” (1917)</div>
+        </div>
+      </div>
+      <div data-step="2" style="margin-top:22px">
+        <div class="quote sm" style="font-size:22px"><span class="mark">“</span>The technique of art is to make objects <b>‘unfamiliar’</b>, to make forms difficult, to increase the difficulty and length of perception.<span class="mark">”</span></div>
+        <div class="quote-src" style="margin-top:8px">Shklovsky, <i>ostranenie</i>, “defamiliarization”</div>
+      </div>
     </div>
   </div>
-  <div class="swap">
-  <div class="guess" data-step="2" data-until="3">
-    <div class="small" style="margin-bottom:10px">Shannon’s experiment: a reader guesses the next letter of a text, one letter at a time.</div>
-    <div class="gshots">
-      <figure><img src="img/shannon54.png" alt="Shannon 1951, p. 54: original text and correctly guessed letters"><figcaption>Dashes mark letters guessed right away; only surprises are spelled out.</figcaption></figure>
-      <figure><img src="img/shannon56.png" alt="Shannon 1951, p. 56: number of guesses per letter"><figcaption>Numbers give how many guesses each letter took.</figcaption></figure>
-    </div>
-  </div>
-  <div class="callout blue" data-step="3" style="align-self:start"><b>Cognitive stylometry</b> takes Shannon’s question literally: a language model trained on a particular corpus stands in for a <b>historically situated reader</b>, and a text is measured as an interplay of familiarity and surprise.</div>
-  </div>
-  <div class="src" data-step="2" data-until="3">Shannon, “Prediction and Entropy of Printed English,” <i>Bell System Technical Journal</i> 30.1 (1951), pp. 54, 56.</div>
+  <div class="callout blue" data-step="3" style="font-size:18px;margin-top:16px;padding:12px 22px"><b>Cognitive stylometry</b> takes Shannon’s question literally: a language model trained on a particular corpus stands in for a <b>historically situated reader</b>, and a text is measured as an interplay of familiarity and surprise.</div>
+  <div class="src">Portraits: Tekniska museet (CC BY 2.0); Wikimedia Commons (public domain). Shannon 1951, <i>Bell System Technical Journal</i> 30.1, p. 54.</div>
 </section>
 
 <!-- ═════════════ Pipeline + overfitting -->
@@ -1064,11 +1047,23 @@
       <p class="body" data-step="3" style="font-size:16px;line-height:1.45">A familiar rhythm broken by surprises the reader can still <b>recognize</b> once they arrive: non-anomalous surprise.</p>
     </div>
   </div>
-  <div class="callout blue" data-step="4" style="font-size:19px;margin-top:14px;padding:14px 24px">Literature does not defamiliarize by being surprising. It defamiliarizes by <b>combining</b> the surprising with the familiar in a new way. That particular arrangement of ground and figure is a text’s <b>cognitive signature</b>, and what counts as familiar depends on the reader’s history.</div>
+  <div class="callout blue" data-step="4" style="font-size:19px;margin-top:14px;padding:14px 24px">Literature does not defamiliarize by simply being surprising. It defamiliarizes by <b>combining</b> the surprising with the familiar in a new way. That particular arrangement of ground and figure is a text’s <b>cognitive signature</b>, and what counts as familiar depends on the reader’s history.</div>
   <div data-step="5" style="margin-top:12px">
     <div class="quote xs" style="font-size:19px"><span class="mark">“</span>Aesthetic pleasure results from the predictability of the non-focally processed rhythmic cycles in combination with the non-anomalous surprise of the focally processed melody.<span class="mark">”</span></div>
     <div class="quote-src" style="margin-top:6px;font-size:13px">Patrick Colm Hogan (2016) &nbsp;·&nbsp; Kurzynski, “Cognitive Stylometry,” <i>Computational Humanities Research</i> 2 (2026): e1</div>
   </div>
+</section>
+
+<!-- ═════════════ Next steps -->
+<section class="slide" id="s-nextsteps" data-sec="cases">
+  <h2>Next steps: <em>nested prediction</em></h2>
+  <p class="lead" style="font-size:23px;max-width:960px">So far we have measured prediction one word at a time. Texts are predicted at many scales at once.</p>
+  <div class="ev" style="max-width:960px;margin-top:14px">
+    <div data-step="1" style="font-size:20px"><b>Sentences and passages.</b> How predictable is the next sentence, the next paragraph, the next scene, given everything before it?</div>
+    <div data-step="2" style="font-size:20px"><b>Nested prediction.</b> Expectations are built inside expectations: a word inside a sentence, a sentence inside a chapter, a chapter inside a book.</div>
+    <div data-step="3" style="font-size:20px"><b>How authors play with scale.</b> A text can be familiar in its words and surprising in its structure, or the reverse.</div>
+  </div>
+  <div class="callout" data-step="4" style="font-size:19px;margin-top:20px">Still to do: models and measures for prediction across scales.</div>
 </section>
 
 
