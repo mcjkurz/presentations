@@ -544,3 +544,13 @@ small.gl { display: block; font-family: var(--sans); font-size: 12px; letter-spa
 .kq-one .kq-row { gap: 4px; }
 .kq-one .kq-cell { width: 41px; height: 56px; font-size: 24px; border-radius: 5px; }
 .kq-bar { margin-left: 0; width: 100%; max-width: 440px; }
+
+/* 3D couplet: the alignment readout is real HTML (selectable) above the canvas */
+.cpl-align { position: absolute; left: 88px; top: 262px; width: 340px; z-index: 2; opacity: 0; transition: opacity .4s; }
+.cpl-al-h { font-size: 11px; letter-spacing: .12em; color: var(--mute); margin-bottom: 8px; }
+.cpl-al-row { display: grid; grid-template-columns: 110px 1fr 44px; gap: 10px; align-items: center; margin-bottom: 8px; font-size: 14px; color: var(--ink); }
+.cpl-al-row .trk { height: 14px; background: #efece6; position: relative; }
+.cpl-al-row .trk i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; }
+.cpl-al-row b { font-family: var(--mono); font-size: 13px; font-weight: 600; }
+.cpl-al-note { font-size: 12.5px; line-height: 1.45; color: var(--mute); margin: 8px 0 0; }
+.cpl-al-note b { color: var(--ink2); font-weight: 600; }

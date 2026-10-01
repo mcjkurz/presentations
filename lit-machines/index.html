@@ -673,6 +673,12 @@
     <div class="small" style="margin-top:6px;font-family:var(--serif);font-style:italic;font-size:18px"><span class="c-blue">The bright moon shines between the pines</span>; <span style="color:#12b5cb">a clear spring flows over the stones</span>.</div>
     <div class="small" style="margin-top:2px">GujiBERT · <span id="cpl-layer">top layer (12)</span> · 10 characters → PCA → 3 dimensions</div>
   </div>
+  <div class="cpl-align" id="cpl-align">
+    <div class="mono cpl-al-h">TRANSITION ALIGNMENT · <span id="cpl-al-layer">LAYER 12 (TOP)</span></div>
+    <div class="cpl-al-row"><span class="lab">encoded apart</span><span class="trk"><i id="cpl-bar1" style="background:var(--blue)"></i></span><b id="cpl-v1">0.30</b></div>
+    <div class="cpl-al-row" id="cpl-row2"><span class="lab">encoded together</span><span class="trk"><i id="cpl-bar2" style="background:var(--green)"></i></span><b id="cpl-v2">0.65</b></div>
+    <p class="cpl-al-note">How similar are the <b>steps</b> of the two verses? For each, take the step from one character to the next, and compare the two verses’ steps by cosine similarity (1 = the same direction), averaged over the four steps. Measured in the model’s full <b>768 dimensions</b>; the 3D picture is only a PCA view of the same points.</p>
+  </div>
   <div class="cpl-side">
     <div class="swap">
       <p class="body" data-step="0" data-until="1" style="font-size:20px"><b>Verse one, on its own.</b> Feed 明月松間照 to BERT by itself: its five characters trace a path through 3D space.</p>

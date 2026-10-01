@@ -610,18 +610,14 @@ window.HOOKS = {};
       g.setLineDash([]); g.globalAlpha = 1;
     }
     function bars() {
-      const L = A.layers[layer], x0 = 88, y0 = 262, w = 260;
-      g.textBaseline = 'alphabetic';
-      g.globalAlpha = both; g.fillStyle = C.mute; g.font = '11px "JetBrains Mono"'; g.fillText('TRANSITION ALIGNMENT · LAYER ' + layer + (layer === 12 ? ' (TOP)' : ''), x0, y0 - 12); g.globalAlpha = 1;
-      [['encoded apart', L.alignment_separate, C.blue, 1], ['encoded together', L.alignment_joint, C.green, ease(mix)]].forEach(([lab, v, col, vis], i) => {
-        const y = y0 + i * 34;
-        g.globalAlpha = both * (i === 0 ? 1 : .15 + .85 * vis);
-        g.fillStyle = C.ink; g.font = '14px Inter, sans-serif'; g.fillText(lab, x0, y + 13);
-        g.fillStyle = '#efece6'; g.fillRect(x0 + 130, y, w - 130, 16);
-        g.fillStyle = col; g.fillRect(x0 + 130, y, (w - 130) * Math.max(0, v), 16);
-        g.fillStyle = C.ink; g.font = '600 13px "JetBrains Mono"'; g.fillText(v.toFixed(2), x0 + w + 8, y + 13);
-        g.globalAlpha = 1;
-      });
+      const L = A.layers[layer], box = document.getElementById('cpl-align');
+      box.style.opacity = both;
+      document.getElementById('cpl-al-layer').textContent = 'LAYER ' + layer + (layer === 12 ? ' (TOP)' : '');
+      document.getElementById('cpl-bar1').style.width = (100 * Math.max(0, L.alignment_separate)) + '%';
+      document.getElementById('cpl-v1').textContent = L.alignment_separate.toFixed(2);
+      document.getElementById('cpl-row2').style.opacity = .15 + .85 * ease(mix);
+      document.getElementById('cpl-bar2').style.width = (100 * Math.max(0, L.alignment_joint)) + '%';
+      document.getElementById('cpl-v2').textContent = L.alignment_joint.toFixed(2);
     }
     function draw() {
       g.clearRect(0, 0, 1280, 720);
