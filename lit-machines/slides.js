@@ -374,7 +374,7 @@ window.HOOKS = {};
     function arrow(svg, d, col, label, lx, ly) {
       const G = el('g', {}, svg);
       el('path', { d, fill: 'none', stroke: col, 'stroke-width': 2.5, 'marker-end': `url(#ah-${col === C.blue ? 'b' : 'a'})`, class: 'flow' }, G);
-      el('text', { x: lx, y: ly, 'text-anchor': 'middle', 'font-size': 26, 'font-weight': 700, fill: col, 'font-family': 'Space Grotesk', text: label }, G);
+      el('text', { x: lx, y: ly, 'text-anchor': 'middle', 'font-size': 22, 'font-weight': 700, fill: col, 'font-family': 'Inter', text: label }, G);
       return G;
     }
     function build() {
@@ -388,7 +388,7 @@ window.HOOKS = {};
       const box = (cx, cy, t) => {
         const G = el('g', {}, svg);
         el('rect', { x: cx - 120, y: cy - 28, width: 240, height: 56, rx: 28, fill: '#fff', stroke: C.ink2 }, G);
-        el('text', { x: cx, y: cy + 9, 'text-anchor': 'middle', 'font-size': 30, 'font-weight': 500, fill: C.ink, 'font-family': 'Space Grotesk', text: t }, G);
+        el('text', { x: cx, y: cy + 9, 'text-anchor': 'middle', 'font-size': 28, 'font-weight': 400, fill: C.ink, 'font-family': 'Instrument Serif', text: t }, G);
         return G;
       };
       parts.axes = el('g', {}, svg);
