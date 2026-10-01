@@ -448,6 +448,19 @@ window.HOOKS = {};
     },
   };
 
+  /* ───────────────────────── regulated verse: the middle two couplets are parallel by rule */
+  H['s-reg'] = {
+    render(step) {
+      const ln = [...document.querySelectorAll('#reg-poem .ln')];
+      ln.forEach((l, i) => {
+        const mid = i === 1 || i === 2;
+        l.classList.toggle('meso', step >= 1 && mid);
+        l.classList.toggle('hl', step >= 1 && mid);
+        l.classList.toggle('hl2', step >= 2 && !mid);
+      });
+    },
+  };
+
   /* ───────────────────────── what "aligned" looks like: schematic 3D paths (hypothetical coordinates) */
   (function () {
     const B = [[-1.6, -.6, -.4], [-.8, .2, .3], [0, -.3, -.2], [.8, .5, .4], [1.6, 0, -.1]];
@@ -473,7 +486,7 @@ window.HOOKS = {};
         const pa = proj(a), pb = proj(b); g.beginPath(); g.moveTo(pa.X, pa.Y); g.lineTo(pb.X, pb.Y); g.strokeStyle = C.faint; g.lineWidth = 1.2; g.stroke();
       });
       const nodes = [];
-      [[B, '#2f6fe0'], [other, '#c98200']].forEach(([pts, col]) => {
+      [[B, '#2f6fe0'], [other, '#12b5cb']].forEach(([pts, col]) => {
         const P = pts.map(proj);
         for (let i = 0; i < P.length - 1; i++) {
           const a = P[i], b = P[i + 1], ang = Math.atan2(b.Y - a.Y, b.X - a.X), r = 9;
@@ -588,10 +601,10 @@ window.HOOKS = {};
         g.fillStyle = C.mute; g.font = '13px "JetBrains Mono"'; g.fillText(t, b.X + 6, b.Y);
       });
       const Q = coords().map(project), Q1 = Q.slice(0, 5), Q2 = Q.slice(5);
-      for (let i = 0; i < 4; i++) { if (vis1 > .01) line(Q1[i], Q1[i + 1], C.blue, 6, null, .85 * vis1); if (vis2 > .01) line(Q2[i], Q2[i + 1], '#c98200', 6, null, .85 * vis2); }
+      for (let i = 0; i < 4; i++) { if (vis1 > .01) line(Q1[i], Q1[i + 1], C.blue, 6, null, .85 * vis1); if (vis2 > .01) line(Q2[i], Q2[i + 1], '#12b5cb', 6, null, .85 * vis2); }
       // the pairs 明–清, 月–泉 … : loose while the verses are read apart, tight once they see each other
       for (let i = 0; i < 5; i++) line(Q1[i], Q2[i], mix > .5 ? C.green : C.faint, 2 + 2 * ease(mix), [8, 7], (.35 + .6 * ease(mix)) * Math.min(vis1, vis2));
-      const pts = Q1.map((q, i) => ({ q, c: chars1[i], col: C.blue, a: vis1 })).concat(Q2.map((q, i) => ({ q, c: chars2[i], col: '#c98200', a: vis2 }))).filter(p => p.a > .01);
+      const pts = Q1.map((q, i) => ({ q, c: chars1[i], col: C.blue, a: vis1 })).concat(Q2.map((q, i) => ({ q, c: chars2[i], col: '#12b5cb', a: vis2 }))).filter(p => p.a > .01);
       pts.sort((a, b) => a.q.d - b.q.d);
       pts.forEach(({ q, c, col, a }) => {
         const r = 27 * q.s;
@@ -643,38 +656,50 @@ window.HOOKS = {};
     };
   })();
 
-  /* ───────────────────────── prisons of autocomplete: a text field that finishes our sentences */
+  /* ───────────────────────── prisons of autocomplete: a phone chat whose keyboard finishes our sentences */
   (function () {
     const EX = [
-      ['hey, how', ' are you'],
-      ['It was a dark and', ' stormy night'],
-      ['床前明月', '光'],
-      ['It was the best of times, it was the', ' worst of times'],
-      ['Call me', ' Ishmael'],
+      ['hey, how', ' are you', ['are', 'do', 'is']],
+      ['It was a dark and', ' stormy night', ['stormy', 'quiet', 'cold']],
+      ['床前明月', '光', ['光', '夜', '色']],
+      ['It was the best of times, it was the', ' worst of times', ['worst', 'best', 'age']],
+      ['Call me', ' Ishmael', ['Ishmael', 'maybe', 'later']],
     ];
     H['s-autocomplete'] = {
       enter(slide) {
-        const f = document.getElementById('ac-field');
+        const f = document.getElementById('ac-field'), chat = document.getElementById('ph-chat'), sg = [...document.querySelectorAll('#ph-sugg span')];
         const typed = f.querySelector('.ac-typed'), ghost = f.querySelector('.ac-ghost');
-        const TYPE = .07, SHOW = .55, HOLD = 1.5, ACCEPT = .7, GAP = .5;
-        const dur = ([p, gh]) => p.length * TYPE + SHOW + HOLD + ACCEPT + GAP;
+        const TYPE = .07, SHOW = .5, HOLD = 1.4, ACCEPT = .6, GAP = .7;
+        const dur = ([p]) => p.length * TYPE + SHOW + HOLD + ACCEPT + GAP;
         const total = EX.reduce((a, e) => a + dur(e), 0);
+        let chatKey = '';
         loop(slide, t => {
           let u = t % total, k = 0;
           while (u >= dur(EX[k])) { u -= dur(EX[k]); k++; }
-          const [p, gh] = EX[k];
+          const [p, gh, tips] = EX[k];
           const nTyped = Math.min(p.length, Math.floor(u / TYPE));
-          const tTyped = p.length * TYPE;
-          const tGhost = tTyped + SHOW, tAcc = tGhost + HOLD, tEnd = tAcc + ACCEPT;
-          const showGhost = u >= tGhost && u < tAcc;
-          const accepted = u >= tAcc && u < tEnd;
+          const tTyped = p.length * TYPE, tGhost = tTyped + SHOW, tAcc = tGhost + HOLD, tEnd = tAcc + ACCEPT;
+          const showGhost = u >= tGhost && u < tAcc, accepted = u >= tAcc && u < tEnd;
           typed.textContent = u >= tEnd ? '' : p.slice(0, nTyped) + (accepted ? gh : '');
           ghost.textContent = showGhost ? gh : '';
-          f.classList.toggle('suggesting', showGhost);
+          sg.forEach((n, i) => { n.textContent = showGhost || accepted ? tips[i] : ''; n.classList.toggle('pick', i === 0 && (showGhost || accepted)); });
+          // sent messages: all earlier examples in this cycle, plus the current one once it is sent
+          const sent = EX.slice(0, k).map(e => e[0] + e[1]);
+          if (u >= tEnd) sent.push(p + gh);
+          const key = sent.join('\u0001');
+          if (key !== chatKey) { chatKey = key; chat.innerHTML = sent.slice(-4).map(m => '<div class="ph-b"></div>').join(''); [...chat.children].forEach((n, i) => { n.textContent = sent.slice(-4)[i]; }); }
         });
       },
     };
   })();
+
+  /* ───────────────────────── building BodyWords with an agent: the exchanges play out when the slide opens */
+  H['s-ag-intro'] = {
+    enter() {
+      const svg = document.getElementById('ag-svg');
+      svg.classList.remove('go'); void svg.getBoundingClientRect(); svg.classList.add('go');
+    },
+  };
 
   /* ───────────────────────── sense trajectory (schematic, 池 ↔ 峯) */
   (function () {
