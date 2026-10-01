@@ -518,7 +518,7 @@ window.HOOKS = {};
     // Non-parallel couplet: the two lines' keys point in unrelated directions.
     const SETS = {
       par: { v1: [...'明月松間照'], v2: [...'清泉石上流'], a1: [38, 102, 120, 196, 292], a2: [28, 110, 128, 186, 282], l1: [.78, .8, .74, .72, .78], l2: [.72, .74, .8, .66, .72],
-        text: '<b>Drag the red query.</b> Each character offers a <span class="c-blue">key</span>; the more a key points the same way as the <span class="c-coral">query</span>, the brighter its square. Characters of the same kind point the same way: <b>4 nouns</b> (月 松 泉 石), <b>2 adjectives</b> (明 清), <b>2 locatives</b> (間 上), <b>2 verbs</b> (照 流). Aim the query at one kind, and <b>both lines light up together</b>.' },
+        text: '<b class="c-coral">Drag the red query.</b> Each character offers a <span class="c-blue">key</span>; the more a key points the same way as the <span class="c-coral">query</span>, the brighter its square. Characters of the same kind point the same way: <b>4 nouns</b> (月 松 泉 石), <b>2 adjectives</b> (明 清), <b>2 locatives</b> (間 上), <b>2 verbs</b> (照 流). Aim the query at one kind, and <b>both lines light up together</b>.' },
       non: { v1: [...'空山新雨後'], v2: [...'天氣晚來秋'], a1: [14, 92, 168, 236, 304], a2: [208, 46, 286, 128, 352], l1: [.74, .8, .7, .78, .72], l2: [.7, .76, .8, .68, .74],
         text: '<b>A counter-example.</b> Here the keys of corresponding characters point in different directions. Wherever you aim the query, <b>the two lines do not light up together</b>: nothing is aligned.' },
     };
