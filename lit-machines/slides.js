@@ -517,14 +517,14 @@ window.HOOKS = {};
     // key directions. Parallel couplet: matched characters (明–清, 月–泉, 松–石, 間–上, 照–流) point roughly the same way.
     // Non-parallel couplet: the two lines' keys point in unrelated directions.
     const SETS = {
-      par: { v1: [...'明月松間照'], v2: [...'清泉石上流'], a1: [20, 62, 108, 150, 196], a2: [11, 73, 101, 159, 186], l1: [.78, .7, .8, .72, .76], l2: [.72, .64, .74, .66, .7],
-        text: '<b>Drag the red query.</b> Each character offers a <span class="c-blue">key</span>; the more a key points the same way as the <span class="c-coral">query</span>, the brighter its square. Point the query between a pair, and <b>corresponding characters light up together</b>: 松 and 石, 照 and 流.' },
+      par: { v1: [...'明月松間照'], v2: [...'清泉石上流'], a1: [38, 102, 120, 196, 292], a2: [28, 110, 128, 186, 282], l1: [.78, .8, .74, .72, .78], l2: [.72, .74, .8, .66, .72],
+        text: '<b>Drag the red query.</b> Each character offers a <span class="c-blue">key</span>; the more a key points the same way as the <span class="c-coral">query</span>, the brighter its square. Characters of the same kind point the same way: <span class="c-blue">4 nouns</span> (月 松 泉 石), <span style="color:#12b5cb">2 adjectives</span> (明 清), <span class="c-amber">2 locatives</span> (間 上), <span class="c-violet">2 verbs</span> (照 流). Aim the query at one kind, and <b>both lines light up together</b>.' },
       non: { v1: [...'空山新雨後'], v2: [...'天氣晚來秋'], a1: [14, 92, 168, 236, 304], a2: [208, 46, 286, 128, 352], l1: [.74, .8, .7, .78, .72], l2: [.7, .76, .8, .68, .74],
         text: '<b>A counter-example.</b> Here the keys of corresponding characters point in different directions. Wherever you aim the query, <b>the two lines do not light up together</b>: nothing is aligned.' },
     };
     const STOPS = [[68, 1, 84], [59, 82, 139], [33, 144, 141], [93, 200, 99], [253, 231, 37]];
     const viridis = t => { t = Math.max(0, Math.min(1, t)) * 4; const i = Math.min(3, Math.floor(t)), f = t - i; return `rgb(${STOPS[i].map((v, k) => Math.round(v + (STOPS[i + 1][k] - v) * f)).join(',')})`; };
-    let built = false, which = 'par', q = [Math.cos(rad(104)) * .55, Math.sin(rad(104)) * .55], cells = [], qg, keyG, svg, drag = false, KV = [];
+    let built = false, which = 'par', q = [Math.cos(rad(112)) * .55, Math.sin(rad(112)) * .55], cells = [], qg, keyG, svg, drag = false, KV = [];
     const O = [280, 215], S = 190;
     const pt = ([x, y]) => [O[0] + x * S, O[1] - y * S];
     function attn() {
