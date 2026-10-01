@@ -1116,31 +1116,24 @@
 <!-- ═════════════ 03 Practical: agent vs model -->
 <section class="slide" id="s-pr-concept" data-sec="practical">
   <h2>We need to choose <em>two things</em></h2>
-  <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin:6px 0 10px">1 · THE ASSISTANT (THE “HARNESS”)</div>
-  <p class="body" style="font-size:19px;margin:0 0 12px">The app you talk to. It reads your files, writes code, runs it and shows the result.</p>
-  <div class="claims" style="grid-template-columns:repeat(4,1fr);gap:22px">
-    <div class="claim" data-step="1"><div class="n">EDITOR + CHAT</div><div class="h" style="font-size:24px">VS Code</div><div class="b">Local, or in the browser as a <b>Codespace</b>. Chat panel with Copilot or an extension.</div></div>
-    <div class="claim" data-step="2"><div class="n">OPEN SOURCE</div><div class="h" style="font-size:24px">OpenCode</div><div class="b">Terminal or desktop app. Works with almost any model provider.</div></div>
-    <div class="claim" data-step="3"><div class="n">OPENAI</div><div class="h" style="font-size:24px">Codex</div><div class="b c-coral"><b>Not available in Hong Kong.</b></div></div>
-    <div class="claim" data-step="4"><div class="n">ANTHROPIC</div><div class="h" style="font-size:24px">Claude Code</div><div class="b c-coral"><b>Not available in Hong Kong.</b></div></div>
-  </div>
-  <div class="callout" data-step="5" style="font-size:19px"><b>The second choice is the model</b> that does the thinking, and who provides it. Next slide.</div>
-</section>
-
-<!-- ═════════════ 03 Practical: model provider -->
-<section class="slide" id="s-pr-model" data-sec="practical">
-  <h2>2 · The <em>model</em> and its provider</h2>
-  <p class="body" style="font-size:19px;margin:0 0 12px">The assistant is only the messenger. The language model runs somewhere else, and an <b>API key</b> connects the two. Treat the key like a password.</p>
-  <div class="claims" style="grid-template-columns:repeat(2,1fr);gap:40px">
-    <div class="claim" data-step="1">
-      <div class="n">LOCAL</div>
-      <div class="h" style="font-size:26px">On your own computer</div>
-      <div class="b"><b>Ollama</b>, <b>LM Studio</b>. Private and free to run, but you need strong hardware, and the models you can run are smaller.</div>
+  <div class="row" style="gap:48px;align-items:flex-start;margin-top:8px">
+    <div class="grow">
+      <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin-bottom:4px">1 · THE ASSISTANT (“HARNESS”)</div>
+      <p class="body" style="font-size:16px;margin:0 0 8px">The app you talk to. It reads your files, writes code, runs it.</p>
+      <div class="ev">
+        <div data-step="1" style="font-size:17px"><img class="lg" src="img/logos/visualstudiocode.svg" alt=""><b>VS Code</b>: local, or in the browser as a <b>Codespace</b>, with a chat panel (Copilot or an extension).</div>
+        <div data-step="2" style="font-size:17px"><img class="lg" src="img/logos/opencode.svg" alt=""><b>OpenCode</b>: open source; terminal or desktop app; works with almost any model provider.</div>
+        <div data-step="3" style="font-size:17px"><img class="lg" src="img/logos/openai.svg" alt=""><b>Codex</b> (OpenAI) and <img class="lg" src="img/logos/claude.svg" alt=""><b>Claude Code</b> (Anthropic): <span class="c-coral"><b>not available in Hong Kong</b></span>, but there are ways around it: pay with Google Pay, use a VPN, or use a non-HK credit card.</div>
+      </div>
     </div>
-    <div class="claim" data-step="2">
-      <div class="n">EXTERNAL</div>
-      <div class="h" style="font-size:26px">On someone else’s servers</div>
-      <div class="b"><b>OpenRouter</b>, <b>Poe</b>, <b>OpenCode Go</b>, or the model makers’ own APIs. Many models, one key, pay per use or by subscription. This is what we use: <b>OpenRouter</b> with <b>GLM-5.3-Flash</b>.</div>
+    <div class="grow">
+      <div class="mono c-blue" style="font-size:12px;letter-spacing:.14em;margin-bottom:4px">2 · THE MODEL AND ITS PROVIDER</div>
+      <p class="body" style="font-size:16px;margin:0 0 8px">The model does the thinking. An <b>API key</b> connects it to the assistant; treat it like a password.</p>
+      <div class="ev">
+        <div data-step="4" style="font-size:17px"><img class="lg" src="img/logos/ollama.svg" alt=""><img class="lg" src="img/logos/lmstudio.svg" alt=""><b>Local</b> (Ollama, LM Studio): runs on your own computer. Private and free, but needs strong hardware and the models are smaller. Very good for simple data extraction.</div>
+        <div data-step="5" style="font-size:17px"><img class="lg" src="img/logos/openrouter.svg" alt=""><img class="lg" src="img/logos/poe.svg" alt=""><b>External</b> (OpenRouter, Poe, OpenCode Go, or the makers’ own APIs): many models, one key, pay per use or by subscription.</div>
+        <div data-step="6" style="font-size:17px">We use <img class="lg" src="img/logos/opencode.svg" alt=""><b>OpenCode</b> with <b>OpenRouter</b> and <b>GLM-5.3-Flash</b>.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1155,7 +1148,7 @@
       <div data-step="3" style="font-size:18px"><b>Register GitHub with a personal email,</b> not a school one that expires. Then apply for <b>GitHub Education</b>: up to 180 Codespaces core-hours a month. <span class="mono c-coral" style="font-size:15px">education.github.com</span></div>
       <div data-step="4" style="font-size:18px"><b>Delete your Codespace when you finish.</b> An idle one keeps using your hours. <b>Push first:</b> anything not pushed is lost.</div>
     </div>
-    <figure class="fig" data-step="3" style="width:330px;flex:none"><img src="img/gh-edu-backpack.png" alt="GitHub Education backpack"><figcaption>GitHub Education · education.github.com</figcaption></figure>
+    <figure class="fig" data-step="3" style="width:330px;flex:none"><img src="img/gh-education-hero.png" alt="GitHub Education homepage"><figcaption>GitHub Education · education.github.com</figcaption></figure>
   </div>
 </section>
 

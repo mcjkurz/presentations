@@ -570,3 +570,6 @@ small.gl { display: block; font-family: var(--sans); font-size: 12px; letter-spa
 .pp-pic svg { width: 280px; height: 217px; }
 
 .hui { display: flex; gap: 20px; align-items: flex-start; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+
+/* product logos inline */
+img.lg { height: 22px; width: 22px; vertical-align: -4px; margin-right: 6px; }
