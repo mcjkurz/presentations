@@ -99,10 +99,10 @@ kbd { font-family: var(--mono); font-size: 11px; border: 1px solid var(--faint);
 
 /* ─── agenda ─── */
 .agenda { margin-top: 30px; }
-.agenda .it { display: grid; grid-template-columns: 90px 1fr 380px; align-items: baseline; padding: 20px 0; border-top: 1px solid var(--line); }
+.agenda .it { display: grid; grid-template-columns: 90px 1fr 380px; align-items: center; padding: 20px 0; border-top: 1px solid var(--line); }
 .agenda .it:last-child { border-bottom: 1px solid var(--line); }
 .agenda .num { font-family: var(--mono); font-size: 14px; color: var(--coral); letter-spacing: .1em; }
-.agenda .t { font-family: var(--serif); font-size: 40px; line-height: 1.05; }
+.agenda .t { font-family: var(--serif); font-size: 40px; line-height: 1.05; padding-bottom: 3px; }
 .agenda .d { font-size: 16px; color: var(--mute); line-height: 1.45; }
 
 /* ─── section divider ─── */
@@ -121,7 +121,7 @@ kbd { font-family: var(--mono); font-size: 11px; border: 1px solid var(--faint);
 .fn-stack .fnrow { margin-bottom: 26px; }
 .qs { counter-reset: q; margin-top: 8px; }
 .qs .q-item { font-size: 22px; line-height: 1.45; color: var(--ink2); font-weight: 350; padding-left: 44px; position: relative; margin-bottom: 12px; }
-.qs .q-item::before { counter-increment: q; content: "0" counter(q); position: absolute; left: 0; top: 5px; font-family: var(--mono); font-size: 13px; color: var(--coral); }
+.qs .q-item::before { counter-increment: q; content: "0" counter(q); position: absolute; left: 0; top: 8px; font-family: var(--mono); font-size: 13px; color: var(--coral); }
 
 /* ─── quote pair / cards ─── */
 .qcards { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 12px; }
@@ -518,3 +518,6 @@ small.gl { display: block; font-family: var(--sans); font-size: 12px; letter-spa
 .pipe2 .pstep .pt { font-size: 28px; line-height: 1.2; font-family: var(--serif); margin-bottom: 6px; }
 .pipe2 .pstep .pd { font-size: 16px; line-height: 1.5; margin-top: 10px; }
 .pipe2 .parrow { font-size: 44px; line-height: 1; color: var(--coral); flex: none; }
+
+#s-history .qs .q-item { font-size: 20px; margin-bottom: 8px; }
+#s-history .qs .q-item::before { top: 6px; }
