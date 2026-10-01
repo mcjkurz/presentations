@@ -407,10 +407,10 @@
     <div style="width:520px;flex:none;padding-top:20px">
       <div class="small" style="margin-bottom:6px">Wang Wei 王維 (699–761), 山居秋暝 <i>Autumn Evening in the Mountains</i></div>
       <div class="poem" id="reg-poem">
-        <div class="ln">空山新雨後，天氣晚來秋。<em class="tr">In the empty mountains after fresh rain, evening air turns autumn.</em></div>
-        <div class="ln">明月松間照，清泉石上流。<em class="tr">The bright moon shines between the pines; a clear spring flows over the stones.</em></div>
-        <div class="ln">竹喧歸浣女，蓮動下漁舟。<em class="tr">Bamboo rustles: washerwomen head home; lotus stirs: a fishing boat sets out.</em></div>
-        <div class="ln">隨意春芳歇，王孫自可留。<em class="tr">Spring’s fragrance may fade as it pleases; the noble guest is free to stay.</em></div>
+        <div class="ln"><span class="cp-name"><span class="zh">首聯</span> head</span>空山新雨後，天氣晚來秋。<em class="tr">In the empty mountains after fresh rain, evening air turns autumn.</em></div>
+        <div class="ln"><span class="cp-name"><span class="zh">頷聯</span> jaw</span>明月松間照，清泉石上流。<em class="tr">The bright moon shines between the pines; a clear spring flows over the stones.</em></div>
+        <div class="ln"><span class="cp-name"><span class="zh">頸聯</span> neck</span>竹喧歸浣女，蓮動下漁舟。<em class="tr">Bamboo rustles: washerwomen head home; lotus stirs: a fishing boat sets out.</em></div>
+        <div class="ln"><span class="cp-name"><span class="zh">尾聯</span> tail</span>隨意春芳歇，王孫自可留。<em class="tr">Spring’s fragrance may fade as it pleases; the noble guest is free to stay.</em></div>
       </div>
     </div>
     <div class="grow" style="padding-top:30px">
@@ -570,10 +570,21 @@
   <div class="src">Kurzynski, “Jakobson’s ‘Poetic Function’ in Vector Space: Parallelism, Cognitive Geometry, and Classical Chinese Verse,” EADH 2026.</div>
 </section>
 
-<!-- ═════════════ Keys & queries: the interactive demo -->
+<!-- ═════════════ Keys & queries: an attention head you can steer -->
 <section class="slide" id="s-kq" data-sec="cases">
   <h2>The game of <em>keys and queries</em></h2>
-  <div class="kq-wrap"><iframe class="kq-frame" src="https://mcjkurz.github.io/teaching/visualizations/attention-keys-queries.html" title="Interactive demo: attention keys and queries" loading="eager"></iframe></div>
+  <div class="row" style="gap:36px;align-items:flex-start">
+    <svg id="kq" viewBox="0 0 560 430" style="width:560px;height:430px;flex:none;touch-action:none;cursor:grab"></svg>
+    <div class="grow">
+      <div class="mono c-mute" style="font-size:11.5px;letter-spacing:.14em;margin-bottom:8px">ATTENTION OF [CLS], ONE HEAD</div>
+      <div class="kq-rows" id="kq-rows">
+        <div class="kq-lab c-blue">first line</div><div class="kq-row" id="kq-r1"></div>
+        <div class="kq-lab" style="color:#12b5cb">second line</div><div class="kq-row" id="kq-r2"></div>
+      </div>
+      <div class="kq-bar"><span>0</span><i></i><span>0.5</span></div>
+      <p class="body" style="font-size:17px;margin-top:16px"><b>Drag the red query.</b> Each character offers a <span class="c-blue">key</span>; the more a key points the same way as the <span class="c-coral">query</span>, the brighter its square. Point the query between a pair, and <b>corresponding characters light up together</b>: 松 and 石, 照 and 流.</p>
+    </div>
+  </div>
   <div class="src">Adapted from Kurzynski, Xu, and Feng, “The Game of Keys and Queries,” <i>IJHAC</i> 19.2 (2025), Fig. 1.</div>
 </section>
 
