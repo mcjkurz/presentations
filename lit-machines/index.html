@@ -667,7 +667,7 @@
 </section>
 
 <!-- ═════════════ 3D couplet -->
-<section class="slide nokicker" id="s-3d" data-sec="cases" data-steps="2">
+<section class="slide nokicker" id="s-3d" data-sec="cases" data-steps="4">
   <div class="cpl-wrap"><canvas id="cpl"></canvas></div>
   <div class="cpl-title">
     <div class="kicker" style="width:1104px"><span class="n">02</span><span>Case studies</span></div>
@@ -677,9 +677,11 @@
   </div>
   <div class="cpl-side">
     <div class="swap">
-      <p class="body" data-step="0" data-until="1" style="font-size:20px"><b>Each verse on its own.</b> Feed the two verses to BERT separately and put all ten characters in one 3D space: the paths wander independently.</p>
-      <p class="body" data-step="1" data-until="2" style="font-size:20px"><b>Now read the couplet together.</b> The same ten characters, but each verse can see the other: the points glide, the paths line up, and the pairs (bright–clear, moon–spring, pines–stones, between–over, shines–flows) pull together.</p>
-      <p class="body" data-step="2" style="font-size:20px"><b>Parallelism is not in the characters.</b> It appears only when the verses see each other, and it builds up in the top layers.</p>
+      <p class="body" data-step="0" data-until="1" style="font-size:20px"><b>Verse one, on its own.</b> Feed 明月松間照 to BERT by itself: its five characters trace a path through 3D space.</p>
+      <p class="body" data-step="1" data-until="2" style="font-size:20px"><b>Verse two, on its own.</b> 清泉石上流, encoded separately, traces a different path.</p>
+      <p class="body" data-step="2" data-until="3" style="font-size:20px"><b>Both in one space, same positions.</b> Read apart, the paths wander independently: nothing ties 明 to 清, or 月 to 泉.</p>
+      <p class="body" data-step="3" data-until="4" style="font-size:20px"><b>Now read the couplet together.</b> The same ten characters, but each verse can see the other: the points glide, the paths line up, and the pairs (bright–clear, moon–spring, pines–stones, between–over, shines–flows) pull together.</p>
+      <p class="body" data-step="4" style="font-size:20px"><b>Parallelism is not in the characters.</b> It appears only when the verses see each other, and it builds up in the top layers.</p>
     </div>
   </div>
   <div class="cpl-keys cite">drag to rotate · scroll to zoom · <kbd>[</kbd> <kbd>]</kbd> layer · <kbd>R</kbd> auto-rotate · <kbd>0</kbd> reset</div>
@@ -901,27 +903,27 @@
 <!-- ═════════════ Expectation organized -->
 <section class="slide" id="s-expect" data-sec="cases">
   <h2>Literature and <em>expectation</em></h2>
-  <div class="qcards" style="gap:48px">
+  <div class="qcards" style="gap:40px">
     <div data-step="1">
-      <div class="mono c-blue" style="font-size:12px;letter-spacing:.14em;margin-bottom:8px">READING AS PREDICTION</div>
-      <div class="exl">
-        <div><b>Iser</b> (1978) <span>a “wandering viewpoint” projects expectations the next sentence confirms or frustrates</span></div>
-        <div><b>Rabinowitz</b> (1987) <span>rules of reading are “basically predictive” and “always probabilistic”</span></div>
-        <div><b>Tobin</b> (2018) <span>the well-made surprise: unexpected now, a better reading in hindsight</span></div>
-        <div><b>Kukkonen</b> (2020) <span>the text as a “designed sensory flow” of small, purposeful failed expectations</span></div>
+      <div class="mono c-blue" style="font-size:12px;letter-spacing:.14em;margin-bottom:6px">READING AS PREDICTION</div>
+      <div class="exl2">
+        <div class="exr "><div class="cv"><img src="img/cover-iser.jpg" alt="" style="left:0px;z-index:1"></div><p>a “wandering viewpoint” projects expectations the next sentence confirms or frustrates</p></div>
+        <div class="exr "><div class="cv"><img src="img/cover-rabinowitz.jpg" alt="" style="left:0px;z-index:1"></div><p>rules of reading are “basically predictive” and “always probabilistic”</p></div>
+        <div class="exr "><div class="cv"><img src="img/cover-tobin.jpg" alt="" style="left:0px;z-index:1"></div><p>the well-made surprise: unexpected now, a better reading in hindsight</p></div>
+        <div class="exr "><div class="cv"><img src="img/cover-kukkonen.jpg" alt="" style="left:0px;z-index:1"></div><p>the text as a “designed sensory flow” of small, purposeful failed expectations</p></div>
       </div>
     </div>
     <div data-step="2">
-      <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin-bottom:8px">EXPECTATION ORGANIZED TOO WELL</div>
-      <div class="exl">
-        <div><b>Suleiman</b> (1983) <span>authoritarian fictions: form makes the conclusion feel inevitable</span></div>
-        <div><b>Link</b> (2000); <b>Ji</b> (2004) <span>the socialist literary system; linguistic engineering in Mao’s China</span></div>
-        <div><b>Sourati et al.</b> (2026) <span>next-word training favours frequent patterns: a homogenizing loop</span></div>
-        <div class="c-green"><b style="color:inherit">Bakhtin; Morson</b> <span>the counterforce: polyphony, sideshadowing, paths not taken</span></div>
+      <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin-bottom:6px">EXPECTATION ORGANIZED TOO WELL</div>
+      <div class="exl2">
+        <div class="exr "><div class="cv"><img src="img/cover-suleiman.jpg" alt="" style="left:0px;z-index:1"></div><p>authoritarian fictions: form makes the conclusion feel inevitable</p></div>
+        <div class="exr "><div class="cv"><img src="img/cover-link.jpg" alt="" style="left:0px;z-index:1"><img src="img/cover-ji.jpg" alt="" style="left:46px;z-index:2"></div><p>the socialist literary system; linguistic engineering in Mao’s China</p></div>
+        <div class="exr"><div class="cv"><div class="paper">Sourati<br>et al.<br>2026</div></div><p>next-word training favours frequent patterns: a homogenizing loop</p></div>
+        <div class="exr green"><div class="cv"><img src="img/cover-morson.jpg" alt="" style="left:0px;z-index:1"></div><p><b>the counterforce</b> (Bakhtin; Morson): polyphony, sideshadowing, paths not taken</p></div>
       </div>
     </div>
   </div>
-  <div class="callout amber" data-step="3" style="font-size:19px">A sense of the probable continuation is always <b>calibrated on a particular corpus</b>: a register, an institution, a regime.</div>
+  <div class="callout amber" data-step="3" style="font-size:18px;margin-top:20px;padding:12px 24px">A sense of the probable continuation is always <b>calibrated on a particular corpus</b>: a register, an institution, a regime.</div>
 </section>
 
 <!-- ═════════════ Prediction: a genealogy -->
@@ -1062,6 +1064,24 @@
 </section>
 
 
+<!-- ═════════════ Prisons of autocomplete -->
+<section class="slide" id="s-autocomplete" data-sec="cases" data-steps="2">
+  <h2>Prisons of <em>autocomplete</em></h2>
+  <div class="ac-field" id="ac-field"><span class="ac-typed"></span><span class="ac-ghost"></span><span class="ac-caret"></span><span class="ac-tab">Tab ⇥</span></div>
+  <div class="qcards" style="gap:48px;margin-top:22px">
+    <div class="qcard" data-step="1">
+      <div class="mono c-blue" style="font-size:12px;letter-spacing:.14em;margin-bottom:8px">AN OPPORTUNITY</div>
+      <p class="body" style="font-size:19px">New questions: where does a text <b>differ from what was expected</b>? Cheap experiments on a whole corpus, and a second reader whose layers can be opened.</p>
+    </div>
+    <div class="qcard" data-step="1">
+      <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin-bottom:8px">A DANGER</div>
+      <p class="body" style="font-size:19px">The machine follows <b>the paths most often travelled through language</b>. Read with it, we begin to finish our own sentences: an autocomplete of the mind.</p>
+    </div>
+  </div>
+  <div class="callout" data-step="2" style="font-size:20px"><b>Read against the grain.</b> Ask where the probable continuation fails, and which corpus it was calibrated on.</div>
+  <div class="src">cf. Leif Weatherby, <i>Language Machines: Cultural AI and the End of Remainder Humanism</i> (2025).</div>
+</section>
+
 <!-- ═════════════ Where prediction ends -->
 <section class="slide" id="s-judgement" data-sec="cases">
   <h2>Where prediction <em>ends</em></h2>
@@ -1120,8 +1140,17 @@
 
 <section class="slide" id="s-ag-prompt" data-sec="practical">
   <h2>One <em>prompt</em></h2>
-  <div class="quote xs" style="font-family:var(--sans);font-weight:350;color:var(--ink2);max-width:980px;font-size:20px;line-height:1.55;margin-top:6px;border-left:2px solid var(--faint);padding-left:26px">I need you to build a human-figure website that analyses the correspondence between emotions and organs in a text and shows it on a scientific anatomical figure, with colour for the emotion and shade for the strength. I do not know the difference between front-end and back-end, but only people I give the link to should be able to open it. It should work in English and Traditional Chinese, and I should be able to upload novels as .txt at any time. Count literal descriptions only: 羞紅了臉 counts for the face. Every organ should be clickable to show its passages; every book, chapter and character gets its own figure, with side-by-side comparisons like medical cross-sections. <b>If you do not understand something, ask me directly; do not interpret it on your own.</b></div>
-  <div class="callout blue" data-step="1" style="font-size:19px;max-width:980px;margin-top:22px">Explicit, checkable requirements mostly worked: file paths, upload, chapter menu, click-to-read, language switch. The failures came from what the prompt <b>left unsaid</b>.</div>
+  <div class="row" style="gap:36px;align-items:flex-start;margin-top:6px">
+    <div style="flex:1.15;min-width:0">
+      <div class="mono c-mute" style="font-size:11px;letter-spacing:.14em;margin-bottom:8px">AS SENT, TRANSLATED</div>
+      <div class="quote xs" style="font-family:var(--sans);font-weight:350;color:var(--ink2);font-size:18px;line-height:1.55;border-left:2px solid var(--faint);padding-left:20px">I need you to build a human-figure website that analyses the correspondence between emotions and organs in a text and shows it on a scientific anatomical figure, with colour for the emotion and shade for the strength. I do not know the difference between front-end and back-end, but only people I give the link to should be able to open it. It should work in English and Traditional Chinese, and I should be able to upload novels as .txt at any time. Count literal descriptions only: 羞紅了臉 counts for the face. Every organ should be clickable to show its passages; every book, chapter and character gets its own figure, with side-by-side comparisons like medical cross-sections. <b>If you do not understand something, ask me directly; do not interpret it on your own.</b></div>
+    </div>
+    <div style="flex:.85;min-width:0">
+      <div class="mono c-mute" style="font-size:11px;letter-spacing:.14em;margin-bottom:8px">ORIGINAL (中文)</div>
+      <div class="zh" style="font-family:var(--cjk-sans);font-size:12.5px;line-height:1.65;color:var(--mute);border-left:2px solid var(--faint);padding-left:16px">1. 所有內容煩請你寫進 D:\qh·china\bodywords，編程語言是 python　2. 這個程序的主要功能是分析文本中情感與器官的對應，視覺上需要用人形圖（科學的解剖圖）展示不同器官的情緒狀態（用顔色種類、深淺、明暗程度來表現）　3. 我不知道前後端有什麼區別？不過我希望保密性稍微好一點，比如只有我給出鏈接的人才可以訪問這種　4. 語言我希望有英語、繁中兩種切換　5. 文章應當是可以隨時上傳的，目前先支持 txt　6. 請先按照字面描寫，比如【羞紅了臉】這種描寫就算【臉】的　7. 我希望每個器官點擊都可以展示出對應的文本　8. 每一本書、每一個章節、每一個人物都要有自己的人圖，所以也許你需要做一個可供點擊的目錄　9. 我希望人物和章節能有個人圖的縱向動態對比，就有點像醫學切片一樣，這樣可以清晰看出變化　10. 有不懂的直接問我，不要擅自理解，如果你覺得準備好了請開始</div>
+    </div>
+  </div>
+  <div class="callout blue" data-step="1" style="font-size:18px;max-width:1000px;margin-top:20px">Explicit, checkable requirements mostly worked: file paths, upload, chapter menu, click-to-read, language switch. The failures came from what the prompt <b>left unsaid</b>.</div>
 </section>
 
 <section class="slide" id="s-ag-problems" data-sec="practical">

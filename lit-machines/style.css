@@ -439,3 +439,19 @@ small.gl { display: block; font-family: var(--sans); font-size: 12px; letter-spa
 #s-tech2 .callout { margin-top: 18px; }
 #s-tech2 .qcard.book.big { grid-template-columns: 140px 1fr; }
 #s-tech2 .qcard.book.big img { width: 140px; }
+
+/* expectation slide: book covers instead of author names */
+.exl2 .exr { display: grid; grid-template-columns: 124px 1fr; gap: 12px; align-items: center; height: 94px; border-top: 1px solid var(--line); }
+.exl2 .exr p { font-size: 17px; line-height: 1.4; color: var(--ink2); font-weight: 350; }
+.exl2 .exr.green p { color: var(--green); }
+.exl2 .cv { position: relative; height: 94px; }
+.exl2 .cv img { position: absolute; top: 3px; height: 100px; border-radius: 2px; box-shadow: 0 1px 5px rgba(0,0,0,.28); }
+.exl2 .cv .paper { position: absolute; left: 0; top: 4px; width: 70px; height: 104px; border: 1px solid var(--faint); border-radius: 2px; background: #fafaf8; font-family: var(--mono); font-size: 9.5px; line-height: 1.4; color: var(--mute); display: flex; align-items: center; justify-content: center; text-align: center; box-shadow: 0 1px 5px rgba(0,0,0,.12); }
+
+/* prisons of autocomplete */
+.ac-field { position: relative; margin-top: 10px; max-width: 1000px; min-height: 112px; padding: 28px 150px 28px 32px; border: 1.5px solid var(--faint); border-radius: 14px; background: #fff; font-family: var(--sans); font-size: 46px; line-height: 1.25; color: var(--ink); box-shadow: 0 1px 10px rgba(0,0,0,.05); }
+.ac-field .ac-ghost { color: #b4b0a8; transition: opacity .35s; }
+.ac-field .ac-caret { display: inline-block; width: 3px; height: .95em; margin-left: 2px; vertical-align: -0.12em; background: var(--coral); animation: acblink 1s steps(1) infinite; }
+.ac-field .ac-tab { position: absolute; right: 24px; top: 50%; transform: translateY(-50%); font-family: var(--mono); font-size: 13px; letter-spacing: .08em; color: var(--mute); border: 1px solid var(--faint); border-radius: 6px; padding: 3px 9px; opacity: 0; transition: opacity .3s; }
+.ac-field.hint .ac-tab { opacity: 1; }
+@keyframes acblink { 50% { opacity: 0; } }

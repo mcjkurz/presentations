@@ -540,7 +540,7 @@ window.HOOKS = {};
   (function () {
     const A = window.ALIGN, chars1 = [...A.verse1], chars2 = [...A.verse2];
     const HOME = { yaw: -0.7, pitch: 0.35 };
-    let yaw = HOME.yaw, pitch = HOME.pitch, auto = true, drag = null, stepNow = 0, g = null, zoom = 1, layer = 12, mix = /[?&]mix=1/.test(location.search) ? 1 : 0;
+    let yaw = HOME.yaw, pitch = HOME.pitch, auto = true, drag = null, stepNow = 0, g = null, zoom = 1, layer = 12, mix = /[?&]mix=1/.test(location.search) ? 1 : 0, vis1 = 1, vis2 = 0;
     const CX = 790, CY = 385, SC0 = 305;
     const ease = t => t * t * (3 - 2 * t);
     // positions at the current layer, normalised so that both conditions fit the same unit sphere
@@ -568,7 +568,7 @@ window.HOOKS = {};
       g.fillStyle = C.mute; g.font = '11px "JetBrains Mono"'; g.fillText('TRANSITION ALIGNMENT · LAYER ' + layer + (layer === 12 ? ' (TOP)' : ''), x0, y0 - 12);
       [['encoded apart', L.alignment_separate, C.blue, 1], ['encoded together', L.alignment_joint, C.green, ease(mix)]].forEach(([lab, v, col, vis], i) => {
         const y = y0 + i * 34;
-        g.globalAlpha = i === 0 ? 1 : .15 + .85 * vis;
+        g.globalAlpha = Math.min(vis1, vis2) * (i === 0 ? 1 : .15 + .85 * vis);
         g.fillStyle = C.ink; g.font = '14px Inter, sans-serif'; g.fillText(lab, x0, y + 13);
         g.fillStyle = '#efece6'; g.fillRect(x0 + 130, y, w - 130, 16);
         g.fillStyle = col; g.fillRect(x0 + 130, y, (w - 130) * Math.max(0, v), 16);
@@ -585,19 +585,19 @@ window.HOOKS = {};
         g.fillStyle = C.mute; g.font = '13px "JetBrains Mono"'; g.fillText(t, b.X + 6, b.Y);
       });
       const Q = coords().map(project), Q1 = Q.slice(0, 5), Q2 = Q.slice(5);
-      for (let i = 0; i < 4; i++) { line(Q1[i], Q1[i + 1], C.blue, 6, null, .85); line(Q2[i], Q2[i + 1], '#12b5cb', 6, null, .85); }
+      for (let i = 0; i < 4; i++) { if (vis1 > .01) line(Q1[i], Q1[i + 1], C.blue, 6, null, .85 * vis1); if (vis2 > .01) line(Q2[i], Q2[i + 1], '#12b5cb', 6, null, .85 * vis2); }
       // the pairs 明–清, 月–泉 … : loose while the verses are read apart, tight once they see each other
-      for (let i = 0; i < 5; i++) line(Q1[i], Q2[i], mix > .5 ? C.green : C.faint, 2 + 2 * ease(mix), [8, 7], .35 + .6 * ease(mix));
-      const pts = Q1.map((q, i) => ({ q, c: chars1[i], col: C.blue })).concat(Q2.map((q, i) => ({ q, c: chars2[i], col: '#12b5cb' })));
+      for (let i = 0; i < 5; i++) line(Q1[i], Q2[i], mix > .5 ? C.green : C.faint, 2 + 2 * ease(mix), [8, 7], (.35 + .6 * ease(mix)) * Math.min(vis1, vis2));
+      const pts = Q1.map((q, i) => ({ q, c: chars1[i], col: C.blue, a: vis1 })).concat(Q2.map((q, i) => ({ q, c: chars2[i], col: '#12b5cb', a: vis2 }))).filter(p => p.a > .01);
       pts.sort((a, b) => a.q.d - b.q.d);
-      pts.forEach(({ q, c, col }) => {
+      pts.forEach(({ q, c, col, a }) => {
         const r = 27 * q.s;
         g.beginPath(); g.arc(q.X, q.Y, r, 0, 2 * Math.PI);
-        g.fillStyle = col; g.globalAlpha = .92; g.fill(); g.globalAlpha = 1;
+        g.fillStyle = col; g.globalAlpha = .92 * a; g.fill(); g.globalAlpha = a;
         g.lineWidth = 2; g.strokeStyle = '#fff'; g.stroke();
         g.fillStyle = '#fff'; g.font = `600 ${Math.round(28 * q.s)}px "PingFang TC", "Noto Sans TC", sans-serif`;
         g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(c, q.X, q.Y + 1);
-        g.textAlign = 'start'; g.textBaseline = 'alphabetic';
+        g.textAlign = 'start'; g.textBaseline = 'alphabetic'; g.globalAlpha = 1;
       });
       bars();
     }
@@ -619,8 +619,11 @@ window.HOOKS = {};
         loop(sl, t => {
           const dt = t - lastT; lastT = t;
           if (auto) yaw += dt * 0.25;
-          const target = stepNow >= 1 ? 1 : 0;
+          const target = stepNow >= 3 ? 1 : 0;
           mix += Math.sign(target - mix) * Math.min(Math.abs(target - mix), dt / 1.6);
+          const t1 = stepNow === 1 ? 0 : 1, t2 = stepNow >= 1 ? 1 : 0;
+          vis1 += Math.sign(t1 - vis1) * Math.min(Math.abs(t1 - vis1), dt / .6);
+          vis2 += Math.sign(t2 - vis2) * Math.min(Math.abs(t2 - vis2), dt / .6);
           draw();
         });
       },
@@ -633,6 +636,39 @@ window.HOOKS = {};
         if (e.key === '[') { setLayer(layer - 1); return true; }
         if (e.key === '0') { yaw = HOME.yaw; pitch = HOME.pitch; zoom = 1; setLayer(12); return true; }
         return false;
+      },
+    };
+  })();
+
+  /* ───────────────────────── prisons of autocomplete: a text field that finishes our sentences */
+  (function () {
+    const EX = [
+      ['hey, how', ' are you'],
+      ['It was a dark and', ' stormy night'],
+      ['床前明月', '光'],
+      ['It was the best of times, it was the', ' worst of times'],
+      ['Call me', ' Ishmael'],
+    ];
+    H['s-autocomplete'] = {
+      enter(slide) {
+        const f = document.getElementById('ac-field');
+        const typed = f.querySelector('.ac-typed'), ghost = f.querySelector('.ac-ghost');
+        const TYPE = .07, SHOW = .55, HOLD = 1.5, ACCEPT = .7, GAP = .5;
+        const dur = ([p, gh]) => p.length * TYPE + SHOW + HOLD + ACCEPT + GAP;
+        const total = EX.reduce((a, e) => a + dur(e), 0);
+        loop(slide, t => {
+          let u = t % total, k = 0;
+          while (u >= dur(EX[k])) { u -= dur(EX[k]); k++; }
+          const [p, gh] = EX[k];
+          const nTyped = Math.min(p.length, Math.floor(u / TYPE));
+          const tTyped = p.length * TYPE;
+          const tGhost = tTyped + SHOW, tAcc = tGhost + HOLD, tEnd = tAcc + ACCEPT;
+          const showGhost = u >= tGhost && u < tAcc;
+          const accepted = u >= tAcc && u < tEnd;
+          typed.textContent = u >= tEnd ? '' : p.slice(0, nTyped) + (accepted ? gh : '');
+          ghost.textContent = showGhost ? gh : '';
+          f.classList.toggle('hint', showGhost);
+        });
       },
     };
   })();
