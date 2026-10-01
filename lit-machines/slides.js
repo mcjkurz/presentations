@@ -1224,7 +1224,7 @@ window.HOOKS = {};
   };
 })();
 
-/* Xirui's BodyWords figures: body heat maps by emotion (dark slides) */
+/* BodyWords figures: body heat maps by emotion (dark slides) */
 (function () {
   const H = window.HOOKS, D = window.BODYEMO, EC = EMOTION_COLOR;
   const ORDER = ['joy', 'sadness', 'fear', 'anger', 'surprise'];
@@ -1257,5 +1257,5 @@ window.HOOKS = {};
     [['bwp1', 'part1'], ['bwp2', 'part2'], ['bwp3', 'part3'], ['bwc1', 'daiyu'], ['bwc2', 'baoyu'], ['bwc3', 'xifeng']].forEach(([id, k]) => figure(document.getElementById(id), k, { h: 290, bar: true }));
     document.querySelectorAll('.bw-legend').forEach(legend);
   }
-  ['s-bw-xirui', 's-bw-parts', 's-bw-chars'].forEach(id => { H[id] = { enter: build, render: build }; });
+  ['s-bw-feel', 's-bw-parts', 's-bw-chars'].forEach(id => { H[id] = { enter: build, render: build }; });
 })();

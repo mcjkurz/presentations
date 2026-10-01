@@ -390,7 +390,7 @@ small.gl { display: block; font-family: var(--sans); font-size: 12px; letter-spa
 #s-attn-couplet .row, #s-attn-corr .row { width: 1000px; margin-left: auto; margin-right: auto; gap: 32px; }
 #s-attn-corr .fig-wide { width: 700px; }
 
-/* dark slides (Xirui's BodyWords figures) */
+/* dark slides (BodyWords figures) */
 #stage { transition: background .25s ease; }
 #stage.dark { --bg: #0b0e14; --ink: #f4f1ea; --ink2: #c8ccd6; --mute: #8b93a5; --faint: #4a5163; --line: #262c39; --panel: #141a24;
   --blue: #6c9cff; --coral: #ff7a5c; --amber: #f0b13a; --green: #3fcf8e;

@@ -749,8 +749,8 @@
   <div class="callout blue" data-step="3" style="font-size:18px;margin-top:18px;padding:12px 20px;max-width:1104px">Chapters 1–80 are by Cao Xueqin; chapters 81–120 are usually credited to a later editor, Gao E, and carry the family to its ruin. Keep this three-part shape in mind: we will compare the parts.</div>
 </section>
 
-<!-- ═════════════ Xirui: bodies that feel -->
-<section class="slide dark" id="s-bw-xirui" data-sec="cases">
+<!-- ═════════════ BodyWords: bodies that feel -->
+<section class="slide dark" id="s-bw-feel" data-sec="cases">
   <div class="row" style="gap:70px;align-items:center;height:590px">
     <div id="bwx-fig" style="width:300px;flex:none"></div>
     <div class="grow">
@@ -764,7 +764,7 @@
   <div class="src">Word-list method applied to Cao Xueqin, <i>Dream of the Red Chamber</i>. Dictionary matching within a sentence: co-occurrence, not a judgement of what the body part expresses.</div>
 </section>
 
-<!-- ═════════════ Xirui: same body, three parts of the novel -->
+<!-- ═════════════ BodyWords: same body, three parts of the novel -->
 <section class="slide dark" id="s-bw-parts" data-sec="cases">
   <h2 style="font-size:44px;margin-bottom:0">The same body, <em>three parts</em> of the novel</h2>
   <div class="bw-legend" style="margin:6px 0 0"></div>
@@ -777,7 +777,7 @@
   <div class="src">Word-list method, <i>Dream of the Red Chamber</i>. Bar: share of joy, sadness, fear, anger and surprise hits.</div>
 </section>
 
-<!-- ═════════════ Xirui: whose body -->
+<!-- ═════════════ BodyWords: whose body -->
 <section class="slide dark" id="s-bw-chars" data-sec="cases">
   <h2 style="font-size:44px;margin-bottom:0">Whose <em>body</em>?</h2>
   <div class="bw-legend" style="margin:6px 0 0"></div>
@@ -1079,38 +1079,26 @@
 <section class="slide divider nokicker" id="s-div3" data-sec="practical">
   <div class="big-n">03</div>
   <h2>Practical <em>session</em></h2>
-  <p class="lead">Two voices: first a student's account of building a research tool with an AI agent, then a step-by-step setup so you can do the same.</p>
+  <p class="lead">Two parts: first, our experience of building a research tool with an AI agent; then a step-by-step setup so you can do the same.</p>
 </section>
 
-<!-- ═════════════ Xirui: building BodyWords with an agent -->
-<section class="slide" id="s-xr-intro" data-sec="practical">
+<!-- ═════════════ BodyWords: building with an agent -->
+<section class="slide" id="s-ag-intro" data-sec="practical">
   <h2>Building <em>BodyWords</em> with an agent</h2>
-  <p class="lead" style="font-size:24px;max-width:960px">A student’s account: <b>Liu Xirui 劉溪睿</b> asked a coding agent to build a website that maps emotions onto the body in a novel, and then met everything that went wrong.</p>
+  <p class="lead" style="font-size:24px;max-width:960px">We asked a coding agent to build a website that maps emotions onto the body in a novel, and then met everything that went wrong.</p>
   <div class="ev" style="margin-top:22px;max-width:960px">
     <div data-step="1"><b>The tool.</b> Counts literal organ ↔ emotion descriptions (“羞紅了臉”, “心中歡喜”) and paints them on an anatomical figure: colour is emotion, shade is strength, click an organ to read the passages.</div>
     <div data-step="2"><b>The setup.</b> One prompt of ten requirements, written in plain language, to a coding agent (GLM-5.3 Flash; later DeepSeek for the repairs). No programming background assumed.</div>
   </div>
 </section>
 
-<section class="slide" id="s-xr-prompt" data-sec="practical">
-  <h2>Ten requirements, <em>one prompt</em></h2>
-  <div class="row" style="gap:48px;margin-top:6px">
-    <div class="grow ev" style="font-size:17px">
-      <div style="font-size:17px"><b>1–2</b> Where to write the files; analyse emotion ↔ organ and draw them on a scientific human figure.</div>
-      <div style="font-size:17px"><b>3</b> “I don’t know the difference between front-end and back-end, but only people I give the link to should get in.”</div>
-      <div style="font-size:17px"><b>4–5</b> English and Traditional Chinese; upload novels as .txt at any time.</div>
-      <div style="font-size:17px"><b>6</b> Count literal descriptions only: 羞紅了臉 counts for the face.</div>
-    </div>
-    <div class="grow ev">
-      <div style="font-size:17px"><b>7–8</b> Click an organ to see its passages; every book, chapter and character gets its own figure.</div>
-      <div style="font-size:17px"><b>9</b> Compare figures side by side “like medical cross-sections”.</div>
-      <div class="c-coral" data-step="1" style="font-size:19px;color:var(--ink)"><b>10</b> <b>“If you don’t understand something, ask me. Don’t interpret it on your own.”</b></div>
-    </div>
-  </div>
-  <div class="callout blue" data-step="2" style="font-size:19px">Explicit, checkable requirements mostly worked: file paths, upload, chapter menu, click-to-read, language switch. The failures came from what the prompt <b>left unsaid</b>.</div>
+<section class="slide" id="s-ag-prompt" data-sec="practical">
+  <h2>One <em>prompt</em></h2>
+  <div class="quote xs" style="font-family:var(--sans);font-weight:350;color:var(--ink2);max-width:980px;font-size:20px;line-height:1.55;margin-top:6px;border-left:2px solid var(--faint);padding-left:26px">I need you to build a human-figure website that analyses the correspondence between emotions and organs in a text and shows it on a scientific anatomical figure, with colour for the emotion and shade for the strength. I do not know the difference between front-end and back-end, but only people I give the link to should be able to open it. It should work in English and Traditional Chinese, and I should be able to upload novels as .txt at any time. Count literal descriptions only: 羞紅了臉 counts for the face. Every organ should be clickable to show its passages; every book, chapter and character gets its own figure, with side-by-side comparisons like medical cross-sections. <b>If you do not understand something, ask me directly; do not interpret it on your own.</b></div>
+  <div class="callout blue" data-step="1" style="font-size:19px;max-width:980px;margin-top:22px">Explicit, checkable requirements mostly worked: file paths, upload, chapter menu, click-to-read, language switch. The failures came from what the prompt <b>left unsaid</b>.</div>
 </section>
 
-<section class="slide" id="s-xr-problems" data-sec="practical">
+<section class="slide" id="s-ag-problems" data-sec="practical">
   <h2>Where the agent <em>went wrong</em></h2>
   <div class="claims" style="grid-template-columns:repeat(2,1fr);gap:26px 40px">
     <div class="claim" data-step="1">
@@ -1136,7 +1124,7 @@
   </div>
 </section>
 
-<section class="slide" id="s-xr-names" data-sec="practical">
+<section class="slide" id="s-ag-names" data-sec="practical">
   <h2>One vague sentence, <em>many errors</em></h2>
   <p class="body" style="font-size:20px;max-width:980px"><b>The instruction:</b> “merge different names for the same character into one.” It did not say <i>who</i> is the same person, or <i>how</i> to tell.</p>
   <div class="row" style="gap:48px;margin-top:18px">
@@ -1161,8 +1149,8 @@
   </div>
 </section>
 
-<section class="slide" id="s-xr-lessons" data-sec="practical">
-  <h2>What a student <em>learned</em></h2>
+<section class="slide" id="s-ag-lessons" data-sec="practical">
+  <h2>What we <em>learned</em></h2>
   <div class="claims">
     <div class="claim" data-step="1">
       <div class="n">01</div>
