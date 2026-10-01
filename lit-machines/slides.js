@@ -518,7 +518,7 @@ window.HOOKS = {};
     // Non-parallel couplet: the two lines' keys point in unrelated directions.
     const SETS = {
       par: { v1: [...'明月松間照'], v2: [...'清泉石上流'], a1: [38, 102, 120, 196, 292], a2: [28, 110, 128, 186, 282], l1: [.78, .8, .74, .72, .78], l2: [.72, .74, .8, .66, .72],
-        text: '<b>Drag the red query.</b> Each character offers a <span class="c-blue">key</span>; the more a key points the same way as the <span class="c-coral">query</span>, the brighter its square. Characters of the same kind point the same way: <span class="c-blue">4 nouns</span> (月 松 泉 石), <span style="color:#12b5cb">2 adjectives</span> (明 清), <span class="c-amber">2 locatives</span> (間 上), <span class="c-violet">2 verbs</span> (照 流). Aim the query at one kind, and <b>both lines light up together</b>.' },
+        text: '<b>Drag the dark query.</b> Each character offers a <span class="c-blue">key</span>; the more a key points the same way as the <b>query</b>, the brighter its square. Characters of the same kind point the same way: <b>4 nouns</b> (月 松 泉 石), <b>2 adjectives</b> (明 清), <b>2 locatives</b> (間 上), <b>2 verbs</b> (照 流). Aim the query at one kind, and <b>both lines light up together</b>.' },
       non: { v1: [...'空山新雨後'], v2: [...'天氣晚來秋'], a1: [14, 92, 168, 236, 304], a2: [208, 46, 286, 128, 352], l1: [.74, .8, .7, .78, .72], l2: [.7, .76, .8, .68, .74],
         text: '<b>A counter-example.</b> Here the keys of corresponding characters point in different directions. Wherever you aim the query, <b>the two lines do not light up together</b>: nothing is aligned.' },
     };
@@ -562,8 +562,8 @@ window.HOOKS = {};
       el('line', { x1: 40, x2: 520, y1: O[1], y2: O[1], stroke: C.faint }, svg);
       el('line', { x1: O[0], x2: O[0], y1: 20, y2: 410, stroke: C.faint }, svg);
       keyG = el('g', {}, svg);
-      qg = { line: el('line', { x1: O[0], y1: O[1], stroke: C.coral, 'stroke-width': 5, 'stroke-linecap': 'round' }, svg), head: el('path', { fill: C.coral }, svg), dot: el('circle', { r: 17, fill: C.coral, opacity: .14 }, svg) };
-      el('text', { x: 40, y: 408, 'font-size': 13, fill: C.coral, 'font-family': 'JetBrains Mono', text: '● [CLS] query: drag me' }, svg);
+      qg = { line: el('line', { x1: O[0], y1: O[1], stroke: C.ink, 'stroke-width': 5, 'stroke-linecap': 'round' }, svg), head: el('path', { fill: C.ink }, svg), dot: el('circle', { r: 17, fill: C.ink, opacity: .14 }, svg) };
+      el('text', { x: 40, y: 408, 'font-size': 13, fill: C.ink, 'font-family': 'JetBrains Mono', text: '● [CLS] query: drag me' }, svg);
       [['kq-r1', 0], ['kq-r2', 5]].forEach(([id]) => {
         const row = document.getElementById(id);
         for (let i = 0; i < 5; i++) { const d = document.createElement('div'); d.className = 'kq-cell'; row.appendChild(d); cells.push(d); }
