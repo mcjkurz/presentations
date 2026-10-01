@@ -294,7 +294,7 @@
     <tr data-step="1"><td class="sc"><span class="bar" style="height:22px;background:var(--blue)"></span>Character, word<span class="t">milliseconds</span></td><td>What does this word mean <i>here</i>, next to that one?</td><td>embeddings, attention</td><td class="cs">Vector poetics</td></tr>
     <tr data-step="2"><td class="sc"><span class="bar" style="height:22px;background:var(--green)"></span>Line, sentence<span class="t">seconds</span></td><td>What did I expect to come next, and why was I surprised?</td><td>surprisal, perplexity</td><td class="cs">Cognitive stylometry</td></tr>
     <tr data-step="3"><td class="sc"><span class="bar" style="height:22px;background:var(--amber)"></span>Passage, story<span class="t">minutes – hours</span></td><td>What holds steady, and what keeps changing?</td><td>segment encodings, stability gradients</td><td class="cs later">Half of Man is Woman</td></tr>
-    <tr data-step="4"><td class="sc"><span class="bar" style="height:22px;background:var(--coral)"></span>Corpus, period<span class="t">years – centuries</span></td><td>What persists across political ruptures?</td><td>collocations, topic models, classifiers</td><td class="cs later">PLA Daily, 1956–1989</td></tr>
+    <tr data-step="4"><td class="sc"><span class="bar" style="height:22px;background:var(--coral)"></span>Corpus, era<span class="t">years – centuries</span></td><td>What persists across political ruptures?</td><td>collocations, topic models, classifiers</td><td class="cs later">PLA Daily, 1956–1989</td></tr>
   </table>
   <div class="callout blue" data-step="5" style="font-size:20px"><b>What is context? Which context are we in? Which context do we choose?</b></div>
 </section>
@@ -824,28 +824,12 @@
   <div class="src">Word-list method, <i>Dream of the Red Chamber</i>. Name variants are merged (黛玉/林黛玉, 凤姐/凤姐儿).</div>
 </section>
 
-<!-- ═════════════ Body words: one silhouette per period -->
+<!-- ═════════════ Body words: one silhouette per era -->
 <section class="slide" id="s-body-periods" data-sec="cases">
-  <h2 style="margin-bottom:6px">Five periods, <em>one body</em></h2>
-  <p class="body" style="font-size:19px;max-width:1000px;margin-bottom:0">The whole corpus: 279 novels by period. Colour: mentions per 10,000 words, scaled within each period.</p>
+  <h2 style="margin-bottom:6px">Five eras, <em>one body</em></h2>
+  <p class="body" style="font-size:19px;max-width:1000px;margin-bottom:0">The whole corpus: 279 novels from Ming–Qing to the New Era. Colour: mentions per 10,000 words, scaled within each era.</p>
   <div id="psil" style="display:flex;gap:14px;justify-content:center;margin-top:6px"></div>
-  <div class="callout blue" data-step="6" style="font-size:19px;margin:0 auto;padding:12px 24px;max-width:1000px;position:absolute;left:88px;right:88px;bottom:76px"><b>The same regions stand out in every period</b>, even when each period is scaled to its own maximum: the pattern is remarkably stable.</div>
-  <button class="langbtn" type="button">EN / 中</button>
-</section>
-
-<!-- ═════════════ Body words: stable core -->
-<section class="slide" id="s-body-core" data-sec="cases">
-  <div class="row" style="gap:36px">
-    <div style="width:380px;flex:none">
-      <h2 style="font-size:48px">Which parts? A <em>stable core</em></h2>
-      <p class="body" style="font-size:18px">Now 279 novels from Ming–Qing to the New Era. Each body word is assigned to one of 22 regions; the chart shows each region’s <b>share</b> of all body words in a period.</p>
-      <div class="sp"></div>
-      <p class="body" data-step="1" style="font-size:18px">The <b>same seven regions</b> lead in every period (<span class="tr" data-k="core7"></span>): together <b class="c-blue">79–83%</b>. Below them there is a gap: the eighth region never passes 3.4%.</p>
-      <p class="body" data-step="2" style="font-size:18px;margin-top:12px">Change happens at the margins: the <span class="c-coral"><b class="tr" data-k="brain"></b></span> rises, the <span class="c-amber"><b class="tr" data-k="organs"></b></span> recede.</p>
-      <div class="callout blue" data-step="3" style="font-size:17px;margin-top:16px">Two layers at once: a slow one that holds for 500 years, and a faster one tied to the period.</div>
-    </div>
-    <svg id="bcore" viewBox="0 0 700 520" style="width:700px;height:520px;overflow:visible"></svg>
-  </div>
+  <div class="callout blue" data-step="6" style="font-size:18px;margin:0 auto;padding:12px 24px;max-width:1000px;position:absolute;left:88px;right:88px;bottom:70px;line-height:1.45"><b>The same seven regions lead in every era</b> (hands, head, whole body, heart, eyes, face, mouth): together <b>79–83%</b> of body words, with a clear gap before the eighth. Change happens at the margins: the <b>brain</b> rises, the <b>inner organs</b> recede.</div>
   <button class="langbtn" type="button">EN / 中</button>
 </section>
 
@@ -863,7 +847,7 @@
       <p class="body" data-step="1" style="font-size:19px"><b class="tr" data-k="brain" style="text-transform:capitalize"></b> is nearly absent before 1911 (0.3 per 10k words) and rises <b>7×</b> by the socialist era (2.1).</p>
       <div class="sp"></div>
       <p class="body" data-step="2" style="font-size:19px">Thought moves house: “in the heart” (<span class="tr" data-k="inheart"></span>) holds steady, while “in the head” (<span class="tr" data-k="inhead"></span>) goes from 0.1 to 1.2.</p>
-      <div class="callout" data-step="3" style="font-size:19px">A faster layer, tied to period: a new vocabulary for where mind lives in the body.</div>
+      <div class="callout" data-step="3" style="font-size:19px">A faster layer, tied to the era: a new vocabulary for where mind lives in the body.</div>
     </div>
   </div>
   <button class="langbtn" type="button">EN / 中</button>
@@ -874,8 +858,8 @@
   <h2 style="margin-bottom:10px">Many clocks in <em>one body</em></h2>
   <div class="lanes2">
     <div class="lh"><span></span><span>WHAT THE MACHINE COUNTS</span><span>WHAT A READER CAN ASK</span></div>
-    <div class="lane2" data-step="1"><div class="lt c-blue">CENTURIES</div><div class="lb"><b>The same core.</b> The same seven regions carry 79–83% of body words in every period.</div><div class="lb q">Why does the core stay put? Is it the body itself, or the conventions for describing it?</div></div>
-    <div class="lane2" data-step="2"><div class="lt c-amber">DECADES</div><div class="lb"><b>A period’s own layer.</b> The brain arrives in the socialist era: 0.3 to 2.1 per 10,000 words.</div><div class="lb q">Does thought move from the heart to the head in modern Chinese fiction?</div></div>
+    <div class="lane2" data-step="1"><div class="lt c-blue">CENTURIES</div><div class="lb"><b>The same core.</b> The same seven regions carry 79–83% of body words in every era.</div><div class="lb q">Why does the core stay put? Is it the body itself, or the conventions for describing it?</div></div>
+    <div class="lane2" data-step="2"><div class="lt c-amber">DECADES</div><div class="lb"><b>An era’s own layer.</b> The brain arrives in the socialist era: 0.3 to 2.1 per 10,000 words.</div><div class="lb q">Does thought move from the heart to the head in modern Chinese fiction?</div></div>
     <div class="lane2" data-step="3"><div class="lt c-coral">A SINGLE BOOK</div><div class="lb"><b>Feeling that moves.</b> In <i>Dream of the Red Chamber</i>, sadness gathers in the heart as the family falls; each character has a different profile.</div><div class="lb q">Does grief gather in the heart as a household declines? Is temperament written into a body?</div></div>
   </div>
   <div class="callout blue" data-step="4" style="font-size:18px;margin-top:16px;padding:12px 22px;max-width:1104px">Stability is <b>several layers moving at different speeds</b>. AI does not replace the question: it widens the evidence, and sends you back to the text. <span style="color:var(--mute)">Check the dictionary too: joy is 36% of the hits here, and a different word list would give a different share.</span></div>
@@ -973,12 +957,30 @@
 <!-- ═════════════ Pipeline: simulating a historical reader -->
 <section class="slide" id="s-pipeline" data-sec="cases">
   <h2>Simulating a <em>historical reader</em></h2>
-  <div class="pipe2">
-    <div class="pstep" data-step="1"><div class="pn">STEP 1 · PRE-TRAIN</div><div class="pt">Train a small GPT on Chinese web text</div><div class="pd">FineWeb-Edu Chinese · 1M passages · ≈ 900M characters<br>223M parameters, one token per character</div></div>
-    <div class="parrow" data-step="2">→</div>
-    <div class="pstep hot" data-step="2"><div class="pn">STEP 2 · FINE-TUNE × 5 EPOCHS</div><div class="pt">Continue training on Mao Zedong</div><div class="pd">Selected Works of Mao Zedong 毛泽东选集<br>7 volumes, 1925–1976 · 1.77M characters</div></div>
+  <div class="pipe3">
+    <div class="pp" data-step="0">
+      <div class="pp-pic">
+        <svg viewBox="0 0 220 170" width="220" height="170" aria-label="A small language model">
+          <rect x="6" y="6" width="208" height="158" rx="14" fill="#fff" stroke="#e2472a" stroke-width="3"/>
+          <rect x="18" y="18" width="184" height="134" rx="8" fill="#fdece8"/>
+          <g stroke="#e2472a" stroke-width="2.4" fill="none" stroke-linecap="round"><path d="M62 112 L98 78 L132 98 L158 62"/><path d="M98 78 L102 48"/><path d="M132 98 L134 128"/><path d="M62 112 L96 134 L134 128"/><path d="M158 62 L178 96"/></g>
+          <g fill="#e2472a"><circle cx="62" cy="112" r="7"/><circle cx="98" cy="78" r="7"/><circle cx="132" cy="98" r="7"/><circle cx="158" cy="62" r="7"/><circle cx="102" cy="48" r="6"/><circle cx="134" cy="128" r="7"/><circle cx="96" cy="134" r="6"/><circle cx="178" cy="96" r="6"/></g>
+        </svg>
+      </div>
+      <div class="pp-t"><div class="pn">THE MODEL</div><b>A small GPT</b><span>223M parameters, one token per character</span></div>
+    </div>
+    <div class="pa3" data-step="1"><span>pre-train</span><i>→</i></div>
+    <div class="pp" data-step="1">
+      <div class="pp-pic"><img src="img/fineweb-edu.jpg" alt="FineWeb-Edu: the finest collection of educational content the web has to offer"></div>
+      <div class="pp-t"><div class="pn">THE CORPUS</div><b>FineWeb-Edu Chinese</b><span>1M passages · ≈ 900M characters</span></div>
+    </div>
+    <div class="pa3 hot" data-step="2"><span>fine-tune × 5 epochs</span><i>→</i></div>
+    <div class="pp" data-step="2">
+      <div class="pp-pic"><img src="img/cover-mao-selected.jpg" alt="Selected Works of Mao Zedong, volume 1" style="height:240px;width:auto"></div>
+      <div class="pp-t"><div class="pn">THE VOICE</div><b>Selected Works of Mao Zedong</b><span class="zh" style="font-size:16px">毛泽东选集</span><span>7 volumes, 1925–1976 · 1.77M characters</span></div>
+    </div>
   </div>
-  <div class="src">Kurzynski, “Cognitive Stylometry,” <i>Computational Humanities Research</i> 2 (2026): e1.</div>
+  <div class="src">Kurzynski, “Cognitive Stylometry,” <i>Computational Humanities Research</i> 2 (2026): e1. FineWeb-Edu: Hugging Face.</div>
 </section>
 
 <!-- ═════════════ Maospeak: cognitive overfitting -->
@@ -1056,10 +1058,10 @@
 </section>
 
 
-<!-- ═════════════ Prisons of autocomplete -->
-<section class="slide" id="s-autocomplete" data-sec="cases" data-steps="2">
+<!-- ═════════════ Prisons of autocomplete (with Yuk Hui) -->
+<section class="slide" id="s-autocomplete" data-sec="cases" data-steps="3">
   <h2>Prisons of <em>autocomplete</em></h2>
-  <div class="row" style="gap:52px;align-items:flex-start;margin-top:0">
+  <div class="row" style="gap:44px;align-items:flex-start;margin-top:0">
     <div class="phone" aria-label="A phone messaging app that suggests the next words">
       <div class="ph-status"><span>9:41</span><span class="ph-dots">●●●</span></div>
       <div class="ph-head"><span class="ph-av">A</span><span>Alex</span></div>
@@ -1067,41 +1069,23 @@
       <div class="ph-sugg" id="ph-sugg"><span></span><span></span><span></span></div>
       <div class="ph-input"><div class="ph-field" id="ac-field"><span class="ac-typed"></span><span class="ac-caret"></span><span class="ac-ghost"></span></div><span class="ph-send">↑</span></div>
     </div>
-    <div class="grow" style="padding-top:6px">
+    <div class="grow" style="padding-top:2px">
       <div data-step="1">
-        <div class="mono c-blue" style="font-size:12px;letter-spacing:.14em;margin-bottom:6px">AN OPPORTUNITY</div>
-        <p class="body" style="font-size:19px">New questions: where does a text <b>differ from what was expected</b>? Cheap experiments on a whole corpus, and a second reader whose layers can be opened.</p>
-        <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin:22px 0 6px">A DANGER</div>
-        <p class="body" style="font-size:19px">The machine follows <b>the paths most often travelled through language</b>. Read with it, we begin to finish our own sentences: an autocomplete of the mind.</p>
+        <p class="body" style="font-size:18px"><span class="mono c-blue" style="font-size:12px;letter-spacing:.14em">OPPORTUNITY</span> &nbsp;New questions: where does a text <b>differ from what was expected</b>? Cheap experiments on whole corpora, and a second reader whose layers can be opened.</p>
+        <p class="body" style="font-size:18px;margin-top:10px"><span class="mono c-coral" style="font-size:12px;letter-spacing:.14em">DANGER</span> &nbsp;The machine follows <b>the paths most often travelled through language</b>. Read with it, we begin to finish our own sentences: an autocomplete of the mind.</p>
       </div>
-      <div class="callout" data-step="2" style="font-size:20px;margin-top:22px"><b>Read against the grain.</b> Ask where the probable continuation fails, and which corpus it was calibrated on.</div>
-    </div>
-  </div>
-  <div class="src">cf. Leif Weatherby, <i>Language Machines: Cultural AI and the End of Remainder Humanism</i> (2025).</div>
-</section>
-
-<!-- ═════════════ Where prediction ends -->
-<section class="slide" id="s-judgement" data-sec="cases">
-  <h2>Where prediction <em>ends</em></h2>
-  <div class="row" style="gap:44px;align-items:flex-start">
-    <figure class="fig" style="width:170px;flex:none;margin:4px 0 0"><img src="img/cover-kant-machine.jpg" alt="Cover of Kant Machine: Critical Philosophy after AI" style="border:0;border-radius:2px;box-shadow:0 4px 14px rgba(0,0,0,.28)"><figcaption style="font-size:13px;margin-top:8px"><b>Yuk Hui</b>, <i>Kant Machine: Critical Philosophy after AI</i> (2026)</figcaption></figure>
-    <div class="grow">
-      <div class="qcards" style="gap:40px">
-        <div class="qcard">
-          <div class="mono c-mute" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">DETERMINATIVE JUDGEMENT</div>
-          <div class="quote sm">applies a rule already given</div>
-          <p class="body" style="font-size:18px;margin-top:10px">Prediction does this well: the most probable continuation of what the corpus already contains.</p>
-        </div>
-        <div class="qcard" data-step="1">
-          <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">REFLECTIVE JUDGEMENT</div>
-          <div class="quote sm">finds a rule for a case no existing rule covers</div>
-          <p class="body" style="font-size:18px;margin-top:10px">Prediction cannot do this, and a world run on it risks a “prison of probabilities.”</p>
+      <div data-step="2" class="hui">
+        <figure class="fig" style="width:84px;flex:none;margin:0"><img src="img/cover-kant-machine.jpg" alt="Cover of Kant Machine" style="border:0;border-radius:2px;box-shadow:0 3px 10px rgba(0,0,0,.28)"></figure>
+        <div>
+          <div class="quote xs" style="font-size:21px;line-height:1.28"><span class="mark">“</span>…is escaping from this <b>prison of probabilities</b>, or more precisely, calculability, now humanity’s primary task?<span class="mark">”</span></div>
+          <div class="quote-src" style="margin-top:6px"><b>Yuk Hui</b>, <i>Kant Machine: Critical Philosophy after AI</i> (2026), 14</div>
+          <p class="body" style="font-size:16px;margin-top:10px;line-height:1.45"><b>Determinative judgement</b> applies a rule already given: prediction does this well. <b class="c-coral">Reflective judgement</b> finds a rule for a case no existing rule covers: prediction cannot.</p>
         </div>
       </div>
-      <div class="cite" style="margin-top:14px;font-size:14px">Hui reads the third <i>Critique</i> as a “treatise on cybernetics”</div>
+      <div class="callout" data-step="3" style="font-size:18px;margin-top:14px;padding:12px 22px"><b>Read against the grain.</b> Ask where the probable continuation fails, and which corpus it was calibrated on. In the classroom, treat surprisal as <b>evidence about the training distribution</b>, not a verdict on literary quality.</div>
     </div>
   </div>
-  <div class="callout blue" data-step="2" style="font-size:18px;margin-top:12px;padding:12px 24px">In the classroom: surprisal is <b>evidence about the training distribution</b>, not a verdict on literary quality. Pair a close reading with a surprisal exercise on the same passage and ask where probabilistic evidence ends and interpretive judgement begins.</div>
+  <div class="src">cf. Leif Weatherby, <i>Language Machines</i> (2025). Yuk Hui, <i>Kant Machine</i> (2026), reading Kant’s third <i>Critique</i> as a “treatise on cybernetics”.</div>
 </section>
 
 <!-- ═════════════ 03 Practical session: divider -->

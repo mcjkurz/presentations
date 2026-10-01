@@ -1098,8 +1098,8 @@ window.HOOKS = {};
   function buildP() {
     const host = document.getElementById('psil'); host.innerHTML = '';
     B.periods.forEach((zh, i) => {
-      const w = document.createElement('div'); w.style.cssText = 'width:180px;text-align:center';
-      const cv = document.createElement('canvas'); cv.width = 360; cv.height = 705; cv.style.cssText = 'width:180px;height:352px;display:block';
+      const w = document.createElement('div'); w.style.cssText = 'width:150px;text-align:center';
+      const cv = document.createElement('canvas'); cv.width = 360; cv.height = 705; cv.style.cssText = 'width:150px;height:294px;display:block';
       const o = {}; Object.keys(B.rates).forEach(r => { o[r] = B.rates[r][i]; }); paint(cv, o, Math.max(...Object.values(o)));
       const cap = document.createElement('div'); cap.style.cssText = 'font-size:16px;color:var(--ink2);margin-top:-6px';
       w.appendChild(cv); w.appendChild(cap); host.appendChild(w); pPlates.push({ w, cap, i, zh });

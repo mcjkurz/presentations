@@ -511,13 +511,6 @@ small.gl { display: block; font-family: var(--sans); font-size: 12px; letter-spa
 .xp p { font-size: 14.5px; line-height: 1.4; color: var(--ink2); font-weight: 350; margin-top: 16px; }
 .xp.green p { color: var(--green); }
 
-/* pipeline: two steps side by side */
-.pipe2 { display: flex; align-items: center; gap: 28px; margin-top: 56px; }
-.pipe2 .pstep { flex: 1; padding: 26px 30px; }
-.pipe2 .pstep .pn { font-size: 13px; }
-.pipe2 .pstep .pt { font-size: 28px; line-height: 1.2; font-family: var(--serif); margin-bottom: 6px; }
-.pipe2 .pstep .pd { font-size: 16px; line-height: 1.5; margin-top: 10px; }
-.pipe2 .parrow { font-size: 44px; line-height: 1; color: var(--coral); flex: none; }
 
 #s-history .qs .q-item { font-size: 20px; margin-bottom: 8px; }
 #s-history .qs .q-item::before { top: 6px; }
@@ -560,3 +553,20 @@ small.gl { display: block; font-family: var(--sans); font-size: 12px; letter-spa
 .rg-list > div { break-inside: avoid; display: flex; justify-content: space-between; gap: 8px; padding: 2px 0; border-bottom: 1px solid var(--line); color: var(--ink2); }
 .rg-list b { font-weight: 500; color: var(--ink); white-space: nowrap; }
 .rg-list .zh { color: var(--mute); text-align: right; font-size: 13px; letter-spacing: .04em; }
+
+/* pipeline: model -> FineWeb-Edu -> Mao's Selected Works */
+.pipe3 { display: flex; align-items: flex-start; justify-content: space-between; margin-top: 34px; gap: 6px; }
+.pp { width: 290px; flex: none; text-align: center; }
+.pp-pic { height: 250px; display: flex; align-items: center; justify-content: center; }
+.pp-pic img { max-width: 290px; max-height: 250px; border-radius: 6px; box-shadow: 0 4px 16px rgba(0,0,0,.2); }
+.pp-t { margin-top: 14px; }
+.pp-t .pn { font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; color: var(--coral); margin-bottom: 4px; }
+.pp-t b { display: block; font-family: var(--serif); font-weight: 400; font-size: 25px; line-height: 1.15; color: var(--ink); }
+.pp-t span { display: block; font-size: 14px; line-height: 1.45; color: var(--mute); margin-top: 4px; }
+.pa3 { flex: 1; align-self: flex-start; margin-top: 92px; text-align: center; color: var(--mute); }
+.pa3 span { display: block; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 2px; }
+.pa3 i { font-style: normal; font-size: 48px; line-height: 1; color: var(--faint); }
+.pa3.hot, .pa3.hot i { color: var(--coral); }
+.pp-pic svg { width: 280px; height: 217px; }
+
+.hui { display: flex; gap: 20px; align-items: flex-start; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
