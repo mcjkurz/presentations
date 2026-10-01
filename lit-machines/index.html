@@ -677,7 +677,7 @@
     <div class="mono cpl-al-h">TRANSITION ALIGNMENT · <span id="cpl-al-layer">LAYER 12 (TOP)</span></div>
     <div class="cpl-al-row"><span class="lab">encoded apart</span><span class="trk"><i id="cpl-bar1" style="background:var(--blue)"></i></span><b id="cpl-v1">0.30</b></div>
     <div class="cpl-al-row" id="cpl-row2"><span class="lab">encoded together</span><span class="trk"><i id="cpl-bar2" style="background:var(--green)"></i></span><b id="cpl-v2">0.65</b></div>
-    <p class="cpl-al-note">How similar are the <b>steps</b> of the two verses? For each, take the step from one character to the next, and compare the two verses’ steps by cosine similarity (1 = the same direction), averaged over the four steps. Measured in the model’s full <b>768 dimensions</b>; the 3D picture is only a PCA view of the same points.</p>
+    <p class="cpl-al-note">Mean cosine between the two verses’ <b>step vectors</b> (each character → the next), computed in the model’s full <b>768 dimensions</b>. The 3D picture is only a PCA view.</p>
   </div>
   <div class="cpl-side">
     <div class="swap">
@@ -739,7 +739,8 @@
   <div class="qcards" style="gap:32px;grid-template-columns:repeat(3,1fr)">
     <div class="qcard" data-step="1">
       <div class="mono c-blue" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">1 · A WORD LIST</div>
-      <p class="body" style="font-size:19px">Words that name a part of the body, <span class="zh">手 眼 心 脑 脸…</span>, sorted into 22 regions.</p>
+      <p class="body" style="font-size:17px">Words that name a part of the body, sorted into <b>22 regions</b>:</p>
+      <div class="rg-list"><div><b>Hands</b><span class="zh">手 指</span></div><div><b>Head & hair</b><span class="zh">头 发</span></div><div><b>Whole body</b><span class="zh">全身 皮骨血</span></div><div><b>Heart</b><span class="zh">心</span></div><div><b>Eyes</b><span class="zh">眼 眉 泪</span></div><div><b>Face</b><span class="zh">脸 腮</span></div><div><b>Mouth</b><span class="zh">口 唇 舌 齿</span></div><div><b>Inner organs</b><span class="zh">脏腑</span></div><div><b>Feet</b><span class="zh">脚</span></div><div><b>Legs</b><span class="zh">腿 膝</span></div><div><b>Chest</b><span class="zh">胸 乳</span></div><div><b>Neck</b><span class="zh">颈 喉</span></div><div><b>Shoulders</b><span class="zh">肩</span></div><div><b>Arms</b><span class="zh">臂 腕</span></div><div><b>Waist</b><span class="zh">腰</span></div><div><b>Ears</b><span class="zh">耳</span></div><div><b>Brain</b><span class="zh">脑</span></div><div><b>Genitals</b><span class="zh">阴</span></div><div><b>Belly</b><span class="zh">腹</span></div><div><b>Buttocks</b><span class="zh">臀 股</span></div><div><b>Nose</b><span class="zh">鼻</span></div><div><b>Back</b><span class="zh">背</span></div></div>
     </div>
     <div class="qcard" data-step="2">
       <div class="mono c-amber" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">2 · A RATE</div>
