@@ -573,3 +573,12 @@ small.gl { display: block; font-family: var(--sans); font-size: 12px; letter-spa
 
 /* product logos inline */
 img.lg { height: 22px; width: 22px; vertical-align: -4px; margin-right: 6px; }
+
+/* classifier results table */
+table.res { border-collapse: collapse; width: 100%; max-width: 980px; font-size: 18px; }
+table.res th { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--mute); font-weight: 400; text-align: right; padding: 6px 14px; border-bottom: 1px solid var(--faint); }
+table.res th:first-child, table.res td:first-child { text-align: left; }
+table.res td { text-align: right; padding: 2px 14px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+table.res td i { color: var(--mute); font-size: 15px; }
+table.res tr.grp td { font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--coral); text-align: left; padding: 7px 14px 1px; border-bottom: 0; }
+table.res tr.hl td { background: var(--coral-bg); font-weight: 700; color: var(--ink); }

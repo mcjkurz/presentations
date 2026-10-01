@@ -438,8 +438,8 @@
   <div class="pex" data-step="1">
     <div class="pex-cap">In classical Chinese poetry, two lines are matched word for word. Wang Wei 王維, <i>Autumn Evening in the Mountains</i>:</div>
     <div class="pex-cpl">
-      <div class="zh"><span class="c-blue">明月</span><span style="color:#12b5cb">松間</span><span class="c-violet">照</span>，<span class="c-blue">清泉</span><span style="color:#12b5cb">石上</span><span class="c-violet">流</span>。</div>
-      <div class="en"><span class="c-blue">The bright moon</span> <span class="c-violet">shines</span> <span style="color:#12b5cb">between the pines</span>; <span class="c-blue">a clear spring</span> <span class="c-violet">flows</span> <span style="color:#12b5cb">over the stones</span>.</div>
+      <div class="zh"><span class="c-blue">明月</span><span style="color:#a3202b">松間</span><span class="c-violet">照</span>，<span class="c-blue">清泉</span><span style="color:#a3202b">石上</span><span class="c-violet">流</span>。</div>
+      <div class="en"><span class="c-blue">The bright moon</span> <span class="c-violet">shines</span> <span style="color:#a3202b">between the pines</span>; <span class="c-blue">a clear spring</span> <span class="c-violet">flows</span> <span style="color:#a3202b">over the stones</span>.</div>
     </div>
   </div>
 
@@ -461,6 +461,17 @@
       <div class="clf-r" id="clf-r3"><span class="pa" data-step="4">→</span><span class="box" data-step="5">classifier</span><span class="pa" data-step="6">→</span><span class="score c-mute" data-step="6">0.02</span></div>
   </div>
   <p class="small" data-step="7" style="margin-top:14px;max-width:960px">A BERT-based classifier trained on 140,000+ regulated poems (律詩) performs on par with GPT-4.1 and DeepSeek R1. But how much context should it read: a pair of characters, a couplet, a whole poem?</p>
+</section>
+
+<!-- ═════════════ Classifier results -->
+<section class="slide" id="s-clf-res" data-sec="cases" data-steps="1">
+  <h2>How well does <em>it work</em>?</h2>
+  <p class="small" style="max-width:900px;margin:0 0 10px">Test set: 6,153 pentasyllabic couplets from the Six Dynasties (222–589), labelled by hand: 2,072 parallel, 4,081 not.</p>
+  <table class="res">
+    <tr><th>Method</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1</th></tr>
+    <tr class="grp"><td colspan="5">Earlier methods</td></tr><tr><td>VM</td><td>76.5</td><td>72.3</td><td>55.0</td><td>62.5</td></tr><tr><td>ISSA</td><td>72.5</td><td>68.2</td><td>48.0</td><td>56.3</td></tr><tr><td>ED</td><td>75.9</td><td>72.0</td><td>53.6</td><td>61.4</td></tr><tr class="grp"><td colspan="5">Fine-tuned SikuBERT</td></tr><tr><td>I/O <i>(couplet position as label)</i></td><td>79.1</td><td>69.9</td><td>72.7</td><td>71.3</td></tr><tr class="hl"><td>I/O + SymNet <i>(filtered labels)</i></td><td>84.0</td><td>74.1</td><td>82.2</td><td>77.9</td></tr><tr class="grp"><td colspan="5">Generative models</td></tr><tr><td>GPT-4o</td><td>79.6</td><td>73.7</td><td>64.4</td><td>68.8</td></tr><tr><td>Moonshot AI (v1-8k)</td><td>79.1</td><td>71.2</td><td>65.7</td><td>68.3</td></tr><tr><td>DeepSeek R1</td><td>84.8</td><td>82.9</td><td>70.0</td><td>75.9</td></tr>
+  </table>
+  <div class="callout" data-step="1" style="font-size:19px;margin-top:10px;padding:10px 22px">A small fine-tuned encoder <b>matches the large generative models</b>, and finds the most parallel couplets (recall 82.2%).</div>
 </section>
 
 <!-- ═════════════ Scale matters: character, couplet, poem -->
@@ -579,7 +590,7 @@
       <div class="mono c-mute" style="font-size:11.5px;letter-spacing:.14em;margin:10px 0 8px">ATTENTION OF [CLS], ONE HEAD</div>
       <div class="kq-one" id="kq-rows">
         <div><div class="kq-lab c-blue">first line</div><div class="kq-row" id="kq-r1"></div></div>
-        <div><div class="kq-lab" style="color:#12b5cb">second line</div><div class="kq-row" id="kq-r2"></div></div>
+        <div><div class="kq-lab" style="color:#a3202b">second line</div><div class="kq-row" id="kq-r2"></div></div>
       </div>
       <div class="kq-bar"><span>0</span><i></i><span>0.5</span></div>
       <p class="body" id="kq-text" style="font-size:17px;margin-top:16px"><b>Drag the red query.</b> Each character offers a <span class="c-blue">key</span>; the more a key points the same way as the <span class="c-coral">query</span>, the brighter its square. Point the query between a pair, and <b>corresponding characters light up together</b>: 松 and 石, 照 and 流.</p>
@@ -662,7 +673,7 @@
       <div><div style="font-family:var(--serif);font-size:30px;line-height:1.05">Separately</div><div class="small">the model sees one verse at a time</div></div>
       <div style="display:grid;grid-template-columns:auto 34px 110px 34px auto;gap:10px 8px;align-items:center;font-size:24px">
         <span style="color:#2f6fe0;letter-spacing:.06em">明月松間照</span><span class="c-mute">→</span><span class="box" style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;border:1px solid var(--faint);border-radius:999px;padding:6px 0;text-align:center">BERT</span><span class="c-mute">→</span><span style="color:#2f6fe0;font-size:20px;letter-spacing:.2em">●●●●●</span>
-        <span style="color:#12b5cb;letter-spacing:.06em">清泉石上流</span><span class="c-mute">→</span><span class="box" style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;border:1px solid var(--faint);border-radius:999px;padding:6px 0;text-align:center">BERT</span><span class="c-mute">→</span><span style="color:#12b5cb;font-size:20px;letter-spacing:.2em">●●●●●</span>
+        <span style="color:#a3202b;letter-spacing:.06em">清泉石上流</span><span class="c-mute">→</span><span class="box" style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;border:1px solid var(--faint);border-radius:999px;padding:6px 0;text-align:center">BERT</span><span class="c-mute">→</span><span style="color:#a3202b;font-size:20px;letter-spacing:.2em">●●●●●</span>
       </div>
     </div>
   </div>
@@ -670,7 +681,7 @@
     <div style="display:grid;grid-template-columns:190px 1fr;gap:20px;align-items:center">
       <div><div style="font-family:var(--serif);font-size:30px;line-height:1.05">Together</div><div class="small">the model sees the whole couplet, so each verse can see the other</div></div>
       <div style="display:grid;grid-template-columns:auto 34px 110px 34px auto;gap:10px 8px;align-items:center;font-size:24px">
-        <span style="letter-spacing:.06em"><span style="color:#2f6fe0">明月松間照</span>，<span style="color:#12b5cb">清泉石上流</span></span><span class="c-mute">→</span><span class="box" style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;border:1px solid var(--faint);border-radius:999px;padding:6px 0;text-align:center">BERT</span><span class="c-mute">→</span><span style="font-size:20px;letter-spacing:.2em"><span style="color:#2f6fe0">●●●●●</span><span style="color:#12b5cb">●●●●●</span></span>
+        <span style="letter-spacing:.06em"><span style="color:#2f6fe0">明月松間照</span>，<span style="color:#a3202b">清泉石上流</span></span><span class="c-mute">→</span><span class="box" style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;border:1px solid var(--faint);border-radius:999px;padding:6px 0;text-align:center">BERT</span><span class="c-mute">→</span><span style="font-size:20px;letter-spacing:.2em"><span style="color:#2f6fe0">●●●●●</span><span style="color:#a3202b">●●●●●</span></span>
       </div>
     </div>
   </div>
@@ -682,8 +693,8 @@
   <div class="cpl-wrap"><canvas id="cpl"></canvas></div>
   <div class="cpl-title">
     <div class="kicker" style="width:1104px"><span class="n">02</span><span>Case studies</span></div>
-    <div class="zh"><span class="c-blue">明月松間照</span>，<span style="color:#12b5cb">清泉石上流</span></div>
-    <div class="small" style="margin-top:6px;font-family:var(--serif);font-style:italic;font-size:18px"><span class="c-blue">The bright moon shines between the pines</span>; <span style="color:#12b5cb">a clear spring flows over the stones</span>.</div>
+    <div class="zh"><span class="c-blue">明月松間照</span>，<span style="color:#a3202b">清泉石上流</span></div>
+    <div class="small" style="margin-top:6px;font-family:var(--serif);font-style:italic;font-size:18px"><span class="c-blue">The bright moon shines between the pines</span>; <span style="color:#a3202b">a clear spring flows over the stones</span>.</div>
     <div class="small" style="margin-top:2px">GujiBERT · <span id="cpl-layer">top layer (12)</span> · 10 characters → PCA → 3 dimensions</div>
   </div>
   <div class="cpl-align" id="cpl-align">

@@ -488,7 +488,7 @@ window.HOOKS = {};
         const pa = proj(a), pb = proj(b); g.beginPath(); g.moveTo(pa.X, pa.Y); g.lineTo(pb.X, pb.Y); g.strokeStyle = C.faint; g.lineWidth = 1.2; g.stroke();
       });
       const nodes = [];
-      [[B, '#2f6fe0'], [other, '#12b5cb']].forEach(([pts, col]) => {
+      [[B, '#2f6fe0'], [other, '#a3202b']].forEach(([pts, col]) => {
         const P = pts.map(proj);
         for (let i = 0; i < P.length - 1; i++) {
           const a = P[i], b = P[i + 1], ang = Math.atan2(b.Y - a.Y, b.X - a.X), r = 9;
@@ -518,7 +518,7 @@ window.HOOKS = {};
     // Non-parallel couplet: the two lines' keys point in unrelated directions.
     const SETS = {
       par: { v1: [...'明月松間照'], v2: [...'清泉石上流'], a1: [38, 102, 120, 196, 292], a2: [28, 110, 128, 186, 282], l1: [.78, .8, .74, .72, .78], l2: [.72, .74, .8, .66, .72],
-        text: '<b>Drag the red query.</b> Each character offers a <span class="c-blue">key</span>; the more a key points the same way as the <span class="c-coral">query</span>, the brighter its square. Characters of the same kind point the same way: <span class="c-blue">4 nouns</span> (月 松 泉 石), <span style="color:#12b5cb">2 adjectives</span> (明 清), <span class="c-amber">2 locatives</span> (間 上), <span class="c-violet">2 verbs</span> (照 流). Aim the query at one kind, and <b>both lines light up together</b>.' },
+        text: '<b>Drag the red query.</b> Each character offers a <span class="c-blue">key</span>; the more a key points the same way as the <span class="c-coral">query</span>, the brighter its square. Characters of the same kind point the same way: <span class="c-blue">4 nouns</span> (月 松 泉 石), <span style="color:#a3202b">2 adjectives</span> (明 清), <span class="c-amber">2 locatives</span> (間 上), <span class="c-violet">2 verbs</span> (照 流). Aim the query at one kind, and <b>both lines light up together</b>.' },
       non: { v1: [...'空山新雨後'], v2: [...'天氣晚來秋'], a1: [14, 92, 168, 236, 304], a2: [208, 46, 286, 128, 352], l1: [.74, .8, .7, .78, .72], l2: [.7, .76, .8, .68, .74],
         text: '<b>A counter-example.</b> Here the keys of corresponding characters point in different directions. Wherever you aim the query, <b>the two lines do not light up together</b>: nothing is aligned.' },
     };
@@ -546,7 +546,7 @@ window.HOOKS = {};
       KV = K.map(([c, a, l]) => [Math.cos(a) * l, Math.sin(a) * l]);
       while (keyG.firstChild) keyG.removeChild(keyG.firstChild);
       KV.forEach((k, i) => {
-        const [X, Y] = pt(k), col = K[i][3] === 1 ? C.blue : '#12b5cb', ang = Math.atan2(Y - O[1], X - O[0]);
+        const [X, Y] = pt(k), col = K[i][3] === 1 ? C.blue : '#a3202b', ang = Math.atan2(Y - O[1], X - O[0]);
         el('line', { x1: O[0], y1: O[1], x2: X, y2: Y, stroke: col, 'stroke-width': 3, 'stroke-linecap': 'round', opacity: .85 }, keyG);
         el('path', { d: `M${X} ${Y} L${X - 12 * Math.cos(ang - .4)} ${Y - 12 * Math.sin(ang - .4)} L${X - 12 * Math.cos(ang + .4)} ${Y - 12 * Math.sin(ang + .4)} z`, fill: col }, keyG);
         el('text', { x: X + 16 * Math.cos(ang) - 11, y: Y + 16 * Math.sin(ang) + 8, 'font-size': 24, fill: col, 'font-family': 'Songti TC, Noto Serif TC, serif', text: K[i][0] }, keyG);
@@ -628,10 +628,10 @@ window.HOOKS = {};
         g.fillStyle = C.mute; g.font = '13px "JetBrains Mono"'; g.fillText(t, b.X + 6, b.Y);
       });
       const Q = coords().map(project), Q1 = Q.slice(0, 5), Q2 = Q.slice(5);
-      for (let i = 0; i < 4; i++) { if (vis1 > .01) line(Q1[i], Q1[i + 1], C.blue, 6, null, .85 * vis1); if (vis2 > .01) line(Q2[i], Q2[i + 1], '#12b5cb', 6, null, .85 * vis2); }
+      for (let i = 0; i < 4; i++) { if (vis1 > .01) line(Q1[i], Q1[i + 1], C.blue, 6, null, .85 * vis1); if (vis2 > .01) line(Q2[i], Q2[i + 1], '#a3202b', 6, null, .85 * vis2); }
       // the pairs 明–清, 月–泉 … : loose while the verses are read apart, tight once they see each other
       for (let i = 0; i < 5; i++) line(Q1[i], Q2[i], mix > .5 ? C.green : C.faint, 2 + 2 * ease(mix), [8, 7], (.35 + .6 * ease(mix)) * both);
-      const pts = Q1.map((q, i) => ({ q, c: chars1[i], col: C.blue, a: vis1 })).concat(Q2.map((q, i) => ({ q, c: chars2[i], col: '#12b5cb', a: vis2 }))).filter(p => p.a > .01);
+      const pts = Q1.map((q, i) => ({ q, c: chars1[i], col: C.blue, a: vis1 })).concat(Q2.map((q, i) => ({ q, c: chars2[i], col: '#a3202b', a: vis2 }))).filter(p => p.a > .01);
       pts.sort((a, b) => a.q.d - b.q.d);
       pts.forEach(({ q, c, col, a }) => {
         const r = 27 * q.s;
