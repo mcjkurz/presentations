@@ -442,11 +442,13 @@ window.HOOKS = {};
   /* ───────────────────────── poem: highlight the couplet under the classifier */
   H['s-poem'] = {
     render(step) {
-      const ln = [...document.querySelectorAll('#poem .ln')];
-      ln[1].classList.toggle('hl', step < 5);
-      ln[3].classList.toggle('hl', step >= 5 && step < 8);
+      const ln = [...document.querySelectorAll('#clf-grid .ln')];
+      ln[1].classList.toggle('on', step >= 1);                       // the parallel couplet (0.97)
+      ln[3].classList.toggle('on', step >= 4); ln[3].classList.add('no');   // the free couplet (0.02), shown neutral
     },
   };
+
+
 
   /* ───────────────────────── regulated verse: the middle two couplets are parallel by rule */
   H['s-reg'] = {
@@ -454,7 +456,7 @@ window.HOOKS = {};
       const ln = [...document.querySelectorAll('#reg-poem .ln')];
       ln.forEach((l, i) => {
         const mid = i === 1 || i === 2;
-        l.classList.toggle('meso', step >= 1 && mid);
+        l.classList.toggle('par', step >= 1 && mid);
         l.classList.toggle('hl', step >= 1 && mid);
         l.classList.toggle('hl2', step >= 2 && !mid);
       });

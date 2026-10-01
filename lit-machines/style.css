@@ -521,3 +521,26 @@ small.gl { display: block; font-family: var(--sans); font-size: 12px; letter-spa
 
 #s-history .qs .q-item { font-size: 20px; margin-bottom: 8px; }
 #s-history .qs .q-item::before { top: 6px; }
+
+/* regulated verse: the two parallel couplets are marked by colour of the type alone, no box */
+#reg-poem .ln.par { color: var(--green); }
+#reg-poem .ln.par .tr { color: var(--green); }
+#reg-poem .ln.par .cp-name, #reg-poem .ln.par .cp-name .zh { color: var(--green); }
+
+/* classifier slide: arrows leave the couplets of the poem itself */
+.clf-grid { display: grid; grid-template-columns: 560px 1fr; column-gap: 24px; align-items: center; }
+.clf-grid .ln { font-family: var(--cjk); font-size: 27px; letter-spacing: .1em; color: var(--mute); white-space: nowrap; padding: 3px 10px; margin: 3px 0; border: 2px solid transparent; border-radius: 8px; transition: color .4s, border-color .4s, background .4s; }
+.clf-grid .ln .tr { display: block; font-family: var(--serif); font-style: italic; font-size: 14.5px; letter-spacing: 0; line-height: 1.25; margin-top: 1px; white-space: nowrap; color: var(--mute); }
+.clf-grid .ln.on { color: var(--ink); border-color: var(--green); background: var(--green-bg); }
+.clf-grid .ln.on.no { border-color: var(--faint); background: var(--panel); }
+.clf-r { display: grid; grid-template-columns: 56px 130px 56px 80px; gap: 6px; align-items: center; }
+.clf-r .pa { font-size: 30px; color: var(--mute); text-align: center; line-height: 1; }
+.clf-r .box { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink2); border: 1px solid var(--faint); border-radius: 999px; padding: 8px 0; text-align: center; }
+.clf-r .score { font-family: var(--mono); font-size: 32px; text-align: left; }
+
+/* keys & queries: all ten characters in one row, a gap between the two lines */
+.kq-one { display: flex; gap: 22px; align-items: flex-end; }
+.kq-one .kq-lab { text-align: left; margin-bottom: 6px; }
+.kq-one .kq-row { gap: 4px; }
+.kq-one .kq-cell { width: 41px; height: 56px; font-size: 24px; border-radius: 5px; }
+.kq-bar { margin-left: 0; width: 100%; max-width: 440px; }
