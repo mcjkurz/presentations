@@ -307,11 +307,14 @@ window.HOOKS = {};
       for (let l = 0; l < NL; l++) {
         const G = el('g', {}, svg), y = Y0 - l * DY, t = l / (NL - 1);
         const col = mix(C.blue, C.amber, t);
-        // attention links to the layer below: short range early, long range late
-        if (l > 0) for (let i = 0; i < chars.length; i++) {
-          const span = 1 + Math.floor(rnd() * (1 + l * 1.4));
-          const j = Math.max(0, Math.min(chars.length - 1, i + (rnd() < .5 ? -span : span)));
-          el('line', { x1: X0 + i * cw + cw / 2, y1: y + 7, x2: X0 + j * cw + cw / 2, y2: y + DY - 7, stroke: col, 'stroke-width': 1, opacity: .35 }, G);
+        // attention: every token is linked to every token of the layer below (a dense network);
+        // early layers weight near neighbours, later layers spread the weight over the whole sequence
+        if (l > 0) {
+          const spread = .8 + l * 1.6;
+          for (let i = 0; i < chars.length; i++) for (let j = 0; j < chars.length; j++) {
+            const w = Math.exp(-Math.abs(i - j) / spread);
+            el('line', { x1: X0 + i * cw + cw / 2, y1: y + 7, x2: X0 + j * cw + cw / 2, y2: y + DY - 7, stroke: col, 'stroke-width': .6 + .9 * w, opacity: .06 + .34 * w }, G);
+          }
         }
         for (let i = 0; i < chars.length; i++) el('rect', { x: X0 + i * cw + 4, y: y - 7, width: cw - 8, height: 14, rx: 3, fill: col, opacity: .25 + .6 * rnd() }, G);
         el('text', { x: X0 - 16, y: y + 4, 'text-anchor': 'end', 'font-size': 11, fill: C.mute, 'font-family': 'JetBrains Mono', text: `L${l + 1}` }, G);
@@ -470,7 +473,7 @@ window.HOOKS = {};
         const pa = proj(a), pb = proj(b); g.beginPath(); g.moveTo(pa.X, pa.Y); g.lineTo(pb.X, pb.Y); g.strokeStyle = C.faint; g.lineWidth = 1.2; g.stroke();
       });
       const nodes = [];
-      [[B, '#2f6fe0'], [other, '#12b5cb']].forEach(([pts, col]) => {
+      [[B, '#2f6fe0'], [other, '#c98200']].forEach(([pts, col]) => {
         const P = pts.map(proj);
         for (let i = 0; i < P.length - 1; i++) {
           const a = P[i], b = P[i + 1], ang = Math.atan2(b.Y - a.Y, b.X - a.X), r = 9;
@@ -585,10 +588,10 @@ window.HOOKS = {};
         g.fillStyle = C.mute; g.font = '13px "JetBrains Mono"'; g.fillText(t, b.X + 6, b.Y);
       });
       const Q = coords().map(project), Q1 = Q.slice(0, 5), Q2 = Q.slice(5);
-      for (let i = 0; i < 4; i++) { if (vis1 > .01) line(Q1[i], Q1[i + 1], C.blue, 6, null, .85 * vis1); if (vis2 > .01) line(Q2[i], Q2[i + 1], '#12b5cb', 6, null, .85 * vis2); }
+      for (let i = 0; i < 4; i++) { if (vis1 > .01) line(Q1[i], Q1[i + 1], C.blue, 6, null, .85 * vis1); if (vis2 > .01) line(Q2[i], Q2[i + 1], '#c98200', 6, null, .85 * vis2); }
       // the pairs 明–清, 月–泉 … : loose while the verses are read apart, tight once they see each other
       for (let i = 0; i < 5; i++) line(Q1[i], Q2[i], mix > .5 ? C.green : C.faint, 2 + 2 * ease(mix), [8, 7], (.35 + .6 * ease(mix)) * Math.min(vis1, vis2));
-      const pts = Q1.map((q, i) => ({ q, c: chars1[i], col: C.blue, a: vis1 })).concat(Q2.map((q, i) => ({ q, c: chars2[i], col: '#12b5cb', a: vis2 }))).filter(p => p.a > .01);
+      const pts = Q1.map((q, i) => ({ q, c: chars1[i], col: C.blue, a: vis1 })).concat(Q2.map((q, i) => ({ q, c: chars2[i], col: '#c98200', a: vis2 }))).filter(p => p.a > .01);
       pts.sort((a, b) => a.q.d - b.q.d);
       pts.forEach(({ q, c, col, a }) => {
         const r = 27 * q.s;
@@ -898,7 +901,7 @@ window.HOOKS = {};
   document.querySelectorAll('.slide[id^="s-body"]').forEach(retext);
 
   /* ── 1. stacked area of shares */
-  const cols = { hands: '#2f6fe0', head: '#6c9cf0', whole: '#16925a', heart: '#5bbd8c', eyes: '#7650d6', face: '#a48be3', mouth: '#0f8fa6' };
+  const cols = { hands: '#2f6fe0', head: '#6c9cf0', whole: '#16925a', heart: '#5bbd8c', eyes: '#7650d6', face: '#a48be3', mouth: '#c98200' };
   const minor = B.order.filter(r => !B.core.includes(r) && r !== 'organs' && r !== 'brain');
   const stack = [...B.core, ...minor, 'organs', 'brain'];
   const gcol = (r, step) => cols[r] || (step >= 2 && r === 'brain' ? C.coral : step >= 2 && r === 'organs' ? C.amber : '#d8d5cd');
