@@ -374,7 +374,7 @@ window.HOOKS = {};
     function arrow(svg, d, col, label, lx, ly) {
       const G = el('g', {}, svg);
       el('path', { d, fill: 'none', stroke: col, 'stroke-width': 2.5, 'marker-end': `url(#ah-${col === C.blue ? 'b' : 'a'})`, class: 'flow' }, G);
-      el('text', { x: lx, y: ly, 'text-anchor': 'middle', 'font-size': 18, fill: col, 'font-family': 'Instrument Serif', 'font-style': 'italic', text: label }, G);
+      el('text', { x: lx, y: ly, 'text-anchor': 'middle', 'font-size': 26, 'font-weight': 700, fill: col, 'font-family': 'Space Grotesk', text: label }, G);
       return G;
     }
     function build() {
@@ -388,16 +388,16 @@ window.HOOKS = {};
       const box = (cx, cy, t) => {
         const G = el('g', {}, svg);
         el('rect', { x: cx - 120, y: cy - 28, width: 240, height: 56, rx: 28, fill: '#fff', stroke: C.ink2 }, G);
-        el('text', { x: cx, y: cy + 9, 'text-anchor': 'middle', 'font-size': 28, fill: C.ink, 'font-family': 'Instrument Serif', text: t }, G);
+        el('text', { x: cx, y: cy + 9, 'text-anchor': 'middle', 'font-size': 30, 'font-weight': 500, fill: C.ink, 'font-family': 'Space Grotesk', text: t }, G);
         return G;
       };
       parts.axes = el('g', {}, svg);
       el('line', { x1: 552, x2: 552, y1: 92, y2: 468, stroke: C.faint, 'stroke-width': 1.5 }, parts.axes);
       el('line', { x1: 290, x2: 814, y1: 280, y2: 280, stroke: C.faint, 'stroke-width': 1.5 }, parts.axes);
-      el('text', { x: 566, y: 140, 'font-size': 13, fill: C.mute, 'font-family': 'JetBrains Mono', text: 'INTERTEXTUALITY' }, parts.axes);
-      el('text', { x: 566, y: 156, 'font-size': 12, fill: C.faint, text: 'symbolic sequences' }, parts.axes);
-      el('text', { x: 300, y: 270, 'font-size': 13, fill: C.mute, 'font-family': 'JetBrains Mono', text: 'INFRATEXTUALITY' }, parts.axes);
-      el('text', { x: 300, y: 300, 'font-size': 12, fill: C.faint, text: 'patterns of activation' }, parts.axes);
+      el('text', { x: 566, y: 152, 'font-size': 18, 'font-weight': 700, fill: C.ink, 'font-family': 'JetBrains Mono', text: 'INTERTEXTUALITY' }, parts.axes);
+      el('text', { x: 566, y: 176, 'font-size': 15, fill: C.mute, text: 'symbolic sequences' }, parts.axes);
+      el('text', { x: 300, y: 268, 'font-size': 18, 'font-weight': 700, fill: C.ink, 'font-family': 'JetBrains Mono', text: 'INFRATEXTUALITY' }, parts.axes);
+      el('text', { x: 300, y: 304, 'font-size': 15, fill: C.mute, text: 'patterns of activation' }, parts.axes);
       parts.narr = box(552, 50, 'narrative');
       parts.right = stack(svg, 855, 126, 1, C.blue);
       parts.a1 = arrow(svg, 'M676 50 C 860 50, 955 60, 955 118', C.blue, 'integration', 850, 36);

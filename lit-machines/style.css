@@ -6,6 +6,7 @@
 @font-face { font-family: "Inter"; src: url(vendor/fonts/inter-latin-wght-italic.woff2) format("woff2"); font-weight: 100 900; font-style: italic; }
 @font-face { font-family: "Instrument Serif"; src: url(vendor/fonts/instrument-serif-latin-400-normal.woff2) format("woff2"); font-weight: 400; font-style: normal; }
 @font-face { font-family: "Instrument Serif"; src: url(vendor/fonts/instrument-serif-latin-400-italic.woff2) format("woff2"); font-weight: 400; font-style: italic; }
+@font-face { font-family: "Space Grotesk"; src: url(vendor/fonts/space-grotesk-latin-wght-normal.woff2) format("woff2"); font-weight: 300 700; font-style: normal; size-adjust: 82%; } /* display face; size-adjust keeps it close to the old narrow serif so layouts do not overflow */
 @font-face { font-family: "JetBrains Mono"; src: url(vendor/fonts/jetbrains-mono-latin-wght-normal.woff2) format("woff2"); font-weight: 100 800; }
 
 :root {
@@ -23,7 +24,7 @@
   --violet: #7650d6;
   --blue-bg: #eaf1fd; --amber-bg: #fdf4e3; --coral-bg: #fdece8; --green-bg: #e5f5ec;
   --sans: "Inter", "PingFang TC", "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
-  --serif: "Inter", "PingFang TC", "Noto Sans TC", "Helvetica Neue", Arial, sans-serif; /* display face: was Instrument Serif */
+  --serif: "Space Grotesk", "PingFang TC", "Noto Sans TC", "Helvetica Neue", Arial, sans-serif; /* display face: was Instrument Serif */
   --mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
   --cjk: "Songti TC", "Noto Serif TC", "Source Han Serif TC", "STSong", serif;
   --cjk-sans: "PingFang TC", "Noto Sans TC", "Heiti TC", sans-serif;
@@ -51,7 +52,7 @@ body { font-family: var(--sans); color: var(--ink); -webkit-font-smoothing: anti
 #nav button:hover { background: var(--panel); }
 
 /* type */
-h1, h2 { font-family: var(--serif); font-weight: 500; margin: 0; letter-spacing: -.03em; }
+h1, h2 { font-family: var(--serif); font-weight: 500; margin: 0; letter-spacing: -.02em; }
 h2 { font-size: 58px; line-height: 1.02; margin-bottom: 22px; }
 h2 em, h1 em { font-style: normal; color: inherit; }
 p { margin: 0; }
@@ -433,3 +434,10 @@ small.gl { display: block; font-family: var(--sans); font-size: 12px; letter-spa
 #foot #num { pointer-events: auto; cursor: pointer; }
 #foot #num:hover { color: var(--mute); }
 #foot #num input { width: 3.2ch; font: inherit; letter-spacing: inherit; color: var(--ink); background: transparent; border: none; border-bottom: 1px solid var(--mute); padding: 0; text-align: right; outline: none; }
+/* quote slides (Paige, Arthur) */
+#s-tech .quote.xs, #s-tech2 .quote.xs { font-size: 22px; line-height: 1.28; }
+#s-tech .qcard.book.big, #s-tech2 .qcard.book.big { grid-template-columns: 170px 1fr; gap: 30px; }
+#s-tech .qcard.book.big img, #s-tech2 .qcard.book.big img { width: 170px; }
+#s-tech2 .callout { margin-top: 18px; }
+#s-tech2 .qcard.book.big { grid-template-columns: 140px 1fr; }
+#s-tech2 .qcard.book.big img { width: 140px; }
