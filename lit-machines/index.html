@@ -953,48 +953,44 @@
           <div class="quote-src" style="margin-top:8px">Claude Shannon, “Prediction and Entropy of Printed English” (1951)</div>
         </div>
       </div>
-      <figure class="fig" data-step="2" style="margin-top:18px"><img src="img/shannon54.png" alt="Shannon 1951, p. 54: original text and correctly guessed letters"><figcaption>Shannon’s experiment: a reader guesses the next letter, one at a time. Dashes mark letters guessed right away; only surprises are spelled out.</figcaption></figure>
+      <figure class="fig" data-step="1" style="margin-top:18px"><img src="img/shannon54.png" alt="Shannon 1951, p. 54: original text and correctly guessed letters"><figcaption>Shannon’s experiment: a reader guesses the next letter, one at a time. Dashes mark letters guessed right away; only surprises are spelled out.</figcaption></figure>
     </div>
-    <div style="flex:1;min-width:0" data-step="1">
-      <div class="row" style="gap:20px;align-items:flex-start">
+    <div style="flex:1;min-width:0">
+      <div class="row" data-step="2" style="gap:20px;align-items:flex-start">
         <figure class="fig" style="width:104px;flex:none"><img src="img/shklovsky-portrait.jpg" alt="Viktor Shklovsky" style="border:0;border-radius:3px"></figure>
         <div>
           <div class="quote sm" style="font-size:22px"><span class="mark">“</span>Art … increases the complexity and duration of perception.<span class="mark">”</span></div>
           <div class="quote-src" style="margin-top:8px">Viktor Shklovsky, “Art as Device” (1917)</div>
         </div>
       </div>
-      <div data-step="2" style="margin-top:22px">
+      <div data-step="3" style="margin-top:22px">
         <div class="quote sm" style="font-size:22px"><span class="mark">“</span>The technique of art is to make objects <b>‘unfamiliar’</b>, to make forms difficult, to increase the difficulty and length of perception.<span class="mark">”</span></div>
         <div class="quote-src" style="margin-top:8px">Shklovsky, <i>ostranenie</i>, “defamiliarization”</div>
       </div>
+      <div data-step="3" style="margin-top:18px">
+        <div class="quote sm" style="font-size:22px"><span class="mark">“</span>Art exists that one may recover the sensation of life; it exists to make one feel things, <b>to make the stone stony</b>.<span class="mark">”</span></div>
+        <div class="quote-src" style="margin-top:8px">Shklovsky, “Art as Device”</div>
+      </div>
     </div>
   </div>
-  <div class="callout blue" data-step="3" style="font-size:18px;margin-top:16px;padding:12px 22px"><b>Cognitive stylometry</b> takes Shannon’s question literally: a language model trained on a particular corpus stands in for a <b>historically situated reader</b>, and a text is measured as an interplay of familiarity and surprise.</div>
+  <div class="callout blue" data-step="4" style="font-size:18px;margin-top:16px;padding:12px 22px"><b>Cognitive stylometry</b> takes Shannon’s question literally: a language model trained on a particular corpus stands in for a <b>historically situated reader</b>, and a text is measured as an interplay of familiarity and surprise.</div>
   <div class="src">Portraits: Tekniska museet (CC BY 2.0); Wikimedia Commons (public domain). Shannon 1951, <i>Bell System Technical Journal</i> 30.1, p. 54.</div>
 </section>
 
-<!-- ═════════════ Pipeline + overfitting -->
+<!-- ═════════════ Pipeline: simulating a historical reader -->
 <section class="slide" id="s-pipeline" data-sec="cases">
   <h2>Simulating a <em>historical reader</em></h2>
-  <div class="row" style="gap:50px">
-    <div class="pipe" style="width:430px;flex:none">
-      <div class="pstep"><div class="pn">PRE-TRAIN</div><div class="pt">GPT, 223M parameters, one token per character</div><div class="pd">FineWeb-Edu Chinese · 1M passages · ≈ 900M characters</div></div>
-      <div class="parrow">↓</div>
-      <div class="pstep hot"><div class="pn">FINE-TUNE × 5 EPOCHS</div><div class="pt">Selected Works of Mao Zedong 毛泽东选集</div><div class="pd">7 volumes, 1925–1976 · 1.77M characters</div></div>
-      <div class="parrow">↓</div>
-      <div class="pstep"><div class="pn">MEASURE</div><div class="pt">Perplexity on Mao vs. <i>Top 100 Chinese Novels of the 20th Century</i></div></div>
-    </div>
-    <div class="grow">
-      <svg id="ppl-chart" viewBox="0 0 560 380" style="max-height:330px"></svg>
-      <div class="callout" data-step="3" style="font-size:17px;margin-top:0;padding:12px 22px"><b>Cognitive overfitting</b>: as the model becomes fluent in Maospeak (the stock language of Maoist politics), fiction grows more alien to it.</div>
-    </div>
+  <div class="pipe2">
+    <div class="pstep" data-step="1"><div class="pn">STEP 1 · PRE-TRAIN</div><div class="pt">Train a small GPT on Chinese web text</div><div class="pd">FineWeb-Edu Chinese · 1M passages · ≈ 900M characters<br>223M parameters, one token per character</div></div>
+    <div class="parrow" data-step="2">→</div>
+    <div class="pstep hot" data-step="2"><div class="pn">STEP 2 · FINE-TUNE × 5 EPOCHS</div><div class="pt">Continue training on Mao Zedong</div><div class="pd">Selected Works of Mao Zedong 毛泽东选集<br>7 volumes, 1925–1976 · 1.77M characters</div></div>
   </div>
   <div class="src">Kurzynski, “Cognitive Stylometry,” <i>Computational Humanities Research</i> 2 (2026): e1.</div>
 </section>
 
-<!-- ═════════════ Maospeak waterfalls -->
+<!-- ═════════════ Maospeak: cognitive overfitting -->
 <section class="slide" id="s-mao" data-sec="cases">
-  <h2 style="margin-bottom:10px">Maospeak: <em>waterfalls</em></h2>
+  <h2 style="margin-bottom:10px">Maospeak: <em>cognitive overfitting</em></h2>
   <div class="swap panel-swap">
     <img src="img/mao-annihilate.png" data-step="0" data-until="1" alt="">
     <img src="img/mao-enemies.png" data-step="1" data-until="2" alt="">
@@ -1048,9 +1044,9 @@
     </div>
   </div>
   <div class="callout blue" data-step="4" style="font-size:19px;margin-top:14px;padding:14px 24px">Literature does not defamiliarize by simply being surprising. It defamiliarizes by <b>combining</b> the surprising with the familiar in a new way. That particular arrangement of ground and figure is a text’s <b>cognitive signature</b>, and what counts as familiar depends on the reader’s history.</div>
-  <div data-step="5" style="margin-top:12px">
-    <div class="quote xs" style="font-size:19px"><span class="mark">“</span>Aesthetic pleasure results from the predictability of the non-focally processed rhythmic cycles in combination with the non-anomalous surprise of the focally processed melody.<span class="mark">”</span></div>
-    <div class="quote-src" style="margin-top:6px;font-size:13px">Patrick Colm Hogan (2016) &nbsp;·&nbsp; Kurzynski, “Cognitive Stylometry,” <i>Computational Humanities Research</i> 2 (2026): e1</div>
+  <div data-step="5" style="margin-top:10px">
+    <div class="quote xs" style="font-size:25px;line-height:1.25;max-width:1050px"><span class="mark">“</span>Aesthetic pleasure results from <b>the predictability of the non-focally processed rhythmic cycles</b> in combination with <b>the non-anomalous surprise of the focally processed melody</b>.<span class="mark">”</span></div>
+    <div class="quote-src" style="margin-top:6px;font-size:14px">Patrick Colm Hogan (2016) &nbsp;·&nbsp; Kurzynski, “Cognitive Stylometry,” <i>Computational Humanities Research</i> 2 (2026): e1</div>
   </div>
 </section>
 
@@ -1094,25 +1090,36 @@
 <!-- ═════════════ Where prediction ends -->
 <section class="slide" id="s-judgement" data-sec="cases">
   <h2>Where prediction <em>ends</em></h2>
-  <div class="qcards" style="gap:48px">
-    <div class="qcard">
-      <div class="mono c-mute" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">DETERMINATIVE JUDGEMENT</div>
-      <div class="quote sm">applies a rule already given</div>
-      <p class="body" style="font-size:18px;margin-top:10px">Prediction does this well: the most probable continuation of what the corpus already contains.</p>
-    </div>
-    <div class="qcard" data-step="1">
-      <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">REFLECTIVE JUDGEMENT</div>
-      <div class="quote sm">finds a rule for a case no existing rule covers</div>
-      <p class="body" style="font-size:18px;margin-top:10px">Prediction cannot do this, and a world run on it risks a “prison of probabilities.”</p>
+  <div class="row" style="gap:44px;align-items:flex-start">
+    <figure class="fig" style="width:170px;flex:none;margin:4px 0 0"><img src="img/cover-kant-machine.jpg" alt="Cover of Kant Machine: Critical Philosophy after AI" style="border:0;border-radius:2px;box-shadow:0 4px 14px rgba(0,0,0,.28)"><figcaption style="font-size:13px;margin-top:8px"><b>Yuk Hui</b>, <i>Kant Machine: Critical Philosophy after AI</i> (2026)</figcaption></figure>
+    <div class="grow">
+      <div class="qcards" style="gap:40px">
+        <div class="qcard">
+          <div class="mono c-mute" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">DETERMINATIVE JUDGEMENT</div>
+          <div class="quote sm">applies a rule already given</div>
+          <p class="body" style="font-size:18px;margin-top:10px">Prediction does this well: the most probable continuation of what the corpus already contains.</p>
+        </div>
+        <div class="qcard" data-step="1">
+          <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">REFLECTIVE JUDGEMENT</div>
+          <div class="quote sm">finds a rule for a case no existing rule covers</div>
+          <p class="body" style="font-size:18px;margin-top:10px">Prediction cannot do this, and a world run on it risks a “prison of probabilities.”</p>
+        </div>
+      </div>
+      <div class="cite" style="margin-top:14px;font-size:14px">Hui reads the third <i>Critique</i> as a “treatise on cybernetics”</div>
     </div>
   </div>
-  <div class="cite" style="margin-top:12px">Yuk Hui, <i>Kant Machine: Critical Philosophy after AI</i> (2026), reading the third <i>Critique</i> as a “treatise on cybernetics”</div>
-  <div class="callout blue" data-step="2" style="font-size:19px">In the classroom: surprisal is <b>evidence about the training distribution</b>, not a verdict on literary quality. Pair a close reading with a surprisal exercise on the same passage and ask where probabilistic evidence ends and interpretive judgement begins.</div>
+  <div class="callout blue" data-step="2" style="font-size:18px;margin-top:12px;padding:12px 24px">In the classroom: surprisal is <b>evidence about the training distribution</b>, not a verdict on literary quality. Pair a close reading with a surprisal exercise on the same passage and ask where probabilistic evidence ends and interpretive judgement begins.</div>
 </section>
 
+<!-- ═════════════ 03 Practical session: divider -->
+<section class="slide divider nokicker" id="s-div3" data-sec="practical">
+  <div class="big-n">03</div>
+  <h2>Practical <em>session</em></h2>
+  <p class="lead">A note on method, then our experience of building a research tool with an AI agent, and finally a step-by-step setup so you can do the same.</p>
+</section>
 
 <!-- ═════════════ Conclusion -->
-<section class="slide nokicker" id="s-conclusion" data-sec="cases">
+<section class="slide" id="s-conclusion" data-sec="practical">
   <h2>Notes on <em>method</em></h2>
   <div class="qcards" style="gap:48px">
     <div class="qcard">
@@ -1129,19 +1136,11 @@
   <div class="callout" data-step="2" style="font-size:20px">We are interested in language models only insofar as they tell us something new about literature. Findings about the texts outlast any particular model; findings about the model do not.</div>
 </section>
 
-
-<!-- ═════════════ 03 Practical session: divider -->
-<section class="slide divider nokicker" id="s-div3" data-sec="practical">
-  <div class="big-n">03</div>
-  <h2>Practical <em>session</em></h2>
-  <p class="lead">Two parts: first, our experience of building a research tool with an AI agent; then a step-by-step setup so you can do the same.</p>
-</section>
-
 <!-- ═════════════ BodyWords: building with an agent -->
 <section class="slide" id="s-ag-intro" data-sec="practical">
   <h2>Building <em>BodyWords</em> with an agent</h2>
   <p class="lead" style="font-size:24px;max-width:960px">We asked a coding agent to build a website that maps emotions onto the body in a novel, and then met everything that went wrong.</p>
-  <svg id="ag-svg" viewBox="0 0 1000 270" style="width:1000px;height:270px;margin-top:2px;display:block" aria-label="A person and a coding agent exchanging prompts and code, again and again">
+  <svg id="ag-svg" viewBox="0 0 1000 270" style="width:925px;height:250px;margin-top:0;display:block" aria-label="A person and a coding agent exchanging prompts and code, again and again">
     <style>
       .ag-t { font-family: Inter, sans-serif; font-size: 15px; }
       .ag-m { font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: .12em; }
@@ -1202,9 +1201,9 @@
     </g>
     <text class="ag-t ag-more" x="505" y="252" text-anchor="middle" fill="#6e6a62" font-style="italic">and so on…</text>
   </svg>
-  <div class="ev" style="margin-top:0;max-width:960px">
-    <div data-step="1"><b>The tool.</b> Counts literal organ ↔ emotion descriptions (“羞紅了臉”, “心中歡喜”) and paints them on an anatomical figure: colour is emotion, shade is strength, click an organ to read the passages.</div>
-    <div data-step="2"><b>The setup.</b> One prompt of ten requirements, written in plain language, to a coding agent (GLM-5.3 Flash; later DeepSeek for the repairs). No programming background assumed.</div>
+  <div class="ev" style="margin-top:0;max-width:1000px;font-size:17px">
+    <div data-step="1" style="font-size:17px;padding:9px 0"><b>The tool.</b> Counts literal organ ↔ emotion descriptions (<span class="zh">羞紅了臉</span> “her face flushed with shame”, <span class="zh">心中歡喜</span> “joy in the heart”) and paints them on an anatomical figure: colour is emotion, shade is strength, click an organ to read the passages.</div>
+    <div data-step="2" style="font-size:17px;padding:9px 0"><b>The setup.</b> One prompt of ten requirements, written in plain language, to a coding agent (GLM-5.3 Flash; later DeepSeek for the repairs). No programming background assumed.</div>
   </div>
 </section>
 

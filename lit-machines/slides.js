@@ -913,16 +913,7 @@ window.HOOKS = {};
       });
       built = true;
     }
-    H['s-pipeline'] = {
-      render(step) {
-        if (!built) build();
-        groups.forEach((G, i) => {
-          G.style.transition = `opacity .4s ${step >= 2 && i > 0 ? (i - 1) * .25 : 0}s`;
-          G.style.opacity = (i === 0 ? step >= 1 : step >= 2) ? 1 : 0;
-        });
-      },
-    };
-    document.getElementById('s-pipeline').dataset.steps = 3;
+    H['s-pipeline'] = { render() {} };   // the perplexity chart now lives on the next slide's figures
   })();
 })();
 
