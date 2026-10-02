@@ -154,6 +154,20 @@
   });
   addEventListener('resize', fit);
 
+  // red laser pointer: press C to swap the cursor for a red dot (C or Esc to switch back)
+  const laser = document.createElement('div');
+  laser.id = 'laser';
+  document.body.appendChild(laser);
+  let lx = -100, ly = -100;
+  const place = () => { laser.style.transform = `translate(${lx}px, ${ly}px)`; };
+  addEventListener('mousemove', e => { lx = e.clientX; ly = e.clientY; place(); }, { passive: true });
+  const setLaser = on => { document.body.classList.toggle('laser', on); place(); };
+  addEventListener('keydown', e => {
+    if (e.metaKey || e.ctrlKey || e.altKey || (e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName))) return;
+    if (e.key === 'c' || e.key === 'C') setLaser(!document.body.classList.contains('laser'));
+    else if (e.key === 'Escape') setLaser(false);
+  });
+
   fit();
   const m = location.hash.match(/^#(\d+)\.?(\d+)?/);
   if (m) go(+m[1] - 1, +(m[2] || 0)); else apply();
