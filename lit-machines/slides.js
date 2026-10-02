@@ -1353,26 +1353,20 @@ window.HOOKS = {};
 })();
 
 (function () {
-  /* ───────────────────────── Gärdenfors: the undivided space is slowly tesselated (cells grow from their prototypes) */
+  /* ───────────────────────── Gärdenfors: one region, two regions, three... the space is divided step by step */
   const H = window.HOOKS;
-  let raf = 0, t0 = 0, last = -1;
-  const DUR = 4200;
-  const set = r => document.querySelectorAll('#s-gardenfors .vcr').forEach(c => c.setAttribute('r', r));
-  const ease = t => 1 - Math.pow(1 - t, 2.2);
+  let timers = [], on = null;
+  const groups = () => [...document.querySelectorAll('#s-gardenfors .vk')];
+  const show = k => groups().forEach(g => { g.style.transition = 'opacity .35s'; g.style.opacity = (+g.dataset.k === k) ? 1 : 0; });
   H['s-gardenfors'] = {
     render(step) {
-      const grow = step >= 1;
-      if (grow === last) return;
-      last = grow;
-      cancelAnimationFrame(raf);
-      if (!grow) { set(0); return; }
-      t0 = performance.now();
-      const tick = now => {
-        const t = Math.min(1, (now - t0) / DUR);
-        set(ease(t) * 520);
-        if (t < 1) raf = requestAnimationFrame(tick);
-      };
-      raf = requestAnimationFrame(tick);
+      const run = step >= 1;
+      if (run === on) return;
+      on = run;
+      timers.forEach(clearTimeout); timers = [];
+      const n = groups().length;
+      if (!run) { groups().forEach(g => { g.style.transition = 'none'; g.style.opacity = 0; }); return; }
+      for (let k = 1; k <= n; k++) timers.push(setTimeout(() => show(k), (k - 1) * 520));
     },
   };
 })();
