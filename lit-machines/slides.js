@@ -781,7 +781,7 @@ window.HOOKS = {};
   /* ───────────────────────── prediction: a genealogy in four lanes (piecewise time scale) */
   (function () {
     const X0 = 180, W = 840;
-    const BP = [[1910, 0], [1940, .12], [1960, .40], [1995, .52], [2030, 1]];
+    const BP = [[1860, 0], [1910, .04], [1940, .14], [1960, .40], [1995, .52], [2030, 1]];
     const tx = yr => {
       for (let i = 1; i < BP.length; i++) if (yr <= BP[i][0]) {
         const [a, fa] = BP[i - 1], [b, fb] = BP[i];
@@ -795,22 +795,30 @@ window.HOOKS = {};
       ['LANGUAGE MODELS', 'machines that write', C.blue],
       ['LITERARY THEORY', 'readers as predictors', C.amber],
     ];
-    const LY = [44, 132, 220, 308];
-    // [year, lane, label, above?, anchor]
+    const LY = [44, 138, 232, 326];
+    // [year, lane, label, tier, anchor]; tier 1 above, 0 below, 3 higher above, 2 lower below
     const ev = [
       [1942, 0, 'Wiener: anti-aircraft predictor', 1, 'end'],
       [1948, 0, 'Cybernetics · A Mathematical Theory of Communication', 0, 'start'],
       [1951, 0, 'Shannon: Printed English', 1, 'start'],
-      [1999, 1, 'Rao & Ballard: predictive coding', 1, 'start'],
-      [2010, 1, 'Friston: free energy', 0, 'end'],
-      [2013, 1, 'Clark: “Whatever next?”', 0, 'start'],
+      [1867, 1, 'Helmholtz: unconscious inference', 1, 'start'],
+      [1980, 1, 'Kutas & Hillyard: N400', 1, 'start'],
+      [1999, 1, 'Rao & Ballard: predictive coding', 3, 'start'],
+      [2001, 1, 'Hale, Levy: surprisal theory', 0, 'start'],
+      [2010, 1, 'Friston: free energy', 2, 'end'],
+      [2013, 1, 'Clark: “Whatever next?”', 2, 'start'],
       [1913, 2, 'Markov: Eugene Onegin', 1, 'start'],
+      [1957, 2, 'Harris, Firth: distributional hypothesis', 1, 'start'],
+      [1990, 2, 'Elman: simple recurrent net', 0, 'start'],
+      [2013, 2, 'word2vec', 3, 'end'],
       [2017, 2, 'Transformer', 1, 'end'],
-      [2020, 2, 'Holtzman: human text ≠ most probable', 0, 'end'],
+      [2018, 2, 'BERT', 3, 'start'],
+      [2020, 2, 'Holtzman: human text ≠ most probable', 2, 'end'],
       [2022, 2, 'brains ≈ models', 1, 'start'],
       [2026, 2, 'homogenization', 0, 'start'],
       [1917, 3, 'Shklovsky: defamiliarization', 1, 'start'],
       [1956, 3, 'Meyer: musical expectation', 0, 'start'],
+      [1967, 3, 'Jauss: horizon of expectations', 3, 'start'],
       [1978, 3, 'Iser: wandering viewpoint', 1, 'start'],
       [2018, 3, 'Tobin: well-made surprise', 0, 'end'],
       [2020, 3, 'Kukkonen: probability designs', 1, 'start'],
@@ -818,7 +826,7 @@ window.HOOKS = {};
     let built = false, laneG = [];
     function build() {
       const svg = document.getElementById('genealogy');
-      const AY = 368;
+      const AY = 384;
       el('line', { x1: X0, x2: X0 + W, y1: AY, y2: AY, stroke: C.faint }, svg);
       [1920, 1940, 1950, 1960, 1980, 2000, 2010, 2020].forEach(yr => {
         el('line', { x1: tx(yr), x2: tx(yr), y1: AY - 4, y2: AY + 4, stroke: C.faint }, svg);
@@ -834,7 +842,7 @@ window.HOOKS = {};
         ev.filter(e => e[1] === i).forEach(([yr, , label, up, anchor]) => {
           const x = tx(yr);
           el('circle', { cx: x, cy: y, r: 5.5, fill: col }, G);
-          const ly = up ? y - 13 : y + 23;
+          const ly = up === 1 ? y - 13 : up === 3 ? y - 32 : up === 2 ? y + 41 : y + 23;
           const dx = anchor === 'end' ? -4 : 4;
           const t = el('text', { x: x + dx, y: ly, 'text-anchor': anchor, 'font-size': 13, fill: C.ink }, G);
           const ys = document.createElementNS(NS, 'tspan');
