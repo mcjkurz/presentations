@@ -1357,7 +1357,7 @@ window.HOOKS = {};
   const H = window.HOOKS;
   let timers = [], on = null;
   const groups = () => [...document.querySelectorAll('#s-gardenfors .vk')];
-  const show = k => groups().forEach(g => { g.style.transition = 'opacity .35s'; g.style.opacity = (+g.dataset.k === k) ? 1 : 0; });
+  const show = k => groups().forEach(g => { g.style.transition = 'opacity .35s'; g.style.opacity = (+g.dataset.k <= k) ? 1 : 0; });
   H['s-gardenfors'] = {
     render(step) {
       const run = step >= 1;
