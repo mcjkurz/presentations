@@ -275,6 +275,46 @@
   </div>
 </section>
 
+<!-- ═════════════ Hippocampus: a population code for semantics -->
+<section class="slide" id="s-hippo" data-sec="frame">
+  <h2>Meaning as a <em>population code</em></h2>
+  <div class="row" style="gap:44px">
+    <figure class="fig" style="width:440px;flex:none">
+      <img src="img/franch-embedding-space.png" alt="Words from the stories projected into a two-dimensional embedding space, coloured and labelled by semantic category: body parts, places, objects, emotional, actions, mental, social, numerical, visual, identity, function words">
+      <figcaption>Words from the stories as embedding vectors, coloured by category (Fig. 1j)</figcaption>
+    </figure>
+    <div class="grow ev">
+      <div data-step="1"><b>Recording.</b> Ten epilepsy patients listened to 47 minutes of spoken stories (7,346 words) while 356 single neurons were recorded in the <b>hippocampus</b>.</div>
+      <div data-step="2"><b>Meaning is encoded.</b> A word’s embedding vector predicts firing in most neurons, better than its phonemes, and even after controlling for grammar.</div>
+      <div data-step="3"><b>And it is distributed.</b> One word is carried by about 37 neurons; one neuron responds to several unrelated words. Meaning lives in the <b>pattern across neurons</b>, not in a neuron per word.</div>
+    </div>
+  </div>
+  <div class="src">Franch, Mickiewicz, Belanger, …, Hennig, and Hayden, “A Population Code for Semantics in Human Hippocampus,” <i>Nature Neuroscience</i> (2026); preprint doi 10.1101/2025.02.21.639601.</div>
+</section>
+
+<!-- ═════════════ Hippocampus: neural distance recapitulates semantic distance -->
+<section class="slide" id="s-hippo2" data-sec="frame">
+  <h2>Neural distance mirrors <em>semantic distance</em></h2>
+  <div class="row" style="gap:40px">
+    <div style="width:690px;flex:none">
+      <figure class="fig" style="width:560px">
+        <img src="img/franch-vectors.png" alt="Two panels: two word vectors in BERT space with the angle between them as semantic distance; two word vectors in firing-rate space of neurons with the angle as neural distance" style="border:0">
+        <figcaption>Fig. 3a–b</figcaption>
+      </figure>
+      <div class="ev" style="margin-top:2px">
+        <div data-step="1" style="font-size:16.5px;padding:8px 0"><b>Same geometry.</b> A word is a vector in the model and a vector of firing rates across neurons. Across 27 million word pairs, closer meaning means a more similar population pattern.</div>
+        <div data-step="2" style="font-size:16.5px;padding:8px 0"><b>Only if the model reads context.</b> BERT and GPT-2 show the effect; static Word2Vec does not. The same word evokes different patterns in different contexts, most for polysemous words.</div>
+        <div data-step="3" style="font-size:16.5px;padding:8px 0"><b>Meaning in context.</b> The code represents a word relative to its sentence, much as a language model does.</div>
+      </div>
+    </div>
+    <figure class="fig" data-step="2" style="width:230px;flex:none;margin-top:0">
+      <img src="img/franch-context.png" alt="Within-category cosine distance for GPT-2 layer 36, Word2Vec, BERT and neural responses, by word frequency category; an arrow marks the effect of context" style="border:0">
+      <figcaption>Fig. 3l: context pulls the model’s distances toward the neural ones</figcaption>
+    </figure>
+  </div>
+  <div class="src">Franch et al., “A Population Code for Semantics in Human Hippocampus,” <i>Nature Neuroscience</i> (2026).</div>
+</section>
+
 <!-- ═════════════ Hermeneutic circle -->
 <section class="slide" id="s-circle" data-sec="frame">
   <h2 style="font-size:46px;margin-bottom:6px">The hermeneutic circle, <em>reimagined</em></h2>
@@ -552,19 +592,50 @@
 <!-- ═════════════ Parallelism: spatial imagery -->
 <section class="slide" id="s-geometry" data-sec="cases">
   <h2>The geometry of <em>“parallelism”</em></h2>
-  <div class="row" style="gap:48px;align-items:flex-start;margin-top:4px">
-    <figure class="fig" style="width:330px;flex:none"><img src="img/duizhang-scroll.jpg" alt="Landscape with ceremonial guards, two horses, and two people ploughing with an ox" style="border:0;border-radius:6px;box-shadow:0 6px 20px rgba(0,0,0,.28), 0 1px 4px rgba(0,0,0,.18)"></figure>
+  <div class="row" style="gap:36px;align-items:flex-start;margin-top:4px">
+    <figure class="fig" style="width:260px;flex:none"><img src="img/duizhang-scroll.jpg" alt="Landscape with ceremonial guards, two horses, and two people ploughing with an ox" style="border:0;border-radius:6px;box-shadow:0 6px 20px rgba(0,0,0,.28), 0 1px 4px rgba(0,0,0,.18)"></figure>
     <div class="grow">
-      <p class="body" style="font-size:19px">The English word comes from the Greek <i>parallelos</i>, “side by side”: <b>a spatial image</b>. The Chinese terms are just as spatial.</p>
+      <p class="body" style="font-size:17px;line-height:1.45">The English word comes from the Greek <i>parallelos</i>, “side by side”: <b>a spatial image</b>. The Chinese terms are just as spatial.</p>
       <div class="ev" style="margin-top:8px">
-        <div data-step="1" style="font-size:19px"><span class="zh" style="font-size:24px">對仗</span> <span class="pinyin">duìzhàng</span><span class="cite">the symmetrical formation of ceremonial processions</span></div>
-        <div data-step="2" style="font-size:19px"><span class="zh" style="font-size:24px">對偶</span> <span class="pinyin">duì’ǒu</span><span class="cite">a pair of people ploughing side by side</span></div>
-        <div data-step="3" style="font-size:19px"><span class="zh" style="font-size:24px">駢文</span> <span class="pinyin">piánwén</span><span class="cite">two horses harnessed abreast</span></div>
+        <div data-step="1" style="font-size:17px;padding:8px 0"><span class="zh" style="font-size:22px">對仗</span> <span class="pinyin">duìzhàng</span><span class="cite">the symmetrical formation of ceremonial processions</span></div>
+        <div data-step="2" style="font-size:17px;padding:8px 0"><span class="zh" style="font-size:22px">對偶</span> <span class="pinyin">duì’ǒu</span><span class="cite">a pair of people ploughing side by side</span></div>
+        <div data-step="3" style="font-size:17px;padding:8px 0"><span class="zh" style="font-size:22px">駢文</span> <span class="pinyin">piánwén</span><span class="cite">two horses harnessed abreast</span></div>
       </div>
-      <p class="body" data-step="4" style="font-size:19px;margin-top:12px">These images have become <b>dead metaphors</b>. If parallelism is a spatial relation, perhaps we can measure it in a space.</p>
+      <p class="body" data-step="4" style="font-size:17px;line-height:1.45;margin-top:8px">These images have become <b>dead metaphors</b>. If parallelism is a spatial relation, perhaps we can measure it in a space.</p>
+    </div>
+    <div data-step="4" style="width:350px;flex:none;background:var(--panel);border-radius:8px;padding:12px 14px 10px">
+      <div style="font-family:var(--sans);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:600">Vector semantics</div>
+      <svg viewBox="0 64 320 226" style="width:320px;height:226px;display:block;font-family:var(--sans)">
+        <defs>
+          <marker id="vs-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7b7973"/></marker>
+          <marker id="vs-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e2472a"/></marker>
+          <marker id="vs-b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fe0"/></marker>
+        </defs>
+        <g stroke="#7b7973" stroke-width="1.6" fill="none" opacity=".75">
+          <line x1="30" y1="262" x2="117" y2="198" marker-end="url(#vs-g)"/>
+          <line x1="30" y1="262" x2="226" y2="214" marker-end="url(#vs-g)"/>
+          <line x1="30" y1="262" x2="130" y2="96" marker-end="url(#vs-g)"/>
+          <line x1="30" y1="262" x2="239" y2="112" marker-end="url(#vs-g)"/>
+        </g>
+        <g fill="#141413" font-size="15" font-weight="600">
+          <circle cx="120" cy="196" r="4"/><text x="64" y="188">man <tspan class="zh" font-size="14" font-weight="400" fill="#7b7973">男</tspan></text>
+          <circle cx="229" cy="212" r="4"/><text x="238" y="226">woman <tspan class="zh" font-size="14" font-weight="400" fill="#7b7973">女</tspan></text>
+          <circle cx="133" cy="92" r="4"/><text x="76" y="88">king <tspan class="zh" font-size="14" font-weight="400" fill="#7b7973">王</tspan></text>
+          <circle cx="242" cy="108" r="4"/><text x="252" y="100">queen <tspan class="zh" font-size="14" font-weight="400" fill="#7b7973">后</tspan></text>
+        </g>
+        <g data-step="5">
+          <line x1="127" y1="196" x2="219" y2="211" stroke="#e2472a" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#vs-c)"/>
+          <line x1="140" y1="92" x2="232" y2="107" stroke="#e2472a" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#vs-c)"/>
+          <text x="215" y="248" font-size="13" fill="#e2472a" font-weight="600" text-anchor="middle">“female” direction</text>
+          <line x1="121" y1="188" x2="132" y2="103" stroke="#2f6fe0" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#vs-b)"/>
+          <line x1="230" y1="204" x2="241" y2="119" stroke="#2f6fe0" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#vs-b)"/>
+          <text x="196" y="160" font-size="13" fill="#2f6fe0" font-weight="600" text-anchor="middle">“royal” direction</text>
+        </g>
+      </svg>
+      <div style="font-size:13.5px;line-height:1.45;color:var(--ink2)">Every word becomes a list of numbers: <b>a point, an arrow</b>. Words used alike sit close together, and a <b>relation is a direction</b>.</div>
     </div>
   </div>
-  <div class="callout" data-step="5" style="font-size:18px;margin-top:14px;padding:12px 22px"><b>Vector poetics.</b> A language model places every line in a high-dimensional space. Parallelism becomes a question of geometry: are the two verses laid out side by side?</div>
+  <div class="callout" data-step="5" style="font-size:17px;margin-top:10px;padding:10px 20px"><b>Vector poetics.</b> A language model places every line in a high-dimensional space. Parallelism becomes a question of geometry: are the two verses laid out side by side?</div>
   <div class="src">Kurzynski, “Jakobson’s ‘Poetic Function’ in Vector Space: Parallelism, Cognitive Geometry, and Classical Chinese Verse,” EADH 2026.</div>
 </section>
 
