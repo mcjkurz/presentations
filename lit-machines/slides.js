@@ -1351,3 +1351,28 @@ window.HOOKS = {};
   }
   ['s-bw-feel', 's-bw-parts', 's-bw-chars'].forEach(id => { H[id] = { enter: build, render: build }; });
 })();
+
+(function () {
+  /* ───────────────────────── Gärdenfors: the undivided space is slowly tesselated (cells grow from their prototypes) */
+  const H = window.HOOKS;
+  let raf = 0, t0 = 0, last = -1;
+  const DUR = 4200;
+  const set = r => document.querySelectorAll('#s-gardenfors .vcr').forEach(c => c.setAttribute('r', r));
+  const ease = t => 1 - Math.pow(1 - t, 2.2);
+  H['s-gardenfors'] = {
+    render(step) {
+      const grow = step >= 1;
+      if (grow === last) return;
+      last = grow;
+      cancelAnimationFrame(raf);
+      if (!grow) { set(0); return; }
+      t0 = performance.now();
+      const tick = now => {
+        const t = Math.min(1, (now - t0) / DUR);
+        set(ease(t) * 520);
+        if (t < 1) raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    },
+  };
+})();
