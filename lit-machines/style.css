@@ -21,7 +21,7 @@
   --coral: #e2472a;    /* emphasis / the interpreted */
   --green: #16925a;    /* deterministic / aligned */
   --violet: #7650d6;
-  --blue-bg: #eaf1fd; --amber-bg: #fdf4e3; --coral-bg: #fdece8; --green-bg: #e5f5ec;
+  --cyan: #14a3c7; --cyan-bg: #e3f4f9; --blue-bg: #eaf1fd; --amber-bg: #fdf4e3; --coral-bg: #fdece8; --green-bg: #e5f5ec;
   --sans: "Inter", "PingFang TC", "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
   --serif: "Instrument Serif", "Songti TC", "Noto Serif TC", "Source Han Serif TC", Georgia, serif;
   --mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
@@ -126,8 +126,8 @@ kbd { font-family: var(--mono); font-size: 11px; border: 1px solid var(--faint);
 /* ─── quote pair / cards ─── */
 .qcards { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 12px; }
 .qcard { border-top: 1px solid var(--faint); padding-top: 22px; }
-.callout { margin-top: 28px; padding: 18px 26px; border-left: 2px solid var(--coral); background: var(--coral-bg); font-size: 22px; line-height: 1.45; color: var(--ink); max-width: 1000px; }
-.callout.blue { border-left-color: var(--blue); background: var(--blue-bg); }
+.callout { margin-top: 28px; padding: 18px 26px; border-left: 2px solid var(--cyan); background: var(--cyan-bg); font-size: 22px; line-height: 1.45; color: var(--ink); max-width: 1000px; }
+.callout.blue { border-left-color: var(--cyan); background: var(--cyan-bg); }
 .callout.amber { border-left-color: var(--amber); background: var(--amber-bg); }
 
 /* ─── polytemporality: log timeline ─── */
@@ -397,7 +397,7 @@ small.gl { display: block; font-family: var(--sans); font-size: 12px; letter-spa
 #stage { transition: background .25s ease; }
 #stage.dark { --bg: #0b0e14; --ink: #f4f1ea; --ink2: #c8ccd6; --mute: #8b93a5; --faint: #4a5163; --line: #262c39; --panel: #141a24;
   --blue: #6c9cff; --coral: #ff7a5c; --amber: #f0b13a; --green: #3fcf8e;
-  --blue-bg: rgba(108,156,255,.13); --amber-bg: rgba(240,177,58,.13); --coral-bg: rgba(255,122,92,.13); --green-bg: rgba(63,207,142,.13); }
+  --cyan-bg: rgba(40,190,225,.14); --blue-bg: rgba(108,156,255,.13); --amber-bg: rgba(240,177,58,.13); --coral-bg: rgba(255,122,92,.13); --green-bg: rgba(63,207,142,.13); }
 .bw-legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 4px 0 14px; font: 500 14px var(--sans); color: var(--ink2); }
 .bw-legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 7px; vertical-align: -1px; }
 .bw-cols { display: flex; gap: 40px; justify-content: center; margin-top: 4px; }
