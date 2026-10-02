@@ -1174,22 +1174,20 @@
 <!-- ═════════════ Maospeak: cognitive overfitting -->
 <section class="slide" id="s-mao" data-sec="cases">
   <h2 style="margin-bottom:10px">Maospeak: <em>cognitive overfitting</em></h2>
-  <div style="display:flex;align-items:flex-start">
-    <div class="swap panel-swap">
+  <div class="swap panel-swap">
       <img src="img/mao-annihilate.png" data-step="0" data-until="1" alt="">
       <img src="img/mao-enemies.png" data-step="1" data-until="2" alt="">
       <img src="img/mao-soviet.png" data-step="2" alt="">
     </div>
-  <figure style="flex:none;width:190px;margin:0 0 0 24px;align-self:flex-start"><img src="img/dazibao.jpg" alt="Crowd reading a big-character poster (dazibao) during the Cultural Revolution" style="width:100%;display:block;border-radius:3px;box-shadow:0 3px 12px rgba(0,0,0,.28)"><figcaption style="font-family:var(--sans);font-size:11px;line-height:1.3;color:var(--mute);margin-top:4px">Reading a <i>dazibao</i> (big-character poster), 1967</figcaption></figure>
-  </div>
   <div class="swap" style="margin-top:10px">
-    <p class="body" data-step="0" data-until="1"><span class="zh c-coral">坚决、彻底、干净、全部地消灭</span> “resolutely, thoroughly, wholly, and completely annihilate”: four stacked adverbs surprise the base model and become automatic after fine-tuning.</p>
+    <p class="body" data-step="0" data-until="1" style="padding-right:190px"><span class="zh c-coral">坚决、彻底、干净、全部地消灭</span> “resolutely, thoroughly, wholly, and completely annihilate”: four stacked adverbs surprise the base model and become automatic after fine-tuning.</p>
     <p class="body" data-step="1" data-until="2"><span class="zh c-coral">地、富、反、坏、右</span> “landlords, rich peasants, counter-revolutionaries, bad elements, Rightists”: nonsense to the base model, a canonical list after five epochs.</p>
     <p class="body" data-step="2" data-until="3"><span class="zh c-coral">苏修叛徒集团</span> “the Soviet revisionist renegade clique”: Cold War jargon, massive spikes that collapse epoch by epoch.</p>
     <div class="callout" data-step="3" style="margin-top:0;font-size:19px;max-width:900px">The first character surprises; the rest cascades with near-certainty. Maospeak narrows the space of valid continuations.</div>
   </div>
   <div class="cite" style="margin-top:8px">yellow: base model · orange → red: fine-tuning epochs 1–5 · perplexity on a log scale</div>
   <div class="src">Kurzynski, “Cognitive Stylometry,” <i>Computational Humanities Research</i> 2 (2026): e1, Fig. 2.</div>
+  <figure data-step="0" data-until="1" style="position:absolute;right:88px;bottom:66px;width:160px;margin:0;z-index:2"><img src="img/dazibao.jpg" alt="Crowd reading a big-character poster (dazibao) during the Cultural Revolution" style="width:100%;display:block;border-radius:3px;box-shadow:0 3px 12px rgba(0,0,0,.28)"><figcaption style="font-family:var(--sans);font-size:11px;line-height:1.3;color:var(--mute);margin-top:3px;text-align:right">Reading a <i>dazibao</i> (big-character poster), 1967</figcaption></figure>
 </section>
 
 <!-- ═════════════ Literature becomes unfamiliar -->
