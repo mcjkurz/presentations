@@ -608,8 +608,8 @@
       <svg viewBox="0 64 320 226" style="width:320px;height:226px;display:block;font-family:var(--sans)">
         <defs>
           <marker id="vs-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7b7973"/></marker>
-          <marker id="vs-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e2472a"/></marker>
-          <marker id="vs-b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fe0"/></marker>
+          <marker id="vs-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7650d6"/></marker>
+          <marker id="vs-b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#14a3c7"/></marker>
         </defs>
         <g stroke="#7b7973" stroke-width="1.6" fill="none" opacity=".75">
           <line x1="30" y1="262" x2="117" y2="198" marker-end="url(#vs-g)"/>
@@ -624,12 +624,12 @@
           <circle cx="242" cy="108" r="4"/><text x="252" y="100">queen <tspan class="zh" font-size="14" font-weight="400" fill="#7b7973">后</tspan></text>
         </g>
         <g data-step="5">
-          <line x1="127" y1="196" x2="219" y2="211" stroke="#e2472a" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#vs-c)"/>
-          <line x1="140" y1="92" x2="232" y2="107" stroke="#e2472a" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#vs-c)"/>
-          <text x="215" y="248" font-size="13" fill="#e2472a" font-weight="600" text-anchor="middle">“female” direction</text>
-          <line x1="121" y1="188" x2="132" y2="103" stroke="#2f6fe0" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#vs-b)"/>
-          <line x1="230" y1="204" x2="241" y2="119" stroke="#2f6fe0" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#vs-b)"/>
-          <text x="196" y="160" font-size="13" fill="#2f6fe0" font-weight="600" text-anchor="middle">“royal” direction</text>
+          <line x1="127" y1="196" x2="219" y2="211" stroke="#7650d6" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#vs-c)"/>
+          <line x1="140" y1="92" x2="232" y2="107" stroke="#7650d6" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#vs-c)"/>
+          <text x="215" y="248" font-size="13" fill="#7650d6" font-weight="600" text-anchor="middle">“female” direction</text>
+          <line x1="121" y1="188" x2="132" y2="103" stroke="#14a3c7" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#vs-b)"/>
+          <line x1="230" y1="204" x2="241" y2="119" stroke="#14a3c7" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#vs-b)"/>
+          <text x="196" y="160" font-size="13" fill="#14a3c7" font-weight="600" text-anchor="middle">“royal” direction</text>
         </g>
       </svg>
       <div style="font-size:13.5px;line-height:1.45;color:var(--ink2)">Every word becomes a list of numbers: <b>a point, an arrow</b>. Words used alike sit close together, and a <b>relation is a direction</b>.</div>
@@ -792,7 +792,7 @@
   <div class="row" style="gap:30px">
     <div style="width:600px;flex:none">
       <h2 style="font-size:48px">Sense <em>trajectories</em></h2>
-      <div class="zh" style="font-size:34px;letter-spacing:.14em;margin-bottom:4px"><span class="c-coral">池</span>邊樹影接，<span class="c-amber">峯</span>外月華生</div>
+      <div class="zh" style="font-size:34px;letter-spacing:.14em;margin-bottom:4px"><span class="c-coral">池</span>邊樹影接，<span class="c-amber">峯</span>外月華生。</div>
       <div class="small" style="margin:6px 0 22px;font-family:var(--serif);font-style:italic;font-size:18px;white-space:nowrap">By the pond the tree shadows meet; beyond the peak the moon’s glow is born.</div>
       <div class="stat" data-step="1"><span class="k">① the character’s <b>general sense</b> across the corpus</span></div>
       <div class="stat" data-step="2"><span class="k">② read <b>in its own line</b></span></div>
@@ -1068,7 +1068,7 @@
     </div>
     <div class="pa3" data-step="1"><span>pre-train</span><i>→</i></div>
     <div class="pp" data-step="1">
-      <div class="pp-pic"><img src="img/fineweb-edu.jpg" alt="FineWeb-Edu: the finest collection of educational content the web has to offer"></div>
+      <div class="pp-pic"><img src="img/chinese-fineweb-edu.jpg" alt="Chinese FineWeb-Edu dataset logo"></div>
       <div class="pp-t"><div class="pn">THE CORPUS</div><b>FineWeb-Edu Chinese</b><span>1M passages · ≈ 900M characters</span></div>
     </div>
     <div class="pa3 hot" data-step="2"><span>fine-tune × 5 epochs</span><i>→</i></div>
@@ -1121,17 +1121,17 @@
   <div style="display:flex;gap:28px">
     <div style="flex:1;min-width:0">
       <div class="mono c-coral" data-step="1" style="font-size:12px;letter-spacing:.12em">PROPAGANDA · ALL GROUND</div>
-      <svg id="sig1" viewBox="0 0 340 170" style="width:100%;height:170px;overflow:visible"></svg>
+      <svg id="sig1" viewBox="0 0 340 170" style="width:100%;height:170px;overflow:visible;opacity:0"></svg>
       <p class="body" data-step="1" style="font-size:16px;line-height:1.45">Meaning is backgrounded through <b>repetition</b>. Everything is familiar: cognitive overfitting.</p>
     </div>
     <div style="flex:1;min-width:0">
       <div class="mono c-mute" data-step="2" style="font-size:12px;letter-spacing:.12em">NOISE · ALL SURPRISE</div>
-      <svg id="sig2" viewBox="0 0 340 170" style="width:100%;height:170px;overflow:visible"></svg>
+      <svg id="sig2" viewBox="0 0 340 170" style="width:100%;height:170px;overflow:visible;opacity:0"></svg>
       <p class="body" data-step="2" style="font-size:16px;line-height:1.45">Anomalous surprise: with no familiar ground, there is nothing to recognize the surprise against.</p>
     </div>
     <div style="flex:1;min-width:0">
       <div class="mono c-blue" data-step="3" style="font-size:12px;letter-spacing:.12em">LITERATURE · GROUND + FIGURE</div>
-      <svg id="sig3" viewBox="0 0 340 170" style="width:100%;height:170px;overflow:visible"></svg>
+      <svg id="sig3" viewBox="0 0 340 170" style="width:100%;height:170px;overflow:visible;opacity:0"></svg>
       <p class="body" data-step="3" style="font-size:16px;line-height:1.45">A familiar rhythm broken by surprises the reader can still <b>recognize</b> once they arrive: non-anomalous surprise.</p>
     </div>
   </div>

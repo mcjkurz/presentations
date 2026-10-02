@@ -280,7 +280,7 @@ kbd { font-family: var(--mono); font-size: 11px; border: 1px solid var(--faint);
 /* ─── figures from the literature, evidence lists, book covers ─── */
 .fig { margin: 0; }
 .fig img { width: 100%; display: block; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
-.fig figcaption { font-family: var(--sans); font-size: 13px; line-height: 1.5; color: var(--mute); margin-top: 8px; }
+.fig figcaption { font-family: var(--sans); font-size: 14px; line-height: 1.5; color: var(--mute); margin-top: 8px; }
 .ev > div { padding: 13px 0; border-top: 1px solid var(--line); font-size: 18.5px; line-height: 1.45; color: var(--ink2); font-weight: 350; }
 .ev > div b { color: var(--ink); font-weight: 600; }
 .ev .cite { display: block; margin-top: 5px; }
@@ -306,7 +306,7 @@ kbd { font-family: var(--mono); font-size: 11px; border: 1px solid var(--faint);
 .fchunk span + span { border-left: 1px solid rgba(0,0,0,.08); }
 .fchunk .det { background: var(--green-bg); color: var(--green); }
 .fchunk .prob { background: var(--coral-bg); color: var(--coral); }
-.src { position: absolute; left: 88px; right: 88px; bottom: 44px; font-family: var(--sans); font-size: 12.5px; line-height: 1.4; color: var(--mute); z-index: 3; }
+.src { position: absolute; left: 88px; right: 88px; bottom: 42px; font-family: var(--sans); font-size: 14.5px; line-height: 1.3; color: var(--mute); z-index: 3; }
 .src::before { content: none; }
 
 /* scale slide */
@@ -586,3 +586,4 @@ table.res tr.hl td { background: var(--coral-bg); font-weight: 700; color: var(-
 /* display formulas (KaTeX, pre-rendered) */
 .fn-tex .katex-display { margin: 0; text-align: left; }
 .fn-tex .katex-display > .katex { text-align: left; }
+#s-seqhier .ev > div { padding: 8px 0; }

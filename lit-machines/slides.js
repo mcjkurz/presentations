@@ -536,7 +536,7 @@ window.HOOKS = {};
       const a = attn();
       cells.forEach((c, i) => { c.style.background = viridis(a[i] / .5); });
       const [X, Y] = pt(q), ang = Math.atan2(Y - O[1], X - O[0]);
-      qg.line.setAttribute('x2', X); qg.line.setAttribute('y2', Y);
+      qg.line.setAttribute('x2', X - 12 * Math.cos(ang)); qg.line.setAttribute('y2', Y - 12 * Math.sin(ang));
       qg.head.setAttribute('d', `M${X} ${Y} L${X - 16 * Math.cos(ang - .38)} ${Y - 16 * Math.sin(ang - .38)} L${X - 16 * Math.cos(ang + .38)} ${Y - 16 * Math.sin(ang + .38)} z`);
       qg.dot.setAttribute('cx', X); qg.dot.setAttribute('cy', Y);
       qg.lab.setAttribute('x', X + 26 * Math.cos(ang)); qg.lab.setAttribute('y', Y + 26 * Math.sin(ang) + 5);
@@ -548,7 +548,7 @@ window.HOOKS = {};
       while (keyG.firstChild) keyG.removeChild(keyG.firstChild);
       KV.forEach((k, i) => {
         const [X, Y] = pt(k), col = K[i][3] === 1 ? C.blue : '#12b5cb', ang = Math.atan2(Y - O[1], X - O[0]);
-        el('line', { x1: O[0], y1: O[1], x2: X, y2: Y, stroke: col, 'stroke-width': 3, 'stroke-linecap': 'round', opacity: .85 }, keyG);
+        el('line', { x1: O[0], y1: O[1], x2: X - 9 * Math.cos(ang), y2: Y - 9 * Math.sin(ang), stroke: col, 'stroke-width': 3, 'stroke-linecap': 'butt', opacity: .85 }, keyG);
         el('path', { d: `M${X} ${Y} L${X - 12 * Math.cos(ang - .4)} ${Y - 12 * Math.sin(ang - .4)} L${X - 12 * Math.cos(ang + .4)} ${Y - 12 * Math.sin(ang + .4)} z`, fill: col }, keyG);
         el('text', { x: X + 16 * Math.cos(ang) - 11, y: Y + 16 * Math.sin(ang) + 8, 'font-size': 24, fill: col, 'font-family': 'Songti TC, Noto Serif TC, serif', text: K[i][0] }, keyG);
       });
