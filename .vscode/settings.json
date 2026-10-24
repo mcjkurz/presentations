@@ -1,0 +1,12 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^python3 -c 'import re; p=\"lit-machines/index\\.html\"; s=open\\(p\\)\\.read\\(\\); slides=re\\.findall\\(r\"<section\\\\b\\[\\^>\\]\\*class=\\\\\"\\[\\^\\\\\"\\]\\*\\\\bslide\\\\b\\[\\^\\\\\"\\]\\*\\\\\"\\[\\^>\\]\\*>\",s\\); print\\(\"slide count\",len\\(slides\\)\\); \\[print\\(i, re\\.search\\(r\"id=\\\\\"\\(\\[\\^\\\\\"\\]\\+\\)\\\\\"\",x\\)\\.group\\(1\\)\\) for i,x in enumerate\\(slides,1\\) if 25<=i<=53\\]'$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^python3 - <<'PY'\nfrom html\\.parser import HTMLParser\nimport re\ns=open\\('lit-machines/index\\.html',encoding='utf8'\\)\\.read\\(\\)\nblocks=re\\.findall\\(r'<section\\\\b\\[\\^>\\]\\*class=\"\\[\\^\"\\]\\*\\\\bslide\\\\b\\[\\^\"\\]\\*\"\\[\\^>\\]\\*>\\.\\*\\?</section>',s,re\\.S\\)\nfor i in range\\(27,49\\):\n b=blocks\\[i\\]\n ident=re\\.search\\(r'id=\"\\(\\[\\^\"\\]\\+\\)\"',b\\)\\.group\\(1\\)\n class P\\(HTMLParser\\):\n  def handle_data\\(self,d\\):\n   t=' '\\.join\\(d\\.split\\(\\)\\)\n   if t: print\\(t\\)\n print\\('\\\\n###',i\\+1,ident\\)\n P\\(\\)\\.feed\\(b\\)\nPY$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

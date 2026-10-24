@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>古典詩歌中的平行對仗</title>
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+
+<!-- ═════════════ Title -->
+<section class="slide title-slide nofoot" id="s-title">
+  <canvas id="title-waves"></canvas>
+  <div class="inner">
+    <div class="venue">HKU Arts Tech Lab &nbsp;·&nbsp; 2 October 2026</div>
+    <h1>Teaching Literature with Language Machines</h1>
+    <div class="sub">New pedagogies for computational literary studies</div>
+  </div>
+  <div class="who">
+    <b>Maciej Kurzynski</b><br>
+    Lingnan University, Department of Chinese &nbsp;|&nbsp; <span class="lab">qhchina.org</span>
+  </div>
+  <div class="hint"><kbd>←</kbd> <kbd>→</kbd> navigate &nbsp; <kbd>1</kbd>–<kbd>2</kbd> sections &nbsp; <kbd>F</kbd> fullscreen &nbsp; <kbd>C</kbd> red pointer</div>
+</section>
+
+<!-- ═════════════ Plan -->
+<section class="slide" id="s-plan">
+  <h2>Today</h2>
+  <div class="agenda">
+    <div class="it"><span class="num">01</span><span class="t">Poly-temporal, multi-layered</span><span class="d">A framework for reading literature alongside brains and language models</span></div>
+    <div class="it"><span class="num">02</span><span class="t">Case studies</span><span class="d">Sinophone texts read with, and against, language models</span></div>
+    <div class="it"><span class="num">03</span><span class="t">Practical session</span><span class="d">Three things to set up on your own computer</span></div>
+  </div>
+</section>
+
+<!-- ═════════════ qhchina -->
+<section class="slide" id="s-qh">
+  <div class="row" style="gap:56px;align-items:center;margin-top:8px">
+    <figure class="fig" style="width:560px;flex:none"><img src="img/qhchina.png" alt="qhchina.org"></figure>
+    <div class="grow">
+      <div class="mono c-mute" style="font-size:12px;letter-spacing:.14em;margin-bottom:12px">QUANTITATIVE HUMANITIES CHINA LAB</div>
+      <h2 style="margin-bottom:18px">qh · <em>china</em></h2>
+      <p class="lead" style="font-size:24px">Rethinking Chinese humanities through computation, cognition, and form.</p>
+      <div class="ev" style="margin-top:14px">
+        <div style="padding:7px 0;font-size:16.5px;line-height:1.35"><b>Experimentation</b> <span style="color:var(--mute)">· test, estrange and rework humanistic concepts</span></div>
+        <div style="padding:7px 0;font-size:16.5px;line-height:1.35"><b>Text Matters</b> <span style="color:var(--mute)">· literature as active material, not a mirror of history</span></div>
+        <div style="padding:7px 0;font-size:16.5px;line-height:1.35"><b>Cognitive Geometry</b> <span style="color:var(--mute)">· proximity, distance, alignment, scale</span></div>
+        <div style="padding:7px 0;font-size:16.5px;line-height:1.35"><b>Scale</b> <span style="color:var(--mute)">· corpora, novels, passages, verses, words</span></div>
+        <div style="padding:7px 0;font-size:16.5px;line-height:1.35"><b>Techno-Cognition</b> <span style="color:var(--mute)">· textual form, embodied cognition, historical readers</span></div>
+        <div style="padding:7px 0;font-size:16.5px;line-height:1.35"><b>Narrative Technologies</b> <span style="color:var(--mute)">· prediction, surprise, empathy and other modes of experience</span></div>
+      </div>
+      <div class="mono c-coral" style="font-size:16px;margin-top:14px">qhchina.org</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ 01 divider -->
+<section class="slide divider nokicker" id="s-div1" data-sec="frame">
+  <div class="big-n">01</div>
+  <h2>Poly-temporal,<br><em>multi-layered</em></h2>
+  <p class="lead">Narrative experience unfolds over many interlocking timescales at once, and is processed through a hierarchy of layers, in brains and in language models alike.</p>
+  <div class="sp"></div>
+  <div class="cite">Kurzynski, “Poly-Temporal, Multi-Layered: A Techno-Cognitive Theory of Narrative Experience in Literature,” <i>IJHAC</i> 19.1 (2025): 33–48</div>
+</section>
+
+<!-- ═════════════ Interpretation as a function -->
+<section class="slide" id="s-fn" data-sec="frame">
+  <h2>Interpretation as a function</h2>
+  <div class="fn-stack">
+    <div class="fnrow" data-step="0">
+      <div class="fnl">
+        <div class="fn" style="font-size:46px"><i>f</i>(<span class="x">x</span>; <span class="p">w, b</span>) = <span class="p">w</span><span class="x">x</span> + <span class="p">b</span></div>
+        <div class="fn-note">a model: an input, parameters, an output</div>
+      </div>
+      <div class="fnpic" data-step="1">
+        <svg viewBox="0 0 220 100" style="width:220px;height:100px;display:block" aria-label="A straight line y = wx + b with a few data points">
+          <line x1="22" y1="88" x2="22" y2="8" stroke="#bdbab2" stroke-width="1.5"/><line x1="22" y1="88" x2="212" y2="88" stroke="#bdbab2" stroke-width="1.5"/>
+          <text x="208" y="99" font-size="11" fill="#2f6fe0" font-style="italic" font-family="serif" text-anchor="end">x</text>
+          <text x="6" y="14" font-size="11" fill="#7b7973" font-style="italic" font-family="serif">f(x)</text>
+          <g fill="#2f6fe0" opacity=".55"><circle cx="48" cy="72" r="3.2"/><circle cx="76" cy="64" r="3.2"/><circle cx="104" cy="56" r="3.2"/><circle cx="130" cy="50" r="3.2"/><circle cx="158" cy="34" r="3.2"/><circle cx="186" cy="30" r="3.2"/></g>
+          <line x1="30" y1="78" x2="204" y2="24" stroke="#c98200" stroke-width="2.6" stroke-linecap="round"/>
+          <text x="112" y="82" font-size="11" fill="#c98200" font-style="italic" font-family="serif">slope w, intercept b</text>
+        </svg>
+      </div>
+    </div>
+    <div class="fnrow" data-step="2">
+      <div class="fnl">
+        <div class="fn" style="font-size:46px"><i>f</i>(<span class="x">“Hello, how are”</span>; <span class="p">θ</span>) = “you”</div>
+        <div class="fn-note">a language model: the parameters θ are learned from text</div>
+      </div>
+      <div class="fnpic" data-step="3">
+        <div class="gen"><span class="gen-t">Hello, how are </span><span class="gen-o">you</span><span class="gen-c"></span></div>
+        <div class="gen-chips"><span class="on">you</span><span>they</span><span>we</span></div>
+      </div>
+    </div>
+    <div class="fnrow" data-step="4">
+      <div class="fnl">
+        <div class="fn" style="font-size:46px"><i>f</i>(<span class="x">text</span>; <span class="p">History</span>) = interpretation</div>
+        <div class="fn-note">literary history (<i>wen-shi yanjiu</i> 文史研究): a text is read in light of a historical narrative</div>
+      </div>
+      <div class="fnpic" data-step="5">
+        <img src="img/cover-hsia.jpg" alt="C. T. Hsia, A History of Modern Chinese Fiction" style="height:100px;width:auto;border-radius:3px;box-shadow:0 3px 10px rgba(0,0,0,.25)">
+        <div class="fn-cap">C. T. Hsia, <i>A History of Modern Chinese Fiction</i> (1961)</div>
+      </div>
+    </div>
+    <div class="fnrow" data-step="6">
+      <div class="fnl">
+        <div class="fn" style="font-size:46px"><i>f</i>(<span class="x">text</span>; <span class="p">History</span>, <span class="q">?</span>) = interpretation</div>
+        <div class="fn-note">so the question is: <span class="c-coral">what other parameters</span> should we take into account?</div>
+      </div>
+      <div class="fnpic" data-step="7">
+        <svg viewBox="0 0 250 100" style="width:230px;height:100px;display:block" aria-label="Layers of a model or of the brain, with a question mark">
+          <g stroke="#c9ced6" stroke-width=".8" opacity=".7"><line x1="40" y1="88" x2="40" y2="62"/><line x1="40" y1="88" x2="68" y2="62"/><line x1="40" y1="88" x2="96" y2="62"/><line x1="40" y1="88" x2="124" y2="62"/><line x1="40" y1="88" x2="152" y2="62"/><line x1="40" y1="88" x2="180" y2="62"/><line x1="68" y1="88" x2="40" y2="62"/><line x1="68" y1="88" x2="68" y2="62"/><line x1="68" y1="88" x2="96" y2="62"/><line x1="68" y1="88" x2="124" y2="62"/><line x1="68" y1="88" x2="152" y2="62"/><line x1="68" y1="88" x2="180" y2="62"/><line x1="96" y1="88" x2="40" y2="62"/><line x1="96" y1="88" x2="68" y2="62"/><line x1="96" y1="88" x2="96" y2="62"/><line x1="96" y1="88" x2="124" y2="62"/><line x1="96" y1="88" x2="152" y2="62"/><line x1="96" y1="88" x2="180" y2="62"/><line x1="124" y1="88" x2="40" y2="62"/><line x1="124" y1="88" x2="68" y2="62"/><line x1="124" y1="88" x2="96" y2="62"/><line x1="124" y1="88" x2="124" y2="62"/><line x1="124" y1="88" x2="152" y2="62"/><line x1="124" y1="88" x2="180" y2="62"/><line x1="152" y1="88" x2="40" y2="62"/><line x1="152" y1="88" x2="68" y2="62"/><line x1="152" y1="88" x2="96" y2="62"/><line x1="152" y1="88" x2="124" y2="62"/><line x1="152" y1="88" x2="152" y2="62"/><line x1="152" y1="88" x2="180" y2="62"/><line x1="180" y1="88" x2="40" y2="62"/><line x1="180" y1="88" x2="68" y2="62"/><line x1="180" y1="88" x2="96" y2="62"/><line x1="180" y1="88" x2="124" y2="62"/><line x1="180" y1="88" x2="152" y2="62"/><line x1="180" y1="88" x2="180" y2="62"/><line x1="40" y1="62" x2="40" y2="36"/><line x1="40" y1="62" x2="68" y2="36"/><line x1="40" y1="62" x2="96" y2="36"/><line x1="40" y1="62" x2="124" y2="36"/><line x1="40" y1="62" x2="152" y2="36"/><line x1="40" y1="62" x2="180" y2="36"/><line x1="68" y1="62" x2="40" y2="36"/><line x1="68" y1="62" x2="68" y2="36"/><line x1="68" y1="62" x2="96" y2="36"/><line x1="68" y1="62" x2="124" y2="36"/><line x1="68" y1="62" x2="152" y2="36"/><line x1="68" y1="62" x2="180" y2="36"/><line x1="96" y1="62" x2="40" y2="36"/><line x1="96" y1="62" x2="68" y2="36"/><line x1="96" y1="62" x2="96" y2="36"/><line x1="96" y1="62" x2="124" y2="36"/><line x1="96" y1="62" x2="152" y2="36"/><line x1="96" y1="62" x2="180" y2="36"/><line x1="124" y1="62" x2="40" y2="36"/><line x1="124" y1="62" x2="68" y2="36"/><line x1="124" y1="62" x2="96" y2="36"/><line x1="124" y1="62" x2="124" y2="36"/><line x1="124" y1="62" x2="152" y2="36"/><line x1="124" y1="62" x2="180" y2="36"/><line x1="152" y1="62" x2="40" y2="36"/><line x1="152" y1="62" x2="68" y2="36"/><line x1="152" y1="62" x2="96" y2="36"/><line x1="152" y1="62" x2="124" y2="36"/><line x1="152" y1="62" x2="152" y2="36"/><line x1="152" y1="62" x2="180" y2="36"/><line x1="180" y1="62" x2="40" y2="36"/><line x1="180" y1="62" x2="68" y2="36"/><line x1="180" y1="62" x2="96" y2="36"/><line x1="180" y1="62" x2="124" y2="36"/><line x1="180" y1="62" x2="152" y2="36"/><line x1="180" y1="62" x2="180" y2="36"/><line x1="40" y1="36" x2="40" y2="10"/><line x1="40" y1="36" x2="68" y2="10"/><line x1="40" y1="36" x2="96" y2="10"/><line x1="40" y1="36" x2="124" y2="10"/><line x1="40" y1="36" x2="152" y2="10"/><line x1="40" y1="36" x2="180" y2="10"/><line x1="68" y1="36" x2="40" y2="10"/><line x1="68" y1="36" x2="68" y2="10"/><line x1="68" y1="36" x2="96" y2="10"/><line x1="68" y1="36" x2="124" y2="10"/><line x1="68" y1="36" x2="152" y2="10"/><line x1="68" y1="36" x2="180" y2="10"/><line x1="96" y1="36" x2="40" y2="10"/><line x1="96" y1="36" x2="68" y2="10"/><line x1="96" y1="36" x2="96" y2="10"/><line x1="96" y1="36" x2="124" y2="10"/><line x1="96" y1="36" x2="152" y2="10"/><line x1="96" y1="36" x2="180" y2="10"/><line x1="124" y1="36" x2="40" y2="10"/><line x1="124" y1="36" x2="68" y2="10"/><line x1="124" y1="36" x2="96" y2="10"/><line x1="124" y1="36" x2="124" y2="10"/><line x1="124" y1="36" x2="152" y2="10"/><line x1="124" y1="36" x2="180" y2="10"/><line x1="152" y1="36" x2="40" y2="10"/><line x1="152" y1="36" x2="68" y2="10"/><line x1="152" y1="36" x2="96" y2="10"/><line x1="152" y1="36" x2="124" y2="10"/><line x1="152" y1="36" x2="152" y2="10"/><line x1="152" y1="36" x2="180" y2="10"/><line x1="180" y1="36" x2="40" y2="10"/><line x1="180" y1="36" x2="68" y2="10"/><line x1="180" y1="36" x2="96" y2="10"/><line x1="180" y1="36" x2="124" y2="10"/><line x1="180" y1="36" x2="152" y2="10"/><line x1="180" y1="36" x2="180" y2="10"/></g><circle cx="40" cy="88" r="5" fill="#fff" stroke="#2f6fe0" stroke-width="1.8"/><circle cx="68" cy="88" r="5" fill="#fff" stroke="#2f6fe0" stroke-width="1.8"/><circle cx="96" cy="88" r="5" fill="#fff" stroke="#2f6fe0" stroke-width="1.8"/><circle cx="124" cy="88" r="5" fill="#fff" stroke="#2f6fe0" stroke-width="1.8"/><circle cx="152" cy="88" r="5" fill="#fff" stroke="#2f6fe0" stroke-width="1.8"/><circle cx="180" cy="88" r="5" fill="#fff" stroke="#2f6fe0" stroke-width="1.8"/><circle cx="40" cy="62" r="5" fill="#fff" stroke="#16925a" stroke-width="1.8"/><circle cx="68" cy="62" r="5" fill="#fff" stroke="#16925a" stroke-width="1.8"/><circle cx="96" cy="62" r="5" fill="#fff" stroke="#16925a" stroke-width="1.8"/><circle cx="124" cy="62" r="5" fill="#fff" stroke="#16925a" stroke-width="1.8"/><circle cx="152" cy="62" r="5" fill="#fff" stroke="#16925a" stroke-width="1.8"/><circle cx="180" cy="62" r="5" fill="#fff" stroke="#16925a" stroke-width="1.8"/><circle cx="40" cy="36" r="5" fill="#fff" stroke="#c98200" stroke-width="1.8"/><circle cx="68" cy="36" r="5" fill="#fff" stroke="#c98200" stroke-width="1.8"/><circle cx="96" cy="36" r="5" fill="#fff" stroke="#c98200" stroke-width="1.8"/><circle cx="124" cy="36" r="5" fill="#fff" stroke="#c98200" stroke-width="1.8"/><circle cx="152" cy="36" r="5" fill="#fff" stroke="#c98200" stroke-width="1.8"/><circle cx="180" cy="36" r="5" fill="#fff" stroke="#c98200" stroke-width="1.8"/><circle cx="40" cy="10" r="5" fill="#fff" stroke="#7650d6" stroke-width="1.8"/><circle cx="68" cy="10" r="5" fill="#fff" stroke="#7650d6" stroke-width="1.8"/><circle cx="96" cy="10" r="5" fill="#fff" stroke="#7650d6" stroke-width="1.8"/><circle cx="124" cy="10" r="5" fill="#fff" stroke="#7650d6" stroke-width="1.8"/><circle cx="152" cy="10" r="5" fill="#fff" stroke="#7650d6" stroke-width="1.8"/><circle cx="180" cy="10" r="5" fill="#fff" stroke="#7650d6" stroke-width="1.8"/>
+          <text x="214" y="58" font-size="40" fill="#e2472a" font-style="italic" font-family="serif" text-anchor="middle">?</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ Literary history -->
+<section class="slide" id="s-history" data-sec="frame">
+  <h2>Literature as a record of <em>History</em></h2>
+  <div class="qcards">
+    <div class="qcard book">
+      <img src="img/cover-hsia.jpg" alt="Cover of A History of Modern Chinese Fiction">
+      <div>
+        <div class="quote xs"><span class="mark">“</span>The modern Chinese writer sees himself or herself as an observer and recorder of the truth about Chinese society.<span class="mark">”</span></div>
+        <div class="quote-src">C. T. Hsia, <i>A History of Modern Chinese Fiction</i> (1961)</div>
+      </div>
+    </div>
+    <div class="qcard book">
+      <img src="img/cover-wang.jpg" alt="Cover of A New Literary History of Modern China">
+      <div>
+        <div class="quote xs"><span class="mark">“</span>It is the mutual illumination between <i>wen</i> (literature) and <i>shi</i> (history) that underlies my editorial vision.<span class="mark">”</span></div>
+        <div class="quote-src">David Der-wei Wang, <i>A New Literary History of Modern China</i> (2017)</div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="gap:36px;align-items:flex-start">
+  <div class="qs" style="margin-top:16px;flex:1;min-width:0">
+    <div class="q-item" data-step="1">How might we write about literature beyond the limits of historiography?</div>
+    <div class="q-item" data-step="2">How can embodied, affective, and cognitive frameworks complement historicist readings?</div>
+    <div class="q-item" data-step="3">How do we model literature as <b>both</b> a historical and an embodied phenomenon?</div>
+    <div class="q-item" data-step="4">What are the viable alternatives to genealogical thinking?</div>
+    <div class="q-item" data-step="5"><b>How do we rescue literature from history?</b></div>
+  </div>
+    <figure class="fig" data-step="5" style="width:140px;flex:none;margin:8px 0 0"><img src="img/cover-duara.jpg" alt="Cover of Rescuing History from the Nation" style="border:0;border-radius:2px;box-shadow:0 3px 10px rgba(0,0,0,.3)"><figcaption style="font-size:12.5px;margin-top:6px">Prasenjit Duara, <i>Rescuing History from the Nation</i> (1995)</figcaption></figure>
+  </div>
+</section>
+
+<!-- ═════════════ Polytemporality -->
+<section class="slide" id="s-poly" data-sec="frame">
+  <h2>Polytemporality</h2>
+  <div class="quote sm" style="max-width:1050px"><span class="mark">“</span>Some of my genes are 500 million years old, others 3 million, others 100,000 years, and my habits range in age from a few days to several thousand years.<span class="mark">”</span></div>
+  <div class="quote-src">Bruno Latour, <i>We Have Never Been Modern</i> (1993), 73</div>
+  <svg id="logline" viewBox="0 0 1104 300" style="height:284px;margin-top:-4px"></svg>
+  <div data-step="11" style="margin-top:2px"><div class="quote sm" style="max-width:1104px;font-size:30px;line-height:1.2"><span class="mark">“</span>Elements that are contemporary according to the calendar <b>need not belong to the same time</b>.<span class="mark">”</span></div><div class="quote-src" style="margin-top:6px">Latour, 73</div></div>
+</section>
+
+<!-- ═════════════ Texts as technologies -->
+<section class="slide" id="s-tech" data-sec="frame">
+  <h2>Texts as <em>technologies</em></h2>
+  <div class="qcard book big" style="max-width:1000px">
+    <img src="img/cover-paige.jpg" alt="Cover of Technologies of the Novel">
+    <div>
+      <div class="quote xs"><span class="mark">“</span>Explaining changes in the literary record by reaching for the most proximate extraliterary event or for abstract historical developments – the “liberal subject,” the “Enlightenment project,” “market capitalism” – <b>simply won’t do</b>. <b>Literary forms are not produced by some sort of magical sympathy with the historical moment that might be seen as “resembling” them.</b> <b>They are fashioned and refashioned by people.</b> This, I believe, is where a technological understanding of literature comes in.<span class="mark">”</span></div>
+      <div class="quote-src">Nicholas Paige, <i>Technologies of the Novel</i> (2020), 181</div>
+      <div data-step="1">
+        <div class="quote xs" style="margin-top:22px"><span class="mark">“</span>The novel isn’t really one thing that is evolving. The novel is a system of other objects … <b>the evolution of systems and the individual artifacts that compose them may not be the same evolution.</b><span class="mark">”</span></div>
+        <div class="quote-src">Paige, 184</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="s-tech2" data-sec="frame">
+  <h2>Technologies capture <em>phenomena</em></h2>
+  <div class="qcard book big" style="max-width:1000px">
+    <img src="img/cover-arthur.jpg" alt="Cover of The Nature of Technology">
+    <div>
+      <div class="quote xs"><span class="mark">“</span>Technologies, all technologies, are <b>combinations</b> … each component of technology is itself <b>in miniature a technology</b>.<span class="mark">”</span> And in essence, <span class="mark">“</span>a technology is a <b>phenomenon captured and put to use</b>. Or more accurately … a collection of phenomena captured and put to use.<span class="mark">”</span></div>
+      <div class="quote-src">W. Brian Arthur, <i>The Nature of Technology</i> (2009)</div>
+    </div>
+  </div>
+  <div class="qcard book big" data-step="1" style="max-width:1000px;margin-top:12px;padding-top:16px">
+    <div></div>
+    <div>
+      <div class="quote xs"><span class="mark">“</span>Literary texts inherit <b>human variability</b> … At the same time, like the human mind, they exhibit <b>regularities that emerge at the statistical level</b>.<span class="mark">”</span></div>
+      <div class="quote-src">James Carney, “The Space between Your Ears”</div>
+    </div>
+  </div>
+  <div class="callout" data-step="2" style="font-size:23px;line-height:1.3;margin:16px 0 0;padding:14px 26px;max-width:1000px">If literary forms are technologies, the phenomena they capture include the reader’s own <b>embodied cognition</b>.</div>
+</section>
+
+<!-- ═════════════ Brain timescales -->
+<section class="slide" id="s-waves" data-sec="frame">
+  <h2>The brain keeps <em>many clocks</em></h2>
+  <canvas id="waves" width="2208" height="720"></canvas>
+  <div class="row ev" style="margin-top:0;gap:44px;font-size:17px;line-height:1.4">
+    <div class="grow" data-step="1" style="border-top:0;font-size:17px"><b>Temporal receptive windows lengthen along the cortical hierarchy:</b> sensory areas integrate over milliseconds, language networks over seconds, the default mode network over minutes. <span class="cite">Hasson et al. 2008; Chang, Nastase, and Hasson 2022; Hasson 2025</span></div>
+    <div class="grow" data-step="2" style="border-top:0;font-size:17px"><b>Slow waves carry fast ones.</b> The three clocks add up in one signal. “Infra-slow waves are of tsunami size … superfast oscillations are just ripples riding on the vortex of the slower waves.” <span class="cite">Buzsáki, <i>The Brain from Inside Out</i> (2019), 151</span></div>
+  </div>
+</section>
+
+<!-- ═════════════ Timescale hierarchy: evidence -->
+<section class="slide" id="s-brain" data-sec="frame">
+  <h2>A timescale <em>hierarchy</em></h2>
+  <div class="row" style="gap:44px">
+    <figure class="fig" style="width:560px;flex:none">
+      <img src="img/hasson2025-process-memory.png" alt="Hierarchy of process-memory: temporal integration windows from phonemes to narratives">
+      <figcaption>Uri Hasson, “Uncovering a Timescale Hierarchy by Studying the Brain in a Natural Context,” <i>J. Neurosci.</i> 45.12 (2025)</figcaption>
+    </figure>
+    <div class="grow ev">
+      <div data-step="1"><b>Temporal receptive windows lengthen along the cortex:</b> milliseconds for phonemes, seconds for sentences, minutes for paragraphs and whole narratives. <span class="cite">Hasson et al. 2008; Chang, Nastase, and Hasson 2022</span></div>
+      <div data-step="2"><b>Fast layers overlap in time.</b> Listening to stories, the brain holds the last three speech sounds in parallel, long after they fade; they activate earlier when predictable. <span class="cite">Gwilliams et al., <i>Nat. Commun.</i> 2022</span></div>
+      <div data-step="3"><b>Slow rhythms govern fast ones.</b> “Perturbations at slow frequencies inevitably affect all nested oscillations.” <span class="cite">Buzsáki, <i>The Brain from Inside Out</i> (2019), 151</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ Timescale hierarchy: fMRI map -->
+<section class="slide" id="s-brain2" data-sec="frame">
+  <h2>Timescales along the <em>cortex</em></h2>
+  <div class="row" style="gap:44px">
+    <figure class="fig" style="width:470px;flex:none">
+      <img src="img/hasson-timescales-fmri.jpg" alt="Process-memory timescales measured with fMRI: short, intermediate and long integration windows along the cortex">
+      <figcaption>Uri Hasson, “Uncovering a Timescale Hierarchy by Studying the Brain in a Natural Context,” <i>J. Neurosci.</i> 45.12 (2025), Fig. 1; adapted from Hasson et al. (2015)</figcaption>
+    </figure>
+    <div class="grow ev">
+      <div data-step="1"><b style="color:#e11d1d">Short windows</b> (<span style="color:#e11d1d">red</span>, early auditory cortex) respond reliably across listeners even to speech played <b>backward</b>.</div>
+      <div data-step="2"><b style="background:linear-gradient(90deg,#d9b300,#1fb41f);-webkit-background-clip:text;background-clip:text;color:transparent">Intermediate windows</b> (<span style="color:#cfa900">yellow</span>, <span style="color:#1fb41f">green</span>) need intact words, then intact sentences.</div>
+      <div data-step="3"><b style="color:#2626e6">Long windows</b> (<span style="color:#2626e6">blue</span>: temporal-parietal junction, angular gyrus, precuneus, medial prefrontal cortex) respond reliably only when the <b>paragraphs and the whole story</b> are intact.</div>
+      <div data-step="4" class="c-mute" style="font-size:16px">Further up the hierarchy, more and more of the story so far shapes the present moment.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ Sequence vs hierarchy -->
+<section class="slide" id="s-seqhier" data-sec="frame">
+  <h2>Sequence <em>versus</em> hierarchy</h2>
+  <div class="row" style="gap:36px;align-items:flex-start">
+    <svg id="seqhier" viewBox="0 0 600 370" style="width:600px;height:370px;flex:none;margin-top:10px"></svg>
+    <div class="grow ev">
+      <div data-step="0"><b>A sequence</b> is a list in a fixed order: each node links to one next node and one previous node. To get from <span class="mono">a</span> to <span class="mono">d</span> you must pass <span class="mono">b</span> and <span class="mono">c</span>: <b>three steps</b>.</div>
+      <div data-step="1"><b>A hierarchy</b> adds a parent: <span class="mono">x</span> is linked to every node below it, so that some node has more than one child, and each node has a single parent.</div>
+      <div data-step="2"><b>Distant nodes come closer.</b> From a hierarchical perspective <span class="mono c-coral">a</span> and <span class="mono c-coral">d</span> are only <b>two steps</b> apart (<span class="mono c-coral">a–x–d</span>).</div>
+      <div data-step="3" style="font-size:19px"><span style="font-family:var(--serif);font-size:26px;line-height:1.3">The <span style="color:var(--coral);font-weight:700">boy</span> who fed the dog <span style="color:var(--coral);font-weight:700">chased</span> the girl.</span><br>“Who chased the girl?” points to <i>the boy</i>. <i>The dog</i> is closer to “chased” in the sequence, but farther away in the hierarchy.</div>
+    </div>
+  </div>
+  <div class="src">Adapted from Julia Uddén et al., “Hierarchical Structure in Sequence Processing: How to Measure It and Determine Its Neural Implementation,” <i>Topics in Cognitive Science</i> 12.3 (2020).<br>Kurzynski, “Poly-Temporal, Multi-Layered,” <i>IJHAC</i> 19.1 (2025), Fig. 1a; links from x to all lower nodes added.</div>
+</section>
+
+<!-- ═════════════ Sequence vs hierarchy -->
+<section class="slide" id="s-fib" data-sec="frame">
+  <h2>Hierarchy <em>reduces uncertainty</em></h2>
+  <div class="row" style="gap:40px;align-items:flex-start">
+    <div class="fib-rules" style="line-height:22.5px;padding-top:0">Fibonacci grammar: &nbsp;<b>0</b> → 1 &nbsp;&nbsp; <b>1</b> → 0 1</div>
+    <div class="grow">
+      <div class="swap" style="min-height:72px">
+        <div class="small" data-step="0" data-until="8">Start from a single <span class="mono">0</span> and rewrite every symbol, again and again. Each generation grows out of the one above.</div>
+        <div class="small" data-step="8" data-until="9">Now forget the tree and read only the seventh generation, left to right. How predictable is each symbol?</div>
+        <div class="small" data-step="9" data-until="10"><b>Predict symbol by symbol.</b> Every 0 is followed by a 1, so those 1s are certain (<span class="c-green">green</span>). But after a 1 either symbol can follow: those cells stay <span style="color:#ff9b85">red</span>.</div>
+        <div class="small" data-step="10" data-until="11"><b>Climb one level: merge each 0 with the 1 after it</b> into a chunk <span class="mono">[0 1]</span>; the other 1s stay alone as <span class="mono">[1]</span>. After a lone <span class="mono">[1]</span> the next chunk is <b>always</b> <span class="mono">[0 1]</span>: fully certain. After another <span class="mono">[0 1]</span> we cannot know it is coming: the chunk stays partly probabilistic, a red 0 and then a green 1.</div>
+        <div class="small" data-step="11" data-until="12"><b>Climb again.</b> The same rule one level up: after the short chunk the long chunk always follows (fully green). Otherwise the chunk keeps the colours of what it contains.</div>
+        <div class="small" data-step="12"><b>Three levels of merging.</b> Fewer symbols are uncertain at every level: 13, then 8, 5 and 3 of 21.</div>
+      </div>
+    </div>
+  </div>
+  <div style="position:relative;height:312px;margin-top:22px">
+    <div class="fib" id="fibgen" style="position:absolute;left:0;top:0;margin:0"></div>
+    <div class="fib" id="fib" style="position:absolute;left:0;top:34px;margin:0"></div>
+    <div class="callout blue" data-step="12" style="position:absolute;left:0;top:-30px;margin:0;padding:8px 22px;font-size:18px">“Uncertainty is reduced as the hierarchical structure of the signal is built.”</div>
+  </div>
+  <div class="src">Fibonacci grammar and quotation: Schmid, Saddy, and Franck, <i>Cognitive Science</i> (2023).</div>
+</section>
+
+<!-- ═════════════ Kukkonen: three predictive loops -->
+<section class="slide" id="s-loops" data-sec="frame">
+  <h2>Three <em>predictive loops</em> in reading</h2>
+  <div class="row" style="gap:36px;align-items:flex-start">
+    <div class="grow ev">
+      <div data-step="1"><b class="c-blue">Loop 1: the character.</b> What the characters experience and expect inside the story. A detective finds a mysterious letter.</div>
+      <div data-step="2"><b class="c-green">Loop 2: the storyworld.</b> The reader’s model of the fictional world and the likely events in it. The reader predicts that the letter is a crucial clue.</div>
+      <div data-step="3"><b class="c-amber">Loop 3: the real world.</b> The reader’s predictions drawn from life and from other books. Knowing mystery stories, the reader anticipates danger or deception.</div>
+      <div data-step="4" style="font-size:17px">The loops interact <b>hierarchically</b>, shaping both what characters do and how readers expect and feel. <span class="c-mute">But there are probably many more loops, modulated by affect, and many of them cannot be put into words.</span></div>
+    </div>
+    <svg viewBox="0 0 300 300" style="width:290px;height:290px;flex:none;margin-top:6px" aria-label="Three nested loops: character, storyworld, real world">
+      <defs><marker id="lp-a" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker></defs>
+      <g data-step="3"><circle cx="150" cy="150" r="140" fill="#fbf1dc" stroke="#c98200" stroke-width="2.5"/><text x="150" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#c98200" font-family="Inter,sans-serif">3 · real world</text></g>
+      <g data-step="2"><circle cx="150" cy="170" r="98" fill="#e1f3ea" stroke="#16925a" stroke-width="2.5"/><text x="150" y="98" text-anchor="middle" font-size="15" font-weight="700" fill="#16925a" font-family="Inter,sans-serif">2 · storyworld</text></g>
+      <g data-step="1"><circle cx="150" cy="195" r="52" fill="#e6effc" stroke="#2f6fe0" stroke-width="2.5"/><text x="150" y="190" text-anchor="middle" font-size="15" font-weight="700" fill="#2f6fe0" font-family="Inter,sans-serif">1 · character</text><text x="150" y="212" text-anchor="middle" font-size="12" fill="#2f6fe0" font-family="Inter,sans-serif" font-style="italic">the mysterious letter</text></g>
+    </svg>
+    <figure class="fig" style="width:150px;flex:none;margin-top:6px"><img src="img/cover-kukkonen.jpg" alt="Karin Kukkonen, Probability Designs: Literature and Predictive Processing" style="border:0;border-radius:3px;box-shadow:0 4px 14px rgba(0,0,0,.28)"><figcaption>Karin Kukkonen, <i>Probability Designs</i> (2020)</figcaption></figure>
+  </div>
+  <div class="src">Kukkonen, “Bayesian Bodies: The Predictive Dimension of Embodied Cognition and Culture,” in <i>The Cognitive Humanities</i> (2016); Kurzynski, “Poly-Temporal, Multi-Layered,” <i>IJHAC</i> 19.1 (2025), 38.</div>
+</section>
+
+<!-- ═════════════ Language models as layered readers -->
+<section class="slide" id="s-stack" data-sec="frame">
+  <h2>Language models as <em>layered readers</em></h2>
+  <div class="row" style="gap:36px">
+    <svg id="stack" viewBox="0 0 640 520"></svg>
+    <div class="grow" style="padding-top:12px">
+      <p class="body" data-step="1">An encoder transforms a text again and again through many layers, each aggregating wider, more abstract information.</p>
+      <div class="sp"></div>
+      <p class="body" data-step="2">A <span class="c-blue">linear sequence</span> of symbols becomes a <span class="c-amber">hierarchical</span> conceptual representation.</p>
+      <div class="sp"></div>
+      <p class="body" data-step="3">Early layers of a speech model align with auditory cortex; deeper layers with higher-level language regions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ Models and brains: evidence -->
+<section class="slide" id="s-lm" data-sec="frame">
+  <h2>Models and brains <em>converge</em></h2>
+  <div class="row" style="gap:44px">
+    <figure class="fig" style="width:600px;flex:none">
+      <img src="img/millet2022.gif" alt="wav2vec 2.0 layers compared with fMRI of 417 volunteers">
+      <figcaption>Millet et al., “Toward a Realistic Model of Speech Processing in the Brain with Self-Supervised Learning” (2022)</figcaption>
+    </figure>
+    <div class="grow ev">
+      <div data-step="1"><b>The layers line up with the cortex.</b> In a speech model trained on 600 h of audio, early layers match auditory cortex, deeper layers higher-level language areas.</div>
+      <div data-step="2"><b>What drives the match is prediction.</b> Across many models and 102 participants, brain-likeness “primarily depends on their ability to predict words from context,” and peaks in middle layers. <span class="cite">Caucheteux and King, <i>Commun. Biol.</i> 2022</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ Hippocampus paper: just published -->
+<section class="slide" id="s-hippo0" data-sec="frame">
+  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:520px">
+    <figure class="fig" style="width:820px"><img src="img/franch-nature-neuroscience.png" alt="Nature Neuroscience article page: A population code for semantics in human hippocampus, Franch et al., published 30 September 2026" style="box-shadow:0 6px 22px rgba(0,0,0,.18)"></figure>
+  </div>
+  <div class="src">Franch et al., “A Population Code for Semantics in Human Hippocampus,” <i>Nature Neuroscience</i> (2026).</div>
+</section>
+
+<!-- ═════════════ Hippocampus: a population code for semantics -->
+<section class="slide" id="s-hippo" data-sec="frame">
+  <h2>Meaning as a <em>population code</em></h2>
+  <div class="row" style="gap:44px">
+    <figure class="fig" style="width:440px;flex:none">
+      <img src="img/franch-embedding-space.png" alt="Words from the stories projected into a two-dimensional embedding space, coloured and labelled by semantic category: body parts, places, objects, emotional, actions, mental, social, numerical, visual, identity, function words">
+      <figcaption>Words from the stories as embedding vectors, coloured by category (Fig. 1j)</figcaption>
+    </figure>
+    <div class="grow ev">
+      <div data-step="1"><b>Recording.</b> Ten epilepsy patients listened to 47 minutes of spoken stories (7,346 words) while 356 single neurons were recorded in the <b>hippocampus</b>.</div>
+      <div data-step="2"><b>Meaning is encoded.</b> A word’s embedding vector predicts firing in most neurons, better than its phonemes, and even after controlling for grammar.</div>
+      <div data-step="3"><b>And it is distributed.</b> One word is carried by about 37 neurons; one neuron responds to several unrelated words. Meaning lives in the <b>pattern across neurons</b>, not in a neuron per word.</div>
+    </div>
+  </div>
+  <div class="src">Franch et al., “A Population Code for Semantics in Human Hippocampus,” <i>Nature Neuroscience</i> (2026); preprint doi 10.1101/2025.02.21.639601.</div>
+</section>
+
+<!-- ═════════════ Hippocampus: neural distance recapitulates semantic distance -->
+<section class="slide" id="s-hippo2" data-sec="frame">
+  <h2>Neural distance mirrors <em>semantic distance</em></h2>
+  <div class="row" style="gap:40px">
+    <div style="width:690px;flex:none">
+      <figure class="fig" style="width:560px">
+        <img src="img/franch-vectors.png" alt="Two panels: two word vectors in BERT space with the angle between them as semantic distance; two word vectors in firing-rate space of neurons with the angle as neural distance" style="border:0">
+        <figcaption>Fig. 3a–b</figcaption>
+      </figure>
+      <div class="ev" style="margin-top:2px">
+        <div data-step="1" style="font-size:16.5px;padding:8px 0"><b>Same geometry.</b> A word is a vector in the model and a vector of firing rates across neurons. Across 27 million word pairs, closer meaning means a more similar population pattern.</div>
+        <div data-step="2" style="font-size:16.5px;padding:8px 0"><b>Only if the model reads context.</b> BERT and GPT-2 show the effect; static Word2Vec does not. The same word evokes different patterns in different contexts, most for polysemous words.</div>
+        <div data-step="3" style="font-size:16.5px;padding:8px 0"><b>Meaning in context.</b> The code represents a word relative to its sentence, much as a language model does.</div>
+      </div>
+    </div>
+    <figure class="fig" data-step="2" style="width:230px;flex:none;margin-top:0">
+      <img src="img/franch-context.png" alt="Within-category cosine distance for GPT-2 layer 36, Word2Vec, BERT and neural responses, by word frequency category; an arrow marks the effect of context" style="border:0">
+      <figcaption>Fig. 3l: context pulls the model’s distances toward the neural ones</figcaption>
+    </figure>
+  </div>
+  <div class="src">Franch et al., “A Population Code for Semantics in Human Hippocampus,” <i>Nature Neuroscience</i> (2026).</div>
+</section>
+
+<!-- ═════════════ Hermeneutic circle -->
+<section class="slide" id="s-circle" data-sec="frame">
+  <h2 style="font-size:46px;margin-bottom:6px">The hermeneutic circle, <em>reimagined</em></h2>
+  <div class="small" style="max-width:1000px;margin-top:6px;font-size:16px;line-height:1.45"><b>The hermeneutic circle</b> (Schleiermacher, Dilthey, Heidegger, Gadamer): we understand a text’s <b>parts</b> through the <b>whole</b>, and the whole through its parts. Interpretation never starts from nothing; each reading revises the expectations it began with.</div>
+  <svg id="circle" viewBox="0 20 1104 530" style="width:1104px;height:400px;margin-top:10px;display:block"></svg>
+  <div class="swap" style="min-height:56px;margin-top:8px">
+    <div class="small" data-step="4" data-until="5" style="text-align:center;font-size:16px"><b class="c-coral">Feedback runs the other way.</b> Higher layers send expectations back to lower ones, as when signals from V5 return to V1 in the visual cortex: what we have already understood changes how the next words are read.</div>
+  <div class="small" data-step="5" style="text-align:center">Most hermeneutic causality stays unverbalised: patterns of activation (<b>infratextuality</b>) rather than symbolic sequences (<b>intertextuality</b>).<br><b>Linearization</b> leaves measurable traces too: sentences being typed can be decoded from non-invasive MEG. <span class="cite">Lévy et al., <i>Nat. Neurosci.</i> 2026</span></div>
+  </div>
+  <div class="src">Adapted from Kurzynski, “Poly-Temporal, Multi-Layered,” <i>IJHAC</i> 19.1 (2025), Fig. 3.</div>
+</section>
+
+<!-- ═════════════ Teaching ladder -->
+<section class="slide" id="s-ladder" data-sec="frame">
+  <h2 style="margin-bottom:14px">A ladder for the <em>classroom</em></h2>
+  <table class="ladder" style="font-size:22px">
+    <tr><th style="width:330px">Context · timescale</th><th>Reading question</th></tr>
+    <tr data-step="1"><td class="sc"><span class="bar" style="height:22px;background:var(--blue)"></span>Character, word<span class="t">milliseconds</span></td><td>What does this word mean <i>here</i>, next to that one?</td></tr>
+    <tr data-step="2"><td class="sc"><span class="bar" style="height:22px;background:var(--green)"></span>Line, sentence<span class="t">seconds</span></td><td>What did I expect to come next, and why was I surprised?</td></tr>
+    <tr data-step="3"><td class="sc"><span class="bar" style="height:22px;background:var(--amber)"></span>Passage, story<span class="t">minutes – hours</span></td><td>What holds steady, and what keeps changing?</td></tr>
+    <tr data-step="4"><td class="sc"><span class="bar" style="height:22px;background:var(--coral)"></span>Corpus, era<span class="t">years – centuries</span></td><td>What persists across political ruptures?</td></tr>
+  </table>
+  <div class="callout blue" data-step="5" style="font-size:20px"><b>What is context? Which context are we in? Which context do we choose?</b></div>
+</section>
+
+<!-- ═════════════ 02 divider -->
+<section class="slide divider nokicker" id="s-div2" data-sec="cases">
+  <div class="big-n">02</div>
+  <h2>Case <em>studies</em></h2>
+  <p class="lead">Poems, novels, and propaganda read with, and against, language models: what the machine’s layers and expectations can make visible to a literary reader.</p>
+</section>
+
+<!-- ═════════════ Case study 2.1 opener -->
+<section class="slide divider nokicker" id="s-cs-novel" data-sec="cases" data-case-n="2.1" data-case="A novel in layers">
+  <div class="big-n">2.1</div>
+  <h2>A novel in <em>layers</em></h2>
+  <p class="lead">A novel, read as a model would encode it: what stays stable across the book, and what changes from sentence to sentence.</p>
+</section>
+
+<!-- ═════════════ Gradient of stability -->
+<section class="slide" id="s-heat" data-sec="cases">
+  <div class="row" style="gap:64px">
+    <div class="heat" id="heat" style="margin-left:40px;height:530px">
+      <img src="img/zhang-heatmap.jpg" alt="BERT encodings of Half of Man is Woman, dimensions sorted by variability">
+      <div class="shade" id="shade-top" style="top:0;height:52%"></div>
+      <div class="shade" id="shade-bot" style="top:52%;bottom:0"></div>
+      <div class="brk" data-step="2" style="top:0;height:40%"></div>
+      <div class="brk slow" data-step="3" style="top:68%;bottom:0"></div>
+      <div class="ax" style="left:0;bottom:-22px">0% · rows = 768 dimensions</div>
+      <div class="ax" style="right:0;bottom:-22px">100% of the novel →</div>
+          </div>
+    <div class="grow">
+      <h2 style="font-size:50px">A gradient of <em>stability</em></h2>
+      <div class="qcard book" style="border-top:0;padding-top:0;grid-template-columns:140px 1fr">
+        <img src="img/cover-zhang.jpg" alt="Cover of 男人的一半是女人" style="width:140px">
+        <p class="body" style="font-size:17px;margin:0">Zhang Xianliang 張賢亮, <i>Half of Man is Woman</i> 《男人的一半是女人》 (1985): 255 fragments × 500 characters, each encoded by BERT-base-Chinese into 768 dimensions.</p>
+      </div>
+      <div class="sp" style="height:8px"></div>
+      <p class="body" data-step="1" style="font-size:17px">Rows are dimensions, sorted from most to least variable across the novel.</p>
+      <div class="sp" style="height:8px"></div>
+      <p class="body" data-step="2" style="font-size:17px"><span class="c-blue">Fast rows</span> change with nearly every fragment: words, phrases, single scenes.</p>
+      <div class="sp" style="height:8px"></div>
+      <p class="body" data-step="3" style="font-size:17px"><span class="c-amber">Slow rows</span> hold for the whole book: voice, perspective, register.</p>
+      <div class="callout" data-step="4" style="font-size:17px">Each band may call for its own predictive loop. Reading means tracking all of them at once.</div>
+    </div>
+  </div>
+  <div class="src">Kurzynski, “Poly-Temporal, Multi-Layered,” <i>IJHAC</i> 19.1 (2025), Fig. 2.</div>
+</section>
+
+<!-- ═════════════ One passage, many layers -->
+<section class="slide" id="s-passage" data-sec="cases">
+  <div class="row" style="gap:44px">
+    <div class="passage" id="passage" style="font-size:21px;line-height:1.38;max-width:740px">
+      The only sounds were the winds and reeds whispering like lovers. In no hurry to put on clothes, she dropped the underwear still in her <span class="L1">hand</span>. As if afraid of getting cold, she crossed <span class="L1">one arm over the other</span>. With a hand on each of her <span class="L1">shoulders</span>, <span class="L3">she stood there facing me</span>. In the wind, the sun’s rays turned a <span class="L1">soft yellow color</span>. In that soft yellow light, <span class="L1">her body shone</span>. […] Strong enough to knock me out, an instinctive self-preservation took hold. At the same time, in her <span class="L1">eyes</span>, on her <span class="L1">rippling skin</span>, I saw a frightening pain. <span class="L2">I saw the tragedy covering both of us.</span> <span class="L5">Her thirst and her <span class="L1">hunger</span> were my own—she was a mirror to me. Into the desire to possess her came the equally male desire to protect her.</span> <span class="L4">My physical need disappeared, in its place was a mental ache.</span> <span class="L4">The sharp sound of a whistle</span> pierced the air from far away. <span class="L1">It lashed my body like a whip</span>, <span class="L3">and I turned and ran.</span>
+      <div class="passage-zh">只有呼呼的風聲，蘆葦和蘆葦說着情話。於是，她並不急於穿衣服，卻撂下<span class="L1">手中</span>的內褲，象是畏涼一樣，<span class="L1">兩臂交叉</span>地將兩手搭在<span class="L1">兩肩</span>上，<span class="L3">正面向着我</span>。在風中的陽光泛着<span class="L1">淡淡的黃色</span>。<span class="L1">黃色的陽光照着她青春的前額</span>。一陣強烈得使我暈眩的衝動過去，習慣性的剋制逐漸佔了上風。這時，我在她的<span class="L1">眼睛</span>裏，在她<span class="L1">微微哆嗦的肌膚</span>上，驀然看到了一種可怕的痛苦，<span class="L2">看到了籠罩在我們頭上的悽慘的命運</span>。<span class="L5">她的<span class="L1">飢渴</span>也是我的<span class="L1">飢渴</span>；她是我的一面鏡子。我心中湧起了一陣溫柔的憐憫，想佔有她的情慾滲進了企圖保護她的男性的激情。</span>她那毫不準備防禦的姿勢，使我的心似乎收縮了起來；<span class="L4">生理上的要求不知怎麼消失了，替代它的是精神上的憂傷</span>。而恰恰在此刻，從高高的斗渠壩上傳來了<span class="L4">尖利的哨音</span>。<span class="L1">它象鞭子似地在我身上抽了一下</span>，我覺得我還呻吟了一聲，<span class="L3">便拔腿返身跑掉了</span>。</div>
+      <div class="cite" style="margin-top:10px">Zhang Xianliang 張賢亮 (1936–2014), <i>Half of Man is Woman</i> 《男人的一半是女人》 (1985), trans. Martha Avery</div>
+    </div>
+    <div class="grow legend" style="padding-top:6px">
+      <h2 style="font-size:46px;line-height:1.05;margin:0 0 26px">One passage, <em>many clocks</em></h2>
+      <div class="li" data-step="1"><span class="dot" style="background:var(--blue)"></span><span class="t">Sensation and the body<span class="s">hundreds of thousands of years · embodied simulation</span></span></div>
+      <div class="li" data-step="2"><span class="dot" style="background:var(--green)"></span><span class="t">“Tragedy”: the lovers part eight years later<span class="s">millennia · a genre, with its plot and foreshadowing</span></span></div>
+      <div class="li" data-step="3"><span class="dot" style="background:var(--amber)"></span><span class="t">The voyeur schema<span class="s">centuries · a trope, with its expectations</span></span></div>
+      <div class="li" data-step="4"><span class="dot" style="background:var(--coral)"></span><span class="t">Labour camp, 1966; impotence as political powerlessness<span class="s">decades · a setting: the Cultural Revolution, ten years</span></span></div>
+      <div class="li" data-step="5"><span class="dot" style="background:var(--violet)"></span><span class="t">Animality and grace; a trace of self-mockery<span class="s">floating above it all</span></span></div>
+    </div>
+  </div>
+  <div class="src">Kurzynski, “Poly-Temporal, Multi-Layered,” <i>IJHAC</i> 19.1 (2025).</div>
+</section>
+
+<!-- ═════════════ Three claims -->
+<section class="slide" id="s-claims" data-sec="cases">
+  <h2>A techno-cognitive framework</h2>
+  <div class="claims">
+    <div class="claim" data-step="1">
+      <div class="n">POLY-TEMPORAL</div>
+      <div class="h">Many interlocking timescales</div>
+      <div class="b">Neural, emotional, narrative, cultural. History is one clock among many; forms carry their own inertia.</div>
+      <div class="cite" style="margin-top:10px">Latour 1993; Paige 2020; Hasson et al. 2008; Buzsáki 2019</div>
+    </div>
+    <div class="claim" data-step="2">
+      <div class="n">MULTI-LAYERED</div>
+      <div class="h">Reading as hierarchical prediction</div>
+      <div class="b">Nested predictive loops integrate sensory, affective, and conceptual information over different durations, in brains and in neural networks.</div>
+      <div class="cite" style="margin-top:10px">Kukkonen 2016; Caucheteux and King 2022; Caucheteux et al. 2023</div>
+    </div>
+    <div class="claim" data-step="3">
+      <div class="n">INTEGRATION ⇄ LINEARIZATION</div>
+      <div class="h">Interpretation as a cycle</div>
+      <div class="b">A sequence is dispersed into layers, then crystallized back into a sequence: a commentary that shapes new texts and new readings.</div>
+      <div class="cite" style="margin-top:10px">Gwilliams et al. 2022; Lévy et al. 2026</div>
+    </div>
+  </div>
+  <div data-step="4" class="row" style="gap:40px;align-items:flex-start;margin-top:14px">
+    <div class="grow">
+      <div class="quote" style="font-size:44px">There is not one horizon, but many.</div>
+      <div class="quote sm" style="font-size:24px;line-height:1.25;margin-top:12px;max-width:820px;color:var(--ink2)">cf. <span class="mark">“</span>…the political perspective not as some supplementary method … but rather as <b>the absolute horizon of all reading and all interpretation</b><span class="mark">”</span></div>
+      <div class="quote-src" style="margin-top:8px">Fredric Jameson on the political, <i>The Political Unconscious</i> (1981)</div>
+    </div>
+    <figure class="fig" data-step="4" style="position:absolute;right:88px;bottom:70px;margin:0;display:flex;gap:14px;align-items:flex-end"><figcaption style="font-size:12px;width:96px;text-align:right;margin:0 0 4px">Ted Underwood,<br><i>Distant Horizons</i><br>(2019)</figcaption><img src="img/cover-underwood.jpg" alt="Cover of Distant Horizons" style="width:150px;border:0;border-radius:2px;box-shadow:0 4px 14px rgba(0,0,0,.3)"></figure>
+  </div>
+</section>
+
+<!-- ═════════════ Case study 2.2 opener -->
+<section class="slide divider nokicker" id="s-cs-parallel" data-sec="cases" data-case-n="2.2" data-case="Parallelism">
+  <div class="parallel-opener">
+    <div class="parallel-opener-copy">
+      <div class="parallel-kicker">古典詩歌 · 案例研究 2.2</div>
+      <h2><em>對仗</em></h2>
+      <div class="parallel-en" data-keep-en lang="en">Parallelism</div>
+      <p>兩句相對，字字成雙。從詩歌形式到語義空間，探索平行如何生成意義。</p>
+    </div>
+    <figure class="parallel-opener-figure">
+      <img src="img/duizhang-scroll.jpg" alt="山水畫中有儀仗隊列、並排雙馬與並肩耕作的農人">
+      <figcaption>對仗 · 對偶 · 駢文</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ═════════════ Article screenshots -->
+<section class="slide" id="s-article" data-sec="cases">
+  <h2 class="article-heading">研究文章</h2>
+  <p class="article-intro">本節內容取材自兩篇關於古典漢詩對仗與語義幾何的研究。</p>
+  <div class="article-pages">
+    <figure>
+      <img src="img/article-game-of-keys.png" alt="〈The Game of Keys and Queries〉論文首頁截圖">
+      <figcaption><b>The Game of Keys and Queries</b><span>平行對仗與認知幾何 · IJHAC（2025）</span></figcaption>
+    </figure>
+    <figure>
+      <img src="img/article-vector-poetics.png" alt="〈Vector Poetics〉論文首頁截圖">
+      <figcaption><b>Vector Poetics</b><span>古典漢詩中的平行詩聯偵測</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ═════════════ Regulated verse: the middle two couplets must be parallel -->
+<section class="slide" id="s-reg" data-sec="cases" data-steps="2">
+  <div class="row" style="gap:70px">
+    <div style="width:520px;flex:none;padding-top:20px">
+      <div class="small" style="margin-bottom:6px">Wang Wei 王維 (699–761), 山居秋暝</div>
+      <div class="poem" id="reg-poem">
+        <div class="ln"><span class="cp-name"><span class="zh">首聯</span></span>空山新雨後，天氣晚來秋。<em class="tr">In the empty mountains after fresh rain, evening air turns autumn.</em></div>
+        <div class="ln"><span class="cp-name"><span class="zh">頷聯</span></span>明月松間照，清泉石上流。<em class="tr">The bright moon shines between the pines; a clear spring flows over the stones.</em></div>
+        <div class="ln"><span class="cp-name"><span class="zh">頸聯</span></span>竹喧歸浣女，蓮動下漁舟。<em class="tr">Bamboo rustles: washerwomen head home; lotus stirs: a fishing boat sets out.</em></div>
+        <div class="ln"><span class="cp-name"><span class="zh">尾聯</span></span>隨意春芳歇，王孫自可留。<em class="tr">Spring’s fragrance may fade as it pleases; the noble guest is free to stay.</em></div>
+      </div>
+    </div>
+    <div class="grow" style="padding-top:30px">
+      <h2 style="font-size:44px">Regulated verse</h2>
+      <p class="body" style="font-size:19px">Eight lines, four couplets, and strict rules of form.</p>
+      <div class="ev" style="margin-top:10px">
+        <div data-step="1" style="font-size:18px"><b style="color:var(--green)">The middle two couplets must be parallel.</b> This is a formal requirement of the genre: line against line, word for word. <span class="zh" style="white-space:nowrap;color:var(--mute)">頷聯 · 頸聯</span></div>
+        <div data-step="2" style="font-size:18px"><b style="color:var(--mute)">The opening and closing couplets are free.</b> They may be parallel, but they do not have to be.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ Parallelism -->
+<section class="slide" id="s-parallel" data-sec="cases">
+  <h2>Parallelism <span class="zh" style="font-size:.7em;color:var(--mute)">對仗</span> <span style="font-size:.4em;color:var(--mute);font-family:var(--sans)">duìzhàng</span></h2>
+  <div class="sp"></div>
+  <div class="quote" style="max-width:960px"><span class="mark">“</span>When the mind gives birth to words, thoughts go through a hundred reflections, and the high and low complement each other, naturally forming pairs.<span class="mark">”</span></div>
+  <div class="zh" style="font-size:22px;color:var(--mute);margin-top:14px;letter-spacing:.08em">夫心生文辭，運裁百慮，高下相須，自然成對。</div>
+  <div class="quote-src">Liu Xie 劉勰 (465–522), <i>The Literary Mind and the Carving of Dragons</i> 文心雕龍</div>
+  <div class="pex" data-step="1">
+    <div class="pex-cap">In classical Chinese poetry, two lines are matched word for word. Wang Wei 王維, <i>Autumn Evening in the Mountains</i>:</div>
+    <div class="pex-cpl">
+      <div class="zh"><span class="c-blue">明月</span><span style="color:#a3202b">松間</span><span class="c-violet">照</span>，<span class="c-blue">清泉</span><span style="color:#a3202b">石上</span><span class="c-violet">流</span>。</div>
+      <div class="en"><span class="c-blue">The bright moon</span> <span class="c-violet">shines</span> <span style="color:#a3202b">between the pines</span>; <span class="c-blue">a clear spring</span> <span class="c-violet">flows</span> <span style="color:#a3202b">over the stones</span>.</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═════════════ Poem + classifier -->
+<section class="slide" id="s-poem" data-sec="cases" data-steps="7">
+  <h2 style="font-size:44px;margin-bottom:6px">Is this couplet <em>parallel</em>?</h2>
+  <p class="small" style="margin-bottom:6px;max-width:900px">In regulated verse (律詩), two lines that pair up word for word are “parallel”. A classifier reads a couplet and returns a probability.</p>
+  <div class="small" style="margin-bottom:4px">Wang Wei 王維 (699–761), 山居秋暝 <i>Autumn Evening in the Mountains</i></div>
+  <div class="clf-grid" id="clf-grid">
+      <div class="ln" id="clf-l0"><span class="zh">空山新雨後，天氣晚來秋。</span><em class="tr">In the empty mountains after fresh rain, evening air turns autumn.</em></div>
+      <div class="clf-r"></div>
+      <div class="ln" id="clf-l1"><span class="zh">明月松間照，清泉石上流。</span><em class="tr">The bright moon shines between the pines; a clear spring flows over the stones.</em></div>
+      <div class="clf-r" id="clf-r1"><span class="pa" data-step="1">→</span><span class="box" data-step="2">classifier</span><span class="pa" data-step="3">→</span><span class="score c-green" data-step="3">0.97</span></div>
+      <div class="ln" id="clf-l2"><span class="zh">竹喧歸浣女，蓮動下漁舟。</span><em class="tr">Bamboo rustles: washerwomen head home; lotus stirs: a fishing boat sets out.</em></div>
+      <div class="clf-r"></div>
+      <div class="ln" id="clf-l3"><span class="zh">隨意春芳歇，王孫自可留。</span><em class="tr">Spring’s fragrance may fade as it pleases; the noble guest is free to stay.</em></div>
+      <div class="clf-r" id="clf-r3"><span class="pa" data-step="4">→</span><span class="box" data-step="5">classifier</span><span class="pa" data-step="6">→</span><span class="score c-mute" data-step="6">0.02</span></div>
+  </div>
+  <p class="small" data-step="7" style="margin-top:14px;max-width:960px">SikuBERT, a BERT-based classifier fine-tuned on couplets from 140,000+ regulated poems (律詩), performs on par with GPT-4o and DeepSeek R1.</p>
+</section>
+
+<!-- ═════════════ Classifier results -->
+<section class="slide" id="s-clf-res" data-sec="cases" data-steps="1">
+  <h2>How well does <em>it work</em>?</h2>
+  <p class="small" style="max-width:900px;margin:0 0 10px">Test set: 6,153 pentasyllabic couplets from the Six Dynasties (222–589), labelled by hand: 2,072 parallel, 4,081 not.</p>
+  <table class="res">
+    <tr><th>Method</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1</th></tr>
+    <tr class="grp"><td colspan="5">Earlier methods</td></tr><tr><td>VM</td><td>76.5</td><td>72.3</td><td>55.0</td><td>62.5</td></tr><tr><td>ISSA</td><td>72.5</td><td>68.2</td><td>48.0</td><td>56.3</td></tr><tr><td>ED</td><td>75.9</td><td>72.0</td><td>53.6</td><td>61.4</td></tr><tr class="grp"><td colspan="5">Fine-tuned SikuBERT</td></tr><tr><td>I/O <i>(couplet position as label)</i></td><td>79.1</td><td>69.9</td><td>72.7</td><td>71.3</td></tr><tr class="hl"><td>I/O + SymNet <i>(filtered labels)</i></td><td>84.0</td><td>74.1</td><td>82.2</td><td>77.9</td></tr><tr class="grp"><td colspan="5">Generative models</td></tr><tr><td>GPT-4o</td><td>79.6</td><td>73.7</td><td>64.4</td><td>68.8</td></tr><tr><td>Moonshot AI (v1-8k)</td><td>79.1</td><td>71.2</td><td>65.7</td><td>68.3</td></tr><tr><td>DeepSeek R1</td><td>84.8</td><td>82.9</td><td>70.0</td><td>75.9</td></tr>
+  </table>
+  <div class="callout" data-step="1" style="font-size:19px;margin-top:10px;padding:10px 22px">A small fine-tuned encoder <b>matches the large generative models</b>, and finds the most parallel couplets (recall 82.2%).</div>
+  <div class="src">Cai, Kurzynski, and Xu, “Good Things Come in Pairs: A Computational Study of Poetic Parallelism in the Six Dynasties,” <i>Journal of Chinese Literature and Culture</i> 12.2 (2025), Appendix 2.</div>
+</section>
+
+<!-- ═════════════ Scale matters: character, couplet, poem -->
+<section class="slide" id="s-scale" data-sec="cases">
+  <div class="row" style="gap:70px;align-items:flex-start">
+    <div style="width:520px;flex:none;padding-top:20px">
+      <div class="small" style="margin-bottom:6px">Bai Juyi 白居易 (772–846), 賦得古原草送別 <i>Grass on the Ancient Plain: Farewell to a Friend</i></div>
+      <div class="poem" id="sc-poem">
+        <div class="ln">離離原上草，一歲一枯榮。<em class="tr">Lush is the grass on the plain; each year it withers, each year it thrives.</em></div>
+        <div class="ln">野火燒不盡，春風吹又生。<em class="tr">Wildfire cannot burn it out; the spring wind blows and it grows again.</em></div>
+        <div class="ln" id="sc-cpl"><span class="ch p0">遠</span><span class="ch p1">芳</span><span class="ch p2">侵</span><span class="ch p3">古</span><span class="ch p4">道</span>，<span class="ch p0">晴</span><span class="ch p1">翠</span><span class="ch p2">接</span><span class="ch p3">荒</span><span class="ch p4">城</span>。<em class="tr">The distant fragrance invades the ancient road; the bright green meets the ruined town.</em></div>
+        <div class="ln">又送王孫去，萋萋滿別情。<em class="tr">Again I see my friend off; the teeming grass is full of parting sorrow.</em></div>
+      </div>
+      <div class="small" id="sc-cap" style="margin-top:10px;min-height:22px"></div>
+    </div>
+    <div class="grow" style="padding-top:20px">
+      <h2 style="font-size:44px;margin-bottom:10px">Scale matters</h2>
+      <p class="lead" style="font-size:22px;margin-bottom:12px"><b>Which amount of context is best for this task?</b></p>
+      <div>
+        <p class="body" data-step="1" style="font-size:20px"><b class="c-blue">Micro · character pairs.</b> Is comparing two characters at a time enough?</p>
+        <p class="body" data-step="6" style="font-size:20px;margin-top:16px"><b class="c-green">Meso · couplet.</b> Does a couplet, a pair of lines, provide enough information?</p>
+        <p class="body" data-step="7" style="font-size:20px;margin-top:16px"><b class="c-amber">Macro · whole poem.</b> Do we need additional context from the entire poem?</p>
+      </div>
+    </div>
+  </div>
+  </section>
+
+<!-- ═════════════ Goldilocks -->
+<section class="slide" id="s-gold" data-sec="cases">
+  <h2>The <em>Goldilocks</em> result</h2>
+  <p class="lead" style="font-size:21px;margin-bottom:10px">Same task, same poems: which context best recovers the parallelism judgement?</p>
+  <div class="row" style="gap:32px;align-items:flex-start">
+    <img class="fig-gold" src="img/scale-f1.png" alt="F1 score distributions by model and inference route, 100 trials">
+    <div class="grow gold-key">
+      <p><b style="color:#3a90b8">Character</b>: pairs of characters</p>
+      <p><b style="color:#9a5fb5">Couplet</b>: two lines together</p>
+      <p><b style="color:#e07b1a">Poem-1</b>: the whole poem, one label</p>
+      <p><b style="color:#1fae95">Poem-4</b>: the whole poem, four labels</p>
+      <p class="small">A → B: trained at scale A, then applied at scale B (same colour family as A).</p>
+    </div>
+  </div>
+  <div class="callout blue" data-step="1" style="font-size:19px;margin-top:14px;padding:12px 24px">The best context is not the largest but the one <b>aligned with the scale</b> at which the feature is encoded.</div>
+  <div class="src">Kurzynski, “From Character to Poem: Nested Contexts and Scalar Limits of Parallelism Detection in Classical Chinese Poetry,” <i>Journal of Open Humanities Data</i> 12 (2026): 34, Fig. 4.</div>
+</section>
+
+<!-- ═════════════ Context as a methodological choice -->
+<section class="slide" id="s-context" data-sec="cases">
+  <h2 style="margin-bottom:10px">Context as a <em>methodological choice</em></h2>
+  <div class="row" style="gap:28px;margin-bottom:14px">
+    <p class="body" style="font-size:15.5px;flex:1"><b>Interpretability</b> (Rudin 2019): the decision itself is transparent and can be traced back to specific predictions.</p>
+    <p class="body" style="font-size:15.5px;flex:1"><b>Explainability:</b> post-hoc techniques generate approximations (explanations) of the model’s behaviour.</p>
+  </div>
+  <div style="display:flex;gap:22px;align-items:stretch">
+    <div class="ctx" data-step="1">
+      <div class="mono c-blue">MICRO · CHARACTER PAIRS</div>
+      <div class="big">Transparent, but blind to syntax</div>
+      <p><b>Interpretable by design:</b> every couplet verdict traces back to five separate pair judgements, so you can see where it goes wrong.</p>
+      <p class="cost">Cost: it cannot see the sentence, so ambiguous characters trip it up (the lexical gap; F1 0.88).</p>
+    </div>
+    <div class="ctx" data-step="2">
+      <div class="mono c-green">MESO · COUPLET</div>
+      <div class="big">Aligned, and open to explanation</div>
+      <p><b>Explainable after the fact:</b> probing the model shows attention and key vectors lining up across parallel lines, a glimpse of how it represents the feature.</p>
+      <p class="cost">Cost: an approximation of what the model does, not a transparent decision (F1 0.95).</p>
+    </div>
+    <div class="ctx" data-step="3">
+      <div class="mono c-amber">MACRO · WHOLE POEM</div>
+      <div class="big">Rich in context, opaque in reasoning</div>
+      <p><b>Hard to interpret:</b> a verdict might rest on syntax, the author’s style or the rhyme scheme, and the model can lean on shortcuts such as “inner couplets are always parallel”.</p>
+      <p class="cost">Cost: the structural shadow of the whole over the part (F1 0.89 and 0.66).</p>
+    </div>
+  </div>
+  <div class="callout blue" data-step="4" style="font-size:19px;margin-top:18px;padding:14px 24px">Choosing the context turns a silent assumption into <b>an explicit and contestable methodological choice</b>.</div>
+  <div class="src">Kurzynski, “From Character to Poem: Nested Contexts and Scalar Limits of Parallelism Detection in Classical Chinese Poetry,” <i>Journal of Open Humanities Data</i> 12 (2026): 34, Fig. 4.</div>
+</section>
+
+<!-- ═════════════ Parallelism: spatial imagery -->
+<section class="slide" id="s-geometry" data-sec="cases">
+  <h2>The geometry of <em>“parallelism”</em></h2>
+  <div class="row" style="gap:36px;align-items:flex-start;margin-top:4px">
+    <figure class="fig" style="width:260px;flex:none"><img src="img/duizhang-scroll.jpg" alt="Landscape with ceremonial guards, two horses, and two people ploughing with an ox" style="border:0;border-radius:6px;box-shadow:0 6px 20px rgba(0,0,0,.28), 0 1px 4px rgba(0,0,0,.18)"></figure>
+    <div class="grow">
+      <p class="body" style="font-size:17px;line-height:1.45">The English word comes from the Greek <i>parallelos</i>, “side by side”: <b>a spatial image</b>. The Chinese terms are just as spatial.</p>
+      <div class="ev" style="margin-top:8px">
+        <div data-step="1" style="font-size:17px;padding:8px 0"><span class="zh" style="font-size:22px">對仗</span> <span class="pinyin">duìzhàng</span><span class="cite">the symmetrical formation of ceremonial processions</span></div>
+        <div data-step="2" style="font-size:17px;padding:8px 0"><span class="zh" style="font-size:22px">對偶</span> <span class="pinyin">duì’ǒu</span><span class="cite">a pair of people ploughing side by side</span></div>
+        <div data-step="3" style="font-size:17px;padding:8px 0"><span class="zh" style="font-size:22px">駢文</span> <span class="pinyin">piánwén</span><span class="cite">two horses harnessed abreast</span></div>
+      </div>
+      <p class="body" data-step="4" style="font-size:17px;line-height:1.45;margin-top:8px">These images have become <b>dead metaphors</b>. If parallelism is a spatial relation, perhaps we can measure it in a space.</p>
+    </div>
+    <div data-step="4" style="width:350px;flex:none;background:var(--panel);border-radius:8px;padding:12px 14px 10px">
+      <div style="font-family:var(--sans);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:600">Vector semantics</div>
+      <svg viewBox="0 64 320 226" style="width:320px;height:226px;display:block;font-family:var(--sans)">
+        <defs>
+          <marker id="vs-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7b7973"/></marker>
+          <marker id="vs-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7650d6"/></marker>
+          <marker id="vs-b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#14a3c7"/></marker>
+        </defs>
+        <g stroke="#7b7973" stroke-width="1.6" fill="none" opacity=".75">
+          <line x1="30" y1="262" x2="117" y2="198" marker-end="url(#vs-g)"/>
+          <line x1="30" y1="262" x2="226" y2="214" marker-end="url(#vs-g)"/>
+          <line x1="30" y1="262" x2="130" y2="96" marker-end="url(#vs-g)"/>
+          <line x1="30" y1="262" x2="239" y2="112" marker-end="url(#vs-g)"/>
+        </g>
+        <g fill="#141413" font-size="15" font-weight="600">
+          <circle cx="120" cy="196" r="4"/><text x="64" y="188">man <tspan class="zh" font-size="14" font-weight="400" fill="#7b7973">男</tspan></text>
+          <circle cx="229" cy="212" r="4"/><text x="238" y="226">woman <tspan class="zh" font-size="14" font-weight="400" fill="#7b7973">女</tspan></text>
+          <circle cx="133" cy="92" r="4"/><text x="76" y="88">king <tspan class="zh" font-size="14" font-weight="400" fill="#7b7973">王</tspan></text>
+          <circle cx="242" cy="108" r="4"/><text x="252" y="100">queen <tspan class="zh" font-size="14" font-weight="400" fill="#7b7973">后</tspan></text>
+        </g>
+        <g data-step="5">
+          <line x1="127" y1="196" x2="219" y2="211" stroke="#7650d6" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#vs-c)"/>
+          <line x1="140" y1="92" x2="232" y2="107" stroke="#7650d6" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#vs-c)"/>
+          <text x="215" y="248" font-size="13" fill="#7650d6" font-weight="600" text-anchor="middle">“female” direction</text>
+          <line x1="121" y1="188" x2="132" y2="103" stroke="#14a3c7" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#vs-b)"/>
+          <line x1="230" y1="204" x2="241" y2="119" stroke="#14a3c7" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#vs-b)"/>
+          <text x="196" y="160" font-size="13" fill="#14a3c7" font-weight="600" text-anchor="middle">“royal” direction</text>
+        </g>
+      </svg>
+      <div style="font-size:13.5px;line-height:1.45;color:var(--ink2)">Every word becomes a list of numbers: <b>a point, an arrow</b>. Words used alike sit close together, and a <b>relation is a direction</b>.</div>
+    </div>
+  </div>
+  <div class="callout" data-step="5" style="font-size:17px;margin-top:10px;padding:10px 20px"><b>Vector poetics.</b> A language model places every line in a high-dimensional space. Parallelism becomes a question of geometry: are the two verses laid out side by side?</div>
+  <div class="src">Kurzynski, “Jakobson’s ‘Poetic Function’ in Vector Space: Parallelism, Cognitive Geometry, and Classical Chinese Verse,” EADH 2026.</div>
+</section>
+
+<!-- ═════════════ Keys, queries and [CLS] -->
+<section class="slide" id="s-kqv" data-sec="cases" data-steps="2">
+  <h2>Keys, queries and <em>[CLS]</em></h2>
+  <div class="row" style="gap:44px;align-items:center;margin-top:4px">
+    <figure class="fig" style="width:560px;flex:none"><img src="img/kqv-diagram.png" alt="Keys, queries and values computed from a token embedding"><figcaption>Diagram: @akshay_pachaar</figcaption></figure>
+    <div class="grow ev">
+      <div style="font-size:19px">Every token embedding is multiplied by three learned matrices. The result: a <span class="c-coral"><b>query</b></span> (what this token is looking for), a <span class="c-blue"><b>key</b></span> (what it contains) and a <b>value</b> (what it will provide).</div>
+      <div data-step="1" style="font-size:19px">Attention is a match: the more a key points in the same direction as the query, the more that token is attended to.</div>
+      <div data-step="2" style="font-size:19px"><b>[CLS]</b> is a special token placed at the start of every input. Its query asks the whole sentence a question, and its final vector is what the classifier reads. <b>So we watch what [CLS] attends to.</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ Inside the classifier: from characters to a decision -->
+<section class="slide" id="s-encoder" data-sec="cases">
+  <h2>What happens <em>inside the classifier</em>?</h2>
+  <div style="margin-top:0"><svg viewBox="0 0 1104 480" style="width:1104px;height:480px;display:block" aria-label="From characters to a parallel / not-parallel decision: tokens, embeddings, twelve layers in which every token attends to every token, the [CLS] vector, and a classifier"><defs><marker id="cl-a" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e2472a"/></marker></defs><g data-step="0"><text x="202" y="451" text-anchor="end" font-size="14" font-weight="600" fill="#7b7973" font-family="Inter,sans-serif">tokens</text><text x="202" y="403" text-anchor="end" font-size="14" font-weight="600" fill="#7b7973" font-family="Inter,sans-serif">embeddings</text><rect x="224.0" y="427.0" width="52" height="38" rx="6" fill="#7650d622" stroke="#7650d6" stroke-width="1.6"/><text x="250" y="451" text-anchor="middle" font-size="15" font-weight="600" fill="#7650d6" font-family="Songti TC,Noto Serif TC,serif">[CLS]</text><rect x="229.0" y="390" width="13" height="16" rx="3" fill="#7650d6" opacity="0.35"/><rect x="243.5" y="390" width="13" height="16" rx="3" fill="#7650d6" opacity="0.55"/><rect x="258.0" y="390" width="13" height="16" rx="3" fill="#7650d6" opacity="0.75"/><line x1="250" y1="427" x2="250" y2="407" stroke="#bdbab2" stroke-width="1.4"/><rect x="284.0" y="427.0" width="52" height="38" rx="6" fill="#2f6fe022" stroke="#2f6fe0" stroke-width="1.6"/><text x="310" y="454" text-anchor="middle" font-size="23" font-weight="600" fill="#2f6fe0" font-family="Songti TC,Noto Serif TC,serif">明</text><rect x="289.0" y="390" width="13" height="16" rx="3" fill="#2f6fe0" opacity="0.55"/><rect x="303.5" y="390" width="13" height="16" rx="3" fill="#2f6fe0" opacity="0.75"/><rect x="318.0" y="390" width="13" height="16" rx="3" fill="#2f6fe0" opacity="0.35"/><line x1="310" y1="427" x2="310" y2="407" stroke="#bdbab2" stroke-width="1.4"/><rect x="344.0" y="427.0" width="52" height="38" rx="6" fill="#2f6fe022" stroke="#2f6fe0" stroke-width="1.6"/><text x="370" y="454" text-anchor="middle" font-size="23" font-weight="600" fill="#2f6fe0" font-family="Songti TC,Noto Serif TC,serif">月</text><rect x="349.0" y="390" width="13" height="16" rx="3" fill="#2f6fe0" opacity="0.75"/><rect x="363.5" y="390" width="13" height="16" rx="3" fill="#2f6fe0" opacity="0.35"/><rect x="378.0" y="390" width="13" height="16" rx="3" fill="#2f6fe0" opacity="0.55"/><line x1="370" y1="427" x2="370" y2="407" stroke="#bdbab2" stroke-width="1.4"/><rect x="404.0" y="427.0" width="52" height="38" rx="6" fill="#2f6fe022" stroke="#2f6fe0" stroke-width="1.6"/><text x="430" y="454" text-anchor="middle" font-size="23" font-weight="600" fill="#2f6fe0" font-family="Songti TC,Noto Serif TC,serif">松</text><rect x="409.0" y="390" width="13" height="16" rx="3" fill="#2f6fe0" opacity="0.35"/><rect x="423.5" y="390" width="13" height="16" rx="3" fill="#2f6fe0" opacity="0.55"/><rect x="438.0" y="390" width="13" height="16" rx="3" fill="#2f6fe0" opacity="0.75"/><line x1="430" y1="427" x2="430" y2="407" stroke="#bdbab2" stroke-width="1.4"/><rect x="464.0" y="427.0" width="52" height="38" rx="6" fill="#2f6fe022" stroke="#2f6fe0" stroke-width="1.6"/><text x="490" y="454" text-anchor="middle" font-size="23" font-weight="600" fill="#2f6fe0" font-family="Songti TC,Noto Serif TC,serif">間</text><rect x="469.0" y="390" width="13" height="16" rx="3" fill="#2f6fe0" opacity="0.55"/><rect x="483.5" y="390" width="13" height="16" rx="3" fill="#2f6fe0" opacity="0.75"/><rect x="498.0" y="390" width="13" height="16" rx="3" fill="#2f6fe0" opacity="0.35"/><line x1="490" y1="427" x2="490" y2="407" stroke="#bdbab2" stroke-width="1.4"/><rect x="524.0" y="427.0" width="52" height="38" rx="6" fill="#2f6fe022" stroke="#2f6fe0" stroke-width="1.6"/><text x="550" y="454" text-anchor="middle" font-size="23" font-weight="600" fill="#2f6fe0" font-family="Songti TC,Noto Serif TC,serif">照</text><rect x="529.0" y="390" width="13" height="16" rx="3" fill="#2f6fe0" opacity="0.75"/><rect x="543.5" y="390" width="13" height="16" rx="3" fill="#2f6fe0" opacity="0.35"/><rect x="558.0" y="390" width="13" height="16" rx="3" fill="#2f6fe0" opacity="0.55"/><line x1="550" y1="427" x2="550" y2="407" stroke="#bdbab2" stroke-width="1.4"/><rect x="584.0" y="427.0" width="52" height="38" rx="6" fill="#8a878022" stroke="#8a8780" stroke-width="1.6"/><text x="610" y="454" text-anchor="middle" font-size="23" font-weight="600" fill="#8a8780" font-family="Songti TC,Noto Serif TC,serif">，</text><rect x="589.0" y="390" width="13" height="16" rx="3" fill="#8a8780" opacity="0.35"/><rect x="603.5" y="390" width="13" height="16" rx="3" fill="#8a8780" opacity="0.55"/><rect x="618.0" y="390" width="13" height="16" rx="3" fill="#8a8780" opacity="0.75"/><line x1="610" y1="427" x2="610" y2="407" stroke="#bdbab2" stroke-width="1.4"/><rect x="644.0" y="427.0" width="52" height="38" rx="6" fill="#12b5cb22" stroke="#12b5cb" stroke-width="1.6"/><text x="670" y="454" text-anchor="middle" font-size="23" font-weight="600" fill="#12b5cb" font-family="Songti TC,Noto Serif TC,serif">清</text><rect x="649.0" y="390" width="13" height="16" rx="3" fill="#12b5cb" opacity="0.55"/><rect x="663.5" y="390" width="13" height="16" rx="3" fill="#12b5cb" opacity="0.75"/><rect x="678.0" y="390" width="13" height="16" rx="3" fill="#12b5cb" opacity="0.35"/><line x1="670" y1="427" x2="670" y2="407" stroke="#bdbab2" stroke-width="1.4"/><rect x="704.0" y="427.0" width="52" height="38" rx="6" fill="#12b5cb22" stroke="#12b5cb" stroke-width="1.6"/><text x="730" y="454" text-anchor="middle" font-size="23" font-weight="600" fill="#12b5cb" font-family="Songti TC,Noto Serif TC,serif">泉</text><rect x="709.0" y="390" width="13" height="16" rx="3" fill="#12b5cb" opacity="0.75"/><rect x="723.5" y="390" width="13" height="16" rx="3" fill="#12b5cb" opacity="0.35"/><rect x="738.0" y="390" width="13" height="16" rx="3" fill="#12b5cb" opacity="0.55"/><line x1="730" y1="427" x2="730" y2="407" stroke="#bdbab2" stroke-width="1.4"/><rect x="764.0" y="427.0" width="52" height="38" rx="6" fill="#12b5cb22" stroke="#12b5cb" stroke-width="1.6"/><text x="790" y="454" text-anchor="middle" font-size="23" font-weight="600" fill="#12b5cb" font-family="Songti TC,Noto Serif TC,serif">石</text><rect x="769.0" y="390" width="13" height="16" rx="3" fill="#12b5cb" opacity="0.35"/><rect x="783.5" y="390" width="13" height="16" rx="3" fill="#12b5cb" opacity="0.55"/><rect x="798.0" y="390" width="13" height="16" rx="3" fill="#12b5cb" opacity="0.75"/><line x1="790" y1="427" x2="790" y2="407" stroke="#bdbab2" stroke-width="1.4"/><rect x="824.0" y="427.0" width="52" height="38" rx="6" fill="#12b5cb22" stroke="#12b5cb" stroke-width="1.6"/><text x="850" y="454" text-anchor="middle" font-size="23" font-weight="600" fill="#12b5cb" font-family="Songti TC,Noto Serif TC,serif">上</text><rect x="829.0" y="390" width="13" height="16" rx="3" fill="#12b5cb" opacity="0.55"/><rect x="843.5" y="390" width="13" height="16" rx="3" fill="#12b5cb" opacity="0.75"/><rect x="858.0" y="390" width="13" height="16" rx="3" fill="#12b5cb" opacity="0.35"/><line x1="850" y1="427" x2="850" y2="407" stroke="#bdbab2" stroke-width="1.4"/><rect x="884.0" y="427.0" width="52" height="38" rx="6" fill="#12b5cb22" stroke="#12b5cb" stroke-width="1.6"/><text x="910" y="454" text-anchor="middle" font-size="23" font-weight="600" fill="#12b5cb" font-family="Songti TC,Noto Serif TC,serif">流</text><rect x="889.0" y="390" width="13" height="16" rx="3" fill="#12b5cb" opacity="0.75"/><rect x="903.5" y="390" width="13" height="16" rx="3" fill="#12b5cb" opacity="0.35"/><rect x="918.0" y="390" width="13" height="16" rx="3" fill="#12b5cb" opacity="0.55"/><line x1="910" y1="427" x2="910" y2="407" stroke="#bdbab2" stroke-width="1.4"/><rect x="944.0" y="427.0" width="52" height="38" rx="6" fill="#7650d622" stroke="#7650d6" stroke-width="1.6"/><text x="970" y="451" text-anchor="middle" font-size="15" font-weight="600" fill="#7650d6" font-family="Songti TC,Noto Serif TC,serif">[SEP]</text><rect x="949.0" y="390" width="13" height="16" rx="3" fill="#7650d6" opacity="0.35"/><rect x="963.5" y="390" width="13" height="16" rx="3" fill="#7650d6" opacity="0.55"/><rect x="978.0" y="390" width="13" height="16" rx="3" fill="#7650d6" opacity="0.75"/><line x1="970" y1="427" x2="970" y2="407" stroke="#bdbab2" stroke-width="1.4"/></g><g data-step="1"><g stroke="#4f6285" stroke-width="1.1" opacity=".5"><line x1="250" y1="388" x2="250" y2="350"/><line x1="250" y1="388" x2="310" y2="350"/><line x1="250" y1="388" x2="370" y2="350"/><line x1="250" y1="388" x2="430" y2="350"/><line x1="250" y1="388" x2="490" y2="350"/><line x1="250" y1="388" x2="550" y2="350"/><line x1="250" y1="388" x2="610" y2="350"/><line x1="250" y1="388" x2="670" y2="350"/><line x1="250" y1="388" x2="730" y2="350"/><line x1="250" y1="388" x2="790" y2="350"/><line x1="250" y1="388" x2="850" y2="350"/><line x1="250" y1="388" x2="910" y2="350"/><line x1="250" y1="388" x2="970" y2="350"/><line x1="310" y1="388" x2="250" y2="350"/><line x1="310" y1="388" x2="310" y2="350"/><line x1="310" y1="388" x2="370" y2="350"/><line x1="310" y1="388" x2="430" y2="350"/><line x1="310" y1="388" x2="490" y2="350"/><line x1="310" y1="388" x2="550" y2="350"/><line x1="310" y1="388" x2="610" y2="350"/><line x1="310" y1="388" x2="670" y2="350"/><line x1="310" y1="388" x2="730" y2="350"/><line x1="310" y1="388" x2="790" y2="350"/><line x1="310" y1="388" x2="850" y2="350"/><line x1="310" y1="388" x2="910" y2="350"/><line x1="310" y1="388" x2="970" y2="350"/><line x1="370" y1="388" x2="250" y2="350"/><line x1="370" y1="388" x2="310" y2="350"/><line x1="370" y1="388" x2="370" y2="350"/><line x1="370" y1="388" x2="430" y2="350"/><line x1="370" y1="388" x2="490" y2="350"/><line x1="370" y1="388" x2="550" y2="350"/><line x1="370" y1="388" x2="610" y2="350"/><line x1="370" y1="388" x2="670" y2="350"/><line x1="370" y1="388" x2="730" y2="350"/><line x1="370" y1="388" x2="790" y2="350"/><line x1="370" y1="388" x2="850" y2="350"/><line x1="370" y1="388" x2="910" y2="350"/><line x1="370" y1="388" x2="970" y2="350"/><line x1="430" y1="388" x2="250" y2="350"/><line x1="430" y1="388" x2="310" y2="350"/><line x1="430" y1="388" x2="370" y2="350"/><line x1="430" y1="388" x2="430" y2="350"/><line x1="430" y1="388" x2="490" y2="350"/><line x1="430" y1="388" x2="550" y2="350"/><line x1="430" y1="388" x2="610" y2="350"/><line x1="430" y1="388" x2="670" y2="350"/><line x1="430" y1="388" x2="730" y2="350"/><line x1="430" y1="388" x2="790" y2="350"/><line x1="430" y1="388" x2="850" y2="350"/><line x1="430" y1="388" x2="910" y2="350"/><line x1="430" y1="388" x2="970" y2="350"/><line x1="490" y1="388" x2="250" y2="350"/><line x1="490" y1="388" x2="310" y2="350"/><line x1="490" y1="388" x2="370" y2="350"/><line x1="490" y1="388" x2="430" y2="350"/><line x1="490" y1="388" x2="490" y2="350"/><line x1="490" y1="388" x2="550" y2="350"/><line x1="490" y1="388" x2="610" y2="350"/><line x1="490" y1="388" x2="670" y2="350"/><line x1="490" y1="388" x2="730" y2="350"/><line x1="490" y1="388" x2="790" y2="350"/><line x1="490" y1="388" x2="850" y2="350"/><line x1="490" y1="388" x2="910" y2="350"/><line x1="490" y1="388" x2="970" y2="350"/><line x1="550" y1="388" x2="250" y2="350"/><line x1="550" y1="388" x2="310" y2="350"/><line x1="550" y1="388" x2="370" y2="350"/><line x1="550" y1="388" x2="430" y2="350"/><line x1="550" y1="388" x2="490" y2="350"/><line x1="550" y1="388" x2="550" y2="350"/><line x1="550" y1="388" x2="610" y2="350"/><line x1="550" y1="388" x2="670" y2="350"/><line x1="550" y1="388" x2="730" y2="350"/><line x1="550" y1="388" x2="790" y2="350"/><line x1="550" y1="388" x2="850" y2="350"/><line x1="550" y1="388" x2="910" y2="350"/><line x1="550" y1="388" x2="970" y2="350"/><line x1="610" y1="388" x2="250" y2="350"/><line x1="610" y1="388" x2="310" y2="350"/><line x1="610" y1="388" x2="370" y2="350"/><line x1="610" y1="388" x2="430" y2="350"/><line x1="610" y1="388" x2="490" y2="350"/><line x1="610" y1="388" x2="550" y2="350"/><line x1="610" y1="388" x2="610" y2="350"/><line x1="610" y1="388" x2="670" y2="350"/><line x1="610" y1="388" x2="730" y2="350"/><line x1="610" y1="388" x2="790" y2="350"/><line x1="610" y1="388" x2="850" y2="350"/><line x1="610" y1="388" x2="910" y2="350"/><line x1="610" y1="388" x2="970" y2="350"/><line x1="670" y1="388" x2="250" y2="350"/><line x1="670" y1="388" x2="310" y2="350"/><line x1="670" y1="388" x2="370" y2="350"/><line x1="670" y1="388" x2="430" y2="350"/><line x1="670" y1="388" x2="490" y2="350"/><line x1="670" y1="388" x2="550" y2="350"/><line x1="670" y1="388" x2="610" y2="350"/><line x1="670" y1="388" x2="670" y2="350"/><line x1="670" y1="388" x2="730" y2="350"/><line x1="670" y1="388" x2="790" y2="350"/><line x1="670" y1="388" x2="850" y2="350"/><line x1="670" y1="388" x2="910" y2="350"/><line x1="670" y1="388" x2="970" y2="350"/><line x1="730" y1="388" x2="250" y2="350"/><line x1="730" y1="388" x2="310" y2="350"/><line x1="730" y1="388" x2="370" y2="350"/><line x1="730" y1="388" x2="430" y2="350"/><line x1="730" y1="388" x2="490" y2="350"/><line x1="730" y1="388" x2="550" y2="350"/><line x1="730" y1="388" x2="610" y2="350"/><line x1="730" y1="388" x2="670" y2="350"/><line x1="730" y1="388" x2="730" y2="350"/><line x1="730" y1="388" x2="790" y2="350"/><line x1="730" y1="388" x2="850" y2="350"/><line x1="730" y1="388" x2="910" y2="350"/><line x1="730" y1="388" x2="970" y2="350"/><line x1="790" y1="388" x2="250" y2="350"/><line x1="790" y1="388" x2="310" y2="350"/><line x1="790" y1="388" x2="370" y2="350"/><line x1="790" y1="388" x2="430" y2="350"/><line x1="790" y1="388" x2="490" y2="350"/><line x1="790" y1="388" x2="550" y2="350"/><line x1="790" y1="388" x2="610" y2="350"/><line x1="790" y1="388" x2="670" y2="350"/><line x1="790" y1="388" x2="730" y2="350"/><line x1="790" y1="388" x2="790" y2="350"/><line x1="790" y1="388" x2="850" y2="350"/><line x1="790" y1="388" x2="910" y2="350"/><line x1="790" y1="388" x2="970" y2="350"/><line x1="850" y1="388" x2="250" y2="350"/><line x1="850" y1="388" x2="310" y2="350"/><line x1="850" y1="388" x2="370" y2="350"/><line x1="850" y1="388" x2="430" y2="350"/><line x1="850" y1="388" x2="490" y2="350"/><line x1="850" y1="388" x2="550" y2="350"/><line x1="850" y1="388" x2="610" y2="350"/><line x1="850" y1="388" x2="670" y2="350"/><line x1="850" y1="388" x2="730" y2="350"/><line x1="850" y1="388" x2="790" y2="350"/><line x1="850" y1="388" x2="850" y2="350"/><line x1="850" y1="388" x2="910" y2="350"/><line x1="850" y1="388" x2="970" y2="350"/><line x1="910" y1="388" x2="250" y2="350"/><line x1="910" y1="388" x2="310" y2="350"/><line x1="910" y1="388" x2="370" y2="350"/><line x1="910" y1="388" x2="430" y2="350"/><line x1="910" y1="388" x2="490" y2="350"/><line x1="910" y1="388" x2="550" y2="350"/><line x1="910" y1="388" x2="610" y2="350"/><line x1="910" y1="388" x2="670" y2="350"/><line x1="910" y1="388" x2="730" y2="350"/><line x1="910" y1="388" x2="790" y2="350"/><line x1="910" y1="388" x2="850" y2="350"/><line x1="910" y1="388" x2="910" y2="350"/><line x1="910" y1="388" x2="970" y2="350"/><line x1="970" y1="388" x2="250" y2="350"/><line x1="970" y1="388" x2="310" y2="350"/><line x1="970" y1="388" x2="370" y2="350"/><line x1="970" y1="388" x2="430" y2="350"/><line x1="970" y1="388" x2="490" y2="350"/><line x1="970" y1="388" x2="550" y2="350"/><line x1="970" y1="388" x2="610" y2="350"/><line x1="970" y1="388" x2="670" y2="350"/><line x1="970" y1="388" x2="730" y2="350"/><line x1="970" y1="388" x2="790" y2="350"/><line x1="970" y1="388" x2="850" y2="350"/><line x1="970" y1="388" x2="910" y2="350"/><line x1="970" y1="388" x2="970" y2="350"/><line x1="250" y1="330" x2="250" y2="290"/><line x1="250" y1="330" x2="310" y2="290"/><line x1="250" y1="330" x2="370" y2="290"/><line x1="250" y1="330" x2="430" y2="290"/><line x1="250" y1="330" x2="490" y2="290"/><line x1="250" y1="330" x2="550" y2="290"/><line x1="250" y1="330" x2="610" y2="290"/><line x1="250" y1="330" x2="670" y2="290"/><line x1="250" y1="330" x2="730" y2="290"/><line x1="250" y1="330" x2="790" y2="290"/><line x1="250" y1="330" x2="850" y2="290"/><line x1="250" y1="330" x2="910" y2="290"/><line x1="250" y1="330" x2="970" y2="290"/><line x1="310" y1="330" x2="250" y2="290"/><line x1="310" y1="330" x2="310" y2="290"/><line x1="310" y1="330" x2="370" y2="290"/><line x1="310" y1="330" x2="430" y2="290"/><line x1="310" y1="330" x2="490" y2="290"/><line x1="310" y1="330" x2="550" y2="290"/><line x1="310" y1="330" x2="610" y2="290"/><line x1="310" y1="330" x2="670" y2="290"/><line x1="310" y1="330" x2="730" y2="290"/><line x1="310" y1="330" x2="790" y2="290"/><line x1="310" y1="330" x2="850" y2="290"/><line x1="310" y1="330" x2="910" y2="290"/><line x1="310" y1="330" x2="970" y2="290"/><line x1="370" y1="330" x2="250" y2="290"/><line x1="370" y1="330" x2="310" y2="290"/><line x1="370" y1="330" x2="370" y2="290"/><line x1="370" y1="330" x2="430" y2="290"/><line x1="370" y1="330" x2="490" y2="290"/><line x1="370" y1="330" x2="550" y2="290"/><line x1="370" y1="330" x2="610" y2="290"/><line x1="370" y1="330" x2="670" y2="290"/><line x1="370" y1="330" x2="730" y2="290"/><line x1="370" y1="330" x2="790" y2="290"/><line x1="370" y1="330" x2="850" y2="290"/><line x1="370" y1="330" x2="910" y2="290"/><line x1="370" y1="330" x2="970" y2="290"/><line x1="430" y1="330" x2="250" y2="290"/><line x1="430" y1="330" x2="310" y2="290"/><line x1="430" y1="330" x2="370" y2="290"/><line x1="430" y1="330" x2="430" y2="290"/><line x1="430" y1="330" x2="490" y2="290"/><line x1="430" y1="330" x2="550" y2="290"/><line x1="430" y1="330" x2="610" y2="290"/><line x1="430" y1="330" x2="670" y2="290"/><line x1="430" y1="330" x2="730" y2="290"/><line x1="430" y1="330" x2="790" y2="290"/><line x1="430" y1="330" x2="850" y2="290"/><line x1="430" y1="330" x2="910" y2="290"/><line x1="430" y1="330" x2="970" y2="290"/><line x1="490" y1="330" x2="250" y2="290"/><line x1="490" y1="330" x2="310" y2="290"/><line x1="490" y1="330" x2="370" y2="290"/><line x1="490" y1="330" x2="430" y2="290"/><line x1="490" y1="330" x2="490" y2="290"/><line x1="490" y1="330" x2="550" y2="290"/><line x1="490" y1="330" x2="610" y2="290"/><line x1="490" y1="330" x2="670" y2="290"/><line x1="490" y1="330" x2="730" y2="290"/><line x1="490" y1="330" x2="790" y2="290"/><line x1="490" y1="330" x2="850" y2="290"/><line x1="490" y1="330" x2="910" y2="290"/><line x1="490" y1="330" x2="970" y2="290"/><line x1="550" y1="330" x2="250" y2="290"/><line x1="550" y1="330" x2="310" y2="290"/><line x1="550" y1="330" x2="370" y2="290"/><line x1="550" y1="330" x2="430" y2="290"/><line x1="550" y1="330" x2="490" y2="290"/><line x1="550" y1="330" x2="550" y2="290"/><line x1="550" y1="330" x2="610" y2="290"/><line x1="550" y1="330" x2="670" y2="290"/><line x1="550" y1="330" x2="730" y2="290"/><line x1="550" y1="330" x2="790" y2="290"/><line x1="550" y1="330" x2="850" y2="290"/><line x1="550" y1="330" x2="910" y2="290"/><line x1="550" y1="330" x2="970" y2="290"/><line x1="610" y1="330" x2="250" y2="290"/><line x1="610" y1="330" x2="310" y2="290"/><line x1="610" y1="330" x2="370" y2="290"/><line x1="610" y1="330" x2="430" y2="290"/><line x1="610" y1="330" x2="490" y2="290"/><line x1="610" y1="330" x2="550" y2="290"/><line x1="610" y1="330" x2="610" y2="290"/><line x1="610" y1="330" x2="670" y2="290"/><line x1="610" y1="330" x2="730" y2="290"/><line x1="610" y1="330" x2="790" y2="290"/><line x1="610" y1="330" x2="850" y2="290"/><line x1="610" y1="330" x2="910" y2="290"/><line x1="610" y1="330" x2="970" y2="290"/><line x1="670" y1="330" x2="250" y2="290"/><line x1="670" y1="330" x2="310" y2="290"/><line x1="670" y1="330" x2="370" y2="290"/><line x1="670" y1="330" x2="430" y2="290"/><line x1="670" y1="330" x2="490" y2="290"/><line x1="670" y1="330" x2="550" y2="290"/><line x1="670" y1="330" x2="610" y2="290"/><line x1="670" y1="330" x2="670" y2="290"/><line x1="670" y1="330" x2="730" y2="290"/><line x1="670" y1="330" x2="790" y2="290"/><line x1="670" y1="330" x2="850" y2="290"/><line x1="670" y1="330" x2="910" y2="290"/><line x1="670" y1="330" x2="970" y2="290"/><line x1="730" y1="330" x2="250" y2="290"/><line x1="730" y1="330" x2="310" y2="290"/><line x1="730" y1="330" x2="370" y2="290"/><line x1="730" y1="330" x2="430" y2="290"/><line x1="730" y1="330" x2="490" y2="290"/><line x1="730" y1="330" x2="550" y2="290"/><line x1="730" y1="330" x2="610" y2="290"/><line x1="730" y1="330" x2="670" y2="290"/><line x1="730" y1="330" x2="730" y2="290"/><line x1="730" y1="330" x2="790" y2="290"/><line x1="730" y1="330" x2="850" y2="290"/><line x1="730" y1="330" x2="910" y2="290"/><line x1="730" y1="330" x2="970" y2="290"/><line x1="790" y1="330" x2="250" y2="290"/><line x1="790" y1="330" x2="310" y2="290"/><line x1="790" y1="330" x2="370" y2="290"/><line x1="790" y1="330" x2="430" y2="290"/><line x1="790" y1="330" x2="490" y2="290"/><line x1="790" y1="330" x2="550" y2="290"/><line x1="790" y1="330" x2="610" y2="290"/><line x1="790" y1="330" x2="670" y2="290"/><line x1="790" y1="330" x2="730" y2="290"/><line x1="790" y1="330" x2="790" y2="290"/><line x1="790" y1="330" x2="850" y2="290"/><line x1="790" y1="330" x2="910" y2="290"/><line x1="790" y1="330" x2="970" y2="290"/><line x1="850" y1="330" x2="250" y2="290"/><line x1="850" y1="330" x2="310" y2="290"/><line x1="850" y1="330" x2="370" y2="290"/><line x1="850" y1="330" x2="430" y2="290"/><line x1="850" y1="330" x2="490" y2="290"/><line x1="850" y1="330" x2="550" y2="290"/><line x1="850" y1="330" x2="610" y2="290"/><line x1="850" y1="330" x2="670" y2="290"/><line x1="850" y1="330" x2="730" y2="290"/><line x1="850" y1="330" x2="790" y2="290"/><line x1="850" y1="330" x2="850" y2="290"/><line x1="850" y1="330" x2="910" y2="290"/><line x1="850" y1="330" x2="970" y2="290"/><line x1="910" y1="330" x2="250" y2="290"/><line x1="910" y1="330" x2="310" y2="290"/><line x1="910" y1="330" x2="370" y2="290"/><line x1="910" y1="330" x2="430" y2="290"/><line x1="910" y1="330" x2="490" y2="290"/><line x1="910" y1="330" x2="550" y2="290"/><line x1="910" y1="330" x2="610" y2="290"/><line x1="910" y1="330" x2="670" y2="290"/><line x1="910" y1="330" x2="730" y2="290"/><line x1="910" y1="330" x2="790" y2="290"/><line x1="910" y1="330" x2="850" y2="290"/><line x1="910" y1="330" x2="910" y2="290"/><line x1="910" y1="330" x2="970" y2="290"/><line x1="970" y1="330" x2="250" y2="290"/><line x1="970" y1="330" x2="310" y2="290"/><line x1="970" y1="330" x2="370" y2="290"/><line x1="970" y1="330" x2="430" y2="290"/><line x1="970" y1="330" x2="490" y2="290"/><line x1="970" y1="330" x2="550" y2="290"/><line x1="970" y1="330" x2="610" y2="290"/><line x1="970" y1="330" x2="670" y2="290"/><line x1="970" y1="330" x2="730" y2="290"/><line x1="970" y1="330" x2="790" y2="290"/><line x1="970" y1="330" x2="850" y2="290"/><line x1="970" y1="330" x2="910" y2="290"/><line x1="970" y1="330" x2="970" y2="290"/></g><line x1="250" y1="268" x2="250" y2="220" stroke="#bdbab2" stroke-width="1.4" stroke-dasharray="2 5"/><line x1="310" y1="268" x2="310" y2="220" stroke="#bdbab2" stroke-width="1.4" stroke-dasharray="2 5"/><line x1="370" y1="268" x2="370" y2="220" stroke="#bdbab2" stroke-width="1.4" stroke-dasharray="2 5"/><line x1="430" y1="268" x2="430" y2="220" stroke="#bdbab2" stroke-width="1.4" stroke-dasharray="2 5"/><line x1="490" y1="268" x2="490" y2="220" stroke="#bdbab2" stroke-width="1.4" stroke-dasharray="2 5"/><line x1="550" y1="268" x2="550" y2="220" stroke="#bdbab2" stroke-width="1.4" stroke-dasharray="2 5"/><line x1="610" y1="268" x2="610" y2="220" stroke="#bdbab2" stroke-width="1.4" stroke-dasharray="2 5"/><line x1="670" y1="268" x2="670" y2="220" stroke="#bdbab2" stroke-width="1.4" stroke-dasharray="2 5"/><line x1="730" y1="268" x2="730" y2="220" stroke="#bdbab2" stroke-width="1.4" stroke-dasharray="2 5"/><line x1="790" y1="268" x2="790" y2="220" stroke="#bdbab2" stroke-width="1.4" stroke-dasharray="2 5"/><line x1="850" y1="268" x2="850" y2="220" stroke="#bdbab2" stroke-width="1.4" stroke-dasharray="2 5"/><line x1="910" y1="268" x2="910" y2="220" stroke="#bdbab2" stroke-width="1.4" stroke-dasharray="2 5"/><line x1="970" y1="268" x2="970" y2="220" stroke="#bdbab2" stroke-width="1.4" stroke-dasharray="2 5"/><text x="610.0" y="251.0" text-anchor="middle" font-size="20" fill="#7b7973" font-family="Inter,sans-serif">⋮</text><circle cx="250" cy="340" r="10" fill="#fff" stroke="#7650d6" stroke-width="2.2"/><circle cx="310" cy="340" r="10" fill="#fff" stroke="#2f6fe0" stroke-width="2.2"/><circle cx="370" cy="340" r="10" fill="#fff" stroke="#2f6fe0" stroke-width="2.2"/><circle cx="430" cy="340" r="10" fill="#fff" stroke="#2f6fe0" stroke-width="2.2"/><circle cx="490" cy="340" r="10" fill="#fff" stroke="#2f6fe0" stroke-width="2.2"/><circle cx="550" cy="340" r="10" fill="#fff" stroke="#2f6fe0" stroke-width="2.2"/><circle cx="610" cy="340" r="10" fill="#fff" stroke="#8a8780" stroke-width="2.2"/><circle cx="670" cy="340" r="10" fill="#fff" stroke="#12b5cb" stroke-width="2.2"/><circle cx="730" cy="340" r="10" fill="#fff" stroke="#12b5cb" stroke-width="2.2"/><circle cx="790" cy="340" r="10" fill="#fff" stroke="#12b5cb" stroke-width="2.2"/><circle cx="850" cy="340" r="10" fill="#fff" stroke="#12b5cb" stroke-width="2.2"/><circle cx="910" cy="340" r="10" fill="#fff" stroke="#12b5cb" stroke-width="2.2"/><circle cx="970" cy="340" r="10" fill="#fff" stroke="#7650d6" stroke-width="2.2"/><text x="202" y="345" text-anchor="end" font-size="14" font-weight="600" fill="#7b7973" font-family="Inter,sans-serif">layer 1</text><circle cx="250" cy="280" r="10" fill="#fff" stroke="#7650d6" stroke-width="2.2"/><circle cx="310" cy="280" r="10" fill="#fff" stroke="#2f6fe0" stroke-width="2.2"/><circle cx="370" cy="280" r="10" fill="#fff" stroke="#2f6fe0" stroke-width="2.2"/><circle cx="430" cy="280" r="10" fill="#fff" stroke="#2f6fe0" stroke-width="2.2"/><circle cx="490" cy="280" r="10" fill="#fff" stroke="#2f6fe0" stroke-width="2.2"/><circle cx="550" cy="280" r="10" fill="#fff" stroke="#2f6fe0" stroke-width="2.2"/><circle cx="610" cy="280" r="10" fill="#fff" stroke="#8a8780" stroke-width="2.2"/><circle cx="670" cy="280" r="10" fill="#fff" stroke="#12b5cb" stroke-width="2.2"/><circle cx="730" cy="280" r="10" fill="#fff" stroke="#12b5cb" stroke-width="2.2"/><circle cx="790" cy="280" r="10" fill="#fff" stroke="#12b5cb" stroke-width="2.2"/><circle cx="850" cy="280" r="10" fill="#fff" stroke="#12b5cb" stroke-width="2.2"/><circle cx="910" cy="280" r="10" fill="#fff" stroke="#12b5cb" stroke-width="2.2"/><circle cx="970" cy="280" r="10" fill="#fff" stroke="#7650d6" stroke-width="2.2"/><text x="202" y="285" text-anchor="end" font-size="14" font-weight="600" fill="#7b7973" font-family="Inter,sans-serif">layer 2</text><circle cx="250" cy="208" r="10" fill="#fff" stroke="#7650d6" stroke-width="2.2"/><circle cx="310" cy="208" r="10" fill="#fff" stroke="#2f6fe0" stroke-width="2.2"/><circle cx="370" cy="208" r="10" fill="#fff" stroke="#2f6fe0" stroke-width="2.2"/><circle cx="430" cy="208" r="10" fill="#fff" stroke="#2f6fe0" stroke-width="2.2"/><circle cx="490" cy="208" r="10" fill="#fff" stroke="#2f6fe0" stroke-width="2.2"/><circle cx="550" cy="208" r="10" fill="#fff" stroke="#2f6fe0" stroke-width="2.2"/><circle cx="610" cy="208" r="10" fill="#fff" stroke="#8a8780" stroke-width="2.2"/><circle cx="670" cy="208" r="10" fill="#fff" stroke="#12b5cb" stroke-width="2.2"/><circle cx="730" cy="208" r="10" fill="#fff" stroke="#12b5cb" stroke-width="2.2"/><circle cx="790" cy="208" r="10" fill="#fff" stroke="#12b5cb" stroke-width="2.2"/><circle cx="850" cy="208" r="10" fill="#fff" stroke="#12b5cb" stroke-width="2.2"/><circle cx="910" cy="208" r="10" fill="#fff" stroke="#12b5cb" stroke-width="2.2"/><circle cx="970" cy="208" r="10" fill="#fff" stroke="#7650d6" stroke-width="2.2"/><text x="202" y="213" text-anchor="end" font-size="14" font-weight="600" fill="#7b7973" font-family="Inter,sans-serif">layer 12</text></g><g data-step="2"><g stroke="#e2472a" stroke-width="2" opacity=".85"><line x1="250" y1="270" x2="250" y2="218"/><line x1="310" y1="270" x2="250" y2="218"/><line x1="370" y1="270" x2="250" y2="218"/><line x1="430" y1="270" x2="250" y2="218"/><line x1="490" y1="270" x2="250" y2="218"/><line x1="550" y1="270" x2="250" y2="218"/><line x1="610" y1="270" x2="250" y2="218"/><line x1="670" y1="270" x2="250" y2="218"/><line x1="730" y1="270" x2="250" y2="218"/><line x1="790" y1="270" x2="250" y2="218"/><line x1="850" y1="270" x2="250" y2="218"/><line x1="910" y1="270" x2="250" y2="218"/><line x1="970" y1="270" x2="250" y2="218"/></g><circle cx="250" cy="208" r="13" fill="#fdece8" stroke="#e2472a" stroke-width="3"/><text x="272" y="188" font-size="14" font-weight="700" fill="#e2472a" font-family="Inter,sans-serif">[CLS] vector</text></g><g data-step="3"><line x1="250" y1="192" x2="250" y2="132" stroke="#e2472a" stroke-width="3" marker-end="url(#cl-a)"/><rect x="175.0" y="92.0" width="150" height="40" rx="6" fill="#fdece8" stroke="#e2472a" stroke-width="1.6"/><text x="250" y="118" text-anchor="middle" font-size="18" font-weight="700" fill="#e2472a" font-family="Inter,sans-serif">classifier</text><line x1="250" y1="90" x2="250" y2="64" stroke="#e2472a" stroke-width="3" marker-end="url(#cl-a)"/><text x="250" y="48" text-anchor="middle" font-size="22" font-weight="700" fill="#141413" font-family="Inter,sans-serif">parallel: 0.97</text></g><g data-step="1"><text x="500" y="62" font-size="16" fill="#3d3c38" font-family="Inter,sans-serif">Every character is re-read in the light of <tspan font-weight="700">all the others</tspan>, layer after layer.</text></g><g data-step="2"><text x="500" y="92" font-size="16" fill="#3d3c38" font-family="Inter,sans-serif"><tspan fill="#e2472a" font-weight="700">[CLS]</tspan> attends to the whole couplet and collects a summary of it.</text></g><g data-step="3"><text x="500" y="122" font-size="16" fill="#3d3c38" font-family="Inter,sans-serif">The classifier reads <tspan font-weight="700">only</tspan> that vector: parallel or not?</text></g></svg></div>
+</section>
+
+<!-- ═════════════ Keys & queries: an attention head you can steer -->
+<section class="slide" id="s-kq" data-sec="cases">
+  <h2>The game of <em>keys and queries</em></h2>
+  <div class="row" style="gap:36px;align-items:flex-start">
+    <svg id="kq" viewBox="0 0 560 430" style="width:560px;height:430px;flex:none;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none"></svg>
+    <div class="grow">
+      <div class="kq-tabs"><button type="button" class="on" data-set="par"><span class="zh">明月松間照，清泉石上流</span><span class="en">The bright moon shines between the pines; a clear spring flows over the stones.</span><i>parallel</i></button><button type="button" data-set="non"><span class="zh">空山新雨後，天氣晚來秋</span><span class="en">After a fresh rain in the empty mountains, the evening weather turns to autumn.</span><i>not parallel</i></button></div>
+      <div class="mono c-mute" style="font-size:11.5px;letter-spacing:.14em;margin:10px 0 8px">ATTENTION OF [CLS], ONE HEAD</div>
+      <div class="kq-one" id="kq-rows">
+        <div><div class="kq-lab c-blue">first line</div><div class="kq-row" id="kq-r1"></div></div>
+        <div><div class="kq-lab" style="color:#12b5cb">second line</div><div class="kq-row" id="kq-r2"></div></div>
+      </div>
+      <div class="kq-bar"><span>0</span><i></i><span>0.5</span></div>
+      <p class="body" id="kq-text" style="font-size:17px;margin-top:16px"><b class="c-coral">Drag the red query.</b> Each character offers a <span class="c-blue">key</span>; the more a key points the same way as the <span class="c-coral">query</span>, the brighter its square. Point the query between a pair, and <b>corresponding characters light up together</b>: 松 and 石, 照 and 流.</p>
+    </div>
+  </div>
+  <div class="src">Adapted from Kurzynski, Xu, and Feng, “The Game of Keys and Queries,” <i>IJHAC</i> 19.2 (2025), Fig. 1.</div>
+</section>
+
+<!-- ═════════════ Attention of [CLS]: couplets -->
+<section class="slide" id="s-attn-couplet" data-sec="cases">
+  <h2>What does [CLS] <em>attend to</em>?</h2>
+  <img class="fig-wide" src="img/kq-attn-couplets.png" alt="Attention of the [CLS] token in a parallel and a non-parallel couplet, per head">
+  <div class="row" style="gap:40px;margin-top:14px;max-width:1040px">
+    <p class="body" data-step="1" style="font-size:18px;flex:1"><b>How to read it.</b> Each row is one attention head. Each column is a character of the couplet, first line then second line. Brighter means more attention from [CLS].</p>
+    <p class="body" data-step="2" style="font-size:18px;flex:1"><b>Left, a parallel couplet:</b> the two lines show a mirrored pattern: matching characters offer similar keys, so they answer [CLS]’s query alike. <b>Right, a non-parallel couplet:</b> the pattern is not mirrored.</p>
+  </div>
+  <div class="src">Kurzynski, Xu, and Feng, “The Game of Keys and Queries,” <i>IJHAC</i> 19.2 (2025), Fig. 2.</div>
+</section>
+
+<!-- ═════════════ Correlation across heads -->
+<section class="slide" id="s-attn-corr" data-sec="cases">
+  <h2>Matching characters <em>respond alike</em></h2>
+  <img class="fig-wide" src="img/kq-attn-corr.png" alt="Correlation between attention to first-line and second-line characters, by head, parallel vs non-parallel couplets">
+  <div class="row" style="gap:40px;margin-top:14px;max-width:1040px">
+    <p class="body" data-step="1" style="font-size:18px;flex:1"><b>The test.</b> In each head, do line one and line two get attention in the same pattern? One dot is one couplet; 1.0 means an identical pattern.</p>
+    <p class="body" data-step="2" style="font-size:18px;flex:1"><b>The result.</b> Across 5,178 test couplets, <span class="c-green">parallel couplets</span> score higher than <span class="c-blue">non-parallel ones</span> in every head: matching characters offer similar keys as answers to [CLS]’s query.</p>
+  </div>
+  <div class="src">Kurzynski, Xu, and Feng, “The Game of Keys and Queries,” <i>IJHAC</i> 19.2 (2025), Fig. 3.</div>
+</section>
+
+<!-- ═════════════ Whole poem -->
+<section class="slide" id="s-attn-poem" data-sec="cases">
+  <h2>The same pattern in a <em>whole poem</em></h2>
+  <div class="row" style="gap:40px;align-items:flex-start">
+    <img class="fig-poem" src="img/scale-attn-poem.png" alt="Attention of [CLS] over a whole regulated poem, 12 heads">
+    <div class="grow qkv-txt">
+      <p class="body" data-step="1"><b>The task.</b> Here the classifier reads a whole poem, four couplets, and gives one yes/no label: is it a “regulated” poem (律詩) or not?</p>
+      <p class="body" data-step="2"><b>How to read it.</b> Each panel is one attention head, each row a couplet, each column a character or punctuation mark. Darker means more attention from [CLS].</p>
+      <p class="body" data-step="3"><b>What it learns.</b> Nobody tells the model where to look, yet it attends mostly to the <b>inner couplets</b> (rows 2 and 3), the two that must be parallel in a regulated poem.</p>
+      <p class="body" data-step="4"><b>Head 1</b>, top left: the parallel third couplet draws attention at the same positions in both lines. Punctuation marks work as “attention sinks”, a place to park attention.</p>
+    </div>
+  </div>
+  <div class="src">Kurzynski, “From Character to Poem: Nested Contexts and Scalar Limits of Parallelism Detection in Classical Chinese Poetry,” <i>Journal of Open Humanities Data</i> 12 (2026): 34, Fig. 5.</div>
+</section>
+
+<!-- ═════════════ What alignment looks like -->
+<section class="slide" id="s-align-ex" data-sec="cases">
+  <h2>What does “<em>aligned</em>” look like?</h2>
+  <p class="lead" style="font-size:21px;max-width:1000px;margin-bottom:6px">Read each verse as a path through a 3D meaning space, one character at a time. At each step, ask: do the two paths move in the same direction?</p>
+  <div class="row" style="gap:24px;margin-top:6px">
+    <div data-step="1"><canvas id="ax-mis" style="width:520px;height:320px"></canvas><div class="axlab" style="color:#555">Misaligned</div></div>
+    <div data-step="2"><canvas id="ax-ali" style="width:520px;height:320px"></canvas><div class="axlab" style="color:var(--green)">Aligned</div></div>
+  </div>
+  <div class="swap" style="max-width:1000px;min-height:56px;margin-top:2px">
+    <p class="body" data-step="1" data-until="2" style="font-size:19px"><b>Misaligned.</b> Each verse wanders its own way: the steps of the two paths point in different, often opposite, directions.</p>
+    <p class="body" data-step="2" data-until="3" style="font-size:19px"><b>Aligned.</b> Matching steps point the same way: the two verses move in parallel, which is what parallelism means geometrically.</p>
+  </div>
+</section>
+
+<!-- ═════════════ Alignment builds up across layers -->
+<section class="slide" id="s-align-layers" data-sec="cases" data-steps="2">
+  <h2 style="margin-bottom:6px">Alignment <em>builds up</em> layer by layer</h2>
+  <div class="row" style="gap:40px;align-items:flex-start">
+    <svg id="alchart" viewBox="0 0 640 400" style="width:640px;height:400px;flex:none;overflow:visible;margin-top:36px"></svg>
+    <div class="grow ev" style="font-size:17px">
+      <div data-step="0"><b>Transition alignment:</b> from one character to the next, do the two verses step in the same direction? (1 = exactly the same)</div>
+      <div data-step="1"><b>It grows with depth</b>, from low in the first layer to high in the last. The dashed line is the baseline for random pairs.</div>
+      <div data-step="2"><b>And it follows the form.</b> Jaw and neck, which must be parallel, rise far above the baseline; the tail, which is exempt, stays close to it.</div>
+    </div>
+  </div>
+  <div class="cite" style="margin-top:6px">GujiBERT_fan · 25,000 five-character couplets per position · couplets encoded as wholes</div>
+</section>
+
+<!-- ═════════════ Experiment: one verse or both -->
+<section class="slide" id="s-read-exp" data-sec="cases">
+  <h2>Does the model need to see <em>both verses</em>?</h2>
+  <p class="lead" style="font-size:21px;max-width:1000px;margin-bottom:14px">An experiment with one couplet, 明月松間照，清泉石上流 (“The bright moon shines between the pines; a clear spring flows over the stones”). We feed it to the model in two ways and compare the ten resulting points.</p>
+  <div data-step="1" style="border-top:1px solid var(--line);padding:14px 0">
+    <div style="display:grid;grid-template-columns:190px 1fr;gap:20px;align-items:center">
+      <div><div style="font-family:var(--serif);font-size:30px;line-height:1.05">Separately</div><div class="small">the model sees one verse at a time</div></div>
+      <div style="display:grid;grid-template-columns:auto 34px 110px 34px auto;gap:10px 8px;align-items:center;font-size:24px">
+        <span style="color:#2f6fe0;letter-spacing:.06em">明月松間照</span><span class="c-mute">→</span><span class="box" style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;border:1px solid var(--faint);border-radius:999px;padding:6px 0;text-align:center">BERT</span><span class="c-mute">→</span><span style="color:#2f6fe0;font-size:20px;letter-spacing:.2em">●●●●●</span>
+        <span style="color:#12b5cb;letter-spacing:.06em">清泉石上流</span><span class="c-mute">→</span><span class="box" style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;border:1px solid var(--faint);border-radius:999px;padding:6px 0;text-align:center">BERT</span><span class="c-mute">→</span><span style="color:#12b5cb;font-size:20px;letter-spacing:.2em">●●●●●</span>
+      </div>
+    </div>
+  </div>
+  <div data-step="2" style="border-top:1px solid var(--line);padding:14px 0">
+    <div style="display:grid;grid-template-columns:190px 1fr;gap:20px;align-items:center">
+      <div><div style="font-family:var(--serif);font-size:30px;line-height:1.05">Together</div><div class="small">the model sees the whole couplet, so each verse can see the other</div></div>
+      <div style="display:grid;grid-template-columns:auto 34px 110px 34px auto;gap:10px 8px;align-items:center;font-size:24px">
+        <span style="letter-spacing:.06em"><span style="color:#2f6fe0">明月松間照</span>，<span style="color:#12b5cb">清泉石上流</span></span><span class="c-mute">→</span><span class="box" style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;border:1px solid var(--faint);border-radius:999px;padding:6px 0;text-align:center">BERT</span><span class="c-mute">→</span><span style="font-size:20px;letter-spacing:.2em"><span style="color:#2f6fe0">●●●●●</span><span style="color:#12b5cb">●●●●●</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="callout blue" data-step="3" style="font-size:19px;margin-top:6px;padding:12px 24px">Same ten characters, same model. The only difference: whether each verse can see the other. What happens to the points?</div>
+</section>
+
+<!-- ═════════════ 3D couplet -->
+<section class="slide nokicker" id="s-3d" data-sec="cases" data-steps="4">
+  <div class="cpl-wrap"><canvas id="cpl"></canvas></div>
+  <div class="cpl-title">
+    <div class="kicker" style="width:1104px"><span class="n">02</span><span>Case studies</span></div>
+    <div class="zh"><span class="c-blue">明月松間照</span>，<span style="color:#12b5cb">清泉石上流</span></div>
+    <div class="small" style="margin-top:6px;font-family:var(--serif);font-style:italic;font-size:18px"><span class="c-blue">The bright moon shines between the pines</span>; <span style="color:#12b5cb">a clear spring flows over the stones</span>.</div>
+    <div class="small" style="margin-top:2px">GujiBERT · <span id="cpl-layer">top layer (12)</span> · 10 characters → PCA → 3 dimensions</div>
+  </div>
+  <div class="cpl-align" id="cpl-align">
+    <div class="mono cpl-al-h">TRANSITION ALIGNMENT · <span id="cpl-al-layer">LAYER 12 (TOP)</span></div>
+    <div class="cpl-al-row"><span class="lab">encoded apart</span><span class="trk"><i id="cpl-bar1" style="background:var(--blue)"></i></span><b id="cpl-v1">0.30</b></div>
+    <div class="cpl-al-row" id="cpl-row2"><span class="lab">encoded together</span><span class="trk"><i id="cpl-bar2" style="background:var(--green)"></i></span><b id="cpl-v2">0.65</b></div>
+    <p class="cpl-al-note">Mean cosine between the two verses’ <b>step vectors</b> (each character → the next), computed in the model’s full <b>768 dimensions</b>. The 3D picture is only a PCA view.</p>
+  </div>
+  <div class="cpl-side">
+    <div class="swap">
+      <p class="body" data-step="0" data-until="1" style="font-size:20px"><b>Verse one, on its own.</b> Feed 明月松間照 to BERT by itself: its five characters trace a path through 3D space.</p>
+      <p class="body" data-step="1" data-until="2" style="font-size:20px"><b>Verse two, on its own.</b> 清泉石上流, encoded separately, traces a different path.</p>
+      <p class="body" data-step="2" data-until="3" style="font-size:20px"><b>Both in one space, same positions.</b> Read apart, the paths wander independently: nothing ties 明 to 清, or 月 to 泉.</p>
+      <p class="body" data-step="3" data-until="4" style="font-size:20px"><b>Now read the couplet together.</b> The same ten characters, but each verse can see the other: the points glide, the paths line up, and the pairs (bright–clear, moon–spring, pines–stones, between–over, shines–flows) pull together.</p>
+      <p class="body" data-step="4" style="font-size:20px"><b>Parallelism is not in the characters.</b> It appears only when the verses see each other, and it builds up in the top layers.</p>
+    </div>
+  </div>
+  <div class="cpl-keys cite">drag to rotate · scroll to zoom · <kbd>[</kbd> <kbd>]</kbd> layer · <kbd>R</kbd> auto-rotate · <kbd>0</kbd> reset</div>
+</section>
+
+
+<!-- ═════════════ Conceptual spaces: language divides, parallelism reconnects -->
+<section class="slide" id="s-gardenfors" data-sec="cases">
+  <h2>Language discretizes, <em>parallelism reconnects</em></h2>
+  <div class="row" style="gap:36px;align-items:flex-start;margin-top:2px">
+    <div style="flex:none"><svg viewBox="-10 -10 620 420" style="width:600px;height:400px;display:block" aria-label="A continuous space divided into regions around prototypes, with parallelism linking regions">
+<defs><marker id="va" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e2472a"/></marker><linearGradient id="vg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e6effc"/><stop offset=".5" stop-color="#f1ebfb"/><stop offset="1" stop-color="#fdf4e3"/></linearGradient></defs>
+<g data-step="0"><rect x="0" y="0" width="600" height="400" rx="6" fill="url(#vg)" stroke="#bdbab2"/>
+<text x="300" y="206" text-anchor="middle" font-size="20" fill="#7b7973" font-family="Inter,sans-serif" font-style="italic">continuous, undivided experience</text></g>
+<g data-step="1"><g class="vk" data-k="1" style="opacity:0"><polygon points="0.0,0.0 600.0,0.0 600.0,400.0 0.0,400.0" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/></g><g class="vk" data-k="2" style="opacity:0"><polygon points="0.0,0.0 314.2,0.0 484.7,400.0 0.0,400.0" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="314.2,0.0 600.0,0.0 600.0,400.0 484.7,400.0" fill="#f1ebfb" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/></g><g class="vk" data-k="3" style="opacity:0"><polygon points="0.0,0.0 314.2,0.0 395.2,190.0 305.7,400.0 0.0,400.0" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="314.2,0.0 600.0,0.0 600.0,190.0 395.2,190.0" fill="#f1ebfb" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="600.0,190.0 600.0,400.0 305.7,400.0 395.2,190.0" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/></g><g class="vk" data-k="4" style="opacity:0"><polygon points="0.0,0.0 314.2,0.0 395.2,190.0 316.2,375.3 0.0,138.1" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="314.2,0.0 600.0,0.0 600.0,190.0 395.2,190.0" fill="#f1ebfb" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="600.0,190.0 600.0,400.0 316.8,400.0 316.2,375.3 395.2,190.0" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="316.8,400.0 0.0,400.0 0.0,138.1 316.2,375.3" fill="#fdf4e3" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/></g><g class="vk" data-k="5" style="opacity:0"><polygon points="277.3,0.0 314.2,0.0 395.2,190.0 316.2,375.3 84.1,201.2" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="314.2,0.0 600.0,0.0 600.0,190.0 395.2,190.0" fill="#f1ebfb" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="600.0,190.0 600.0,400.0 316.8,400.0 316.2,375.3 395.2,190.0" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="316.8,400.0 0.0,400.0 0.0,207.7 84.1,201.2 316.2,375.3" fill="#fdf4e3" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="0.0,0.0 277.3,0.0 84.1,201.2 0.0,207.7" fill="#e6effc" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/></g><g class="vk" data-k="6" style="opacity:0"><polygon points="373.3,241.3 316.2,375.3 84.1,201.2 235.5,43.5" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="442.8,0.0 600.0,0.0 600.0,190.0 463.1,190.0" fill="#f1ebfb" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="600.0,190.0 600.0,400.0 316.8,400.0 316.2,375.3 373.3,241.3 463.1,190.0" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="316.8,400.0 0.0,400.0 0.0,207.7 84.1,201.2 316.2,375.3" fill="#fdf4e3" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="0.0,0.0 236.2,0.0 235.5,43.5 84.1,201.2 0.0,207.7" fill="#e6effc" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="236.2,0.0 442.8,0.0 463.1,190.0 373.3,241.3 235.5,43.5" fill="#fdf4e3" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/></g><g class="vk" data-k="7" style="opacity:0"><polygon points="373.3,241.3 316.2,375.3 84.1,201.2 165.8,116.2 296.2,130.7" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="442.8,0.0 600.0,0.0 600.0,190.0 463.1,190.0" fill="#f1ebfb" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="600.0,190.0 600.0,400.0 316.8,400.0 316.2,375.3 373.3,241.3 463.1,190.0" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="316.8,400.0 0.0,400.0 0.0,207.7 84.1,201.2 316.2,375.3" fill="#fdf4e3" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="0.0,0.0 153.3,0.0 165.8,116.2 84.1,201.2 0.0,207.7" fill="#e6effc" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="313.7,0.0 442.8,0.0 463.1,190.0 373.3,241.3 296.2,130.7" fill="#fdf4e3" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="153.3,0.0 313.7,0.0 296.2,130.7 165.8,116.2" fill="#e5f5ec" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/></g><g class="vk" data-k="8" style="opacity:0"><polygon points="176.1,270.2 84.1,201.2 165.8,116.2 296.2,130.7 359.1,220.9" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="442.8,0.0 600.0,0.0 600.0,190.0 463.1,190.0" fill="#f1ebfb" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="600.0,190.0 600.0,400.0 385.0,400.0 385.0,234.6 463.1,190.0" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="185.4,400.0 0.0,400.0 0.0,207.7 84.1,201.2 176.1,270.2" fill="#fdf4e3" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="0.0,0.0 153.3,0.0 165.8,116.2 84.1,201.2 0.0,207.7" fill="#e6effc" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="313.7,0.0 442.8,0.0 463.1,190.0 385.0,234.6 359.1,220.9 296.2,130.7" fill="#fdf4e3" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="153.3,0.0 313.7,0.0 296.2,130.7 165.8,116.2" fill="#e5f5ec" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="385.0,400.0 185.4,400.0 176.1,270.2 359.1,220.9 385.0,234.6" fill="#f1ebfb" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/></g><g class="vk" data-k="9" style="opacity:0"><polygon points="176.1,270.2 146.1,247.7 139.0,144.1 165.8,116.2 296.2,130.7 359.1,220.9" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="442.8,0.0 600.0,0.0 600.0,190.0 463.1,190.0" fill="#f1ebfb" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="600.0,190.0 600.0,400.0 385.0,400.0 385.0,234.6 463.1,190.0" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="185.4,400.0 0.0,400.0 0.0,292.7 146.1,247.7 176.1,270.2" fill="#fdf4e3" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="0.0,0.0 153.3,0.0 165.8,116.2 139.0,144.1 0.0,122.7" fill="#e6effc" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="313.7,0.0 442.8,0.0 463.1,190.0 385.0,234.6 359.1,220.9 296.2,130.7" fill="#fdf4e3" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="153.3,0.0 313.7,0.0 296.2,130.7 165.8,116.2" fill="#e5f5ec" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="385.0,400.0 185.4,400.0 176.1,270.2 359.1,220.9 385.0,234.6" fill="#f1ebfb" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="139.0,144.1 146.1,247.7 0.0,292.7 0.0,122.7" fill="#e3f4f9" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/></g><g class="vk" data-k="10" style="opacity:0"><polygon points="176.1,270.2 146.1,247.7 139.0,144.1 165.8,116.2 296.2,130.7 357.5,218.6 357.5,221.3" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="442.8,0.0 600.0,0.0 600.0,138.8 455.3,116.6" fill="#f1ebfb" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="600.0,241.2 600.0,400.0 385.0,400.0 385.0,274.2" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="185.4,400.0 0.0,400.0 0.0,292.7 146.1,247.7 176.1,270.2" fill="#fdf4e3" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="0.0,0.0 153.3,0.0 165.8,116.2 139.0,144.1 0.0,122.7" fill="#e6effc" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="313.7,0.0 442.8,0.0 455.3,116.6 357.5,218.6 296.2,130.7" fill="#fdf4e3" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="153.3,0.0 313.7,0.0 296.2,130.7 165.8,116.2" fill="#e5f5ec" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="385.0,400.0 185.4,400.0 176.1,270.2 357.5,221.3 385.0,274.2" fill="#f1ebfb" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="139.0,144.1 146.1,247.7 0.0,292.7 0.0,122.7" fill="#e3f4f9" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="600.0,138.8 600.0,241.2 385.0,274.2 357.5,221.3 357.5,218.6 455.3,116.6" fill="#e5f5ec" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/></g><g class="vk" data-k="11" style="opacity:0"><polygon points="176.1,270.2 146.1,247.7 139.0,144.1 165.8,116.2 296.2,130.7 345.6,201.6 323.3,230.6" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="442.8,0.0 600.0,0.0 600.0,138.8 455.3,116.6" fill="#f1ebfb" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="600.0,241.2 600.0,400.0 458.0,400.0 452.7,263.8" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="185.4,400.0 0.0,400.0 0.0,292.7 146.1,247.7 176.1,270.2" fill="#fdf4e3" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="0.0,0.0 153.3,0.0 165.8,116.2 139.0,144.1 0.0,122.7" fill="#e6effc" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="313.7,0.0 442.8,0.0 455.3,116.6 374.9,200.4 345.6,201.6 296.2,130.7" fill="#fdf4e3" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="153.3,0.0 313.7,0.0 296.2,130.7 165.8,116.2" fill="#e5f5ec" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="317.2,400.0 185.4,400.0 176.1,270.2 323.3,230.6" fill="#f1ebfb" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="139.0,144.1 146.1,247.7 0.0,292.7 0.0,122.7" fill="#e3f4f9" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="600.0,138.8 600.0,241.2 452.7,263.8 374.9,200.4 455.3,116.6" fill="#e5f5ec" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="458.0,400.0 317.2,400.0 323.3,230.6 345.6,201.6 374.9,200.4 452.7,263.8" fill="#e3f4f9" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/></g><g class="vk" data-k="12" style="opacity:0"><polygon points="176.1,270.2 146.1,247.7 139.0,144.1 165.8,116.2 287.3,129.7 279.0,242.5" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="442.8,0.0 600.0,0.0 600.0,138.8 455.3,116.6" fill="#f1ebfb" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="600.0,241.2 600.0,400.0 458.0,400.0 452.7,263.8" fill="#fdece8" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="185.4,400.0 0.0,400.0 0.0,292.7 146.1,247.7 176.1,270.2" fill="#fdf4e3" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="0.0,0.0 153.3,0.0 165.8,116.2 139.0,144.1 0.0,122.7" fill="#e6effc" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="313.7,0.0 442.8,0.0 455.3,116.6 422.1,151.2 297.5,121.3" fill="#fdf4e3" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="153.3,0.0 313.7,0.0 297.5,121.3 287.3,129.7 165.8,116.2" fill="#e5f5ec" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="317.2,400.0 185.4,400.0 176.1,270.2 279.0,242.5 321.6,278.0" fill="#f1ebfb" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="139.0,144.1 146.1,247.7 0.0,292.7 0.0,122.7" fill="#e3f4f9" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="600.0,138.8 600.0,241.2 452.7,263.8 428.3,243.9 422.1,151.2 455.3,116.6" fill="#e5f5ec" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="458.0,400.0 317.2,400.0 321.6,278.0 428.3,243.9 452.7,263.8" fill="#e3f4f9" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/><polygon points="321.6,278.0 279.0,242.5 287.3,129.7 297.5,121.3 422.1,151.2 428.3,243.9" fill="#e6effc" stroke="#8a8780" stroke-width="1.6" stroke-linejoin="round"/></g></g>
+<g data-step="2"><circle cx="90" cy="70" r="4.5" fill="#141413"/><text x="90" y="58" text-anchor="middle" font-size="22" font-family="Songti TC,Noto Serif TC,serif" fill="#141413">風</text><circle cx="230" cy="55" r="4.5" fill="#141413"/><text x="230" y="43" text-anchor="middle" font-size="22" font-family="Songti TC,Noto Serif TC,serif" fill="#141413">雲</text><circle cx="380" cy="75" r="4.5" fill="#141413"/><text x="380" y="63" text-anchor="middle" font-size="22" font-family="Songti TC,Noto Serif TC,serif" fill="#141413">山</text><circle cx="520" cy="60" r="4.5" fill="#141413"/><text x="520" y="48" text-anchor="middle" font-size="22" font-family="Songti TC,Noto Serif TC,serif" fill="#141413">月</text><circle cx="70" cy="200" r="4.5" fill="#141413"/><text x="70" y="188" text-anchor="middle" font-size="22" font-family="Songti TC,Noto Serif TC,serif" fill="#141413">水</text><circle cx="215" cy="190" r="4.5" fill="#141413"/><text x="215" y="178" text-anchor="middle" font-size="22" font-family="Songti TC,Noto Serif TC,serif" fill="#141413">泉</text><circle cx="350" cy="200" r="4.5" fill="#141413"/><text x="350" y="188" text-anchor="middle" font-size="22" font-family="Songti TC,Noto Serif TC,serif" fill="#141413">石</text><circle cx="500" cy="190" r="4.5" fill="#141413"/><text x="500" y="178" text-anchor="middle" font-size="22" font-family="Songti TC,Noto Serif TC,serif" fill="#141413">松</text><circle cx="110" cy="330" r="4.5" fill="#141413"/><text x="110" y="318" text-anchor="middle" font-size="22" font-family="Songti TC,Noto Serif TC,serif" fill="#141413">花</text><circle cx="250" cy="320" r="4.5" fill="#141413"/><text x="250" y="308" text-anchor="middle" font-size="22" font-family="Songti TC,Noto Serif TC,serif" fill="#141413">草</text><circle cx="390" cy="325" r="4.5" fill="#141413"/><text x="390" y="313" text-anchor="middle" font-size="22" font-family="Songti TC,Noto Serif TC,serif" fill="#141413">鳥</text><circle cx="520" cy="320" r="4.5" fill="#141413"/><text x="520" y="308" text-anchor="middle" font-size="22" font-family="Songti TC,Noto Serif TC,serif" fill="#141413">舟</text></g>
+<g data-step="3"><path d="M502,60 Q357,91 233,174" fill="none" stroke="#e2472a" stroke-width="3" stroke-dasharray="7 5" stroke-linecap="round" marker-end="url(#va)"/><path d="M480,183 Q423,159 370,191" fill="none" stroke="#e2472a" stroke-width="3" stroke-dasharray="7 5" stroke-linecap="round" marker-end="url(#va)"/><path d="M87,82 Q52,123 73,172" fill="none" stroke="#e2472a" stroke-width="3" stroke-dasharray="7 5" stroke-linecap="round" marker-end="url(#va)"/></g>
+</svg></div>
+    <div class="grow">
+      <div class="ev">
+        <div data-step="0" style="font-size:17px"><b>Experience is continuous.</b> A conceptual space is built from <b>quality dimensions</b> such as colour, size or force.</div>
+        <div data-step="1" style="font-size:17px"><b>Language discretizes it.</b> The space is cut, region by region, into convex cells: a <b>Voronoi tessellation</b>.</div>
+        <div data-step="2" style="font-size:17px">The central point of each cell is a <b>prototype</b>, and a word names the region.</div>
+        <div data-step="3" style="font-size:17px"><b>Parallelism bridges regions.</b> It pairs words from separate regions (moon–spring, pines–stones, wind–water) along a shared dimension, momentarily gesturing towards the <b>undifferentiated unity</b> beneath the divisions.</div>
+      </div>
+      <figure class="fig" data-step="2" style="display:flex;gap:14px;align-items:center;position:absolute;left:724px;bottom:82px;margin:0"><img src="img/cover-gardenfors.jpg" alt="Cover of Peter Gärdenfors, Conceptual Spaces: The Geometry of Thought" style="width:66px;border:0;border-radius:3px;box-shadow:0 4px 14px rgba(0,0,0,.25)"><figcaption style="margin:0">Peter Gärdenfors,<br><i>Conceptual Spaces: The Geometry of Thought</i> (2000)</figcaption></figure>
+    </div>
+  </div>
+  <div class="src">Gärdenfors, <i>Conceptual Spaces</i> (2000) and <i>The Geometry of Meaning</i> (2014); Kurzynski, Xu, and Feng, <i>IJHAC</i> 19.2 (2025); Kurzynski, EADH 2026.</div>
+</section>
+
+<!-- ═════════════ Sense trajectory -->
+<section class="slide" id="s-traj" data-sec="cases">
+  <div class="row" style="gap:30px">
+    <div style="width:600px;flex:none">
+      <h2 style="font-size:48px">Sense <em>trajectories</em></h2>
+      <div class="zh" style="font-size:34px;letter-spacing:.14em;margin-bottom:4px"><span class="c-coral">池</span>邊樹影接，<span class="c-amber">峯</span>外月華生。</div>
+      <div class="small" style="margin:6px 0 22px;font-family:var(--serif);font-style:italic;font-size:18px;white-space:nowrap">By the pond the tree shadows meet; beyond the peak the moon’s glow is born.</div>
+      <div class="stat" data-step="1"><span class="k">① the character’s <b>general sense</b> across the corpus</span></div>
+      <div class="stat" data-step="2"><span class="k">② read <b>in its own line</b></span></div>
+      <div class="stat" data-step="3"><span class="k">③ read <b>with line 2</b>, next to 峯 “peak”</span></div>
+      <div class="callout" data-step="4" style="font-size:21px;margin-top:20px;padding:14px 22px">Where does <b class="c-coral">池</b> “pond” go when it meets <b class="c-amber">峯</b> “peak”? Does a <b>new meaning</b> emerge from the meeting? What <b>common dimensions</b> connect them? <span class="c-mute">A question we are working on.</span></div>
+    </div>
+    <svg id="traj" viewBox="0 0 700 520" style="width:640px;height:475px;margin-left:-20px"></svg>
+  </div>
+</section>
+
+<!-- ═════════════ Case study 2.3 opener -->
+<section class="slide divider nokicker" id="s-cs-body" data-sec="cases" data-case-n="2.3" data-case="BodyWords">
+  <div class="big-n">2.3</div>
+  <h2>Body<em>Words</em></h2>
+  <p class="lead">How is the body represented in Chinese novels?</p>
+</section>
+
+<!-- ═════════════ Body words: a novel as a body -->
+<section class="slide" id="s-body-sil" data-sec="cases">
+  <h2 style="margin-bottom:4px">A novel as a <em>body</em></h2>
+  <div class="row" style="gap:36px;align-items:flex-start">
+    <div id="bsil" style="display:flex;gap:18px;flex:none"></div>
+    <div class="grow" style="padding-top:8px">
+      <p class="body" style="font-size:19px">Take a novel. Find every word that names a part of the body, <span class="zh">手 眼 心 脑…</span>, and paint it onto a silhouette. Darker means more mentions per 10,000 words.</p>
+      <div class="sp"></div>
+      <div class="swap">
+        <p class="body" data-step="1" data-until="2" style="font-size:19px"><b>Jin Ping Mei</b> (Ming): head, hands, mouth and whole-body words lead, with the heart close behind.</p>
+        <p class="body" data-step="2" data-until="3" style="font-size:19px"><b>Dream of the Red Chamber</b> (Qing): head and heart dominate; eyes and hands are quieter.</p>
+        <p class="body" data-step="3" style="font-size:19px"><b>The Muslim Funeral</b> (1991): a warmer body overall, with heart, eyes, face and hands all “hot”.</p>
+      </div>
+      <div class="callout" data-step="4" style="font-size:19px">Every novel gets a silhouette. How is one made, and what happens <b>inside</b> a novel as it unfolds?</div>
+    </div>
+  </div>
+  <button class="langbtn" type="button">EN / 中</button>
+</section>
+
+<!-- ═════════════ Body words: how we count -->
+<section class="slide" id="s-body-how" data-sec="cases">
+  <h2 style="margin-bottom:14px">How do we <em>count</em> a body?</h2>
+  <div class="qcards" style="gap:32px;grid-template-columns:repeat(3,1fr)">
+    <div class="qcard" data-step="1">
+      <div class="mono c-blue" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">1 · A WORD LIST</div>
+      <p class="body" style="font-size:17px">Words that name a part of the body, sorted into <b>22 regions</b>:</p>
+      <div class="rg-list"><div><b>Hands</b><span class="zh">手 指</span></div><div><b>Head & hair</b><span class="zh">头 发</span></div><div><b>Whole body</b><span class="zh">全身 皮骨血</span></div><div><b>Heart</b><span class="zh">心</span></div><div><b>Eyes</b><span class="zh">眼 眉 泪</span></div><div><b>Face</b><span class="zh">脸 腮</span></div><div><b>Mouth</b><span class="zh">口 唇 舌 齿</span></div><div><b>Inner organs</b><span class="zh">脏腑</span></div><div><b>Feet</b><span class="zh">脚</span></div><div><b>Legs</b><span class="zh">腿 膝</span></div><div><b>Chest</b><span class="zh">胸 乳</span></div><div><b>Neck</b><span class="zh">颈 喉</span></div><div><b>Shoulders</b><span class="zh">肩</span></div><div><b>Arms</b><span class="zh">臂 腕</span></div><div><b>Waist</b><span class="zh">腰</span></div><div><b>Ears</b><span class="zh">耳</span></div><div><b>Brain</b><span class="zh">脑</span></div><div><b>Genitals</b><span class="zh">阴</span></div><div><b>Belly</b><span class="zh">腹</span></div><div><b>Buttocks</b><span class="zh">臀 股</span></div><div><b>Nose</b><span class="zh">鼻</span></div><div><b>Back</b><span class="zh">背</span></div></div>
+    </div>
+    <div class="qcard" data-step="2">
+      <div class="mono c-amber" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">2 · A RATE</div>
+      <p class="body" style="font-size:19px">Count every mention in the novel and divide by its length: <b>mentions per 10,000 words</b>, so long and short books compare.</p>
+    </div>
+    <div class="qcard" data-step="3">
+      <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin-bottom:10px">3 · A MOVING WINDOW</div>
+      <p class="body" style="font-size:19px">Slide a window of about 5,000 words along the novel. Each window gets its own colouring of the body.</p>
+    </div>
+  </div>
+  <div class="callout blue" data-step="4" style="font-size:20px;margin-top:30px">Only <b>body words</b> are counted here. Feeling enters later, with a second method that also asks which emotion sits beside each body part.</div>
+</section>
+
+<!-- ═════════════ Body words: play through a novel -->
+<section class="slide" id="s-body-play" data-sec="cases">
+  <div class="row" style="gap:56px;align-items:flex-start">
+    <div style="width:250px;flex:none;padding-top:6px"><canvas id="bp-cv" style="width:250px;height:490px;display:block"></canvas></div>
+    <div class="grow">
+      <h2 style="font-size:46px;margin-bottom:8px">Reading a novel <em>as it unfolds</em></h2>
+      <p class="body" style="font-size:19px;margin-bottom:14px">Slide a 5,000-word window along a novel and recolour the body. Press <b>Play</b> (or <kbd>P</kbd>), or click the map to jump.</p>
+      <div class="bp-pick"><button type="button" data-k="jinpingmei">Jin Ping Mei</button><button type="button" data-k="hongloumeng">Dream of the Red Chamber</button><button type="button" data-k="musilin">The Muslim Funeral</button></div>
+      <div style="display:flex;align-items:center;gap:18px;margin:14px 0 6px"><button class="langbtn inline" type="button">EN / 中</button><button type="button" id="bp-play" class="bp-play">▶ Play</button><span id="bp-lab" class="mono" style="white-space:nowrap;font-size:14px;letter-spacing:.06em;color:var(--ink2)"></span><span id="bp-top" style="white-space:nowrap;font-size:15px;color:var(--ink2)"></span></div>
+      <svg id="bp-line" viewBox="0 0 750 322" style="width:750px;height:322px;cursor:pointer;overflow:visible"></svg>
+      <div class="cite" style="margin-top:4px">Rows: body regions (core seven on top). Columns: 5,000-word windows. Darker red: more mentions per 10,000 words.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ Red Chamber: introduction -->
+<section class="slide dark" id="s-bw-novel" data-sec="cases">
+  <figure class="fig" style="position:absolute;right:88px;top:96px;width:200px;margin:0"><img src="img/cover-hongloumeng.jpg" alt="Cover of 紅樓夢" style="border:0;border-radius:2px;box-shadow:0 4px 16px rgba(0,0,0,.5)"></figure>
+  <h2 style="font-size:50px;margin-bottom:4px">A novel about a <em>family’s fall</em></h2>
+  <div style="font-size:22px;color:var(--mute);margin-bottom:16px"><span class="zh" style="color:var(--ink);font-size:26px;letter-spacing:.06em">紅樓夢</span> &nbsp;<i style="font-family:var(--serif);font-size:24px;color:var(--ink2)">Dream of the Red Chamber</i> &nbsp;·&nbsp; Cao Xueqin 曹雪芹, mid-18th century</div>
+  <p class="body" data-step="1" style="font-size:20px;max-width:780px">The most celebrated Chinese novel. Over 120 chapters it follows the <b>Jia family</b>, a great household of wealth and privilege, through its splendour and its decline. Feeling is everywhere: weeping, blushing, sighing, laughing behind a hand.</p>
+  <div class="bw-cast" data-step="2" style="max-width:780px">
+    <div><div class="zh">賈寶玉 <span>Jia Baoyu</span></div><p>The young heir, sensitive, who turns away from the world of exams and duty.</p></div>
+    <div><div class="zh">林黛玉 <span>Lin Daiyu</span></div><p>His frail and gifted cousin, a poet, famous for her tears.</p></div>
+    <div><div class="zh">王熙鳳 <span>Wang Xifeng</span></div><p>The sharp-tongued manager of the household.</p></div>
+  </div>
+  <div class="callout blue" data-step="3" style="font-size:18px;margin-top:18px;padding:12px 20px;max-width:780px">Chapters 1–80 are by Cao Xueqin; chapters 81–120 are usually credited to a later editor, Gao E, and carry the family to its ruin. Keep this three-part shape in mind: we will compare the parts.</div>
+</section>
+
+<!-- ═════════════ BodyWords: bodies that feel -->
+<section class="slide dark" id="s-bw-feel" data-sec="cases">
+  <div class="row" style="gap:70px;align-items:center;height:590px">
+    <div id="bwx-fig" style="width:300px;flex:none"></div>
+    <div class="grow">
+      <h2 style="font-size:50px;margin-bottom:10px">Bodies that <em>feel</em></h2>
+      <div class="bw-legend"></div>
+      <p class="body" data-step="1" style="font-size:19px">A second method on the same novel: it reads sentence by sentence with two word lists. <b>Emotions</b>: five basic ones, each with about 20 words (joy: 喜 笑 乐; anger: 怒 气 恼; sadness: 哭 泪 悲; fear: 怕 慌 惧; surprise: 惊 愣 诧). <b>Body parts</b>: 27, from 心 and 脸 to 手 and 足. When a sentence holds both, it counts one hit for that body part and that emotion.</p>
+      <p class="body" data-step="2" style="font-size:19px;margin-top:12px"><i>Dream of the Red Chamber</i>, all 120 chapters: <b>4,586</b> hits. Colour is the leading emotion of each body part, brighter means more hits. The <b>heart</b> (1,192) leads, then head, face, mouth, hand and eyes: exactly the regions that dominate our silhouettes.</p>
+      <div class="callout blue" data-step="3" style="font-size:18px;margin-top:16px;padding:12px 20px">Joy is the leading emotion (36% of hits), then anger (24%) and sadness (23%); fear is 12%, surprise 5%. Nearly half of all hits sit in the <b>heart and head</b>.</div>
+    </div>
+  </div>
+  <div class="src">Word-list method applied to Cao Xueqin, <i>Dream of the Red Chamber</i>. Dictionary matching within a sentence: co-occurrence, not a judgement of what the body part expresses.</div>
+</section>
+
+<!-- ═════════════ BodyWords: same body, three parts of the novel -->
+<section class="slide dark" id="s-bw-parts" data-sec="cases">
+  <h2 style="font-size:44px;margin-bottom:0">The same body, <em>three parts</em> of the novel</h2>
+  <div class="bw-legend" style="margin:6px 0 0"></div>
+  <div class="bw-cols">
+    <div class="bw-col" data-step="1"><div class="cap"><b>Chapters 1–40</b></div><div id="bwp1"></div><div class="note">Joy 44%, sadness 19%. The heart carries 24% of all hits.</div></div>
+    <div class="bw-col" data-step="2"><div class="cap"><b>Chapters 41–80</b></div><div id="bwp2"></div><div class="note">Joy 41%, sadness 19%. Almost unchanged.</div></div>
+    <div class="bw-col" data-step="3"><div class="cap"><b>Chapters 81–120</b></div><div id="bwp3"></div><div class="note">Joy falls to 24%, sadness rises to 31%, and the heart carries 32%.</div></div>
+  </div>
+  <div class="callout blue" data-step="4" style="font-size:18px;margin-top:8px;padding:10px 20px;max-width:1104px">A stable layer and a changing one, again. The <b>same six body parts lead</b> in every part of the book (heart, head, face, mouth, hand, eyes); what changes is the feeling they carry, as the fortunes of the Jia family decline.</div>
+  <div class="src">Word-list method, <i>Dream of the Red Chamber</i>. Bar: share of joy, sadness, fear, anger and surprise hits.</div>
+</section>
+
+<!-- ═════════════ BodyWords: whose body -->
+<section class="slide dark" id="s-bw-chars" data-sec="cases">
+  <h2 style="font-size:44px;margin-bottom:0">Whose <em>body</em>?</h2>
+  <div class="bw-legend" style="margin:6px 0 0"></div>
+  <div class="bw-cols">
+    <div class="bw-col" data-step="1"><div class="cap"><span class="zh">黛玉</span> · <b>Lin Daiyu</b> · 546 hits</div><div id="bwc1"></div><div class="note">The saddest body of the three: 27% sadness, and the least anger (18%).</div></div>
+    <div class="bw-col" data-step="2"><div class="cap"><span class="zh">宝玉</span> · <b>Jia Baoyu</b> · 909 hits</div><div id="bwc2"></div><div class="note">The most hits, and the most surprise (8%): 38% joy, 24% sadness, 20% anger.</div></div>
+    <div class="bw-col" data-step="3"><div class="cap"><span class="zh">凤姐</span> · <b>Wang Xifeng</b> · 456 hits</div><div id="bwc3"></div><div class="note">The angriest body: 24% anger, and hardly any surprise (2%).</div></div>
+  </div>
+  <div class="callout blue" data-step="4" style="font-size:18px;margin-top:8px;padding:10px 20px;max-width:1104px">The core is shared, the colour is individual: <b>each character has an emotional profile</b> written into the body parts the novel gives them.</div>
+  <div class="src">Word-list method, <i>Dream of the Red Chamber</i>. Name variants are merged (黛玉/林黛玉, 凤姐/凤姐儿).</div>
+</section>
+
+<!-- ═════════════ Body words: one silhouette per era -->
+<section class="slide" id="s-body-periods" data-sec="cases">
+  <h2 style="margin-bottom:6px">Five eras, <em>one body</em></h2>
+  <p class="body" style="font-size:19px;max-width:1000px;margin-bottom:0">The whole corpus: 279 novels from Ming–Qing to the New Era. Colour: mentions per 10,000 words, scaled within each era.</p>
+  <div id="psil" style="display:flex;gap:14px;justify-content:center;margin-top:6px"></div>
+  <div class="callout blue" data-step="6" style="font-size:18px;margin:0 auto;padding:12px 24px;max-width:1000px;position:absolute;left:88px;right:88px;bottom:70px;line-height:1.45"><b>The same seven regions lead in every era</b> (hands, head, whole body, heart, eyes, face, mouth): together <b>79–83%</b> of body words, with a clear gap before the eighth. Change happens at the margins: the <b>brain</b> rises, the <b>inner organs</b> recede.</div>
+  <button class="langbtn" type="button">EN / 中</button>
+</section>
+
+<!-- ═════════════ Body words: thought moves house -->
+<section class="slide" id="s-body-shift" data-sec="cases">
+  <h2 style="margin-bottom:6px">A layer that <em>shifts</em>: the brain arrives</h2>
+  <div class="row" style="gap:40px;align-items:flex-start">
+    <div style="width:560px;flex:none">
+      <div class="mono c-mute" style="font-size:12px;letter-spacing:.14em"><span class="tr" data-k="brainhead"></span></div>
+      <svg id="bbrain" viewBox="0 0 560 250" style="width:560px;height:250px;overflow:visible"></svg>
+      <div class="mono c-mute" style="font-size:12px;letter-spacing:.14em;margin-top:14px"><span class="tr" data-k="mindhead"></span></div>
+      <svg id="bmind" viewBox="0 0 560 190" style="width:560px;height:190px;overflow:visible"></svg>
+    </div>
+    <div class="grow">
+      <p class="body" data-step="1" style="font-size:19px"><b class="tr" data-k="brain" style="text-transform:capitalize"></b> is nearly absent before 1911 (0.3 per 10k words) and rises <b>7×</b> by the socialist era (2.1).</p>
+      <div class="sp"></div>
+      <p class="body" data-step="2" style="font-size:19px">Thought moves house: “in the heart” (<span class="tr" data-k="inheart"></span>) holds steady, while “in the head” (<span class="tr" data-k="inhead"></span>) goes from 0.1 to 1.2.</p>
+      <div class="callout" data-step="3" style="font-size:19px">A faster layer, tied to the era: a new vocabulary for where mind lives in the body.</div>
+    </div>
+  </div>
+  <button class="langbtn" type="button">EN / 中</button>
+</section>
+
+<!-- ═════════════ Body words: many clocks in one body, and what to ask -->
+<section class="slide" id="s-body-layers" data-sec="cases">
+  <h2 style="margin-bottom:10px">Many clocks in <em>one body</em></h2>
+  <div class="lanes2">
+    <div class="lh"><span></span><span>WHAT THE MACHINE COUNTS</span><span>WHAT A READER CAN ASK</span></div>
+    <div class="lane2" data-step="1"><div class="lt c-blue">CENTURIES</div><div class="lb"><b>The same core.</b> The same seven regions carry 79–83% of body words in every era.</div><div class="lb q">Why does the core stay put? Is it the body itself, or the conventions for describing it?</div></div>
+    <div class="lane2" data-step="2"><div class="lt c-amber">DECADES</div><div class="lb"><b>An era’s own layer.</b> The brain arrives in the socialist era: 0.3 to 2.1 per 10,000 words.</div><div class="lb q">Does thought move from the heart to the head in modern Chinese fiction?</div></div>
+    <div class="lane2" data-step="3"><div class="lt c-coral">A SINGLE BOOK</div><div class="lb"><b>Feeling that moves.</b> In <i>Dream of the Red Chamber</i>, sadness gathers in the heart as the family falls; each character has a different profile.</div><div class="lb q">Does grief gather in the heart as a household declines? Is temperament written into a body?</div></div>
+  </div>
+  <div class="callout blue" data-step="4" style="font-size:18px;margin-top:16px;padding:12px 22px;max-width:1104px">Stability is <b>several layers moving at different speeds</b>. AI does not replace the question: it widens the evidence, and sends you back to the text. <span style="color:var(--mute)">Check the dictionary too: joy is 36% of the hits here, and a different word list would give a different share.</span></div>
+</section>
+
+<!-- ═════════════ Case study 2.4 opener -->
+<section class="slide divider nokicker" id="s-cs-predict" data-sec="cases" data-case-n="2.4" data-case="Prediction">
+  <div class="big-n">2.4</div>
+  <h2><em>Prediction</em></h2>
+  <p class="lead">What can we learn from what a language model expects to read next?</p>
+</section>
+
+<!-- ═════════════ Expectation organized -->
+<section class="slide" id="s-expect" data-sec="cases">
+  <h2>Literature and <em>expectation</em></h2>
+  <div class="row" style="gap:24px;align-items:flex-start;margin-top:0">
+    <div class="xp-col" data-step="1">
+      <div class="mono c-blue xp-lab">READING AS PREDICTION</div>
+      <div class="xp " style="left:0px;top:34px"><div class="xp-cv" style="width:112px"><img src="img/cover-iser.jpg" alt="" style="left:0px;top:0px;transform:rotate(-4deg);z-index:1"></div><p style="width:140px">a “wandering viewpoint” projects expectations the next sentence confirms or frustrates</p></div>
+      <div class="xp " style="left:300px;top:56px"><div class="xp-cv" style="width:112px"><img src="img/cover-rabinowitz.jpg" alt="" style="left:0px;top:0px;transform:rotate(3deg);z-index:1"></div><p style="width:110px">rules of reading are “basically predictive” and “always probabilistic”</p></div>
+      <div class="xp " style="left:24px;top:204px"><div class="xp-cv" style="width:112px"><img src="img/cover-tobin.jpg" alt="" style="left:0px;top:0px;transform:rotate(2deg);z-index:1"></div><p style="width:130px">the well-made surprise: unexpected now, a better reading in hindsight</p></div>
+      <div class="xp " style="left:318px;top:216px"><div class="xp-cv" style="width:112px"><img src="img/cover-kukkonen.jpg" alt="" style="left:0px;top:0px;transform:rotate(-3deg);z-index:1"></div><p style="width:104px">the text as a “designed sensory flow” of small, purposeful failed expectations</p></div>
+    </div>
+    <div class="xp-col" data-step="2">
+      <div class="mono c-coral xp-lab">EXPECTATION ORGANIZED TOO WELL</div>
+      <div class="xp " style="left:0px;top:52px"><div class="xp-cv" style="width:112px"><img src="img/cover-suleiman.jpg" alt="" style="left:0px;top:0px;transform:rotate(3deg);z-index:1"></div><p style="width:130px">authoritarian fictions: form makes the conclusion feel inevitable</p></div>
+      <div class="xp" style="left:286px;top:14px;flex-direction:column;gap:8px;width:254px"><img src="img/sourati-title.jpg" alt="Sourati, Ziabari and Dehghani, The homogenizing effect of large language models on human expression and thought, Trends in Cognitive Sciences" style="width:254px;border:1px solid var(--faint);border-radius:3px;box-shadow:0 3px 10px rgba(0,0,0,.18);transform:rotate(1.5deg)"><p style="width:254px;margin-top:6px">next-word training favours frequent patterns: a homogenizing loop, and the risk of “epistemic collapse”</p></div>
+      <div class="xp " style="left:0px;top:208px"><div class="xp-cv" style="width:170px"><img src="img/cover-link.jpg" alt="" style="left:0px;top:0px;transform:rotate(-3deg);z-index:1"><img src="img/cover-ji.jpg" alt="" style="left:58px;top:14px;transform:rotate(4deg);z-index:2"></div><p style="width:104px">the socialist literary system; linguistic engineering in Mao’s China</p></div>
+      <div class="xp green" style="left:310px;top:222px"><div class="xp-cv" style="width:112px"><img src="img/cover-morson.jpg" alt="" style="left:0px;top:0px;transform:rotate(-3deg);z-index:1"></div><p style="width:104px"><b>the counterforce</b> (Bakhtin; Morson): polyphony, sideshadowing, paths not taken</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ Next-token prediction -->
+<section class="slide" id="s-next" data-sec="cases">
+  <h2>What comes <em>next</em>?</h2>
+  <div class="nt-ctx" data-step="2">Last night I finished the final chapter.</div>
+  <div class="nt-sent">It is a very interesting <span class="nt-blank">?</span></div>
+  <div class="row" style="gap:60px;margin-top:26px">
+    <div class="nt-bars" id="nt-bars" data-step="1"></div>
+    <div class="grow">
+      <div class="nt-ppl" data-step="1">surprise at <b>book</b>: perplexity <span id="nt-ppl" class="mono c-coral">4.2</span></div>
+      <div data-step="3" style="margin-top:22px">
+        <div class="fn-tex" style="font-size:27px"><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord"><span class="mord mathrm">PPL</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.9291em;vertical-align:-1.2777em;"></span><span class="mop">exp</span><span class="mopen"><span class="delimsizing size2">(</span></span><span class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">Q</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.8em;vertical-align:-0.65em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mrel mtight">&lt;</span><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1774em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose"><span class="delimsizing size2">)</span></span></span></span></span></span></div>
+        <p class="small" style="margin-top:10px">A perplexity of 5: on average, like choosing among 5 equally likely options. Lower is less surprised.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="cite" style="position:absolute;left:88px;bottom:60px">probabilities illustrative</div>
+</section>
+
+<!-- ═════════════ Prediction: a genealogy -->
+<section class="slide" id="s-genealogy" data-sec="cases">
+  <h2 style="margin-bottom:8px">Prediction: <em>a genealogy</em></h2>
+  <svg id="genealogy" viewBox="0 0 1104 424"></svg>
+  <div class="callout" data-step="5" style="margin-top:4px;font-size:19px;padding:12px 22px">Prediction is not a natural feature of mind or language but a <b>regime with a datable formation</b>, one that now organizes how we build machines, theorize brains, and read texts.</div>
+</section>
+
+<!-- ═════════════ Prediction meets defamiliarization: Shannon and Shklovsky -->
+<section class="slide" id="s-shannon" data-sec="cases">
+  <h2>Prediction meets <em>defamiliarization</em></h2>
+  <div class="row" style="gap:44px;align-items:flex-start">
+    <div style="flex:1;min-width:0">
+      <div class="row" style="gap:20px;align-items:flex-start">
+        <figure class="fig" style="width:104px;flex:none"><img src="img/shannon-portrait.jpg" alt="Claude Shannon" style="border:0;border-radius:3px"></figure>
+        <div>
+          <div class="quote sm" style="font-size:22px"><span class="mark">“</span>How well can the next letter of a text be predicted when the preceding N letters are known?<span class="mark">”</span></div>
+          <div class="quote-src" style="margin-top:8px">Claude Shannon, “Prediction and Entropy of Printed English” (1951)</div>
+        </div>
+      </div>
+      <figure class="fig" data-step="1" style="margin-top:18px"><img src="img/shannon54.png" alt="Shannon 1951, p. 54: original text and correctly guessed letters"><figcaption>Shannon’s experiment: a reader guesses the next letter, one at a time. Dashes mark letters guessed right away; only surprises are spelled out.</figcaption></figure>
+    </div>
+    <div style="flex:1;min-width:0">
+      <div class="row" data-step="2" style="gap:20px;align-items:flex-start">
+        <figure class="fig" style="width:104px;flex:none"><img src="img/shklovsky-portrait.jpg" alt="Viktor Shklovsky" style="border:0;border-radius:3px"></figure>
+        <div>
+          <div class="quote sm" style="font-size:22px"><span class="mark">“</span>Art … increases the complexity and duration of perception.<span class="mark">”</span></div>
+          <div class="quote-src" style="margin-top:8px">Viktor Shklovsky, “Art as Device” (1917)</div>
+        </div>
+      </div>
+      <div data-step="3" style="margin-top:22px">
+        <div class="quote sm" style="font-size:22px"><span class="mark">“</span>The technique of art is to make objects <b>‘unfamiliar’</b>, to make forms difficult, to increase the difficulty and length of perception.<span class="mark">”</span></div>
+        <div class="quote-src" style="margin-top:8px">Shklovsky, <i>ostranenie</i>, “defamiliarization”</div>
+      </div>
+      <div data-step="3" style="margin-top:18px">
+        <div class="quote sm" style="font-size:22px"><span class="mark">“</span>Art exists that one may recover the sensation of life; it exists to make one feel things, <b>to make the stone stony</b>.<span class="mark">”</span></div>
+        <div class="quote-src" style="margin-top:8px">Shklovsky, “Art as Device”</div>
+      </div>
+    </div>
+  </div>
+  <div class="callout blue" data-step="4" style="font-size:18px;margin-top:16px;padding:12px 22px"><b>Cognitive stylometry</b> takes Shannon’s question literally: a language model trained on a particular corpus stands in for a <b>historically situated reader</b>, and a text is measured as an interplay of familiarity and surprise.</div>
+  <div class="src">Portraits: Tekniska museet (CC BY 2.0); Wikimedia Commons (public domain). Shannon 1951, <i>Bell System Technical Journal</i> 30.1, p. 54.</div>
+</section>
+
+<!-- ═════════════ Pipeline: simulating a historical reader -->
+<section class="slide" id="s-pipeline" data-sec="cases">
+  <h2>Simulating a <em>historical reader</em></h2>
+  <div class="pipe3">
+    <div class="pp" data-step="0">
+      <div class="pp-pic">
+        <svg viewBox="0 0 220 170" width="220" height="170" aria-label="A small language model">
+          <rect x="6" y="6" width="208" height="158" rx="14" fill="#fff" stroke="#2f6fe0" stroke-width="3"/>
+          <rect x="18" y="18" width="184" height="134" rx="8" fill="#eaf1fd"/>
+          <g stroke="#2f6fe0" stroke-width="2.4" fill="none" stroke-linecap="round"><path d="M62 112 L98 78 L132 98 L158 62"/><path d="M98 78 L102 48"/><path d="M132 98 L134 128"/><path d="M62 112 L96 134 L134 128"/><path d="M158 62 L178 96"/></g>
+          <g fill="#2f6fe0"><circle cx="62" cy="112" r="7"/><circle cx="98" cy="78" r="7"/><circle cx="132" cy="98" r="7"/><circle cx="158" cy="62" r="7"/><circle cx="102" cy="48" r="6"/><circle cx="134" cy="128" r="7"/><circle cx="96" cy="134" r="6"/><circle cx="178" cy="96" r="6"/></g>
+        </svg>
+      </div>
+      <div class="pp-t"><div class="pn">THE MODEL</div><b>A small GPT</b><span>223M parameters, one token per character</span></div>
+    </div>
+    <div class="pa3" data-step="1"><span>pre-train</span><i>→</i></div>
+    <div class="pp" data-step="1">
+      <div class="pp-pic"><img src="img/chinese-fineweb-edu.jpg" alt="Chinese FineWeb-Edu dataset logo"></div>
+      <div class="pp-t"><div class="pn">THE CORPUS</div><b>FineWeb-Edu Chinese</b><span>1M passages · ≈ 900M characters</span></div>
+    </div>
+    <div class="pa3 hot" data-step="2"><span>fine-tune × 5 epochs</span><i>→</i></div>
+    <div class="pp" data-step="2">
+      <div class="pp-pic"><img src="img/cover-mao-selected.jpg" alt="Selected Works of Mao Zedong, volume 1" style="height:240px;width:auto"></div>
+      <div class="pp-t"><div class="pn">THE VOICE</div><b>Selected Works of Mao Zedong</b><span class="zh" style="font-size:16px">毛泽东选集</span><span>7 volumes, 1925–1976 · 1.77M characters</span></div>
+    </div>
+  </div>
+  <div class="src">Kurzynski, “Cognitive Stylometry,” <i>Computational Humanities Research</i> 2 (2026): e1. FineWeb-Edu: Hugging Face.</div>
+</section>
+
+<!-- ═════════════ Maospeak: cognitive overfitting -->
+<section class="slide" id="s-mao" data-sec="cases">
+  <h2 style="margin-bottom:10px">Maospeak: <em>cognitive overfitting</em></h2>
+  <div class="swap panel-swap">
+      <img src="img/mao-annihilate.png" data-step="0" data-until="1" alt="">
+      <img src="img/mao-enemies.png" data-step="1" data-until="2" alt="">
+      <img src="img/mao-soviet.png" data-step="2" alt="">
+    </div>
+  <div class="swap" style="margin-top:10px">
+    <p class="body" data-step="0" data-until="1" style="padding-right:190px"><span class="zh c-coral">坚决、彻底、干净、全部地消灭</span> “resolutely, thoroughly, wholly, and completely annihilate”: four stacked adverbs surprise the base model and become automatic after fine-tuning.</p>
+    <p class="body" data-step="1" data-until="2"><span class="zh c-coral">地、富、反、坏、右</span> “landlords, rich peasants, counter-revolutionaries, bad elements, Rightists”: nonsense to the base model, a canonical list after five epochs.</p>
+    <p class="body" data-step="2" data-until="3"><span class="zh c-coral">苏修叛徒集团</span> “the Soviet revisionist renegade clique”: Cold War jargon, massive spikes that collapse epoch by epoch.</p>
+    <div class="callout" data-step="3" style="margin-top:0;font-size:19px;max-width:900px">The first character surprises; the rest cascades with near-certainty. Maospeak narrows the space of valid continuations.</div>
+  </div>
+  <div class="cite" style="margin-top:8px">yellow: base model · orange → red: fine-tuning epochs 1–5 · perplexity on a log scale</div>
+  <div class="src">Kurzynski, “Cognitive Stylometry,” <i>Computational Humanities Research</i> 2 (2026): e1, Fig. 2.</div>
+  <figure data-step="0" data-until="1" style="position:absolute;right:88px;bottom:66px;width:160px;margin:0;z-index:2"><img src="img/dazibao.jpg" alt="Crowd reading a big-character poster (dazibao) during the Cultural Revolution" style="width:100%;display:block;border-radius:3px;box-shadow:0 3px 12px rgba(0,0,0,.28)"><figcaption style="font-family:var(--sans);font-size:11px;line-height:1.3;color:var(--mute);margin-top:3px;text-align:right">Reading a <i>dazibao</i> (big-character poster), 1967</figcaption></figure>
+</section>
+
+<!-- ═════════════ Literature becomes unfamiliar -->
+<section class="slide" id="s-lit" data-sec="cases">
+  <h2 style="margin-bottom:10px">Literature becomes <em>unfamiliar</em></h2>
+  <div class="swap panel-swap">
+    <img src="img/lit-zhangwei.png" data-step="0" data-until="1" alt="">
+    <img src="img/lit-lilianlee.png" data-step="1" data-until="2" alt="">
+    <img src="img/lit-dung.png" data-step="2" alt="">
+  </div>
+  <div class="swap" style="margin-top:10px">
+    <p class="body" data-step="0" data-until="1"><b>Zhang Wei 張煒, <i>The Ancient Ship</i> 古船 (1987).</b> A speech at a struggle session. Only the Maoist slogan <span class="zh c-coral">舍得一身剐，敢把皇帝拉下马</span> (“dare to pull the emperor off his horse, even if it means being hacked to pieces”) loses perplexity: the model finds the Maospeak embedded in the novel.</p>
+    <p class="body" data-step="1" data-until="2"><b>Lilian Lee 李碧華, <i>Farewell My Concubine</i> 霸王別姬 (1985).</b> Spikes on figurative juxtapositions (<span class="zh c-coral">凶狠地打哈欠</span>, “a ferocious yawn”) and classical phrasings (<span class="zh">堂堂男子</span> “a man of standing”, <span class="zh">机会安在</span> “where is the chance?”), which grow <i>more</i> surprising as the model absorbs Maospeak.</p>
+    <p class="body" data-step="2" data-until="3"><b>Dung Kai-cheung 董啓章, <i>Works and Creations</i> 天工開物·栩栩如真 (2005).</b> Unannounced Cantonese breaks the arc: <span class="zh c-coral">嗰次系我第一次听到空中既声音</span> (“that was the first time I heard a sound in the air”). Out of distribution for standard-Chinese corpora, it “puts the brakes on perception.”</p>
+  </div>
+  <div class="cite" style="margin-top:8px">light: base model · dark: fine-tuning epochs 1–5 · perplexity on a log scale</div>
+  <div class="src">Kurzynski, “Cognitive Stylometry,” <i>Computational Humanities Research</i> 2 (2026): e1, Fig. 4.</div>
+</section>
+
+<!-- ═════════════ Style as cognitive signature -->
+<section class="slide" id="s-signature" data-sec="cases">
+  <h2 style="margin-bottom:6px">Style as a <em>cognitive signature</em></h2>
+  <div style="display:flex;gap:28px">
+    <div style="flex:1;min-width:0">
+      <div class="mono c-coral" data-step="1" style="font-size:12px;letter-spacing:.12em">PROPAGANDA · ALL GROUND</div>
+      <svg id="sig1" viewBox="0 0 340 170" style="width:100%;height:170px;overflow:visible;opacity:0"></svg>
+      <p class="body" data-step="1" style="font-size:16px;line-height:1.45">Meaning is backgrounded through <b>repetition</b>. Everything is familiar: cognitive overfitting.</p>
+    </div>
+    <div style="flex:1;min-width:0">
+      <div class="mono c-mute" data-step="2" style="font-size:12px;letter-spacing:.12em">NOISE · ALL SURPRISE</div>
+      <svg id="sig2" viewBox="0 0 340 170" style="width:100%;height:170px;overflow:visible;opacity:0"></svg>
+      <p class="body" data-step="2" style="font-size:16px;line-height:1.45">Anomalous surprise: with no familiar ground, there is nothing to recognize the surprise against.</p>
+    </div>
+    <div style="flex:1;min-width:0">
+      <div class="mono c-blue" data-step="3" style="font-size:12px;letter-spacing:.12em">LITERATURE · GROUND + FIGURE</div>
+      <svg id="sig3" viewBox="0 0 340 170" style="width:100%;height:170px;overflow:visible;opacity:0"></svg>
+      <p class="body" data-step="3" style="font-size:16px;line-height:1.45">A familiar rhythm broken by surprises the reader can still <b>recognize</b> once they arrive: non-anomalous surprise.</p>
+    </div>
+  </div>
+  <div class="callout blue" data-step="4" style="font-size:19px;margin-top:14px;padding:14px 24px">Literature does not defamiliarize by simply being surprising. It defamiliarizes by <b>combining</b> the surprising with the familiar in a new way. That particular arrangement of ground and figure is a text’s <b>cognitive signature</b>, and what counts as familiar depends on the reader’s history.</div>
+  <div data-step="5" style="margin-top:10px">
+    <div class="quote xs" style="font-size:25px;line-height:1.25;max-width:1050px"><span class="mark">“</span>Aesthetic pleasure results from <b>the predictability of the non-focally processed rhythmic cycles</b> in combination with <b>the non-anomalous surprise of the focally processed melody</b>.<span class="mark">”</span></div>
+    <div class="quote-src" style="margin-top:6px;font-size:14px">Patrick Colm Hogan (2016)</div>
+  </div>
+  <div class="src">Kurzynski, “Cognitive Stylometry,” <i>Computational Humanities Research</i> 2 (2026): e1.</div>
+</section>
+
+<!-- ═════════════ Next steps -->
+<section class="slide" id="s-nextsteps" data-sec="cases">
+  <h2>Next steps: <em>nested prediction</em></h2>
+  <p class="lead" style="font-size:23px;max-width:960px">So far we have measured prediction one word at a time. Texts are predicted at many scales at once.</p>
+  <div class="ev" style="max-width:960px;margin-top:14px">
+    <div data-step="1" style="font-size:20px"><b>Sentences and passages.</b> How predictable is the next sentence, the next paragraph, the next scene, given everything before it?</div>
+    <div data-step="2" style="font-size:20px"><b>Nested prediction.</b> Expectations are built inside expectations: a word inside a sentence, a sentence inside a chapter, a chapter inside a book.</div>
+    <div data-step="3" style="font-size:20px"><b>How authors play with scale.</b> A text can be familiar in its words and surprising in its structure, or the reverse.</div>
+  </div>
+  <div class="callout" data-step="4" style="font-size:19px;margin-top:20px">Still to do: models and measures for prediction across scales.</div>
+</section>
+
+
+<!-- ═════════════ Prisons of autocomplete (with Yuk Hui) -->
+<section class="slide" id="s-autocomplete" data-sec="cases" data-steps="3">
+  <h2>Prisons of <em>autocomplete</em></h2>
+  <div class="row" style="gap:44px;align-items:flex-start;margin-top:0">
+    <div class="phone" aria-label="A phone messaging app that suggests the next words">
+      <div class="ph-status"><span>9:41</span><span class="ph-dots">●●●</span></div>
+      <div class="ph-head"><span class="ph-av">A</span><span>Alex</span></div>
+      <div class="ph-chat" id="ph-chat"></div>
+      <div class="ph-sugg" id="ph-sugg"><span></span><span></span><span></span></div>
+      <div class="ph-input"><div class="ph-field" id="ac-field"><span class="ac-typed"></span><span class="ac-caret"></span><span class="ac-ghost"></span></div><span class="ph-send">↑</span></div>
+    </div>
+    <div class="grow" style="padding-top:2px">
+      <div data-step="1">
+        <p class="body" style="font-size:18px"><span class="mono c-blue" style="font-size:12px;letter-spacing:.14em">OPPORTUNITY</span> &nbsp;New questions: where does a text <b>differ from what was expected</b>? Cheap experiments on whole corpora, and a second reader whose layers can be opened.</p>
+        <p class="body" style="font-size:18px;margin-top:10px"><span class="mono c-coral" style="font-size:12px;letter-spacing:.14em">DANGER</span> &nbsp;The machine follows <b>the paths most often travelled through language</b>. Read with it, we begin to finish our own sentences: an autocomplete of the mind.</p>
+      </div>
+      <div data-step="2" class="hui">
+        <figure class="fig" style="width:84px;flex:none;margin:0"><img src="img/cover-kant-machine.jpg" alt="Cover of Kant Machine" style="border:0;border-radius:2px;box-shadow:0 3px 10px rgba(0,0,0,.28)"></figure>
+        <div>
+          <div class="quote xs" style="font-size:21px;line-height:1.28"><span class="mark">“</span>…is escaping from this <b>prison of probabilities</b>, or more precisely, calculability, now humanity’s primary task?<span class="mark">”</span></div>
+          <div class="quote-src" style="margin-top:6px"><b>Yuk Hui</b>, <i>Kant Machine: Critical Philosophy after AI</i> (2026), 14</div>
+          <p class="body" style="font-size:16px;margin-top:10px;line-height:1.45"><b>Determinative judgement</b> applies a rule already given: prediction does this well. <b class="c-coral">Reflective judgement</b> finds a rule for a case no existing rule covers: prediction cannot.</p>
+        </div>
+      </div>
+      <div class="callout" data-step="3" style="font-size:18px;margin-top:14px;padding:12px 22px"><b>Read against the grain.</b> Ask where the probable continuation fails, and which corpus it was calibrated on. In the classroom, treat surprisal as <b>evidence about the training distribution</b>, not a verdict on literary quality.</div>
+    </div>
+  </div>
+  <div class="src">cf. Leif Weatherby, <i>Language Machines</i> (2025). Yuk Hui, <i>Kant Machine</i> (2026), reading Kant’s third <i>Critique</i> as a “treatise on cybernetics”.</div>
+</section>
+
+<!-- ═════════════ Conclusion of the case studies: notes on method -->
+<section class="slide" id="s-conclusion" data-sec="cases" data-nocase>
+  <h2>Notes on <em>method</em></h2>
+  <div class="qcards" style="gap:48px">
+    <div class="qcard">
+      <div class="mono c-mute" style="font-size:13px;letter-spacing:.14em;margin-bottom:10px">NOT THIS</div>
+      <div class="quote sm" style="font-size:36px">Using literature to research a tool</div>
+      <p class="body" style="font-size:20px;margin-top:10px">Send a few prompts, score the model, then repeat the test when the next model appears. The benchmark ages with the model.</p>
+    </div>
+    <div class="qcard" data-step="1">
+      <div class="mono c-coral" style="font-size:13px;letter-spacing:.14em;margin-bottom:10px">THIS</div>
+      <div class="quote sm" style="font-size:36px">Using a tool to research literature</div>
+      <p class="body" style="font-size:20px;margin-top:10px">The question stays with the texts. A new model is a new instrument for seeing what is already there.</p>
+    </div>
+  </div>
+  <div class="callout" data-step="2" style="font-size:32px;line-height:1.3;margin-top:34px;padding:26px 34px;max-width:1380px">We are interested in language models only insofar as they tell us something new about literature. <b>Findings about the texts outlast any particular model; findings about the model do not.</b></div>
+</section>
+
+<!-- ═════════════ 03 Practical session: divider -->
+<section class="slide divider nokicker" id="s-div3" data-sec="practical">
+  <div class="big-n">03</div>
+  <h2>Practical <em>session</em></h2>
+  <p class="lead">A note on method, then how to set up an AI coding agent, and finally our example: building a research tool with one.</p>
+</section>
+
+<!-- ═════════════ 03 Practical: agent vs model -->
+<section class="slide" id="s-pr-concept" data-sec="practical">
+  <h2>We need to choose <em>two things</em></h2>
+  <div class="row" style="gap:48px;align-items:flex-start;margin-top:8px">
+    <div class="grow">
+      <div class="c-coral" style="font-size:22px;line-height:1.2;font-weight:700;margin-bottom:6px">1 · The assistant (“harness”)</div>
+      <p class="body" style="font-size:16px;margin:0 0 8px">The app you talk to. It reads your files, writes code, runs it.</p>
+      <div class="ev">
+        <div data-step="1" style="font-size:17px"><img class="lg" src="img/logos/visualstudiocode.svg" alt=""><b>VS Code</b>: local, or in the browser as a <b>Codespace</b>, with a chat panel (Copilot or an extension).</div>
+        <div data-step="2" style="font-size:17px"><img class="lg" src="img/logos/opencode.svg" alt=""><b>OpenCode</b>: open source; terminal or desktop app; works with almost any model provider.</div>
+        <div data-step="3" style="font-size:17px"><img class="lg" src="img/logos/openai.svg" alt=""><b>Codex</b> (OpenAI) and <img class="lg" src="img/logos/claude.svg" alt=""><b>Claude Code</b> (Anthropic): <span class="c-coral"><b>not available in Hong Kong</b></span>, but: pay with Google Pay, VPN, non-HK credit card.</div>
+      </div>
+    </div>
+    <div class="grow">
+      <div class="c-blue" data-step="4" style="font-size:22px;line-height:1.2;font-weight:700;margin-bottom:6px">2 · The model and its provider</div>
+      <p class="body" data-step="4" style="font-size:16px;margin:0 0 8px">The model does the thinking. An <b>API key</b> connects it to the assistant; treat it like a password.</p>
+      <div class="ev">
+        <div data-step="5" style="font-size:17px"><img class="lg" src="img/logos/ollama.svg" alt=""><img class="lg" src="img/logos/lmstudio.svg" alt=""><b>Local</b> (Ollama, LM Studio): runs on your own computer. Private and free, but needs strong hardware and the models are smaller. Very good for simple data extraction.</div>
+        <div data-step="6" style="font-size:17px"><img class="lg" src="img/logos/openrouter.svg" alt=""><img class="lg" src="img/logos/poe.svg" alt=""><b>External</b> (OpenRouter, Poe, OpenCode Go, or the makers’ own APIs): many models, one key, pay per use or by subscription.</div>
+        <div data-step="7" style="font-size:17px">We use <img class="lg" src="img/logos/visualstudiocode.svg" alt=""><b>VS Code + Copilot</b>, but we bring our own API key: <b>OpenRouter</b> with <b>GLM-5.3-Flash</b>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ 03 Practical: pitfalls -->
+<section class="slide" id="s-pr-pitfalls" data-sec="practical">
+  <h2>Before you start: <em>pitfalls</em></h2>
+  <div class="row" style="gap:40px;align-items:flex-start;margin-top:6px">
+    <div class="grow ev">
+      <div data-step="1" style="font-size:18px"><b>Public and school computers are locked down.</b> You cannot install Python, Git or VS Code. Use <b>GitHub Codespaces</b> in the browser; everything is already inside it. <span class="mono c-coral" style="font-size:15px">github.com/codespaces</span></div>
+      <div data-step="2" style="font-size:18px"><b>OpenCode in a Windows terminal is a pain.</b> Install errors, <i>command not found</i>. In Codespaces it just works; otherwise use the desktop app.</div>
+      <div data-step="3" style="font-size:18px"><b>Register GitHub with a personal email,</b> not a school one that expires. Then apply for <b>GitHub Education</b>: up to 180 Codespaces core-hours a month. <span class="mono c-coral" style="font-size:15px">education.github.com</span></div>
+      <div data-step="4" style="font-size:18px"><b>Delete your Codespace when you finish.</b> An idle one keeps using your hours. <b>Push first:</b> anything not pushed is lost.</div>
+    </div>
+    <div style="width:330px;flex:none;display:flex;flex-direction:column;gap:14px">
+      <figure class="fig" data-step="3" style="margin:0"><img src="img/gh-education-hero.png" alt="GitHub Education homepage"><figcaption>GitHub Education · education.github.com</figcaption></figure>
+      <figure class="fig" data-step="4" style="margin:0"><img src="img/gh-codespaces-menu.png" alt="GitHub Code menu, Codespaces tab" style="width:200px;display:block"><figcaption>Code → Codespaces → Create codespace on main</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ 03 Practical: setup guide (separate site) -->
+<section class="slide divider nokicker" id="s-pr-setup" data-sec="practical">
+  <h2 style="font-size:72px"><a href="https://qhchina.org/litmach" target="_blank" rel="noopener" style="color:var(--blue);text-decoration:underline;text-underline-offset:8px;text-decoration-thickness:2px">qhchina.org/litmach</a></h2>
+  <p class="lead">Step-by-step setup, prompts and examples.</p>
+</section>
+
+<!-- ═════════════ BodyWords: building with an agent -->
+<section class="slide" id="s-ag-intro" data-sec="practical">
+  <h2>Building <em>BodyWords</em> with an agent</h2>
+  <p class="lead" style="font-size:24px;max-width:960px">We asked a coding agent to build a website that maps emotions onto the body in a novel, and then met everything that went wrong.</p>
+  <svg id="ag-svg" viewBox="0 0 1000 270" style="width:925px;height:250px;margin-top:0;display:block" aria-label="A person and a coding agent exchanging prompts and code, again and again">
+    <style>
+      .ag-t { font-family: Inter, sans-serif; font-size: 15px; }
+      .ag-m { font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: .12em; }
+      .ag-ex { opacity: 0; }
+      .ag-line { stroke-dasharray: 1; stroke-dashoffset: 1; }
+      .ag-head { opacity: 0; }
+      #ag-svg.go .ag-ex { opacity: 1; transition: opacity .2s var(--d); }
+      #ag-svg.go .ag-line { animation: agdraw .55s ease-out var(--d) forwards; }
+      #ag-svg.go .ag-head { animation: agfade .15s linear calc(var(--d) + .5s) forwards; }
+      #ag-svg.go .ag-t { animation: agfade .4s linear calc(var(--d) + .15s) backwards; }
+      #ag-svg.go .ag-more { animation: agfade .6s linear 6.1s forwards; }
+      .ag-more { opacity: 0; }
+      @keyframes agdraw { to { stroke-dashoffset: 0; } }
+      @keyframes agfade { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+    <!-- person -->
+    <g transform="translate(120 12)">
+      <circle cx="70" cy="62" r="42" fill="#e6e4de" stroke="#8a867d" stroke-width="3"/>
+      <path d="M-4 196 C -4 132, 34 112, 70 112 C 106 112, 144 132, 144 196 Z" fill="#e6e4de" stroke="#8a867d" stroke-width="3"/>
+      <text x="70" y="226" text-anchor="middle" class="ag-m" fill="#6e6a62">YOU</text>
+    </g>
+    <!-- agent: monitor with a chip/brain -->
+    <g transform="translate(715 14)">
+      <rect x="0" y="0" width="190" height="130" rx="12" fill="#fff" stroke="#e2472a" stroke-width="3"/>
+      <rect x="14" y="14" width="162" height="102" rx="6" fill="#fdece8"/>
+      <g stroke="#e2472a" stroke-width="2.2" fill="none" stroke-linecap="round">
+        <path d="M60 78 L88 56 L118 70 L138 48"/><path d="M88 56 L92 36"/><path d="M118 70 L120 92"/><path d="M60 78 L86 98 L120 92"/>
+      </g>
+      <g fill="#e2472a"><circle cx="60" cy="78" r="6"/><circle cx="88" cy="56" r="6"/><circle cx="118" cy="70" r="6"/><circle cx="138" cy="48" r="6"/><circle cx="92" cy="36" r="5"/><circle cx="120" cy="92" r="6"/><circle cx="86" cy="98" r="5"/></g>
+      <path d="M70 130 L60 170 L130 170 L120 130 Z" fill="#e6e4de" stroke="#8a867d" stroke-width="3"/>
+      <rect x="40" y="170" width="110" height="10" rx="4" fill="#e6e4de" stroke="#8a867d" stroke-width="3"/>
+      <text x="95" y="212" text-anchor="middle" class="ag-m" fill="#6e6a62">CODING AGENT</text>
+    </g>
+    <g class="ag-ex" style="--d:0.4s">
+      <path class="ag-line" pathLength="1" d="M320 26 L690 48" fill="none" stroke="#2f6fe0" stroke-width="3.2" stroke-linecap="round"/>
+      <polygon class="ag-head" points="690,48 677,53 678,41" fill="#2f6fe0"/>
+      <text class="ag-t" x="505.0" y="28" text-anchor="middle" fill="#2f6fe0">plain language prompt</text>
+    </g>
+    <g class="ag-ex" style="--d:1.5s">
+      <path class="ag-line" pathLength="1" d="M690 68 L320 90" fill="none" stroke="#e2472a" stroke-width="3.2" stroke-linecap="round"/>
+      <polygon class="ag-head" points="320,90 332,83 333,95" fill="#e2472a"/>
+      <text class="ag-t" x="505.0" y="70" text-anchor="middle" fill="#e2472a">code, a website, guesses</text>
+    </g>
+    <g class="ag-ex" style="--d:2.6s">
+      <path class="ag-line" pathLength="1" d="M320 110 L690 132" fill="none" stroke="#2f6fe0" stroke-width="3.2" stroke-linecap="round"/>
+      <polygon class="ag-head" points="690,132 677,137 678,125" fill="#2f6fe0"/>
+      <text class="ag-t" x="505.0" y="112" text-anchor="middle" fill="#2f6fe0">“merge the duplicate names”</text>
+    </g>
+    <g class="ag-ex" style="--d:3.7s">
+      <path class="ag-line" pathLength="1" d="M690 152 L320 174" fill="none" stroke="#e2472a" stroke-width="3.2" stroke-linecap="round"/>
+      <polygon class="ag-head" points="320,174 332,167 333,179" fill="#e2472a"/>
+      <text class="ag-t" x="505.0" y="154" text-anchor="middle" fill="#e2472a">a new version, new mistakes</text>
+    </g>
+    <g class="ag-ex" style="--d:4.8s">
+      <path class="ag-line" pathLength="1" d="M320 194 L690 216" fill="none" stroke="#2f6fe0" stroke-width="3.2" stroke-linecap="round"/>
+      <polygon class="ag-head" points="690,216 677,221 678,209" fill="#2f6fe0"/>
+      <text class="ag-t" x="505.0" y="196" text-anchor="middle" fill="#2f6fe0">“redo the figure”</text>
+    </g>
+    <text class="ag-t ag-more" x="505" y="252" text-anchor="middle" fill="#6e6a62" font-style="italic">and so on…</text>
+  </svg>
+  <div class="ev" style="margin-top:0;max-width:1000px;font-size:17px">
+    <div data-step="1" style="font-size:17px;padding:9px 0"><b>The tool.</b> Counts literal organ ↔ emotion descriptions (<span class="zh">羞紅了臉</span> “her face flushed with shame”, <span class="zh">心中歡喜</span> “joy in the heart”) and paints them on an anatomical figure: colour is emotion, shade is strength, click an organ to read the passages.</div>
+    <div data-step="2" style="font-size:17px;padding:9px 0"><b>The setup.</b> One prompt of ten requirements, written in plain language, to a coding agent (GLM-5.3 Flash; later DeepSeek for the repairs). No programming background assumed.</div>
+  </div>
+</section>
+
+<section class="slide" id="s-ag-prompt" data-sec="practical">
+  <h2>One <em>prompt</em></h2>
+  <div class="row" style="gap:36px;align-items:flex-start;margin-top:6px">
+    <div style="flex:1.15;min-width:0">
+      <div class="mono c-mute" style="font-size:11px;letter-spacing:.14em;margin-bottom:8px">AS SENT, TRANSLATED</div>
+      <div class="quote xs" style="font-family:var(--sans);font-weight:350;color:var(--ink2);font-size:18px;line-height:1.55;border-left:2px solid var(--faint);padding-left:20px">I need you to build a human-figure website that analyses the correspondence between emotions and organs in a text and shows it on a scientific anatomical figure, with colour for the emotion and shade for the strength. I do not know the difference between front-end and back-end, but only people I give the link to should be able to open it. It should work in English and Traditional Chinese, and I should be able to upload novels as .txt at any time. Count literal descriptions only: 羞紅了臉 counts for the face. Every organ should be clickable to show its passages; every book, chapter and character gets its own figure, with side-by-side comparisons like medical cross-sections. <b>If you do not understand something, ask me directly; do not interpret it on your own.</b></div>
+    </div>
+    <div style="flex:.85;min-width:0">
+      <div class="mono c-mute" style="font-size:11px;letter-spacing:.14em;margin-bottom:8px">ORIGINAL (中文)</div>
+      <div class="zh" style="font-family:var(--cjk-sans);font-size:12.5px;line-height:1.65;color:var(--mute);border-left:2px solid var(--faint);padding-left:16px">1. 所有內容煩請你寫進 D:\qh·china\bodywords，編程語言是 python　2. 這個程序的主要功能是分析文本中情感與器官的對應，視覺上需要用人形圖（科學的解剖圖）展示不同器官的情緒狀態（用顔色種類、深淺、明暗程度來表現）　3. 我不知道前後端有什麼區別？不過我希望保密性稍微好一點，比如只有我給出鏈接的人才可以訪問這種　4. 語言我希望有英語、繁中兩種切換　5. 文章應當是可以隨時上傳的，目前先支持 txt　6. 請先按照字面描寫，比如【羞紅了臉】這種描寫就算【臉】的　7. 我希望每個器官點擊都可以展示出對應的文本　8. 每一本書、每一個章節、每一個人物都要有自己的人圖，所以也許你需要做一個可供點擊的目錄　9. 我希望人物和章節能有個人圖的縱向動態對比，就有點像醫學切片一樣，這樣可以清晰看出變化　10. 有不懂的直接問我，不要擅自理解，如果你覺得準備好了請開始</div>
+    </div>
+  </div>
+  <div class="callout blue" data-step="1" style="font-size:18px;max-width:1000px;margin-top:20px">Explicit, checkable requirements mostly worked: file paths, upload, chapter menu, click-to-read, language switch. The failures came from what the prompt <b>left unsaid</b>.</div>
+</section>
+
+<section class="slide" id="s-ag-problems" data-sec="practical">
+  <h2>Where the agent <em>went wrong</em></h2>
+  <div class="claims" style="grid-template-columns:repeat(2,1fr);gap:26px 40px">
+    <div class="claim" data-step="1">
+      <div class="n">PRIVACY</div>
+      <div class="h" style="font-size:27px">Too clever</div>
+      <div class="b">Asked for a private link, got a local Flask server, an encrypted tunnel to the internet, and a secret token in the URL.</div>
+    </div>
+    <div class="claim" data-step="2">
+      <div class="n">LANGUAGE</div>
+      <div class="h" style="font-size:27px">Two scripts, one interface</div>
+      <div class="b">Traditional Chinese was requested, but the novel itself was in Simplified: the result mixed both.</div>
+    </div>
+    <div class="claim" data-step="3">
+      <div class="n">INTERPRETATION</div>
+      <div class="h" style="font-size:27px">Forced pairings</div>
+      <div class="b">Literal matching links unrelated organs and emotions, and segmentation errors produce “organs” that are not body parts.</div>
+    </div>
+    <div class="claim" data-step="4">
+      <div class="n">VISUAL DETAIL</div>
+      <div class="h" style="font-size:27px">“Like medical slices” was not enough</div>
+      <div class="b">It worked once the request was a precise mechanism: <i>“magnify the area under the cursor with a normal-distribution-like profile.”</i></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="s-ag-names" data-sec="practical">
+  <h2>One vague sentence, <em>many errors</em></h2>
+  <p class="body" style="font-size:20px;max-width:980px"><b>The instruction:</b> “merge different names for the same character into one.” It did not say <i>who</i> is the same person, or <i>how</i> to tell.</p>
+  <div class="row" style="gap:48px;margin-top:18px">
+    <div class="grow" data-step="1">
+      <div class="mono c-coral" style="font-size:12px;letter-spacing:.14em;margin-bottom:8px">WHAT CAME BACK</div>
+      <div class="ev">
+        <div style="font-size:18px"><span class="zh">鳳姐</span> and <span class="zh">鳳姐兒</span> still two people</div>
+        <div style="font-size:18px"><span class="zh">林黛玉</span> and <span class="zh">黛玉</span> still two people</div>
+        <div style="font-size:18px">Names that do not exist: <span class="zh">賈母笑 · 寶玉忙 · 寶玉便</span></div>
+        <div style="font-size:18px">Pronouns as characters: <span class="zh">叫我 · 有人</span></div>
+      </div>
+    </div>
+    <div class="grow" data-step="2">
+      <div class="mono c-blue" style="font-size:12px;letter-spacing:.14em;margin-bottom:8px">WHAT FIXED IT: HUMAN KNOWLEDGE, WRITTEN INTO THE CODE</div>
+      <div class="ev">
+        <div style="font-size:18px">An alias table: <span class="zh">林黛玉→黛玉 · 鳳姐兒→鳳姐 · 王熙鳳→鳳姐 · 老太太→賈母</span></div>
+        <div style="font-size:18px">A verb-ending blacklist: <span class="zh">笑 哭 嘆 忙 便</span></div>
+        <div style="font-size:18px">Pronoun stopwords, and merging the <i>data</i> as well as the names</div>
+        <div style="font-size:18px"><b>Result:</b> thirty characters, no duplicates, no noise.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="s-ag-lessons" data-sec="practical">
+  <h2>What we <em>learned</em></h2>
+  <div class="claims">
+    <div class="claim" data-step="1">
+      <div class="n">01</div>
+      <div class="h">Vague in, guessed out</div>
+      <div class="b">“Ask me if you don’t understand” only works if you are the one asking. The agent rarely asks back; it quietly guesses.</div>
+    </div>
+    <div class="claim" data-step="2">
+      <div class="n">02</div>
+      <div class="h">The agent executes; you judge</div>
+      <div class="b">“Who is the same person?” is literary knowledge. It cannot be inferred from the text and must come from the reader.</div>
+    </div>
+    <div class="claim" data-step="3">
+      <div class="n">03</div>
+      <div class="h">Checking beats generating</div>
+      <div class="b">A human sees at once that “賈母笑” is not a person. The agent never notices.</div>
+    </div>
+  </div>
+  <div class="callout" data-step="4" style="font-size:20px">The literary reader is not made redundant by the agent. <b>Close reading is how the output gets verified.</b></div>
+</section>
+
+<!-- ═════════════ Thank you -->
+<section class="slide nokicker nofoot" id="s-thanks" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+  <h2 style="font-size:120px;line-height:1;margin:0">Thank <em>you!</em></h2>
+</section>
+</div>
+
+<script>
+window.SECTIONS = [
+  { id: 'frame', name: 'Poly-temporal, multi-layered' },
+  { id: 'cases', name: 'Case studies' },
+  { id: 'practical', name: 'Practical session' },
+];
+</script>
+<script src="data.js"></script>
+<script src="bodyfig.js"></script>
+<script src="slides.js"></script>
+<script src="parallelism-zh.js"></script>
+<script src="deck.js"></script>
+</body>
+</html>
