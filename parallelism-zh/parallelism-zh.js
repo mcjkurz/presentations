@@ -371,12 +371,14 @@
 
   document.documentElement.lang = 'zh-Hant';
   document.title = '古典詩歌中的平行對仗';
-  window.SECTIONS = [{ id: 'cases', name: '案例研究' }];
+  window.SECTIONS = [];
   document.querySelectorAll('#stage > .slide').forEach(slide => {
     if (!selected.has(slide.id)) slide.remove();
+    else slide.classList.add('nokicker');
   });
   const opener = document.getElementById('s-cs-parallel');
-  opener.dataset.case = '平行對仗';
+  delete opener.dataset.case;
+  delete opener.dataset.caseN;
   localize(document.getElementById('stage'));
 
   for (const id of slideIds) {
