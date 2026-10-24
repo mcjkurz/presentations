@@ -373,6 +373,7 @@ small.gl { display: block; font-family: var(--sans); font-size: 12px; letter-spa
 .qkv [data-step] { opacity: 0; transition: opacity .35s ease; }
 .qkv [data-step].on { opacity: 1; }
 .qkv-txt .body { font-size: 17.5px; line-height: 1.42; margin-bottom: 12px; }
+#s-attn-poem .qkv-txt .body { font-size: 18.5px; }
 
 .fig-gold { display: block; width: 780px; flex: none; border: 1px solid var(--faint); border-radius: 4px; margin-top: 4px; }
 .gold-key p { font-size: 16px; line-height: 1.4; margin: 0 0 12px; color: var(--ink2); }
