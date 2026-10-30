@@ -202,7 +202,7 @@ kbd { font-family: var(--mono); font-size: 11px; border: 1px solid var(--faint);
 .ladder .bar { display: inline-block; width: 6px; border-radius: 3px; margin-right: 12px; vertical-align: middle; }
 
 /* ─── poem ─── */
-.poem { font-family: var(--cjk); font-size: 28px; line-height: 1.5; letter-spacing: .1em; white-space: nowrap; color: var(--mute); width: fit-content; padding: 10px 16px; border: 2px solid transparent; border-radius: 12px; transition: border-color .4s, background .4s; }
+.poem { font-family: var(--cjk); font-size: 31px; line-height: 1.5; letter-spacing: .1em; white-space: nowrap; color: var(--mute); width: fit-content; padding: 10px 16px; border: 2px solid transparent; border-radius: 12px; transition: border-color .4s, background .4s; }
 .poem .ln { width: fit-content; padding: 4px 10px; margin: 4px 0; border: 2px solid transparent; border-radius: 8px; transition: color .4s, border-color .4s, background .4s; }
 .poem .ln.hl { color: var(--ink); }
 .poem .ln.hl2 { color: var(--ink2); }
@@ -230,7 +230,7 @@ kbd { font-family: var(--mono); font-size: 11px; border: 1px solid var(--faint);
 #traj { width: 700px; height: 520px; overflow: visible; }
 #traj text { font-family: var(--cjk-sans); }
 .stat { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: baseline; padding: 11px 0; border-top: 1px solid var(--line); }
-.stat .k { font-size: 16px; color: var(--ink2); line-height: 1.35; }
+.stat .k { font-size: 19.5px; color: var(--ink2); line-height: 1.35; }
 .stat .v { font-family: var(--mono); font-size: 22px; }
 .nbrs { font-family: var(--cjk); font-size: 30px; letter-spacing: .18em; }
 
@@ -320,13 +320,13 @@ b.hl.micro { color: #fff; background: var(--blue); }
 
 /* gloss / translation helpers */
 .pex { margin-top: 26px; }
-.pex-cap { font-size: 17px; color: var(--mute); margin-bottom: 10px; }
+.pex-cap { font-size: 20px; color: var(--mute); margin-bottom: 10px; }
 .pex-grid { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 6px 44px; }
 .pex-grid > div { display: flex; flex-direction: column; }
 .pex-grid .zh { font-size: 34px; letter-spacing: .12em; color: var(--ink); }
 .pex-grid .en { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--mute); }
-.poem .tr { display: block; font-family: var(--serif); font-style: italic; font-size: 15px; letter-spacing: 0; line-height: 1.25; margin-top: 1px; white-space: nowrap; color: var(--mute); }
-.cpl-row .tr { display: block; font-family: var(--serif); font-style: italic; font-size: 14.5px; letter-spacing: 0; color: var(--mute); line-height: 1.2; margin-top: 0; white-space: normal; }
+.poem .tr { display: block; font-family: var(--serif); font-style: italic; font-size: 17.5px; letter-spacing: 0; line-height: 1.25; margin-top: 1px; white-space: nowrap; color: var(--mute); }
+.cpl-row .tr { display: block; font-family: var(--serif); font-style: italic; font-size: 17px; letter-spacing: 0; color: var(--mute); line-height: 1.2; margin-top: 0; white-space: normal; }
 small.gl { display: block; font-family: var(--sans); font-size: 12px; letter-spacing: 0; color: var(--mute); margin-top: 2px; }
 
 /* scale slide: same poem block, outlines hug the text */
@@ -372,8 +372,8 @@ small.gl { display: block; font-family: var(--sans); font-size: 12px; letter-spa
 .qkv .wt { font-family: var(--mono); font-size: 14px; text-anchor: middle; }
 .qkv [data-step] { opacity: 0; transition: opacity .35s ease; }
 .qkv [data-step].on { opacity: 1; }
-.qkv-txt .body { font-size: 17.5px; line-height: 1.42; margin-bottom: 12px; }
-#s-attn-poem .qkv-txt .body { font-size: 18.5px; }
+.qkv-txt .body { font-size: 21px; line-height: 1.45; margin-bottom: 14px; }
+#s-attn-poem .qkv-txt .body { font-size: 21px; }
 
 .fig-gold { display: block; width: 780px; flex: none; border: 1px solid var(--faint); border-radius: 4px; margin-top: 4px; }
 .gold-key p { font-size: 16px; line-height: 1.4; margin: 0 0 12px; color: var(--ink2); }
@@ -540,13 +540,13 @@ small.gl { display: block; font-family: var(--sans); font-size: 12px; letter-spa
 
 /* classifier slide: arrows leave the couplets of the poem itself */
 .clf-grid { display: grid; grid-template-columns: 560px 1fr; column-gap: 24px; align-items: center; }
-.clf-grid .ln { font-family: var(--cjk); font-size: 27px; letter-spacing: .1em; color: var(--mute); white-space: nowrap; padding: 3px 10px; margin: 3px 0; border: 2px solid transparent; border-radius: 8px; transition: color .4s, border-color .4s, background .4s; }
-.clf-grid .ln .tr { display: block; font-family: var(--serif); font-style: italic; font-size: 14.5px; letter-spacing: 0; line-height: 1.25; margin-top: 1px; white-space: nowrap; color: var(--mute); }
+.clf-grid .ln { font-family: var(--cjk); font-size: 30px; letter-spacing: .1em; color: var(--mute); white-space: nowrap; padding: 3px 10px; margin: 3px 0; border: 2px solid transparent; border-radius: 8px; transition: color .4s, border-color .4s, background .4s; }
+.clf-grid .ln .tr { display: block; font-family: var(--serif); font-style: italic; font-size: 17px; letter-spacing: 0; line-height: 1.25; margin-top: 1px; white-space: nowrap; color: var(--mute); }
 .clf-grid .ln.on { color: var(--ink); border-color: var(--green); background: var(--green-bg); }
 .clf-grid .ln.on.no { border-color: var(--faint); background: var(--panel); }
-.clf-r { display: grid; grid-template-columns: 56px 130px 56px 80px; gap: 6px; align-items: center; }
+.clf-r { display: grid; grid-template-columns: 50px 130px 50px 90px; gap: 6px; align-items: center; }
 .clf-r .pa { font-size: 30px; color: var(--mute); text-align: center; line-height: 1; }
-.clf-r .box { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink2); border: 1px solid var(--faint); border-radius: 999px; padding: 8px 0; text-align: center; }
+.clf-r .box { font-family: var(--mono), var(--cjk); font-size: 17px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink2); border: 1px solid var(--faint); border-radius: 999px; padding: 8px 0; text-align: center; }
 .clf-r .score { font-family: var(--mono); font-size: 32px; text-align: left; }
 
 /* keys & queries: all ten characters in one row, a gap between the two lines */
@@ -593,7 +593,7 @@ small.gl { display: block; font-family: var(--sans); font-size: 12px; letter-spa
 img.lg { height: 22px; width: 22px; vertical-align: -4px; margin-right: 6px; }
 
 /* classifier results table */
-table.res { border-collapse: collapse; width: 100%; max-width: 980px; font-size: 18px; }
+table.res { border-collapse: collapse; width: 100%; max-width: 1100px; font-size: 20px; }
 table.res th { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--mute); font-weight: 400; text-align: right; padding: 6px 14px; border-bottom: 1px solid var(--faint); }
 table.res th:first-child, table.res td:first-child { text-align: left; }
 table.res td { text-align: right; padding: 2px 14px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
@@ -814,7 +814,6 @@ html { font-synthesis: none; font-synthesis-style: none; }
 #title-grid .row { stroke: var(--coral); stroke-opacity: .22; stroke-width: .8; }
 #title-grid .ch { font-family: var(--cjk); font-size: 25px; fill: var(--ink2); opacity: 0; transition: opacity .6s ease; }
 #title-grid .ch.xin { fill: var(--coral); }
-#title-grid .ch.pu { font-size: 20px; }
 #title-grid .px { fill: var(--blue); opacity: 0; transition: opacity .8s ease; }
 #title-grid .px.hot { fill: var(--coral); }
 #title-grid .px.cool { fill: var(--amber); }
@@ -887,8 +886,17 @@ html { font-synthesis: none; font-synthesis-style: none; }
 /* Vector Poetics papers */
 .dw-papers { display: grid; grid-template-columns: repeat(5, 1fr); gap: 22px; margin-top: 26px; align-items: start; }
 .dw-papers figure { margin: 0; }
-.dw-papers img { width: 100%; height: 300px; object-fit: cover; object-position: top; display: block; border: 1px solid var(--line); border-radius: 3px; background: #fff; box-shadow: 0 6px 18px rgba(60,40,20,.12); }
+.dw-papers img { width: 100%; height: 360px; object-fit: cover; object-position: top; display: block; border: 1px solid var(--line); border-radius: 3px; background: #fff; box-shadow: 0 6px 18px rgba(60,40,20,.12); }
 .dw-papers figcaption { margin-top: 12px; }
 .dw-papers figcaption b { display: block; font-family: var(--serif); font-weight: 400; font-size: 21px; line-height: 1.15; color: var(--ink); }
 .dw-papers figcaption span { display: block; font-size: 14.5px; color: var(--mute); margin-top: 6px; line-height: 1.4; }
 #s-article .article-intro { font-size: 22px; }
+/* per-slide fits */
+#s-w-recipe .dw-cases .q { font-size: 50px; white-space: nowrap; }
+#s-h-cont .dw-ev > div { font-size: 20px; line-height: 1.5; padding-top: 9px; padding-bottom: 9px; }
+#s-h-cont .dw-hl .cite { margin-top: 2px; }
+#s-h-econ .dw-ev > div { font-size: 19px; padding-top: 10px; padding-bottom: 10px; }
+
+/* an inline size on an .ev list applies to its items */
+.ev[style*="font-size"] > div { font-size: inherit; }
+#s-geometry .ev .cite { font-size: 18px; color: var(--ink2); }

@@ -249,7 +249,7 @@
  * Replaces the wave canvas of the lit-machines deck. */
 (function () {
   const H = window.HOOKS, NS = 'http://www.w3.org/2000/svg';
-  const TEXT = [...'夫文心者，言為文之用心也。昔涓子琴心，王孫巧心，心哉美矣，故用之焉。'];
+  const TEXT = [...'夫文心者言為文之用心也昔涓子琴心王孫巧心心哉美矣故用之焉'];   // unpunctuated, as written
   const COLS = 8, ROWS = 12, CELL = 38, GAP = 12, X0 = 1190, Y0 = 96;
   const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; };
   let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
@@ -267,8 +267,7 @@
         if (c < 3) {                              // written text
           const ch = TEXT[n];
           if (!ch) continue;
-          const pu = '，。'.includes(ch);   // vertical punctuation sits in the upper right of its cell
-          const t = el('text', { x: pu ? cx + 9 : cx, y: pu ? cy - 2 : cy + 9, 'text-anchor': 'middle', class: 'ch' + (ch === '心' ? ' xin' : '') + (pu ? ' pu' : '') }, svg);
+          const t = el('text', { x: cx, y: cy + 9, 'text-anchor': 'middle', class: 'ch' + (ch === '心' ? ' xin' : '') }, svg);
           t.textContent = ch; t.style.transitionDelay = delay;
         } else {                                  // the same page, read as numbers: fading, thinning embedding cells
           const fade = (c - 3) / (COLS - 3);
@@ -282,7 +281,7 @@
       }
     }
     const src = el('text', { x: X0, y: Y0 + ROWS * CELL + 44, 'text-anchor': 'end', class: 'src' }, svg);
-    src.textContent = '「夫文心者，言為文之用心也」 劉勰《文心雕龍・序志》';
+    src.textContent = '劉勰《文心雕龍・序志》';
   }
   H['s-title'] = {
     enter(slide) {
