@@ -8,7 +8,7 @@
   ];
   // Slides written for this talk (already in Chinese).
   const ownIds = [
-    's-title', 's-w-question', 's-w-moretti', 's-w-recipe',
+    's-title', 's-w-question',
     's-h-open', 's-h-cd', 's-h-cont', 's-h-disc', 's-h-thesis',
     's-h-vec', 's-h-cos', 's-h-w2v', 's-h-corpus', 's-h-tr', 's-h-train', 's-h-robust', 's-h-3d', 's-h-pass', 's-h-stable',
     's-h-space', 's-h-yexin', 's-h-meet', 's-h-econ', 's-h-sum',

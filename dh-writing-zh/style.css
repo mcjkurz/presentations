@@ -636,6 +636,22 @@ body.laser, body.laser * { cursor: none !important; }
 .dw-zhq { font-size: 28px; color: var(--ink2); margin-top: 14px; letter-spacing: .04em; }
 .dw-claims .h { font-family: var(--cjk); font-size: 34px; }
 .dw-claims .b { font-size: 23px; }
+.dw-question-layout { display: grid; grid-template-columns: 1fr 1.05fr; gap: 48px; align-items: start; }
+.dw-question-prompts .claim { padding: 9px 0 11px; }
+.dw-question-prompts .claim .n { font-size: 11px; margin-bottom: 5px; }
+.dw-question-prompts .claim .h { font-size: 24px; margin-bottom: 5px; }
+.dw-question-prompts .claim .b { font-size: 17px; line-height: 1.35; }
+.dw-question-operationalizing h3 { font-family: var(--cjk); font-size: 28px; font-weight: 400; margin: 0 0 8px; }
+.dw-question-operationalizing .quote { font-size: 22px; line-height: 1.25; }
+.dw-question-operationalizing .dw-zhq { font-size: 18px; margin-top: 8px; }
+.dw-question-operationalizing .quote-src { font-size: 12px; line-height: 1.4; margin-top: 8px; }
+.dw-question-operationalizing .dw-bridge { gap: 8px; margin-top: 16px; }
+.dw-question-operationalizing .dw-bridge .b { padding: 9px 12px; }
+.dw-question-operationalizing .dw-bridge .k { font-size: 23px; margin-bottom: 4px; }
+.dw-question-operationalizing .dw-bridge .v { font-size: 16px; line-height: 1.35; }
+.dw-question-operationalizing .dw-bridge .ar { font-size: 20px; }
+#s-w-question h2 { font-size: 50px; margin-bottom: 16px; }
+#s-w-question .callout { max-width: none; margin-top: 14px; padding: 12px 20px; font-size: 18px; line-height: 1.4; }
 
 /* swap: stepped elements that take no space while hidden */
 .sw:not(.on) { display: none; }
@@ -892,7 +908,6 @@ html { font-synthesis: none; font-synthesis-style: none; }
 .dw-papers figcaption span { display: block; font-size: 14.5px; color: var(--mute); margin-top: 6px; line-height: 1.4; }
 #s-article .article-intro { font-size: 22px; }
 /* per-slide fits */
-#s-w-recipe .dw-cases .q { font-size: 50px; white-space: nowrap; }
 #s-h-cont .dw-ev > div { font-size: 20px; line-height: 1.5; padding-top: 9px; padding-bottom: 9px; }
 #s-h-cont .dw-hl .cite { margin-top: 2px; }
 #s-h-econ .dw-ev > div { font-size: 19px; padding-top: 10px; padding-bottom: 10px; }
