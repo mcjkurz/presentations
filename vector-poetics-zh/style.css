@@ -1029,3 +1029,4 @@ html { font-synthesis: none; font-synthesis-style: none; }
 .vp-leg2 { justify-content: start; grid-template-columns: repeat(7, auto); margin: 4px 0 0 40px; font-size: 14px; }
 .dw-concl > div { padding-top: 13px; padding-bottom: 13px; font-size: 23px; }
 .dw-concl > div b { margin-right: 0; }
+.vp-bars .lead { stroke: var(--faint); stroke-width: 1; }

@@ -13,6 +13,8 @@
     const xs = pts.map(p => p.x), ys = pts.map(p => p.y);
     const lo = Math.min(...xs, ...ys), hi = Math.max(...xs, ...ys), s = (W - 2 * PAD) / (hi - lo);
     const px = p => X0 + PAD + (p.x - lo) * s, py = p => Y0 + W - PAD - (p.y - lo) * s;
+    // nudge the second verse a few pixels down-right so the two paths sit side by side instead of overlapping
+    const SHIFT = 6, w2 = { ...v2, points: v2.points.map(p => ({ ...p, x: p.x + SHIFT / s, y: p.y - SHIFT / s })) };
     el('rect', { x: X0, y: Y0, width: W, height: W, class: 'panel' }, svg);
     for (let i = 1; i < 6; i++) {
       el('line', { x1: X0 + i * W / 6, x2: X0 + i * W / 6, y1: Y0, y2: Y0 + W, class: 'grid' }, svg);
@@ -20,8 +22,8 @@
     }
     el('text', { x: X0 + W, y: Y0 + W + 22, class: 'axl', 'text-anchor': 'end' }, svg).textContent = 'PC1';
     el('text', { x: X0 - 10, y: Y0 + 12, class: 'axl', 'text-anchor': 'end' }, svg).textContent = 'PC2';
-    v1.points.forEach((p, i) => el('line', { x1: px(p), y1: py(p), x2: px(v2.points[i]), y2: py(v2.points[i]), class: 'pair' }, svg));
-    [[v1, 'a', -1], [v2, 'b', 1]].forEach(([v, k, side]) => {
+    v1.points.forEach((p, i) => el('line', { x1: px(p), y1: py(p), x2: px(w2.points[i]), y2: py(w2.points[i]), class: 'pair' }, svg));
+    [[v1, 'a', -1], [w2, 'b', 1]].forEach(([v, k, side]) => {
       const d = v.points.map((p, i) => (i ? 'L' : 'M') + px(p).toFixed(1) + ',' + py(p).toFixed(1)).join(' ');
       el('path', { d, class: 'path ' + k, pathLength: 1 }, svg);
       v.points.forEach((p, i) => {
