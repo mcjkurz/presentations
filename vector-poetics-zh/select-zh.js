@@ -215,6 +215,7 @@
     'Aligned.': '已對齊。',
     ' Matching steps point the same way: the two verses move in parallel, which is what parallelism means geometrically.': '對應步向一致：兩句詩平行移動，這正是對仗在幾何上的意義。',
   };
+  const cjk = /[\u3000-\u303f\u3400-\u9fff\uf900-\ufaff\uff00-\uffef]/;
   const normalize = text => text.replace(/\s+/g, ' ').trim();
   const selected = new Set(slideIds);
   const translationMap = Object.fromEntries(
@@ -244,6 +245,25 @@
         const trailing = node.nodeValue.match(/\s*$/)[0];
         node.nodeValue = whitespace + translated + trailing;
       }
+    }
+    // second pass, once everything is Chinese: no space between two Chinese characters
+    // (the English spacing around inline emphasis survives translation otherwise); a word label followed by
+    // its character (國王 王 in the vector-semantics figure) keeps its space
+    const lastChar = n => { const t = n && n.textContent; return t ? t[t.length - 1] : ''; };
+    const firstChar = n => { const t = n && n.textContent; return t ? t[0] : ''; };
+    const isGloss = n => n && n.nodeType === 1 && n.classList.contains('zh') && n.closest('svg');
+    const w2 = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    while ((node = w2.nextNode())) {
+      if (isGloss(node.nextSibling) || isGloss(node.previousSibling) || !/^\s|\s$/.test(node.nodeValue)) continue;
+      const v = node.nodeValue, body = v.trim();
+      const before = lastChar(node.previousSibling), after = firstChar(node.nextSibling);
+      if (!body) { if (cjk.test(before) && cjk.test(after)) node.nodeValue = ''; continue; }
+      // full-width punctuation (：、，。（）) needs no space on either side, whatever comes next to it
+      const punct = /[\u3000-\u303f\uff00-\uffef]/;
+      let out = v;
+      if ((cjk.test(before) && cjk.test(body[0])) || punct.test(before) || punct.test(body[0])) out = out.replace(/^\s+/, '');
+      if ((cjk.test(after) && cjk.test(body[body.length - 1])) || punct.test(after) || punct.test(body[body.length - 1])) out = out.replace(/\s+$/, '');
+      node.nodeValue = out;
     }
     root.querySelectorAll('[alt], [title], [aria-label]').forEach(el => {
       for (const attr of ['alt', 'title', 'aria-label']) {
