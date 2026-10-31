@@ -65,6 +65,54 @@ window.HOOKS = {};
     },
   };
 
+  /* ───────────────────────── what "aligned" looks like: schematic 3D paths (hypothetical coordinates) */
+  (function () {
+    const B = [[-1.6, -.6, -.4], [-.8, .2, .3], [0, -.3, -.2], [.8, .5, .4], [1.6, 0, -.1]];
+    const add = (a, b) => a.map((v, i) => v + b[i]);
+    // misaligned: the second verse takes steps in unrelated directions
+    const stepsMis = [[1.2, -1.1, .5], [-1.6, .4, -1.0], [.5, 1.3, 1.2], [-1.0, -1.4, -.4]];
+    const M = [[-.7, 1.0, -.6]]; stepsMis.forEach(d => M.push(add(M[M.length - 1], d)));
+    // aligned: the same steps as the first verse, plus a small offset
+    // (same overall directions, but different step lengths and a little noise, so it does not look like a copy)
+    const scale = [.65, 1.3, .8, 1.25], noise = [[.18, -.22, .12], [-.25, .15, -.2], [.2, .2, .15], [-.12, -.25, .2]];
+    const A = [[-1.5, .9, -.7]];
+    for (let i = 0; i < 4; i++) A.push(add(A[i], add(B[i + 1].map((v, k) => (v - B[i][k]) * scale[i]), noise[i])));
+    function panel(cv, other, g, t) {
+      const W = 520, H_ = 320, S = 88, yaw = -.5 + .45 * Math.sin(t * .5), pitch = .4;
+      const proj = ([x, y, z]) => {
+        const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+        const x1 = x * cy - y * sy, y1 = x * sy + y * cy;
+        const d = y1 * cp + z * sp, up = z * cp - y1 * sp, k = 1 / (1 - d * .12);
+        return { X: W / 2 + x1 * S * k, Y: H_ / 2 - up * S * k, d, k };
+      };
+      g.clearRect(0, 0, W, H_);
+      [[[-2.1, 0, 0], [2.1, 0, 0]], [[0, -1.6, 0], [0, 1.6, 0]], [[0, 0, -1.4], [0, 0, 1.4]]].forEach(([a, b]) => {
+        const pa = proj(a), pb = proj(b); g.beginPath(); g.moveTo(pa.X, pa.Y); g.lineTo(pb.X, pb.Y); g.strokeStyle = C.faint; g.lineWidth = 1.2; g.stroke();
+      });
+      const nodes = [];
+      [[B, C.coral], [other, css('--cyan')]].forEach(([pts, col]) => {
+        const P = pts.map(proj);
+        for (let i = 0; i < P.length - 1; i++) {
+          const a = P[i], b = P[i + 1], ang = Math.atan2(b.Y - a.Y, b.X - a.X), r = 9;
+          const sx = a.X + r * Math.cos(ang), sy = a.Y + r * Math.sin(ang), ex = b.X - r * Math.cos(ang), ey = b.Y - r * Math.sin(ang);
+          g.strokeStyle = col; g.lineWidth = 3; g.lineCap = 'round'; g.beginPath(); g.moveTo(sx, sy); g.lineTo(ex, ey); g.stroke();
+          g.beginPath(); g.moveTo(ex - 9 * Math.cos(ang - .45), ey - 9 * Math.sin(ang - .45)); g.lineTo(ex, ey); g.lineTo(ex - 9 * Math.cos(ang + .45), ey - 9 * Math.sin(ang + .45)); g.stroke();
+        }
+        P.forEach(p => nodes.push({ p, col }));
+      });
+      nodes.sort((u, v) => u.p.d - v.p.d).forEach(({ p, col }) => {
+        g.beginPath(); g.arc(p.X, p.Y, 9 * p.k, 0, 7); g.fillStyle = col; g.fill(); g.strokeStyle = '#fff'; g.lineWidth = 2; g.stroke();
+      });
+    }
+    H['s-align-ex'] = {
+      enter(slide) {
+        const c1 = document.getElementById('ax-mis'), c2 = document.getElementById('ax-ali');
+        const g1 = hidpi(c1, 520, 320), g2 = hidpi(c2, 520, 320);
+        loop(slide, t => { panel(c1, M, g1, t); panel(c2, A, g2, t); });
+      },
+    };
+  })();
+
   /* ───────────────────────── keys & queries: a draggable [CLS] query lights up the ten characters (viridis = attention) */
   (function () {
     const rad = d => d * Math.PI / 180;

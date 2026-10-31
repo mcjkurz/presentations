@@ -1,6 +1,6 @@
 (() => {
   // Slides reused from the English deck (lit-machines), translated at runtime below.
-  const slideIds = ['s-reg', 's-geometry', 's-poem', 's-clf-res', 's-kqv', 's-encoder', 's-kq', 's-attn-corr', 's-3d', 's-gardenfors'];
+  const slideIds = ['s-reg', 's-geometry', 's-poem', 's-clf-res', 's-kqv', 's-encoder', 's-kq', 's-attn-corr', 's-align-ex', 's-3d', 's-gardenfors'];
   const translations = {
     'Parallelism': '平行對仗',
     'In the empty mountains after fresh rain, evening air turns autumn.': '新雨過後，空山清朗；傍晚的天氣已帶著秋意。',
@@ -205,6 +205,15 @@
     'The Geometry of Meaning': '《意義的幾何學》',
     '(2014); Kurzynski, Xu, and Feng,': '（2014）；Kurzynski、Xu 與 Feng，',
     '19.2 (2025); Kurzynski, EADH 2026.': '19.2（2025）；Kurzynski，EADH 2026。',
+    'What does “': '「',
+    '” look like?': '」看起來是什麼樣子？',
+    'Read each verse as a path through a 3D meaning space, one character at a time. At each step, ask: do the two paths move in the same direction?': '將每句詩視為穿越三維語義空間的一條路徑，逐字前進。每一步都問：兩條路徑是否朝同一方向移動？',
+    'Misaligned': '未對齊',
+    'Aligned': '已對齊',
+    'Misaligned.': '未對齊。',
+    ' Each verse wanders its own way: the steps of the two paths point in different, often opposite, directions.': '兩句各行其是：兩條路徑的步向各異，甚至常常相反。',
+    'Aligned.': '已對齊。',
+    ' Matching steps point the same way: the two verses move in parallel, which is what parallelism means geometrically.': '對應步向一致：兩句詩平行移動，這正是對仗在幾何上的意義。',
   };
   const normalize = text => text.replace(/\s+/g, ' ').trim();
   const selected = new Set(slideIds);
