@@ -96,7 +96,7 @@
   <div class="src">Kurzynski, “Jakobson’s ‘Poetic Function’ in Vector Space: Parallelism, Cognitive Geometry, and Classical Chinese Verse,” EADH 2026.</div>
 </section>
 
-<section class="slide" id="s-poem" data-sec="cases" data-steps="7">
+<section class="slide" id="s-poem" data-sec="cases" data-steps="6">
   <h2 style="font-size:44px;margin-bottom:6px">Is this couplet <em>parallel</em>?</h2>
   <p class="small" style="margin-bottom:6px;max-width:900px">In regulated verse (律詩), two lines that pair up word for word are “parallel”. A classifier reads a couplet and returns a probability.</p>
   <div class="small" style="margin-bottom:4px">王維（699–761）《山居秋暝》</div>
@@ -110,7 +110,6 @@
       <div class="ln" id="clf-l3"><span class="zh">隨意春芳歇，王孫自可留。</span><em class="tr">Spring’s fragrance may fade as it pleases; the noble guest is free to stay.</em></div>
       <div class="clf-r" id="clf-r3"><span class="pa" data-step="4">→</span><span class="box" data-step="5">classifier</span><span class="pa" data-step="6">→</span><span class="score c-mute" data-step="6">0.02</span></div>
   </div>
-  <p class="small" data-step="7" style="margin-top:14px;max-width:960px">SikuBERT, a BERT-based classifier fine-tuned on couplets from 140,000+ regulated poems (律詩), performs on par with GPT-4o and DeepSeek R1.</p>
 </section>
 
 <!-- ═════════════ DADH：訓練資料：以格律為標籤 -->
@@ -126,7 +125,7 @@
       <div class="vp-io-n">× 142,235 首五言律詩（唐至清）</div>
     </div>
     <div class="grow ev" style="font-size:20px">
-      <div data-step="1"><b>現成的標籤。</b>律詩的頷聯、頸聯必須對仗：標為 <b class="c-green">1</b>；首聯、尾聯不必對仗：標為 <b class="c-mute">0</b>。不需人工標註，就有數十萬組訓練樣本。</div>
+      <div data-step="1"><b>現成的標籤。</b>律詩的頷聯、頸聯必須對仗：標為 <b class="c-green">1</b>；首聯、尾聯不必對仗：標為 <b class="c-mute">0</b>。不需人工標註，就有數十萬組訓練樣本，用以微調 <b>SikuBERT</b>（以《四庫全書》預訓練的 BERT 模型）。</div>
       <div data-step="2"><b>但標籤含噪聲。</b>並非所有頷聯、頸聯都對仗，也有不少首聯、尾聯其實對仗：有些詩人通篇對仗，有些刻意避開。</div>
       <div data-step="3"><b>資料太多，無法人工逐一檢查。</b>以此訓練的 SikuBERT 只達 F1 0.71；必須先自動<b class="c-coral">清理</b>資料。</div>
     </div>

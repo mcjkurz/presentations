@@ -32,7 +32,6 @@
     '?': '？',
     'In regulated verse (律詩), two lines that pair up word for word are “parallel”. A classifier reads a couplet and returns a probability.': '在律詩中，上下兩句逐字相對便構成「對仗」。分類器讀取一聯，並輸出其為對仗的機率。',
     'classifier': '分類器',
-    'SikuBERT, a BERT-based classifier fine-tuned on couplets from 140,000+ regulated poems (律詩), performs on par with GPT-4o and DeepSeek R1.': 'SikuBERT 是以 BERT 為基礎的分類器，在超過 14 萬首律詩的詩聯上微調；其表現與 GPT-4o、DeepSeek R1 相當。',
     'How well does': '效果有多',
     'it work': '好',
     'Test set: 6,153 pentasyllabic couplets from the Six Dynasties (222–589), labelled by hand: 2,072 parallel, 4,081 not.': '測試集：六朝（222–589）的 6,153 組五言詩聯，均由人工標註；其中 2,072 組為對仗，4,081 組不是。',
