@@ -1014,3 +1014,17 @@ html { font-synthesis: none; font-synthesis-style: none; }
 .slide > h2 em.cls, .slide .ev b.cls, .slide b.cls { color: var(--red); }
 .vp-lab { position: absolute; left: 88px; top: 594px; font-family: var(--mono); font-size: 14px; letter-spacing: .14em; color: var(--coral); text-decoration: none; }
 .vp-lab:hover { color: var(--cyan); }
+
+/* historical bar charts */
+.vp-chart { margin: 0; flex: none; }
+.vp-chart figcaption { font-family: var(--cjk); font-size: 16px; color: var(--ink2); letter-spacing: .08em; margin: 0 0 2px 40px; }
+.vp-bars { width: 100%; height: auto; display: block; overflow: visible; }
+.vp-bars .g { stroke: var(--line); stroke-width: 1; }
+.vp-bars .ax { font-family: var(--mono); font-size: 10.5px; fill: var(--mute); }
+.vp-bars .v { font-family: var(--sans); font-size: 13px; font-weight: 600; fill: var(--ink2); }
+.vp-bars .v.sm { font-size: 11.5px; }
+.vp-bars .nm { font-family: var(--cjk); font-size: 16px; fill: var(--ink); }
+.vp-bars .nm.sm { font-size: 14px; }
+.vp-bars .yr { font-family: var(--sans); font-size: 10px; fill: var(--mute); }
+.vp-leg2 { justify-content: start; grid-template-columns: repeat(7, auto); margin: 4px 0 0 40px; font-size: 14px; }
+.dw-concl > div { padding-top: 13px; padding-bottom: 13px; font-size: 23px; }
