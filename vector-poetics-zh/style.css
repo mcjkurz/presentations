@@ -1024,3 +1024,5 @@ html { font-synthesis: none; font-synthesis-style: none; }
 .vp-bars .yr { font-family: var(--sans); font-size: 10px; fill: var(--mute); }
 .vp-leg2 { justify-content: start; grid-template-columns: repeat(7, auto); margin: 4px 0 0 40px; font-size: 14px; }
 .vp-bars .lead { stroke: var(--faint); stroke-width: 1; }
+.vp-en { font-family: var(--sans); font-size: 17px; color: var(--mute); letter-spacing: .02em; margin-bottom: 18px; }
+#s-reg .grow > h2 { padding-left: 0; }
