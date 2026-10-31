@@ -19,6 +19,7 @@
   </div>
   <div class="vp-authors">馬傑（Maciej Kurzyński）<sup>①</sup>　徐曉童<sup>②</sup>　馮宇<sup>③</sup></div>
   <div class="vp-affil"><span>① 香港嶺南大學中文系助理教授</span><span>② 北京大學中國語言文學系博士生</span><span>③ 香港中文大學碩士研究生</span></div>
+  <a class="vp-lab" href="https://qhchina.org" target="_blank" rel="noopener">qhchina.org</a>
 </section>
 
 <!-- ═════════════ Regulated verse: the middle two couplets must be parallel -->
@@ -92,30 +93,6 @@
   </div>
   <div class="callout" data-step="5" style="font-size:20.5px;margin-top:22px;padding:10px 20px"><b>Vector poetics.</b> A language model places every line in a high-dimensional space. Parallelism becomes a question of geometry: are the two verses laid out side by side?</div>
   <div class="src">Kurzynski, “Jakobson’s ‘Poetic Function’ in Vector Space: Parallelism, Cognitive Geometry, and Classical Chinese Verse,” EADH 2026.</div>
-</section>
-
-<!-- ═════════════ DADH：文化向量空間（Vector Poetics, NLP4DH 2024） -->
-<section class="slide nokicker" id="s-v-cult" data-sec="pair" data-steps="3">
-  <h2>文化<em>向量空間</em></h2>
-  <div class="row vp-cult" style="gap:34px;align-items:flex-start">
-    <svg viewBox="0 0 470 300" style="height:300px" aria-label="示意圖：生到死的向量與春到秋的向量平行">
-      <defs><marker id="cv-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--coral)"/></marker></defs>
-      <g data-step="1"><line x1="78" y1="236" x2="182" y2="108" stroke="var(--coral)" stroke-width="3" marker-end="url(#cv-a)"/><text x="98" y="150" class="note" style="fill:var(--coral)">生 → 死</text></g>
-      <g data-step="2"><line x1="298" y1="256" x2="402" y2="128" stroke="var(--coral)" stroke-width="3" marker-end="url(#cv-a)"/><text x="364" y="214" class="note" style="fill:var(--coral)">春 → 秋</text>
-        <line x1="78" y1="250" x2="282" y2="266" stroke="var(--blue)" stroke-width="1.4" stroke-dasharray="4 5"/><line x1="196" y1="96" x2="400" y2="112" stroke="var(--blue)" stroke-width="1.4" stroke-dasharray="4 5"/></g>
-      <circle cx="66" cy="250" r="24" class="pt" stroke="var(--ink2)"/><text x="66" y="261" class="lab">生</text>
-      <circle cx="286" cy="268" r="24" class="pt" stroke="var(--ink2)"/><text x="286" y="279" class="lab">春</text>
-      <g data-step="1"><circle cx="196" cy="96" r="24" class="pt" stroke="var(--ink2)"/><text x="196" y="107" class="lab">死</text></g>
-      <g data-step="2"><circle cx="416" cy="114" r="24" class="pt" stroke="var(--coral)"/><text x="416" y="125" class="lab" style="fill:var(--coral)">秋</text></g>
-      <text x="0" y="296" class="note">示意圖</text>
-    </svg>
-    <div class="grow">
-      <div class="vp-eq" data-step="2">春<span class="op">−</span>生<span class="op">+</span>死<span class="op">≈</span>秋</div>
-      <figure class="vp-fig" data-step="3" style="margin-top:8px;width:560px"><img src="img/vp-nlp4dh-fig1.jpg" alt="兩組詩聯的字向量主成分投影：對仗聯「始作陽春曲，終成苦寒歌」中對應字的連線大致平行；非對仗聯「衡門無過客，終日懶衣冠」則雜亂交錯" style="width:560px"><figcaption>SikuBERT 字向量的主成分投影。左：對仗聯，陽之於苦，猶春之於寒；右：非對仗聯，連線雜亂交錯。</figcaption></figure>
-    </div>
-  </div>
-  <div class="callout" data-step="3" style="font-size:19px;margin-top:10px;padding:10px 20px;max-width:1104px">只有在「春之於生，猶秋之於死」的文化中，此式才成立：兩組概念沿同一條<b>文化主成分</b>排列。對仗是文化維度的語言表達；詩人的創造，則是在歷史所界定的向量空間中探索，並重塑這個空間。</div>
-  <div class="src">Kurzynski, Xu, and Feng, “Vector Poetics: Parallel Couplet Detection in Classical Chinese Poetry,” <i>NLP4DH</i> 2024, §6.2 and Fig. 1.</div>
 </section>
 
 <section class="slide" id="s-poem" data-sec="cases" data-steps="7">
@@ -298,6 +275,30 @@
     </div>
   </div>
   <div class="src">Gärdenfors, <i>Conceptual Spaces</i> (2000) and <i>The Geometry of Meaning</i> (2014); Kurzynski, Xu, and Feng, <i>IJHAC</i> 19.2 (2025); Kurzynski, EADH 2026.</div>
+</section>
+
+<!-- ═════════════ DADH：文化向量空間（Vector Poetics, NLP4DH 2024） -->
+<section class="slide nokicker" id="s-v-cult" data-sec="pair" data-steps="3">
+  <h2>文化<em>向量空間</em></h2>
+  <div class="row vp-cult" style="gap:34px;align-items:flex-start">
+    <svg viewBox="0 0 470 300" style="height:300px" aria-label="示意圖：生到死的向量與春到秋的向量平行">
+      <defs><marker id="cv-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--coral)"/></marker></defs>
+      <g data-step="1"><line x1="78" y1="236" x2="182" y2="108" stroke="var(--coral)" stroke-width="3" marker-end="url(#cv-a)"/><text x="98" y="150" class="note" style="fill:var(--coral)">生 → 死</text></g>
+      <g data-step="2"><line x1="298" y1="256" x2="402" y2="128" stroke="var(--coral)" stroke-width="3" marker-end="url(#cv-a)"/><text x="364" y="214" class="note" style="fill:var(--coral)">春 → 秋</text>
+        <line x1="78" y1="250" x2="282" y2="266" stroke="var(--blue)" stroke-width="1.4" stroke-dasharray="4 5"/><line x1="196" y1="96" x2="400" y2="112" stroke="var(--blue)" stroke-width="1.4" stroke-dasharray="4 5"/></g>
+      <circle cx="66" cy="250" r="24" class="pt" stroke="var(--ink2)"/><text x="66" y="261" class="lab">生</text>
+      <circle cx="286" cy="268" r="24" class="pt" stroke="var(--ink2)"/><text x="286" y="279" class="lab">春</text>
+      <g data-step="1"><circle cx="196" cy="96" r="24" class="pt" stroke="var(--ink2)"/><text x="196" y="107" class="lab">死</text></g>
+      <g data-step="2"><circle cx="416" cy="114" r="24" class="pt" stroke="var(--coral)"/><text x="416" y="125" class="lab" style="fill:var(--coral)">秋</text></g>
+      <text x="0" y="296" class="note">示意圖</text>
+    </svg>
+    <div class="grow">
+      <div class="vp-eq" data-step="2">春<span class="op">−</span>生<span class="op">+</span>死<span class="op">≈</span>秋</div>
+      <figure class="vp-fig" data-step="3" style="margin-top:8px;width:560px"><img src="img/vp-nlp4dh-fig1.jpg" alt="兩組詩聯的字向量主成分投影：對仗聯「始作陽春曲，終成苦寒歌」中對應字的連線大致平行；非對仗聯「衡門無過客，終日懶衣冠」則雜亂交錯" style="width:560px"><figcaption>SikuBERT 字向量的主成分投影。左：對仗聯，陽之於苦，猶春之於寒；右：非對仗聯，連線雜亂交錯。</figcaption></figure>
+    </div>
+  </div>
+  <div class="callout" data-step="3" style="font-size:19px;margin-top:10px;padding:10px 20px;max-width:1104px">只有在「春之於生，猶秋之於死」的文化中，此式才成立：兩組概念沿同一條<b>文化主成分</b>排列。對仗是文化維度的語言表達；詩人的創造，則是在歷史所界定的向量空間中探索，並重塑這個空間。</div>
+  <div class="src">Kurzynski, Xu, and Feng, “Vector Poetics: Parallel Couplet Detection in Classical Chinese Poetry,” <i>NLP4DH</i> 2024, §6.2 and Fig. 1.</div>
 </section>
 
 <!-- ═════════════ DADH：結語 -->

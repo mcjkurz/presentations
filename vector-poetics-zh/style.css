@@ -1012,3 +1012,5 @@ html { font-synthesis: none; font-synthesis-style: none; }
 
 /* [CLS] keeps the red of the original decks: it is the one token everything depends on */
 .slide > h2 em.cls, .slide .ev b.cls, .slide b.cls { color: var(--red); }
+.vp-lab { position: absolute; left: 88px; top: 594px; font-family: var(--mono); font-size: 14px; letter-spacing: .14em; color: var(--coral); text-decoration: none; }
+.vp-lab:hover { color: var(--cyan); }
