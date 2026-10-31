@@ -775,9 +775,6 @@ body.laser, body.laser * { cursor: none !important; }
 #econ.st2 .anti .act, #econ.st3 .anti .act { fill: var(--blue); }
 
 /* conclusion */
-.dw-concl > div { position: relative; padding: 17px 0 17px 52px; border-top: 1px solid var(--line); font-size: 25px; line-height: 1.5; color: var(--ink2); }
-.dw-concl > div b { color: var(--ink); font-weight: 600; margin-right: 4px; }
-.dw-concl .n { position: absolute; left: 0; top: 18px; font-family: var(--mono); font-size: 13px; color: var(--coral); }
 
 /* robustness bars */
 .dw-hbars > div { display: grid; grid-template-columns: 160px 1fr 70px; align-items: center; gap: 12px; padding: 9px 0; border-top: 1px solid var(--line); }
@@ -1008,7 +1005,6 @@ html { font-synthesis: none; font-synthesis-style: none; }
 .vp-net.big .vp-leg { margin-top: 6px; }
 
 /* brass hairlines under kickers and the affiliation rule */
-.dw-concl .n { color: var(--cyan); }
 
 /* [CLS] keeps the red of the original decks: it is the one token everything depends on */
 .slide > h2 em.cls, .slide .ev b.cls, .slide b.cls { color: var(--red); }
@@ -1027,6 +1023,4 @@ html { font-synthesis: none; font-synthesis-style: none; }
 .vp-bars .nm.sm { font-size: 14px; }
 .vp-bars .yr { font-family: var(--sans); font-size: 10px; fill: var(--mute); }
 .vp-leg2 { justify-content: start; grid-template-columns: repeat(7, auto); margin: 4px 0 0 40px; font-size: 14px; }
-.dw-concl > div { padding-top: 13px; padding-bottom: 13px; font-size: 23px; }
-.dw-concl > div b { margin-right: 0; }
 .vp-bars .lead { stroke: var(--faint); stroke-width: 1; }
